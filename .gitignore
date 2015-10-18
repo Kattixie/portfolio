@@ -1,0 +1,9 @@
+/node_modules
+/dist
+/.tmp
+/.sass-cache
+/bower_components
+/app/data
+/app/images/thumbs
+/app/images/work
+/app/includes/social.html

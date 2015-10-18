@@ -1,0 +1,397 @@
+@import '../mixins.less';
+
+#entry-gallery
+{
+    overflow: hidden;
+
+    .container
+    {
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    ul.gallery
+    {
+        line-height: 0;
+        text-align: center;
+    }
+
+    li.thumbnail
+    {
+        display: inline-block;
+        font-size: 1rem;
+        height: 358px; // Must be set to auto when rescaled according to width.
+        position: relative;
+            top: 0;
+            left: 0;
+        width: 477px;
+
+        &::before
+        {
+            content: '';
+            display: block;
+            padding-top: 358 / 477 * 100%; 	// Ratio as percentage
+        }
+
+        .description
+        {
+            position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            text-align: center;
+
+            h3
+            {
+                //.rounded(27px);
+                .transition(all 200ms ease-out);
+                transition-delay: 120ms;
+
+                //border: 2px solid #fff;
+                color: #fff;
+                display: inline-block;
+                font-family: 'Archivo Narrow', sans-serif;
+                //font-size: 22px;
+                font-size: 1.375em;
+                //height: 50px;
+                letter-spacing: 1px;
+                line-height: 1.375em;
+                margin: (@spacing_unit + @spacing_unit / 2) 1.5em 0 1.5em;
+                //margin: 20% 10% 0 10%;
+                //padding: 0 25px;
+                position: relative;
+                    top: 0;
+                    left: 0;
+                //text-transform: uppercase;
+            }
+
+            h3::after
+            {
+                .transition(all 300ms ease-out);
+
+                content: '';
+                border-bottom: 2px solid #fff;
+                position: absolute;
+                    bottom: -30px;
+                    left: 50%;
+                margin-left: -30px;
+                width: 60px;
+            }
+
+            ul.roles
+            {
+                //padding: 0 10%;
+                position: absolute;
+                    bottom: @spacing_unit;
+                    left: 0;
+                text-align: center;
+                width: 100%;
+
+                li
+                {
+                    color: #fff;
+                    display: inline-block;
+                    font-family: 'Fira Sans', sans-serif;
+                    //font-size: 16px;
+                    font-size: 0.938em;
+                    font-style: italic;
+                    font-weight: 400;
+                    //line-height: 22px;
+                    line-height: 1.625em;
+                    margin-left: .625em;
+
+                    &::before
+                    {
+                        //content: '\00D7';
+                        content: '+';
+                        margin-right: .625em;
+                    }
+
+                    &:first-child::before
+                    {
+                        content: '';
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        &:hover .description h3
+        {
+            top: -1 * @spacing_unit / 2;
+        }
+
+        &:hover h3::after
+        {
+            //bottom: -40px;
+        }
+
+        &.astronomical-league
+        {
+            //.inner-shadow(0, 0, 60px, 5px, 0, 0, 0, .15);
+
+            background: #8f2d44;
+
+            .description
+            {
+
+            }
+
+            a:hover img
+            {
+                //top: 358px;
+            }
+        }
+
+        &.maker-camp
+        {
+            background: no-repeat url(../../../images/thumbs/maker_camp_thumb2.jpg);
+
+            .background-size(cover);
+            //background: #b0d06c;
+            //background: #f6b435;
+
+            .description h3
+            {
+                color: #3d3d3d;
+            }
+
+            .description h3::after
+            {
+                border-color: #3d3d3d;
+            }
+
+            .description ul.roles li
+            {
+                color: #3d3d3d;
+            }
+
+            a:hover img
+            {
+                //left: 477px;
+                //top: 0;
+            }
+        }
+
+        &.nintendo-community
+        {
+            background: #e03f47;
+
+            .description
+            {
+
+            }
+
+            a:hover img
+            {
+                //top: 358px;
+            }
+        }
+
+        &.wedding
+        {
+            //background: no-repeat url(../../../images/thumbs/wedding_thumb2.jpg);
+            //background: #c2d9bc;
+            background: url(../../../images/thumbs/bg_paper_light.jpg);
+
+            .description h3
+            {
+                color: #3d3d3d;
+            }
+
+            .description h3::after
+            {
+                border-color: #3d3d3d;
+            }
+
+            .description ul.roles li
+            {
+                color: #3d3d3d;
+            }
+
+            a:hover img
+            {
+                //left: 477px;
+                //top: 0;
+            }
+        }
+
+        &.choose-your-own-birth
+        {
+            background: #e3418a;
+
+            .description
+            {
+
+            }
+        }
+
+        &.learning-creative-learning
+        {
+            background: #ace8dc;
+
+            .description h3
+            {
+                color: #3d3d3d;
+            }
+
+            .description h3::after
+            {
+                border-color: #3d3d3d;
+            }
+
+            .description ul.roles li
+            {
+                color: #3d3d3d;
+            }
+        }
+
+        &.audubon-birding-the-net
+        {
+            background: #e5ab3d;
+            //background: #e5b14e;
+
+            .description
+            {
+
+            }
+        }
+
+        &.subaru-work-play-love
+        {
+            background: #2c5fa1;
+
+            .description
+            {
+
+            }
+        }
+
+        &.airforce-rotc-scholarship
+        {
+            background: #79bace;
+
+            .description
+            {
+
+            }
+        }
+
+        &.girl-rock-nation
+        {
+            background: #00b5cb;
+
+            .description
+            {
+
+            }
+        }
+
+        &.coaches-vs-cancer
+        {
+            background: #cc6327;
+
+            .description
+            {
+
+            }
+        }
+
+        &.paris-from-memory
+        {
+            background: #0d0b13;
+
+            .description
+            {
+
+            }
+        }
+
+        &.late-night-camp-hyrule
+        {
+            background: #1e4c72;
+
+            .description
+            {
+
+            }
+        }
+
+        &.sugarcrave
+        {
+            background: no-repeat url(../../../images/thumbs/sugarcrave_thumb2.jpg);
+
+            .background-size(cover);
+            //background: #a9aade;
+
+            .description
+            {
+
+            }
+        }
+    }
+
+    a
+    {
+        //background: #ebebeb;
+        /*
+        display: block;
+        height: 358px;
+        position: relative;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        overflow: hidden;
+        width: 477px;
+        */
+        display: block;
+        position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        overflow: hidden;
+
+        /*
+        &::before
+        {
+            content: '';
+            display: block;
+            padding-top: 100%; 	/* initial ratio of 1:1
+        }
+        */
+
+        img
+        {
+            //.transition(all 300ms ease-out);
+            //-transition-delay: 100ms;
+
+            display: block;
+            height: auto;
+            position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            max-width: 477px;
+            width: 100%;
+
+            /* Used this to test a downscaling issue that's emerged in the
+            latest version of Chrome. This helps, but it's worse at really
+            downscaled levels and it looks horrible in Firefox.
+            image-rendering: -moz-crisp-edges;
+            image-rendering: -o-crisp-edges;
+            image-rendering: -webkit-optimize-contrast;
+            */
+        }
+
+        &:hover img
+        {
+            //opacity: 0;
+            //top: -358px;
+            //transform: scale(1.01);
+            //image-rendering: pixelated;
+        }
+    }
+}

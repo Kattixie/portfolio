@@ -1,0 +1,17 @@
+<div id="entry-gallery">
+    <div class="container">
+        <ul class="gallery">
+            <li ng-repeat="entry in data.entries" class="{{::entry.slug}} thumbnail" my-thumbnail>
+                <div class="description">
+                    <h3 ng-bind-html="entry.titleShort">{{::entry.titleShort}}</h3>
+                    <ul class="roles">
+                        <li ng-repeat="role in entry.thumbCategories">{{::role}}</li>
+                    </ul>
+                </div>
+                <a ng-href="#/{{::entry.slug}}">
+                    <img ng-src="images/{{::entry.thumb}}">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
