@@ -1,1 +1,5 @@
-* text=auto
+# Normalize text files to use LF
+text eol=lf
+
+# Except these which we want CRLF
+*.txt eol=crlf
