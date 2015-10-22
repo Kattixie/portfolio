@@ -171,63 +171,6 @@ header h1#logo {
   border-radius: 3.438em 3.438em 3.438em 3.438em;
   -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
   -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
   -webkit-background-size: cover auto;
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
@@ -237,7 +180,6 @@ header h1#logo {
 		background-image: url(../images/galaxy.png),
 											url(../images/jess_pink.png);
 		*/
-
   background-image: url(../images/jess_pink.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -270,21 +212,6 @@ header h1#logo a img {
   -ms-transition: all 100ms ease-out;
   -o-transition: all 100ms ease-out;
   transition: all 100ms ease-out;
-  -webkit-transition: all 100ms ease-out;
-  -moz-transition: all 100ms ease-out;
-  -ms-transition: all 100ms ease-out;
-  -o-transition: all 100ms ease-out;
-  transition: all 100ms ease-out;
-  -webkit-transition: all 100ms ease-out;
-  -moz-transition: all 100ms ease-out;
-  -ms-transition: all 100ms ease-out;
-  -o-transition: all 100ms ease-out;
-  transition: all 100ms ease-out;
-  -webkit-transition: all 100ms ease-out;
-  -moz-transition: all 100ms ease-out;
-  -ms-transition: all 100ms ease-out;
-  -o-transition: all 100ms ease-out;
-  transition: all 100ms ease-out;
   font-size: 1em;
   position: absolute;
   top: 50%;
@@ -293,21 +220,6 @@ header h1#logo a img {
   width: 4.375em;
 }
 header h1#logo a span.name {
-  -webkit-transition: all 100ms ease-out;
-  -moz-transition: all 100ms ease-out;
-  -ms-transition: all 100ms ease-out;
-  -o-transition: all 100ms ease-out;
-  transition: all 100ms ease-out;
-  -webkit-transition: all 100ms ease-out;
-  -moz-transition: all 100ms ease-out;
-  -ms-transition: all 100ms ease-out;
-  -o-transition: all 100ms ease-out;
-  transition: all 100ms ease-out;
-  -webkit-transition: all 100ms ease-out;
-  -moz-transition: all 100ms ease-out;
-  -ms-transition: all 100ms ease-out;
-  -o-transition: all 100ms ease-out;
-  transition: all 100ms ease-out;
   -webkit-transition: all 100ms ease-out;
   -moz-transition: all 100ms ease-out;
   -ms-transition: all 100ms ease-out;
@@ -322,26 +234,11 @@ header h1#logo a span.name {
   text-transform: lowercase;
 }
 header h1#logo a:hover img {
-  -webkit-transform: rotatez(180deg);
-  -moz-transform: rotatez(180deg);
-  -ms-transform: rotatez(180deg);
-  -o-transform: rotatez(180deg);
-  transform: rotatez(180deg);
-  -webkit-transform: rotatez(180deg);
-  -moz-transform: rotatez(180deg);
-  -ms-transform: rotatez(180deg);
-  -o-transform: rotatez(180deg);
-  transform: rotatez(180deg);
-  -webkit-transform: rotatez(180deg);
-  -moz-transform: rotatez(180deg);
-  -ms-transform: rotatez(180deg);
-  -o-transform: rotatez(180deg);
-  transform: rotatez(180deg);
-  -webkit-transform: rotatez(180deg);
-  -moz-transform: rotatez(180deg);
-  -ms-transform: rotatez(180deg);
-  -o-transform: rotatez(180deg);
-  transform: rotatez(180deg);
+  -webkit-transform: rotateZ(180deg);
+  -moz-transform: rotateZ(180deg);
+  -ms-transform: rotateZ(180deg);
+  -o-transform: rotateZ(180deg);
+  transform: rotateZ(180deg);
   opacity: 0;
 }
 header h1#logo a:hover span.name {
@@ -400,66 +297,6 @@ ul#contact a {
   border-radius: 1.625em 1.625em 1.625em 1.625em;
   -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
   -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
   -webkit-transition: all 250ms ease-out;
   -moz-transition: all 250ms ease-out;
   -ms-transition: all 250ms ease-out;
@@ -485,27 +322,26 @@ ul#contact a.fa {
   text-align: center;
   text-transform: uppercase;
 }
-@media (max-width: 1254px) {
+@media (max-width: 954px + 50px * 6) {
   header {
     height: 13.125rem;
   }
   header h1#logo {
     /*
-  			height: 6.875em; //110px
-  			margin-left: 0;
-  			position: absolute;
-  				left: @spacing_unit_root / 2;
-  				z-index: 101;
-  
-  			&.centered
-  			{
-  				margin-top: -6.875em / 2;
-  				margin-left: -6.875em / 2;
-  				top: 50%;
-  				left: 50%;
-  			}
-  			*/
-  
+			height: 6.875em; //110px
+			margin-left: 0;
+			position: absolute;
+				left: @spacing_unit_root / 2;
+				z-index: 101;
+
+			&.centered
+			{
+				margin-top: -6.875em / 2;
+				margin-left: -6.875em / 2;
+				top: 50%;
+				left: 50%;
+			}
+			*/
   }
 }
 @media (max-width: 727px) {
@@ -546,16 +382,13 @@ ul#contact a.fa {
     width: 50%;
   }
 }
-@media (min-width: 954px) {
-  
-}
 @media (min-width: 954px) and (max-width: 1430px) {
   html {
     font-size: 16px;
   }
   #entry-gallery ul.gallery li.thumbnail {
     height: auto;
-    width: 33.33333333333333%;
+    width: 33.33333333%;
   }
 }
 @media (min-width: 1431px) and (max-width: 1907px) {
@@ -587,21 +420,6 @@ nav#nav-main {
   -ms-transition: all 300ms ease-out;
   -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   overflow: hidden;
   position: relative;
   top: 0;
@@ -613,21 +431,6 @@ nav#nav-main .wrapper {
   overflow: hidden;
 }
 nav#nav-main a#nav-icon {
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   -webkit-transition: all 300ms ease-out;
   -moz-transition: all 300ms ease-out;
   -ms-transition: all 300ms ease-out;
@@ -660,41 +463,11 @@ nav#nav-main .nav-items ul.nav-primary {
   float: left;
 }
 nav#nav-main .nav-items ul.nav-primary::before {
-  -webkit-transform: rotatez(45deg);
-  -moz-transform: rotatez(45deg);
-  -ms-transform: rotatez(45deg);
-  -o-transform: rotatez(45deg);
-  transform: rotatez(45deg);
-  -webkit-transform: rotatez(45deg);
-  -moz-transform: rotatez(45deg);
-  -ms-transform: rotatez(45deg);
-  -o-transform: rotatez(45deg);
-  transform: rotatez(45deg);
-  -webkit-transform: rotatez(45deg);
-  -moz-transform: rotatez(45deg);
-  -ms-transform: rotatez(45deg);
-  -o-transform: rotatez(45deg);
-  transform: rotatez(45deg);
-  -webkit-transform: rotatez(45deg);
-  -moz-transform: rotatez(45deg);
-  -ms-transform: rotatez(45deg);
-  -o-transform: rotatez(45deg);
-  transform: rotatez(45deg);
-  -webkit-transition: all 200ms ease-out;
-  -moz-transition: all 200ms ease-out;
-  -ms-transition: all 200ms ease-out;
-  -o-transition: all 200ms ease-out;
-  transition: all 200ms ease-out;
-  -webkit-transition: all 200ms ease-out;
-  -moz-transition: all 200ms ease-out;
-  -ms-transition: all 200ms ease-out;
-  -o-transition: all 200ms ease-out;
-  transition: all 200ms ease-out;
-  -webkit-transition: all 200ms ease-out;
-  -moz-transition: all 200ms ease-out;
-  -ms-transition: all 200ms ease-out;
-  -o-transition: all 200ms ease-out;
-  transition: all 200ms ease-out;
+  -webkit-transform: rotateZ(45deg);
+  -moz-transform: rotateZ(45deg);
+  -ms-transform: rotateZ(45deg);
+  -o-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
   -webkit-transition: all 200ms ease-out;
   -moz-transition: all 200ms ease-out;
   -ms-transition: all 200ms ease-out;
@@ -714,28 +487,13 @@ nav#nav-main .nav-items ul.nav-primary.animating::before {
 nav#nav-main .nav-items ul.nav-primary li {
   float: left;
   height: 13.125rem;
-  margin-left: 1.0416666666666667rem;
+  margin-left: 1.04166667rem;
 }
 nav#nav-main .nav-items ul.nav-primary li:first-child {
   margin-left: 3.125rem;
 }
 nav#nav-main .nav-items ul.nav-primary li.gallery a,
 nav#nav-main .nav-items ul.nav-primary li.list a {
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   -webkit-transition: all 300ms ease-out;
   -moz-transition: all 300ms ease-out;
   -ms-transition: all 300ms ease-out;
@@ -790,21 +548,6 @@ nav#nav-main .nav-items ul.nav-sub li a {
   -ms-transition: all 300ms ease-out;
   -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   color: #808080;
   display: block;
   font-family: 'Archivo Narrow', sans-serif;
@@ -833,12 +576,6 @@ nav#nav-main.centered .nav-items ul.nav-primary::before {
 nav#nav-main.compact.collapsed {
   -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
   box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
 }
 nav#nav-main.compact.collapsed .wrapper {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -853,7 +590,7 @@ nav#nav-main.compact a#nav-icon {
 nav#nav-main.compact a#nav-icon svg {
   height: 5.90625rem;
 }
-@media (max-width: 1254px) {
+@media (max-width: 954px + 50px * 6) {
   nav#nav-main {
     background: #FFF;
     font-size: 1.25rem;
@@ -926,7 +663,7 @@ nav#nav-main.compact a#nav-icon svg {
   nav#nav-main .nav-items ul.nav-sub {
     float: left;
     padding-top: 1.5625rem;
-    padding-bottom: 2.604166666666667rem;
+    padding-bottom: 2.60416667rem;
     width: 100%;
   }
   nav#nav-main .nav-items ul.nav-sub li {
@@ -980,21 +717,6 @@ nav#nav-sequence span.text-label:hover {
 }
 nav#nav-sequence a.prev,
 nav#nav-sequence a.next {
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   -webkit-transition: all 300ms ease-out;
   -moz-transition: all 300ms ease-out;
   -ms-transition: all 300ms ease-out;
@@ -1087,7 +809,7 @@ nav#nav-sequence.compact a.next svg {
   height: 5.90625rem;
   width: 0.875em;
 }
-@media (max-width: 1254px) {
+@media (max-width: 954px + 50px * 6) {
   nav#nav-sequence span.text-label {
     display: block;
     height: 13.125rem;
@@ -1174,94 +896,34 @@ nav#nav-sequence.compact a.next svg {
 }
 @-webkit-keyframes spinOnce {
   0% {
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
+    -webkit-transform: rotateZ(0);
+    -moz-transform: rotateZ(0);
+    -ms-transform: rotateZ(0);
+    -o-transform: rotateZ(0);
+    transform: rotateZ(0);
   }
   100% {
-    -webkit-transform: rotatez(90deg);
-    -moz-transform: rotatez(90deg);
-    -ms-transform: rotatez(90deg);
-    -o-transform: rotatez(90deg);
-    transform: rotatez(90deg);
-    -webkit-transform: rotatez(90deg);
-    -moz-transform: rotatez(90deg);
-    -ms-transform: rotatez(90deg);
-    -o-transform: rotatez(90deg);
-    transform: rotatez(90deg);
-    -webkit-transform: rotatez(90deg);
-    -moz-transform: rotatez(90deg);
-    -ms-transform: rotatez(90deg);
-    -o-transform: rotatez(90deg);
-    transform: rotatez(90deg);
-    -webkit-transform: rotatez(90deg);
-    -moz-transform: rotatez(90deg);
-    -ms-transform: rotatez(90deg);
-    -o-transform: rotatez(90deg);
-    transform: rotatez(90deg);
+    -webkit-transform: rotateZ(90deg);
+    -moz-transform: rotateZ(90deg);
+    -ms-transform: rotateZ(90deg);
+    -o-transform: rotateZ(90deg);
+    transform: rotateZ(90deg);
   }
 }
 @-webkit-keyframes spinOnceBack {
   0% {
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
-    -webkit-transform: rotatez(0);
-    -moz-transform: rotatez(0);
-    -ms-transform: rotatez(0);
-    -o-transform: rotatez(0);
-    transform: rotatez(0);
+    -webkit-transform: rotateZ(0);
+    -moz-transform: rotateZ(0);
+    -ms-transform: rotateZ(0);
+    -o-transform: rotateZ(0);
+    transform: rotateZ(0);
   }
   100% {
-    -webkit-transform: rotatez(-90deg);
-    -moz-transform: rotatez(-90deg);
-    -ms-transform: rotatez(-90deg);
-    -o-transform: rotatez(-90deg);
-    transform: rotatez(-90deg);
-    -webkit-transform: rotatez(-90deg);
-    -moz-transform: rotatez(-90deg);
-    -ms-transform: rotatez(-90deg);
-    -o-transform: rotatez(-90deg);
-    transform: rotatez(-90deg);
-    -webkit-transform: rotatez(-90deg);
-    -moz-transform: rotatez(-90deg);
-    -ms-transform: rotatez(-90deg);
-    -o-transform: rotatez(-90deg);
-    transform: rotatez(-90deg);
-    -webkit-transform: rotatez(-90deg);
-    -moz-transform: rotatez(-90deg);
-    -ms-transform: rotatez(-90deg);
-    -o-transform: rotatez(-90deg);
-    transform: rotatez(-90deg);
+    -webkit-transform: rotateZ(-90deg);
+    -moz-transform: rotateZ(-90deg);
+    -ms-transform: rotateZ(-90deg);
+    -o-transform: rotateZ(-90deg);
+    transform: rotateZ(-90deg);
   }
 }
 #entry-gallery {
@@ -1287,7 +949,7 @@ nav#nav-sequence.compact a.next svg {
 #entry-gallery li.thumbnail::before {
   content: '';
   display: block;
-  padding-top: 75.05241090146751%;
+  padding-top: 75.0524109%;
 }
 #entry-gallery li.thumbnail .description {
   position: absolute;
@@ -1298,21 +960,6 @@ nav#nav-sequence.compact a.next svg {
   text-align: center;
 }
 #entry-gallery li.thumbnail .description h3 {
-  -webkit-transition: all 200ms ease-out;
-  -moz-transition: all 200ms ease-out;
-  -ms-transition: all 200ms ease-out;
-  -o-transition: all 200ms ease-out;
-  transition: all 200ms ease-out;
-  -webkit-transition: all 200ms ease-out;
-  -moz-transition: all 200ms ease-out;
-  -ms-transition: all 200ms ease-out;
-  -o-transition: all 200ms ease-out;
-  transition: all 200ms ease-out;
-  -webkit-transition: all 200ms ease-out;
-  -moz-transition: all 200ms ease-out;
-  -ms-transition: all 200ms ease-out;
-  -o-transition: all 200ms ease-out;
-  transition: all 200ms ease-out;
   -webkit-transition: all 200ms ease-out;
   -moz-transition: all 200ms ease-out;
   -ms-transition: all 200ms ease-out;
@@ -1331,21 +978,6 @@ nav#nav-sequence.compact a.next svg {
   left: 0;
 }
 #entry-gallery li.thumbnail .description h3::after {
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   -webkit-transition: all 300ms ease-out;
   -moz-transition: all 300ms ease-out;
   -ms-transition: all 300ms ease-out;
@@ -1391,19 +1023,7 @@ nav#nav-sequence.compact a.next svg {
   background: #8f2d44;
 }
 #entry-gallery li.thumbnail.maker-camp {
-  background: no-repeat url(components/components/../../../images/thumbs/maker_camp_thumb2.jpg);
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
+  background: no-repeat url(../../../images/thumbs/maker_camp_thumb2.jpg);
   -webkit-background-size: cover auto;
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
@@ -1422,7 +1042,7 @@ nav#nav-sequence.compact a.next svg {
   background: #e03f47;
 }
 #entry-gallery li.thumbnail.wedding {
-  background: url(components/components/../../../images/thumbs/bg_paper_light.jpg);
+  background: url(../../../images/thumbs/bg_paper_light.jpg);
 }
 #entry-gallery li.thumbnail.wedding .description h3 {
   color: #3d3d3d;
@@ -1470,19 +1090,7 @@ nav#nav-sequence.compact a.next svg {
   background: #1e4c72;
 }
 #entry-gallery li.thumbnail.sugarcrave {
-  background: no-repeat url(components/components/../../../images/thumbs/sugarcrave_thumb2.jpg);
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
+  background: no-repeat url(../../../images/thumbs/sugarcrave_thumb2.jpg);
   -webkit-background-size: cover auto;
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
@@ -1499,7 +1107,6 @@ nav#nav-sequence.compact a.next svg {
         overflow: hidden;
         width: 477px;
         */
-
   display: block;
   position: absolute;
   top: 0;
@@ -1515,7 +1122,6 @@ nav#nav-sequence.compact a.next svg {
             padding-top: 100%; 	/* initial ratio of 1:1
         }
         */
-
 }
 #entry-gallery a img {
   display: block;
@@ -1534,7 +1140,6 @@ nav#nav-sequence.compact a.next svg {
             image-rendering: -o-crisp-edges;
             image-rendering: -webkit-optimize-contrast;
             */
-
 }
 #entry-list {
   font-family: 'Archivo Narrow', sans-serif;
@@ -1573,7 +1178,6 @@ nav#nav-sequence.compact a.next svg {
           opacity: 1;
         }
         */
-
 }
 #entry-list ul.entries li {
   display: block;
@@ -1617,21 +1221,6 @@ nav#nav-sequence.compact a.next svg {
   -ms-transition: all 250ms ease-out;
   -o-transition: all 250ms ease-out;
   transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
   color: #3d3d3d;
   display: inline-block;
   padding: 5px 10px;
@@ -1644,21 +1233,6 @@ nav#nav-sequence.compact a.next svg {
   color: #181818;
 }
 #entry-list ul.entries a::after {
-  -webkit-transition: width 250ms ease-out;
-  -moz-transition: width 250ms ease-out;
-  -ms-transition: width 250ms ease-out;
-  -o-transition: width 250ms ease-out;
-  transition: width 250ms ease-out;
-  -webkit-transition: width 250ms ease-out;
-  -moz-transition: width 250ms ease-out;
-  -ms-transition: width 250ms ease-out;
-  -o-transition: width 250ms ease-out;
-  transition: width 250ms ease-out;
-  -webkit-transition: width 250ms ease-out;
-  -moz-transition: width 250ms ease-out;
-  -ms-transition: width 250ms ease-out;
-  -o-transition: width 250ms ease-out;
-  transition: width 250ms ease-out;
   -webkit-transition: width 250ms ease-out;
   -moz-transition: width 250ms ease-out;
   -ms-transition: width 250ms ease-out;
@@ -1685,66 +1259,6 @@ nav#nav-sequence.compact a.next svg {
   border-radius: 22px 22px 22px 22px;
   -moz-border-radius: 22px 22px 22px 22px;
   -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  -webkit-border-radius: 22px 22px 22px 22px;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
   -webkit-transition: all 250ms ease-out;
   -moz-transition: all 250ms ease-out;
   -ms-transition: all 250ms ease-out;
@@ -1785,7 +1299,7 @@ nav#nav-sequence.compact a.next svg {
 #entry-list ul.categories a span.count {
   display: none;
 }
-@media (max-width: 1254px) {
+@media (max-width: 954px + 50px * 6) {
   #entry-list .container {
     margin-top: 3.125rem;
   }
@@ -1859,21 +1373,6 @@ nav#nav-sequence.compact a.next svg {
   -ms-transition: all 300ms ease-out;
   -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   background: #ededed;
   opacity: 1;
   position: absolute;
@@ -1931,21 +1430,6 @@ nav#nav-sequence.compact a.next svg {
   -ms-transition: all 250ms ease-out;
   -o-transition: all 250ms ease-out;
   transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
   border-bottom: 1px solid #f4f4f4;
   padding-bottom: 2px;
   position: relative;
@@ -1962,7 +1446,6 @@ nav#nav-sequence.compact a.next svg {
                         width: 100%;
                     }
                     */
-
 }
 #entry .text p a.external::after {
   -webkit-transition: all 250ms ease-out;
@@ -1970,66 +1453,6 @@ nav#nav-sequence.compact a.next svg {
   -ms-transition: all 250ms ease-out;
   -o-transition: all 250ms ease-out;
   transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
-  -webkit-border-radius: 1em 1em 1em 1em;
   border-radius: 1em 1em 1em 1em;
   -moz-border-radius: 1em 1em 1em 1em;
   -webkit-border-radius: 1em 1em 1em 1em;
@@ -2055,7 +1478,6 @@ nav#nav-sequence.compact a.next svg {
                             border-color: #848484;
                         }
                         */
-
 }
 #entry .text p a:hover.external::after {
   background: #b6e7e4;
@@ -2083,7 +1505,6 @@ nav#nav-sequence.compact a.next svg {
             width: 100%;
         }
         */
-
 }
 #entry .data-points {
   color: #999;
@@ -2103,7 +1524,7 @@ nav#nav-sequence.compact a.next svg {
 #entry .data-points ul:first-child {
   margin-top: 0;
 }
-@media (max-width: 1254px) {
+@media (max-width: 954px + 50px * 6) {
   #entry .container {
     width: auto;
   }

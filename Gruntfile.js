@@ -48,6 +48,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
+      less: {
+        files: ['<%= yeoman.app %>/styles/less/{,*/}*.less'],
+        tasks: ['less']
+      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
@@ -114,6 +118,17 @@ module.exports = function (grunt) {
         options: {
           open: true,
           base: '<%= yeoman.dist %>'
+        }
+      }
+    },
+
+    less: {
+      development: {
+        options: {
+            compress: false
+        },
+        files: {
+            '<%= yeoman.app %>/styles/main.css': '<%= yeoman.app %>/styles/less/main.less'
         }
       }
     },
