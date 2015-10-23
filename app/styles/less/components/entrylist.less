@@ -14,13 +14,11 @@
 
     ul.entries
     {
-        //display: inline-block;
         float: left;
         font-size: 3.250em; //52px;
         font-weight: 700;
-        line-height: 1.096em; //57px;
+        line-height: 1.019em; //53px;
         overflow: hidden;
-        //width: 700px;
 
         li
         {
@@ -57,9 +55,6 @@
             a
             {
                 color: #dadada;
-                // Does not work to put animation here. It seems to only fire for the parent?
-                //-webkit-animation: fadeInTextWithPause 300ms ease-out;
-                //-webkit-animation-delay: 300ms;
             }
         }
 
@@ -226,7 +221,7 @@
     }
 }
 
-@media (max-width: @entry_single_column_max_width)
+@media screen and (max-width: @entry_single_column_max_width)
 {
     #entry-list
     {
@@ -242,7 +237,7 @@
     }
 }
 
-@media (max-width: @2_column_width)
+@media screen and (max-width: @2_column_width)
 {
     #entry-list
     {
@@ -287,11 +282,11 @@
     }
 }
 
-@media (max-width: 727px)
+@media screen and (max-width: 727px)
 {
     #entry-list
     {
-        font-size: .8rem;
+        font-size: .65rem;
 
         .container
         {
@@ -305,11 +300,11 @@
     }
 }
 
-@media (max-width: @1_column_width)
+@media screen and (max-width: @1_column_width)
 {
     #entry-list
     {
-        font-size: .65rem;
+        font-size: .55rem;
 
         .container
         {

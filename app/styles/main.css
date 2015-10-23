@@ -1154,7 +1154,7 @@ nav#nav-sequence.compact a.next svg {
   float: left;
   font-size: 3.250em;
   font-weight: 700;
-  line-height: 1.096em;
+  line-height: 1.019em;
   overflow: hidden;
   /* For filter implementation.
         li.ng-move,
@@ -1299,7 +1299,7 @@ nav#nav-sequence.compact a.next svg {
 #entry-list ul.categories a span.count {
   display: none;
 }
-@media (max-width: 1254px) {
+@media screen and (max-width: 1254px) {
   #entry-list .container {
     margin-top: 3.125rem;
   }
@@ -1307,7 +1307,7 @@ nav#nav-sequence.compact a.next svg {
     margin-bottom: 3.125rem;
   }
 }
-@media (max-width: 954px) {
+@media screen and (max-width: 954px) {
   #entry-list .container {
     text-align: center;
     margin-left: 1.5625rem;
@@ -1337,14 +1337,14 @@ nav#nav-sequence.compact a.next svg {
     padding: 0 15px;
   }
 }
-@media (max-width: 727px) {
-  #entry-list {
-    font-size: .8rem;
-  }
-}
-@media (max-width: 477px) {
+@media screen and (max-width: 727px) {
   #entry-list {
     font-size: .65rem;
+  }
+}
+@media screen and (max-width: 477px) {
+  #entry-list {
+    font-size: .55rem;
   }
 }
 #entry {
