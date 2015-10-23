@@ -2,9 +2,9 @@
 
 .rounded(@top-left, @top-right, @bottom-right, @bottom-left)
 {
-    border-radius: @top-left @top-right @bottom-right @bottom-left;
-    -moz-border-radius: @top-left @top-right @bottom-right @bottom-left;
     -webkit-border-radius: @top-left @top-right @bottom-right @bottom-left;
+       -moz-border-radius: @top-left @top-right @bottom-right @bottom-left;
+            border-radius: @top-left @top-right @bottom-right @bottom-left;
 }
 
 .rounded(@corner)
@@ -43,37 +43,45 @@
 .inner-shadow(@vlength: 1px, @hlength: 1px, @blur: 1px, @spread: 0px, @r: 0, @g: 0, @b: 0, @a: 100%) when (isnumber(@r))
 {
     -webkit-box-shadow: inset @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
-    box-shadow: inset @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
+            box-shadow: inset @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
 }
 
 .inner-shadow(@vlength: 1px, @hlength: 1px, @blur: 1px, @spread: 0px, @hex: #000) when (iscolor(@hex))
 {
     -webkit-box-shadow: inset @vlength @hlength @blur @spread @hex;
-    box-shadow: inset @vlength @hlength @blur @spread @hex;
+            box-shadow: inset @vlength @hlength @blur @spread @hex;
 }
 
 .drop-shadow(@vlength: 1px, @hlength: 1px, @blur: 1px, @spread: 0px, @r: 0, @g: 0, @b: 0, @a: 100%) when (isnumber(@r))
 {
     -webkit-box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
-    box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
+           box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
 }
 
 // Backgrounds
 
+.cover()
+{
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+}
+
 .background-size(@width, @height: auto)
 {
-    -webkit-background-size: @width @height;
-    -moz-background-size: @width @height;
-    -o-background-size: @width @height;
-    background-size: @width @height;
+    -webkit-background-size: @arguments;
+       -moz-background-size: @arguments;
+         -o-background-size: @arguments;
+            background-size: @arguments;
 }
 
 .background-size-doubled(@width1, @height1: auto, @width2, @height2: auto)
 {
     -webkit-background-size: @width1 @height1, @width2 @height2;
-    -moz-background-size: @width1 @height1, @width2 @height2;
-    -o-background-size: @width1 @height1, @width2 @height2;
-    background-size:@width1 @height1, @width2 @height2;
+       -moz-background-size: @width1 @height1, @width2 @height2;
+         -o-background-size: @width1 @height1, @width2 @height2;
+            background-size: @width1 @height1, @width2 @height2;
 }
 
 // Animation
@@ -81,17 +89,17 @@
 .transition(@transition)
 {
 	-webkit-transition: @transition;
-	-moz-transition: @transition;
-	-ms-transition: @transition;
-	-o-transition: @transition;
-    transition: @transition;
+	   -moz-transition: @transition;
+	    -ms-transition: @transition;
+	     -o-transition: @transition;
+            transition: @transition;
 }
 
 .rotate(@degrees)
 {
     -webkit-transform: rotateZ(@degrees);
-	-moz-transform: rotateZ(@degrees);
-	-ms-transform: rotateZ(@degrees);
-	-o-transform: rotateZ(@degrees);
-    transform: rotateZ(@degrees);
+	   -moz-transform: rotateZ(@degrees);
+	    -ms-transform: rotateZ(@degrees);
+	     -o-transform: rotateZ(@degrees);
+            transform: rotateZ(@degrees);
 }

@@ -168,18 +168,14 @@ header {
   left: 0;
 }
 header h1#logo {
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
   -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -webkit-background-size: cover auto;
-  -moz-background-size: cover auto;
-  -o-background-size: cover auto;
-  background-size: cover auto;
+  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
+  border-radius: 3.438em 3.438em 3.438em 3.438em;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-color: #f56392;
-  /*
-		background-image: url(../images/galaxy.png),
-											url(../images/jess_pink.png);
-		*/
   background-image: url(../images/jess_pink.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -294,9 +290,9 @@ ul#contact svg {
 ul#contact a {
   color: #979797;
   background: #ededed;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
   -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
+  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
+  border-radius: 1.625em 1.625em 1.625em 1.625em;
   -webkit-transition: all 250ms ease-out;
   -moz-transition: all 250ms ease-out;
   -ms-transition: all 250ms ease-out;
@@ -1256,9 +1252,9 @@ nav#nav-sequence.compact a.next svg {
   margin-left: 6.25rem;
 }
 #entry-list ul.categories a {
-  border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
   -webkit-border-radius: 22px 22px 22px 22px;
+  -moz-border-radius: 22px 22px 22px 22px;
+  border-radius: 22px 22px 22px 22px;
   -webkit-transition: all 250ms ease-out;
   -moz-transition: all 250ms ease-out;
   -ms-transition: all 250ms ease-out;
@@ -1352,7 +1348,6 @@ nav#nav-sequence.compact a.next svg {
 }
 #entry .container {
   margin: 0 auto;
-  overflow: hidden;
   width: 954px;
 }
 #entry #entry-gallery {
@@ -1453,9 +1448,9 @@ nav#nav-sequence.compact a.next svg {
   -ms-transition: all 250ms ease-out;
   -o-transition: all 250ms ease-out;
   transition: all 250ms ease-out;
-  border-radius: 1em 1em 1em 1em;
-  -moz-border-radius: 1em 1em 1em 1em;
   -webkit-border-radius: 1em 1em 1em 1em;
+  -moz-border-radius: 1em 1em 1em 1em;
+  border-radius: 1em 1em 1em 1em;
   background: #daf3f1;
   color: #3d3d3d;
   content: '\f08e';
