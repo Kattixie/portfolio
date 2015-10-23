@@ -3,7 +3,7 @@
     <div class="container">
 
         <div id="entry-gallery">
-            <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent }">
+            <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent, video: media.type === 'vimeo' }">
 
                 <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
 
@@ -32,7 +32,7 @@
             <ul ng-if="data.entry.urls">
                 <h2>External Links</h2>
                 <li ng-repeat="url in data.entry.urls">
-                    <a ng-href="{{::url.path}}" nb-bind-html="url.label">{{::url.label}}</a>
+                    <a ng-href="{{::url.path}}" nb-bind-html="url.label" my-external-links>{{::url.label}}</a>
                 </li>
             </ul>
         </div>

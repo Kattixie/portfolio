@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myExternalLinks', function ()
+    .directive('myExternalLinks', function ($log)
     {
         return {
             restrict: 'A',
@@ -17,8 +17,18 @@ angular
             {
                 scope.$watch(attrs.ngBindHtml, function()
                 {
-                    element
-                        .find('a')
+                    var boundElement;
+
+                    if ( element.is('a') )
+                    {
+                        boundElement = element;
+                    }
+                    else
+                    {
+                        boundElement = element.find('a');
+                    }
+
+                    boundElement
                         .filter( function()
                         {
                             return this.hostname && this.hostname !== window.location.hostname;
