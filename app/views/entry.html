@@ -12,6 +12,22 @@
             </div>
         </div>
 
+        <div ng-if="data.entry.quote" id="entry-quote">
+            <div class="text" ng-bind-html="data.entry.quote.text">{{::data.entry.quote.text}}</div>
+            <svg>
+                <use xlink:href="#symbol-quote-pointer"></use>
+            </svg>
+            <div class="source">
+                <img ng-if="data.entry.quote.photo" ng-src="images/{{::data.entry.quote.photo}}" class="photo" height="126" width="126">
+                <div class="author">
+                    <div class="name" ng-bind-html="data.entry.quote.name">{{::data.entry.quote.name}}</div>
+                    <div class="title" ng-bind-html="data.entry.quote.title">{{::data.entry.quote.title}}</div>
+                    <div class="affiliation" ng-bind-html="data.entry.quote.affiliation">{{::data.entry.quote.affiliation}}</div>
+                </div>
+            </div>
+
+        </div>
+
         <h1 ng-bind-html="data.entry.title" class="sidebar">{{::data.entry.title}}</h1>
 
         <div class="text" ng-bind-html="data.entry.description" my-external-links></div>

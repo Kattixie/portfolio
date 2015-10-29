@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" id="symbols">
 
-    <!-- I set these up in Illustrator and optimized them with Peter Collingridge's optimization tool. Yes, you can use them! -->
+    <!-- Optimized them with Peter Collingridge's optimization tool. -->
 
     <symbol id="symbol-gallery-icon2" viewBox="0 0 31 27">
         <g>
@@ -63,6 +63,34 @@
 
     <symbol id="symbol-close" viewBox="0 0 31 31">
         <polygon fill="" points="31 1.4 29.6 0 15.5 14.1 1.4 0 0 1.4 14.1 15.5 0 29.6 1.4 31 15.5 16.9 29.6 31 31 29.6 16.9 15.5 "/>
+    </symbol>
+
+    <symbol id="symbol-quote-pointer">
+        <!--
+            This is the cleanest way I could find to handle this. If the line
+            ever needs to be wider than 1000 pixels, the last coordinate will
+            need to be adjusted.
+        -->
+        <svg viewBox="0 0 77.942 27" preserveAspectRatio="xMinYMid meet">
+            <polyline fill="none" stroke="" stroke-width="1.15" points="0 0.5 52.942 0.5 77.942 25.5 77.942 0.5 1000 0.5 "/>
+        </svg>
+    </symbol>
+
+    <symbol id="symbol-quote-pointer-2">
+        <svg viewBox="0 0 1 27" preserveAspectRatio="none">
+            <line fill="none" stroke="" stroke-width="1.15" x1="0" y1="0.5" x2="1" y2="0.5"/>
+        </svg>
+        <!--
+            This achieves the correct scaling effect to any width, but I need to
+            use an additional line to cover part of the line. This is not ideal
+            in cases where a background image might exist.
+        -->
+        <svg viewBox="0 0 77.942 27" preserveAspectRatio="xMinYMid meet">
+            <line fill="none" stroke="white" stroke-width="2" x1="0" y1="0.5" x2="77.367" y2="0.5"/>
+        </svg>
+        <svg viewBox="0 0 77.942 27" preserveAspectRatio="xMinYMid meet">
+            <polyline fill="none" stroke="" stroke-width="1.15" points="0 0.5 52.942 0.5 77.942 25.5 77.942 0.5 "/>
+        </svg>
     </symbol>
 
     <symbol id="symbol-twitter" viewBox="0 0 32 26">
