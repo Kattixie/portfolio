@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myExternalLinks', function ($log)
+    .directive('myExternalLinks', function ()
     {
         return {
             restrict: 'A',
