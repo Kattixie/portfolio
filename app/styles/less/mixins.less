@@ -103,3 +103,21 @@
 	     -o-transform: rotateZ(@degrees);
             transform: rotateZ(@degrees);
 }
+
+// Media Queries
+
+.query-name(@name)
+{
+    // This kind of works for detecting the current query. It gets funny due to
+    // how styles are overridden. All active queries can be viewed by inspecting
+    // this element however. This will work best for simple queries that do not
+    // overlap. At the very least it will always inform us of the top-most
+    // query.
+    body::after
+    {
+        content: @name;
+        font-size: 0;
+        height: 0;
+        line-height: 0;
+    }
+}

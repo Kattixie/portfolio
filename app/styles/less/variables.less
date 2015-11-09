@@ -1,25 +1,27 @@
+// Global units:
+
+@spacing_unit:          3.125em; // 50px at font-size 16
+@spacing_unit_root:     3.125rem;
+
 // Colors
 
 @hot_pink:      #f56392;
 @blue:          #b6e7e4;
 @blue_light:    #daf3f1;
 
-// Widths:
+// Widths
 
-@5_column_width:    2385px;
-@4_column_width:    1908px;
-@3_column_width:    1431px;
-@2_column_width:    954px;
-@1_column_width:    477px;
-@entry_single_column_max_width: 1254px; // Need to account for arrow widths
+@thumb_width:           477px;
+@entry_image_width:     727px;
+@scrollbar_width:       17px; // This is only an estimate.
 
-// Global units:
+@1_column_width:    @thumb_width;
+@2_column_width:    (@1_column_width * 2); // 954px
+@3_column_width:    (@1_column_width * 3); // 1431px
+@4_column_width:    (@1_column_width * 4); // 1908px
+@5_column_width:    (@1_column_width * 5); // 2385px
+@6_column_width:    (@1_column_width * 6);
 
-@spacing_unit:          3.125em; // 50px at font-size 16
-@spacing_unit_root:     3.125rem;
-
-//@header_space: 1.563rem; // 25px
-//@svg_height: 2.125rem; // 34px
-//@header_height: 6.875rem + @spacing_unit_root / 2 * 2; // 110px
+// Heights
 
 @header_height: 6.875rem + @spacing_unit_root * 2;

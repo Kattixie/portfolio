@@ -1,5 +1,3 @@
-@import '../mixins.less';
-
 #entry-gallery
 {
     overflow: hidden;
@@ -8,6 +6,7 @@
     {
         margin: 0 auto;
         overflow: hidden;
+        width: auto;
     }
 
     ul.gallery
@@ -24,13 +23,13 @@
         position: relative;
             top: 0;
             left: 0;
-        width: 477px;
+        width: @thumb_width;
 
         &::before
         {
             content: '';
             display: block;
-            padding-top: 358 / 477 * 100%; 	// Ratio as percentage
+            padding-bottom: 358 / 477 * 100%; 	// Ratio as percentage
         }
 
         .description
@@ -81,6 +80,7 @@
 
             ul.roles
             {
+                display: none;
                 //padding: 0 10%;
                 position: absolute;
                     bottom: @spacing_unit;
@@ -169,7 +169,7 @@
 
             a:hover img
             {
-                //left: 477px;
+                //left: @thumb_width;
                 //top: 0;
             }
         }
@@ -212,7 +212,7 @@
 
             a:hover img
             {
-                //left: 477px;
+                //left: @thumb_width;
                 //top: 0;
             }
         }
@@ -343,7 +343,7 @@
             left: 0;
             z-index: 1;
         overflow: hidden;
-        width: 477px;
+        width: @thumb_width;
         */
         display: block;
         position: absolute;
@@ -374,7 +374,7 @@
                 right: 0;
                 bottom: 0;
                 left: 0;
-            max-width: 477px;
+            //max-width: @thumb_width; // Temporary fix to floating scrollbar issue.
             width: 100%;
 
             /* Used this to test a downscaling issue that's emerged in the
@@ -394,4 +394,106 @@
             //image-rendering: pixelated;
         }
     }
+}
+
+// Media Queries
+
+@media (max-width: @1_column_width)
+{
+	//.query-name('max-width: 1 column width');
+
+	#entry-gallery
+	{
+		ul.gallery li.thumbnail
+		{
+			height: auto;
+			width: 100%;
+		}
+	}
+}
+
+@media (min-width: (@1_column_width + 1px)) and (max-width: @2_column_width)
+{
+	//.query-name('min-width: 1 column width + 1px AND max-width: 2 column width');
+
+	#entry-gallery
+	{
+		ul.gallery li.thumbnail
+		{
+			height: auto;
+			width: 50%;
+		}
+	}
+}
+
+
+@media (min-width: (@2_column_width + 1px)) and (max-width: @3_column_width)
+{
+	//.query-name('min-width: 2 column width + 1px AND max-width: 3 column width');
+
+	#entry-gallery
+	{
+		ul.gallery li.thumbnail
+		{
+			height: auto;
+			width: 1/3 * 100%;
+		}
+	}
+}
+
+// This one trips me up because it's just about the exact width of my monitor
+// and falls in that zone where media queries are active about the width of
+// your scrollbar sooner than you expect.
+//
+// Could guessing the scrollbar width cause problems on devices with "floating
+// scrollbars" where the thumbnail image maxes out? Confirmed: emulate a device
+// with 1920 pixels of width and a floating scrollbar. Might not be able to win
+// a pixel precise battle of this sort without JavaScript. The problem seems to
+// be that media queries have evolved in a manner that ignores the scroll bar's
+// impact on how elements will wrap or occupy width, at least on modern
+// browsers. We are moving into a floating scrollbar world, but on older
+// operating systems it still matters.
+//
+//		http://www.quirksmode.org/css/tests/mediaqueries/width.html
+// 		@media (max-width: (@4_column_width + @scrollbar_width))
+@media (min-width: (@3_column_width + 1px)) and (max-width: @4_column_width)
+{
+	//.query-name('min-width: 3 column width + 1px AND max-width: 4 column width');
+
+	#entry-gallery
+	{
+		ul.gallery li.thumbnail
+		{
+			height: auto;
+			width: 25%;
+		}
+	}
+}
+
+@media (min-width: (@4_column_width + 1px)) and (max-width: @5_column_width)
+{
+	//.query-name('min-width: 4 column width + 1px AND max-width: 5 column width');
+
+	#entry-gallery
+	{
+		ul.gallery li.thumbnail
+		{
+			height: auto;
+			width: 20%;
+		}
+	}
+}
+
+@media (min-width: (@5_column_width + 1px))
+{
+	//.query-name('min-width: 5 column width + 1px');
+
+	#entry-gallery
+	{
+		ul.gallery li.thumbnail
+		{
+			height: auto;
+			width: @thumb_width;
+		}
+	}
 }

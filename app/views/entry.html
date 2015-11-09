@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <div id="entry-gallery">
+        <div class="main-gallery">
             <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent, video: media.type === 'vimeo' }">
 
                 <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div ng-if="data.entry.quote" id="entry-quote">
+        <div ng-if="data.entry.quote" class="main-quote">
             <div class="text" ng-bind-html="data.entry.quote.text">{{::data.entry.quote.text}}</div>
             <svg>
                 <use xlink:href="#symbol-quote-pointer"></use>

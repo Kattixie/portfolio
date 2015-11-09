@@ -1,5 +1,3 @@
-@import '../mixins.less';
-
 #entry-list
 {
     font-family: 'Archivo Narrow', sans-serif;
@@ -9,7 +7,7 @@
     {
         margin: 0 auto;
         overflow: hidden;
-        width: @2_column_width;
+        //width: @2_column_width;
     }
 
     ul.entries
@@ -221,29 +219,32 @@
     }
 }
 
-@media screen and (max-width: @entry_single_column_max_width)
+// Media Queries
+
+@media (max-width: @1_column_width)
 {
     #entry-list
     {
-        .container
-        {
-            margin-top: @spacing_unit_root;
-        }
-
-        ul.categories
-        {
-            margin-bottom: @spacing_unit_root;
-        }
+        font-size: .55rem;
     }
 }
 
-@media screen and (max-width: @2_column_width)
+@media (max-width: 727px)
+{
+    #entry-list
+    {
+        font-size: .65rem;
+    }
+}
+
+@media (max-width: (@2_column_width + 100px))
 {
     #entry-list
     {
         .container
         {
             text-align: center;
+            margin-top: @spacing_unit_root;
             margin-left: @spacing_unit_root / 2;
             margin-right: @spacing_unit_root / 2;
             width: auto;
@@ -257,9 +258,9 @@
         ul.categories
         {
             float: none;
-            //margin-left: 0;
-            margin-left: auto;
             margin-right: auto;
+            margin-bottom: @spacing_unit_root;
+            margin-left: auto;
             text-align: center;
             width: auto;
 
@@ -278,42 +279,6 @@
                 margin-bottom: 7px;
                 padding: 0 15px;
             }
-        }
-    }
-}
-
-@media screen and (max-width: 727px)
-{
-    #entry-list
-    {
-        font-size: .65rem;
-
-        .container
-        {
-            //width: 100%;
-        }
-
-        ul.entries
-        {
-
-        }
-    }
-}
-
-@media screen and (max-width: @1_column_width)
-{
-    #entry-list
-    {
-        font-size: .55rem;
-
-        .container
-        {
-            //width: 100%;
-        }
-
-        ul.entries
-        {
-
         }
     }
 }

@@ -1,13 +1,20 @@
-nav#nav-sequence.sequenced
-{
-    display: block;
-}
-
 nav#nav-sequence
 {
     display: none;
     position: absolute;
         top: 0;
+
+    &.sequenced
+    {
+        display: block;
+    }
+
+    &.compact
+    {
+    	@factor: .45;
+
+        .sequence-nav-height(@factor);
+    }
 
 	span.text-label
 	{
@@ -145,123 +152,16 @@ nav#nav-sequence
 	}
 }
 
-nav#nav-sequence.compact
-{
-	@factor: .45;
-
-	span.text-label
-	{
-		height: @header_height * @factor;
-		line-height: @header_height * @factor;
-	}
-
-	a.prev,
-	a.next
-	{
-        height: @header_height * @factor;
-
-		svg
-		{
-			height: @header_height * @factor;
-            width: 0.875em; // 14px;
-		}
-	}
-}
-
 // Media Queries
 
-@media screen and (max-width: @entry_single_column_max_width)
-{
-    nav#nav-sequence
-	{
-        @factor: 1;
-
-		span.text-label
-		{
-			display: block;
-            height: @header_height * @factor;
-            line-height: @header_height * @factor;
-		}
-
-		a.prev,
-		a.next
-		{
-			height: @header_height * @factor;
-			margin-top: 0;
-			position: fixed;
-				top: 0;
-				z-index: 100;
-
-			svg
-			{
-				height: @header_height * @factor;
-                width: 0.875em; // 14px;
-			}
-		}
-
-        a.prev
-        {
-            padding-left: @spacing_unit_root;
-
-    		&:hover
-    		{
-                padding-left: @spacing_unit_root - @spacing_unit_root / 2;
-                padding-right: @spacing_unit_root / 2;
-    		}
-
-            svg
-    		{
-    			//margin-right: @spacing_unit / 3;
-    		}
-        }
-
-        a.next
-        {
-            padding-right: @spacing_unit_root;
-
-            &:hover
-            {
-                padding-right: @spacing_unit_root - @spacing_unit_root / 2;
-                padding-left: @spacing_unit_root / 2;
-            }
-        }
-
-		a.close
-		{
-			display: none;
-		}
-	}
-}
-
-@media screen and (max-width: 727px)
+@media (max-width: @1_column_width)
 {
     nav#nav-sequence
     {
         @factor: .75;
 
-        span.text-label
-        {
-            height: @header_height * @factor;
-            line-height: @header_height * @factor;
-        }
+        .sequence-nav-height(@factor);
 
-        a.prev,
-        a.next
-        {
-            height: @header_height * @factor;
-
-            svg
-            {
-                height: @header_height * @factor;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 476px)
-{
-    nav#nav-sequence
-    {
         a.prev,
         a.next
         {
@@ -319,6 +219,82 @@ nav#nav-sequence.compact
             }
         }
     }
+}
+
+@media (min-width: (@1_column_width + 1px)) and (max-width: (@2_column_width + 100px))
+{
+    nav#nav-sequence
+    {
+        a.prev
+        {
+            padding-left: @spacing_unit_root;
+
+            &:hover
+            {
+                padding-left: @spacing_unit_root - @spacing_unit_root / 2;
+                padding-right: @spacing_unit_root / 2;
+            }
+        }
+
+        a.next
+        {
+            padding-right: @spacing_unit_root;
+
+            &:hover
+            {
+                padding-right: @spacing_unit_root - @spacing_unit_root / 2;
+                padding-left: @spacing_unit_root / 2;
+            }
+        }
+    }
+}
+
+@media (min-width: (@1_column_width + 1px)) and (max-width: 727px)
+{
+    nav#nav-sequence
+    {
+        @factor: .75;
+
+        .sequence-nav-height(@factor);
+    }
+}
+
+@media (min-width: 728px) and (max-width: (@2_column_width + 100px))
+{
+    nav#nav-sequence
+	{
+        @factor: 1;
+
+        .sequence-nav-height(@factor);
+	}
+}
+
+// Mixins
+
+.sequence-nav-height(@factor: 1)
+{
+		span.text-label
+		{
+			display: block;
+            height: @header_height * @factor;
+            line-height: @header_height * @factor;
+		}
+
+		a.prev,
+		a.next
+		{
+            height: @header_height * @factor;
+			margin-top: 0;
+			position: fixed;
+				top: 0;
+				z-index: 100;
+
+            svg
+			{
+				height: @header_height * @factor;
+                width: 0.875em; // 14px;
+			}
+		}
 }
 
 // Animations

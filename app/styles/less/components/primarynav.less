@@ -2,6 +2,8 @@ nav#nav-main
 {
     .transition(all 300ms ease-out);
 
+    .primary-nav-height();
+
     overflow: hidden;
     position: relative;
         top: 0;
@@ -21,7 +23,6 @@ nav#nav-main
         color: #808080;
         display: none;
         float: right;
-        height: @header_height;
         //line-height: @header_height + @svg_height / 2;
         margin-right: @spacing_unit_root / 2;
         position: relative;
@@ -32,7 +33,6 @@ nav#nav-main
 
         svg
         {
-            height: @header_height;
             width: 2.375em; //38px;
             stroke: currentColor;
         }
@@ -77,13 +77,13 @@ nav#nav-main
             li
             {
                 float: left;
-                height: @header_height;
                 margin-left: @spacing_unit_root / 3;
             }
 
             li:first-child
             {
-                margin-left: @spacing_unit_root;
+                //margin-left: @spacing_unit_root;
+                margin-left: 0;
             }
 
             li.gallery,
@@ -100,7 +100,6 @@ nav#nav-main
 
                     svg
                     {
-                        height: @header_height;
                         //line-height: @header_height + @svg_height / 2;
                         width: 2.375em; //38px;
                         stroke: currentColor;
@@ -116,8 +115,6 @@ nav#nav-main
                         font-family: 'Archivo Narrow', sans-serif;
                         font-size: 40px;
                         font-weight: bold;
-                        height: @header_height;
-                        line-height: @header_height;
                         margin-left: @spacing_unit_root / 4;
 
                     }
@@ -146,10 +143,13 @@ nav#nav-main
             li
             {
                 float: left;
-                height: @header_height;
-                line-height: @header_height;
                 margin-right: @spacing_unit_root;
                 width: auto;
+
+                &:last-child
+                {
+                    margin-right: 0;
+                }
 
                 a
                 {
@@ -159,9 +159,7 @@ nav#nav-main
                     display: block;
                     font-family: 'Archivo Narrow', sans-serif;
                     font-size: 1.125em;
-                    height: @header_height;
                     letter-spacing: 0.188em;
-                    line-height: @header_height;
                     text-decoration: none;
                     text-transform: uppercase;
 
@@ -211,6 +209,8 @@ nav#nav-main.compact
 {
     @factor: .45;
 
+    .primary-nav-height(@factor);
+
     &.collapsed
     {
         .drop-shadow(0, 3px, 0, 0, 0, 0, 0, .04);
@@ -226,27 +226,26 @@ nav#nav-main.compact
         background: #FFF;
         border-bottom: 1px solid #FFF;
     }
-
-    a#nav-icon
-    {
-        height: @header_height * @factor;
-
-        svg
-        {
-            height: @header_height * @factor;
-        }
-    }
 }
 
 // Media Queries
 
-@media screen and (max-width: @entry_single_column_max_width)
+@media (max-width: 727px)
 {
-	nav#nav-main
+    nav#nav-main
 	{
-        @factor: 1;
+        @factor: .75;
 
-		background: #FFF;
+		.primary-nav-height(@factor);
+    }
+}
+
+@media (max-width: (@2_column_width + 100px))
+{
+	nav#nav-main,
+    nav#nav-main.compact
+	{
+		//background: #FFF;
 		font-size: 1.25rem;
 		position: fixed;
 
@@ -254,12 +253,6 @@ nav#nav-main.compact
 		{
 			display: block;
 			font-size: 1rem;
-            height: @header_height * @factor;
-
-            svg
-            {
-                height: @header_height * @factor;
-            }
 		}
 
 		.nav-items
@@ -384,20 +377,61 @@ nav#nav-main.compact
 	}
 }
 
-@media screen and (max-width: 727px)
+// Mixins
+
+.primary-nav-height(@factor: 1)
 {
-    nav#nav-main
-	{
-        @factor: .75;
+    a#nav-icon
+    {
+        height: @header_height * @factor;
 
-		a#nav-icon
-		{
+        svg
+        {
             height: @header_height * @factor;
+        }
+    }
 
-            svg
+    .nav-items
+    {
+        ul.nav-primary
+        {
+            li
             {
                 height: @header_height * @factor;
             }
-		}
+
+            li.gallery,
+            li.list
+            {
+                a
+                {
+                    svg
+                    {
+                        height: @header_height * @factor;
+                    }
+
+                    span.text-label
+                    {
+                        height: @header_height * @factor;
+                        line-height: @header_height * @factor;
+                    }
+                }
+            }
+        }
+
+        ul.nav-sub
+        {
+            li
+            {
+                height: @header_height * @factor;
+                line-height: @header_height * @factor;
+
+                a
+                {
+                    height: @header_height * @factor;
+                    line-height: @header_height * @factor;
+                }
+            }
+        }
     }
 }
