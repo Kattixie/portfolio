@@ -16,140 +16,140 @@ nav#nav-sequence
         .sequence-nav-height(@factor);
     }
 
-	span.text-label
-	{
-		display: none;
-		color: #808080;
-		font-family: 'Archivo Narrow', sans-serif;
-		font-size: 1.125em;
-		height: @header_height;
-		letter-spacing: 0.188em;
-		line-height: @header_height;
-		text-decoration: none;
-		text-transform: uppercase;
+    span.text-label
+    {
+        display: none;
+        color: #808080;
+        font-family: 'Archivo Narrow', sans-serif;
+        font-size: 1.125em;
+        height: @header_height;
+        letter-spacing: 0.188em;
+        line-height: @header_height;
+        text-decoration: none;
+        text-transform: uppercase;
 
-		&:hover
-		{
-			color: #000;
-		}
-	}
+        &:hover
+        {
+            color: #000;
+        }
+    }
 
-	a.prev,
-	a.next
-	{
-		.transition(all 300ms ease-out);
+    a.prev,
+    a.next
+    {
+        .transition(all 300ms ease-out);
 
-		color: #bfbfbf;
-		height: 100%;
-		text-decoration: none;
-		//margin-top: -40px;
-		position: fixed;
-			//top: 50%;
-		width: @spacing_unit_root * 2;
+        color: #bfbfbf;
+        height: 100%;
+        text-decoration: none;
+        //margin-top: -40px;
+        position: fixed;
+        	//top: 50%;
+        width: @spacing_unit_root * 2;
 
-		svg
-		{
-			display: block;
+        svg
+        {
+            display: block;
             fill: none;
-			stroke: currentColor;
+            stroke: currentColor;
             height: 100%;
-			//height: 80px;
-			//margin: 0 auto;
-			width: 1.313em; // 21px
-		}
+            //height: 80px;
+            //margin: 0 auto;
+            width: 1.313em; // 21px
+        }
 
-		&:hover
-		{
-			color: #3d3d3d;
-		}
-	}
+        &:hover
+        {
+        	color: #3d3d3d;
+        }
+    }
 
-	a.prev
-	{
-		//left: @spacing_unit_root + @spacing_unit_root / 2;
+    a.prev
+    {
+        //left: @spacing_unit_root + @spacing_unit_root / 2;
         left: 0;
         padding-left: @spacing_unit_root + @spacing_unit_root / 2;
 
-		&:hover
-		{
+        &:hover
+        {
             padding-left: @spacing_unit_root;
             padding-right: @spacing_unit_root / 2;
-		}
+        }
 
-		svg
-		{
-			float: left;
-			margin-right: @spacing_unit_root / 2;
-		}
+        svg
+        {
+        	float: left;
+        	margin-right: @spacing_unit_root / 2;
+        }
 
-		span.text-label
-		{
-			float: left;
-		}
-	}
+        span.text-label
+        {
+            float: left;
+        }
+    }
 
-	a.next
-	{
-		//right: @spacing_unit_root;
+    a.next
+    {
+        //right: @spacing_unit_root;
         right: 0;
         padding-right: @spacing_unit_root + @spacing_unit_root / 2;
 
-		&:hover
-		{
-			//right: @spacing_unit_root - @spacing_unit_root / 2;
+        &:hover
+        {
+        	//right: @spacing_unit_root - @spacing_unit_root / 2;
             //padding-left: @spacing_unit_root / 2;
             padding-right: @spacing_unit_root;
             padding-left: @spacing_unit_root / 2;
-		}
+        }
 
-		svg
-		{
-			float: right;
-			margin-left: @spacing_unit / 2;
-		}
+        svg
+        {
+        	float: right;
+        	margin-left: @spacing_unit / 2;
+        }
 
-		span.text-label
-		{
-			float: right;
-		}
-	}
+        span.text-label
+        {
+            float: right;
+        }
+    }
 
-	a.close
-	{
-		//.transition(all 300ms ease-out);
-		-webkit-animation: spinOnceBack 300ms ease-out;
+    a.close
+    {
+        //.transition(all 300ms ease-out);
+        -webkit-animation: spinOnceBack 300ms ease-out;
 
-		display: none;
-		height: 80px;
-		text-decoration: none;
-		margin-top: -110px;
-		position: fixed;
-			top: 50%;
-			right: @spacing_unit_root;
-		opacity: .5;
-		width: 80px;
+        display: none;
+        height: 80px;
+        text-decoration: none;
+        margin-top: -110px;
+        position: fixed;
+            top: 50%;
+            right: @spacing_unit_root;
+        opacity: .5;
+        width: 80px;
 
-		svg
-		{
-			display: block;
-			fill: #bfbfbf;
-			height: 80px;
-			margin: 0 auto;
-			width: 32px;
-		}
+        svg
+        {
+            display: block;
+            fill: #bfbfbf;
+            height: 80px;
+            margin: 0 auto;
+            width: 32px;
+        }
 
-		&:hover
-		{
-			//.rotate(360deg);
-			-webkit-animation: spinOnce 300ms ease-out;
+        &:hover
+        {
+            //.rotate(360deg);
+            -webkit-animation: spinOnce 300ms ease-out;
 
-			svg
-			{
-				fill: #3d3d3d;
-				right: 25px;
-			}
-		}
-	}
+            svg
+            {
+                fill: #3d3d3d;
+                right: 25px;
+            }
+        }
+    }
 }
 
 // Media Queries
@@ -184,14 +184,14 @@ nav#nav-sequence
                 padding-right: 0;
             }
 
-    		svg
-    		{
-    			margin-right: @spacing_unit / 5;
-    		}
-    	}
+            svg
+            {
+                margin-right: @spacing_unit / 5;
+            }
+        }
 
         a.next
-    	{
+        {
             padding-right: @spacing_unit_root / 2;
             padding-left: 0;
 
@@ -201,11 +201,11 @@ nav#nav-sequence
                 padding-left: 0;
             }
 
-    		svg
-    		{
-    			margin-left: @spacing_unit / 5;
-    		}
-    	}
+            svg
+            {
+                margin-left: @spacing_unit / 5;
+            }
+        }
 
         &.compact
         {
@@ -262,65 +262,65 @@ nav#nav-sequence
 @media (min-width: 728px) and (max-width: (@2_column_width + 100px))
 {
     nav#nav-sequence
-	{
+    {
         @factor: 1;
 
         .sequence-nav-height(@factor);
-	}
+    }
 }
 
 // Mixins
 
 .sequence-nav-height(@factor: 1)
 {
-		span.text-label
-		{
-			display: block;
+        span.text-label
+        {
+            display: block;
             height: @header_height * @factor;
             line-height: @header_height * @factor;
-		}
+        }
 
-		a.prev,
-		a.next
-		{
+        a.prev,
+        a.next
+        {
             height: @header_height * @factor;
-			margin-top: 0;
-			position: fixed;
-				top: 0;
-				z-index: 100;
+            margin-top: 0;
+            position: fixed;
+                top: 0;
+                z-index: 100;
 
             svg
-			{
-				height: @header_height * @factor;
+            {
+                height: @header_height * @factor;
                 width: 0.875em; // 14px;
-			}
-		}
+            }
+        }
 }
 
 // Animations
 
 @-webkit-keyframes spinOnce
 {
-	0%
-	{
-		.rotate(0);
-	}
+    0%
+    {
+        .rotate(0);
+    }
 
-	100%
-	{
-		.rotate(90deg);
-	}
+    100%
+    {
+        .rotate(90deg);
+    }
 }
 
 @-webkit-keyframes spinOnceBack
 {
-	0%
-	{
-		.rotate(0);
-	}
+    0%
+    {
+        .rotate(0);
+    }
 
-	100%
-	{
-		.rotate(-90deg);
-	}
+    100%
+    {
+        .rotate(-90deg);
+    }
 }
