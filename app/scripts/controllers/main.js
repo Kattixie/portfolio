@@ -9,8 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('MainCtrl', ['$scope', 'Entry',
-    function ($scope, Entry)
+    .controller('MainCtrl', function ($scope, Entry)
     {
         $scope.data = {};
         $scope.data.entries = null;
@@ -28,4 +27,4 @@ angular
             {
                 $scope.data.entries = data;
             });
-    }]);
+    });

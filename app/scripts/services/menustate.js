@@ -11,8 +11,7 @@
  */
 angular
     .module('portfolio')
-    .factory('MenuState', [
-    function ()
+    .factory('MenuState', function ()
     {
         var service =
         {
@@ -20,7 +19,7 @@ angular
             isOpen:                 false,
             isCompact:              false,
             isCentered:             false,
-            
+
             collapsedClassName:     'collapsed',
             compactClassName:       'compact',
             activeClassName:        'active',
@@ -29,4 +28,4 @@ angular
 
         // Public API
         return service;
-    }]);
+    });

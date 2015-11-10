@@ -9,8 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('EntryListCtrl', ['$scope', '$log', '$routeParams', 'Entry',
-    function ($scope, $log, $routeParams, Entry)
+    .controller('EntryListCtrl', function ($scope, $log, $routeParams, Entry)
     {
         var self = this;
 
@@ -27,7 +26,7 @@ angular
             $scope.$parent.$parent.setNextURI( null );
             $scope.$parent.$parent.setPrevURI( null );
         }
-        
+
         $log.debug('The scope for EntryListCtrl: %o', $scope);
 
         Entry
@@ -117,4 +116,4 @@ angular
 
             return found;
         };
-    }]);
+    });

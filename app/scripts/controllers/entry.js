@@ -9,8 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('EntryCtrl', ['$log', '$scope', '$routeParams', '$sce', 'Entry', 'MenuState',
-    function ($log, $scope, $routeParams, $sce, Entry, MenuState)
+    .controller('EntryCtrl', function ($log, $scope, $routeParams, $sce, Entry, MenuState)
     {
 
         // Much struggle took place in this here controller. It seems that I
@@ -96,4 +95,4 @@ angular
                 }
             }
         };
-    }]);
+    });

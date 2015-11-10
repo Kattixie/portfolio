@@ -9,8 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('AboutCtrl', ['$scope',
-    function ($scope)
+    .controller('AboutCtrl', function ($scope)
     {
         if ( $scope.$parent.$parent )
         {
@@ -24,4 +23,4 @@ angular
             'AngularJS',
             'Karma'
         ];
-    }]);
+    });

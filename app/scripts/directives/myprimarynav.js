@@ -8,8 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myPrimaryNav', ['$log', '$window', '$location', '$routeParams', 'MenuState',
-    function ($log, $window, $location, $routeParams, MenuState)
+    .directive('myPrimaryNav', function ($log, $window, $location, $routeParams, MenuState)
     {
         return {
             restrict: 'E',
@@ -358,4 +357,4 @@ angular
                 self.eWindow.bind('resize', self.onWindowResize);
             }
         };
-    }]);
+    });

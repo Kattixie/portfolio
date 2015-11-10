@@ -8,8 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myLogo', ['$window', '$location', '$routeParams',
-    function ($window, $location, $routeParams)
+    .directive('myLogo', function ($window, $location, $routeParams)
     {
         return {
             restrict: 'E',
@@ -36,4 +35,4 @@ angular
                 //$scope.$on('$routeChangeSuccess', self.onRouteChange);
             }
         };
-    }]);
+    });

@@ -8,8 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('mySequenceNav', ['$log', '$window', '$location', '$routeParams', 'MenuState',
-    function ($log, $window, $location, $routeParams, MenuState)
+    .directive('mySequenceNav', function ($log, $window, $location, $routeParams, MenuState)
     {
         return {
             restrict: 'E',
@@ -130,4 +129,4 @@ angular
                 self.eWindow.bind('scroll', self.onWindowScroll);
             }
         };
-    }]);
+    });
