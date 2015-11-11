@@ -77,7 +77,7 @@ nav#nav-main
             li
             {
                 float: left;
-                margin-left: @spacing_unit_root / 3;
+                margin-left: @spacing_unit_root / 2;
             }
 
             li:first-child
@@ -100,10 +100,10 @@ nav#nav-main
 
                     svg
                     {
-                        //line-height: @header_height + @svg_height / 2;
-                        width: 2.375em; //38px;
+                        fill: transparent;
                         stroke: currentColor;
                         float: left;
+                        width: 2.000em; // 32px
                     }
 
                     span.text-label
@@ -113,9 +113,12 @@ nav#nav-main
                         //display: block;
                         float: left;
                         font-family: 'Archivo Narrow', sans-serif;
-                        font-size: 40px;
-                        font-weight: bold;
-                        margin-left: @spacing_unit_root / 4;
+                        //font-size: 46px;
+                        font-size: @spacing_unit_root * .8;
+                        font-weight: 300;
+                        letter-spacing: 5px;
+                        margin-left: @spacing_unit_root / 2;
+                        text-transform: uppercase;
 
                     }
 
@@ -245,7 +248,7 @@ nav#nav-main.compact
     nav#nav-main,
     nav#nav-main.compact
     {
-        font-size: 1.25rem;
+        //font-size: 1.25rem;
         position: fixed;
 
         a#nav-icon
@@ -256,7 +259,8 @@ nav#nav-main.compact
 
         .nav-items
         {
-            @item_height: @spacing_unit_root * 1.2;
+            //@item_height: @spacing_unit_root * 1.2;
+            @item_height: @spacing_unit_root * 1.6;
 
             background: #1f1f1f;
             clear: both;
@@ -297,10 +301,12 @@ nav#nav-main.compact
 
                         svg
                         {
+                            fill: currentColor;
                             height: @item_height;
                             line-height: @item_height;
-                            //margin-left: 1.071em;
-                            margin-left: @spacing_unit_root / 2;
+                            margin-left: @spacing_unit_root;
+                            //stroke: transparent;
+                            //width: @spacing_unit_root * .8;
                         }
 
                         span.text-label
@@ -354,7 +360,8 @@ nav#nav-main.compact
                         color: #FFF;
                         height: @item_height;
                         line-height: @item_height;
-                        padding-left: @spacing_unit_root / 2 + .3em + 2.375em + @spacing_unit_root / 4 + .4em; // Small offset necessary due to SVG not being flush with container
+                        padding-left: @spacing_unit_root;
+                        //padding-left: @spacing_unit_root / 2 + .3em + 2.375em + @spacing_unit_root / 4 + .4em; // Small offset necessary due to SVG not being flush with container
                         width: 100%;
 
                         &:hover

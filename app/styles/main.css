@@ -495,7 +495,7 @@ nav#nav-main .nav-items ul.nav-primary.animating::before {
 }
 nav#nav-main .nav-items ul.nav-primary li {
   float: left;
-  margin-left: 1.04166667rem;
+  margin-left: 1.5625rem;
 }
 nav#nav-main .nav-items ul.nav-primary li:first-child {
   margin-left: 0;
@@ -514,9 +514,10 @@ nav#nav-main .nav-items ul.nav-primary li.list a {
 }
 nav#nav-main .nav-items ul.nav-primary li.gallery a svg,
 nav#nav-main .nav-items ul.nav-primary li.list a svg {
-  width: 2.375em;
+  fill: transparent;
   stroke: currentColor;
   float: left;
+  width: 2.000em;
 }
 nav#nav-main .nav-items ul.nav-primary li.gallery a span.text-label,
 nav#nav-main .nav-items ul.nav-primary li.list a span.text-label {
@@ -524,9 +525,11 @@ nav#nav-main .nav-items ul.nav-primary li.list a span.text-label {
   display: none;
   float: left;
   font-family: 'Archivo Narrow', sans-serif;
-  font-size: 40px;
-  font-weight: bold;
-  margin-left: 0.78125rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  margin-left: 1.5625rem;
+  text-transform: uppercase;
 }
 nav#nav-main .nav-items ul.nav-primary li.gallery a:hover,
 nav#nav-main .nav-items ul.nav-primary li.list a:hover {
@@ -645,7 +648,6 @@ nav#nav-main.compact .wrapper {
 @media (max-width: 1054px) {
   nav#nav-main,
   nav#nav-main.compact {
-    font-size: 1.25rem;
     position: fixed;
   }
   nav#nav-main a#nav-icon,
@@ -670,8 +672,8 @@ nav#nav-main.compact .wrapper {
   }
   nav#nav-main .nav-items ul.nav-primary li,
   nav#nav-main.compact .nav-items ul.nav-primary li {
-    height: 3.75rem;
-    line-height: 3.75rem;
+    height: 5rem;
+    line-height: 5rem;
     margin: 0;
   }
   nav#nav-main .nav-items ul.nav-primary li:first-child,
@@ -695,9 +697,10 @@ nav#nav-main.compact .wrapper {
   nav#nav-main.compact .nav-items ul.nav-primary li.gallery a svg,
   nav#nav-main .nav-items ul.nav-primary li.list a svg,
   nav#nav-main.compact .nav-items ul.nav-primary li.list a svg {
-    height: 3.75rem;
-    line-height: 3.75rem;
-    margin-left: 1.5625rem;
+    fill: currentColor;
+    height: 5rem;
+    line-height: 5rem;
+    margin-left: 3.125rem;
   }
   nav#nav-main .nav-items ul.nav-primary li.gallery a span.text-label,
   nav#nav-main.compact .nav-items ul.nav-primary li.gallery a span.text-label,
@@ -705,8 +708,8 @@ nav#nav-main.compact .wrapper {
   nav#nav-main.compact .nav-items ul.nav-primary li.list a span.text-label {
     color: #FFF;
     display: block;
-    height: 3.75rem;
-    line-height: 3.75rem;
+    height: 5rem;
+    line-height: 5rem;
   }
   nav#nav-main .nav-items ul.nav-primary li.gallery a:hover,
   nav#nav-main.compact .nav-items ul.nav-primary li.gallery a:hover,
@@ -745,7 +748,7 @@ nav#nav-main.compact .wrapper {
     color: #FFF;
     height: 3.125rem;
     line-height: 3.125rem;
-    padding-left: 5.41875rem;
+    padding-left: 3.125rem;
     width: 100%;
   }
   nav#nav-main .nav-items ul.nav-sub li a:hover,
@@ -1476,6 +1479,8 @@ nav#nav-sequence a.close:hover svg {
   margin: 0 auto;
 }
 #entry h1 {
+  border-top: 4px solid #3d3d3d;
+  padding-top: 1.5625rem;
   font-family: 'Archivo Narrow', sans-serif;
   font-weight: bold;
   font-size: 2.375em;
@@ -1564,6 +1569,7 @@ nav#nav-sequence a.close:hover svg {
   top: 0;
   left: 0;
   text-decoration: none;
+  white-space: nowrap;
 }
 #entry .text p a span {
   -webkit-transition: all 250ms ease-out;
