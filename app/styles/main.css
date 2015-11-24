@@ -181,7 +181,7 @@ svg#symbols {
 }
 header {
   font-size: 1rem;
-  height: 13.125rem;
+  height: 16.25rem;
   margin: 0 auto;
   position: relative;
   top: 0;
@@ -366,12 +366,12 @@ ul#contact a.fa {
 }
 @media (max-width: 727px) {
   header {
-    height: 9.84375rem;
+    height: 12.1875rem;
   }
 }
-@media (min-width: 1054px) {
+@media (min-width: 1254px) {
   body::after {
-    content: 'min-width: 2 column width + 100px';
+    content: 'min-width: 2 column width + 300px';
     font-size: 0;
     height: 0;
     line-height: 0;
@@ -413,30 +413,30 @@ nav#nav-main {
   width: 100%;
 }
 nav#nav-main a#nav-icon {
-  height: 13.125rem;
+  height: 16.25rem;
 }
 nav#nav-main a#nav-icon svg {
-  height: 13.125rem;
+  height: 16.25rem;
 }
 nav#nav-main .nav-items ul.nav-primary li {
-  height: 13.125rem;
+  height: 16.25rem;
 }
 nav#nav-main .nav-items ul.nav-primary li.gallery a svg,
 nav#nav-main .nav-items ul.nav-primary li.list a svg {
-  height: 13.125rem;
+  height: 16.25rem;
 }
 nav#nav-main .nav-items ul.nav-primary li.gallery a span.text-label,
 nav#nav-main .nav-items ul.nav-primary li.list a span.text-label {
-  height: 13.125rem;
-  line-height: 13.125rem;
+  height: 16.25rem;
+  line-height: 16.25rem;
 }
 nav#nav-main .nav-items ul.nav-sub li {
-  height: 13.125rem;
-  line-height: 13.125rem;
+  height: 16.25rem;
+  line-height: 16.25rem;
 }
 nav#nav-main .nav-items ul.nav-sub li a {
-  height: 13.125rem;
-  line-height: 13.125rem;
+  height: 16.25rem;
+  line-height: 16.25rem;
 }
 nav#nav-main .wrapper {
   overflow: hidden;
@@ -581,30 +581,30 @@ nav#nav-main.centered .nav-items ul.nav-primary::before {
   right: 50%;
 }
 nav#nav-main.compact a#nav-icon {
-  height: 5.90625rem;
+  height: 7.3125rem;
 }
 nav#nav-main.compact a#nav-icon svg {
-  height: 5.90625rem;
+  height: 7.3125rem;
 }
 nav#nav-main.compact .nav-items ul.nav-primary li {
-  height: 5.90625rem;
+  height: 7.3125rem;
 }
 nav#nav-main.compact .nav-items ul.nav-primary li.gallery a svg,
 nav#nav-main.compact .nav-items ul.nav-primary li.list a svg {
-  height: 5.90625rem;
+  height: 7.3125rem;
 }
 nav#nav-main.compact .nav-items ul.nav-primary li.gallery a span.text-label,
 nav#nav-main.compact .nav-items ul.nav-primary li.list a span.text-label {
-  height: 5.90625rem;
-  line-height: 5.90625rem;
+  height: 7.3125rem;
+  line-height: 7.3125rem;
 }
 nav#nav-main.compact .nav-items ul.nav-sub li {
-  height: 5.90625rem;
-  line-height: 5.90625rem;
+  height: 7.3125rem;
+  line-height: 7.3125rem;
 }
 nav#nav-main.compact .nav-items ul.nav-sub li a {
-  height: 5.90625rem;
-  line-height: 5.90625rem;
+  height: 7.3125rem;
+  line-height: 7.3125rem;
 }
 nav#nav-main.compact.collapsed {
   -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
@@ -619,33 +619,33 @@ nav#nav-main.compact .wrapper {
 }
 @media (max-width: 727px) {
   nav#nav-main a#nav-icon {
-    height: 9.84375rem;
+    height: 12.1875rem;
   }
   nav#nav-main a#nav-icon svg {
-    height: 9.84375rem;
+    height: 12.1875rem;
   }
   nav#nav-main .nav-items ul.nav-primary li {
-    height: 9.84375rem;
+    height: 12.1875rem;
   }
   nav#nav-main .nav-items ul.nav-primary li.gallery a svg,
   nav#nav-main .nav-items ul.nav-primary li.list a svg {
-    height: 9.84375rem;
+    height: 12.1875rem;
   }
   nav#nav-main .nav-items ul.nav-primary li.gallery a span.text-label,
   nav#nav-main .nav-items ul.nav-primary li.list a span.text-label {
-    height: 9.84375rem;
-    line-height: 9.84375rem;
+    height: 12.1875rem;
+    line-height: 12.1875rem;
   }
   nav#nav-main .nav-items ul.nav-sub li {
-    height: 9.84375rem;
-    line-height: 9.84375rem;
+    height: 12.1875rem;
+    line-height: 12.1875rem;
   }
   nav#nav-main .nav-items ul.nav-sub li a {
-    height: 9.84375rem;
-    line-height: 9.84375rem;
+    height: 12.1875rem;
+    line-height: 12.1875rem;
   }
 }
-@media (max-width: 1054px) {
+@media (max-width: 1254px) {
   nav#nav-main,
   nav#nav-main.compact {
     position: fixed;
@@ -762,28 +762,28 @@ nav#nav-main.compact .wrapper {
 }
 nav#nav-sequence {
   display: none;
-  position: absolute;
+  height: 100%;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
 }
 nav#nav-sequence.sequenced {
   display: block;
 }
 nav#nav-sequence.compact span.text-label {
   display: block;
-  height: 5.90625rem;
-  line-height: 5.90625rem;
+  height: 7.3125rem;
+  line-height: 7.3125rem;
 }
 nav#nav-sequence.compact a.prev,
 nav#nav-sequence.compact a.next {
-  height: 5.90625rem;
+  height: 7.3125rem;
   margin-top: 0;
-  position: fixed;
-  top: 0;
-  z-index: 100;
 }
 nav#nav-sequence.compact a.prev svg,
 nav#nav-sequence.compact a.next svg {
-  height: 5.90625rem;
+  height: 7.3125rem;
   width: 0.875em;
 }
 nav#nav-sequence span.text-label {
@@ -791,9 +791,9 @@ nav#nav-sequence span.text-label {
   color: #808080;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 1.125em;
-  height: 13.125rem;
+  height: 16.25rem;
   letter-spacing: 0.188em;
-  line-height: 13.125rem;
+  line-height: 16.25rem;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -810,7 +810,8 @@ nav#nav-sequence a.next {
   color: #bfbfbf;
   height: 100%;
   text-decoration: none;
-  position: fixed;
+  position: absolute;
+  top: 0;
   width: 6.25rem;
 }
 nav#nav-sequence a.prev svg,
@@ -882,22 +883,22 @@ nav#nav-sequence a.close:hover svg {
   right: 25px;
 }
 @media (max-width: 477px) {
+  nav#nav-sequence {
+    z-index: 100;
+  }
   nav#nav-sequence span.text-label {
     display: block;
-    height: 9.84375rem;
-    line-height: 9.84375rem;
+    height: 12.1875rem;
+    line-height: 12.1875rem;
   }
   nav#nav-sequence a.prev,
   nav#nav-sequence a.next {
-    height: 9.84375rem;
+    height: 12.1875rem;
     margin-top: 0;
-    position: fixed;
-    top: 0;
-    z-index: 100;
   }
   nav#nav-sequence a.prev svg,
   nav#nav-sequence a.next svg {
-    height: 9.84375rem;
+    height: 12.1875rem;
     width: 0.875em;
   }
   nav#nav-sequence a.prev svg,
@@ -933,7 +934,10 @@ nav#nav-sequence a.close:hover svg {
     width: 9px;
   }
 }
-@media (min-width: 478px) and (max-width: 1054px) {
+@media (min-width: 478px) and (max-width: 1254px) {
+  nav#nav-sequence {
+    z-index: 100;
+  }
   nav#nav-sequence a.prev {
     padding-left: 3.125rem;
   }
@@ -950,42 +954,45 @@ nav#nav-sequence a.close:hover svg {
   }
 }
 @media (min-width: 478px) and (max-width: 727px) {
+  nav#nav-sequence {
+    z-index: 100;
+  }
   nav#nav-sequence span.text-label {
     display: block;
-    height: 9.84375rem;
-    line-height: 9.84375rem;
+    height: 12.1875rem;
+    line-height: 12.1875rem;
   }
   nav#nav-sequence a.prev,
   nav#nav-sequence a.next {
-    height: 9.84375rem;
+    height: 12.1875rem;
     margin-top: 0;
-    position: fixed;
-    top: 0;
-    z-index: 100;
   }
   nav#nav-sequence a.prev svg,
   nav#nav-sequence a.next svg {
-    height: 9.84375rem;
+    height: 12.1875rem;
     width: 0.875em;
   }
 }
-@media (min-width: 728px) and (max-width: 1054px) {
+@media (min-width: 728px) and (max-width: 1254px) {
+  nav#nav-sequence {
+    left: 50%;
+    margin-left: -363.5px;
+    width: 727px;
+    z-index: 100;
+  }
   nav#nav-sequence span.text-label {
     display: block;
-    height: 13.125rem;
-    line-height: 13.125rem;
+    height: 16.25rem;
+    line-height: 16.25rem;
   }
   nav#nav-sequence a.prev,
   nav#nav-sequence a.next {
-    height: 13.125rem;
+    height: 16.25rem;
     margin-top: 0;
-    position: fixed;
-    top: 0;
-    z-index: 100;
   }
   nav#nav-sequence a.prev svg,
   nav#nav-sequence a.next svg {
-    height: 13.125rem;
+    height: 16.25rem;
     width: 0.875em;
   }
 }
@@ -1477,33 +1484,35 @@ nav#nav-sequence a.close:hover svg {
 }
 #entry .container {
   margin: 0 auto;
+  overflow: hidden;
 }
 #entry h1 {
-  border-top: 4px solid #3d3d3d;
-  padding-top: 1.5625rem;
   font-family: 'Archivo Narrow', sans-serif;
   font-weight: bold;
   font-size: 2.375em;
   line-height: 1.111em;
-  margin-bottom: 1.5625rem;
+  margin-bottom: 3.125rem;
   position: relative;
   top: 0;
   left: 0;
-  /*
-        &::after
-        {
-            content: '';
-            border-bottom: 2px solid #3d3d3d;
-            position: absolute;
-                bottom: -30px;
-                left: 0;
-            width: 100%;
-        }
-        */
+}
+#entry h1 .inner-sidebar {
+  padding-top: 1.5625rem;
+  padding-left: 3.125rem;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+#entry h1 .inner-sidebar::before {
+  content: '';
+  border-bottom: 4px solid #3d3d3d;
+  position: absolute;
+  top: 0;
+  left: 3.125rem;
+  width: 100%;
 }
 #entry .main-gallery {
   float: left;
-  margin-right: 3.125rem;
   margin-bottom: 3.125rem;
   width: 727px;
 }
@@ -1549,7 +1558,6 @@ nav#nav-sequence a.close:hover svg {
   margin-bottom: 0;
 }
 #entry .text {
-  clear: both;
   color: #4c4c4c;
   float: left;
   font-family: 'Fira Sans', sans-serif;
@@ -1631,7 +1639,12 @@ nav#nav-sequence a.close:hover svg {
 }
 #entry .sidebar {
   display: inline-block;
-  width: 177px;
+  width: 100%;
+  margin-left: -727px;
+}
+#entry .sidebar .inner-sidebar {
+  margin-left: 727px;
+  padding-left: 3.125rem;
 }
 #entry .main-quote {
   float: left;
@@ -1809,9 +1822,19 @@ nav#nav-sequence a.close:hover svg {
   #entry .sidebar {
     float: none;
     display: block;
-    margin-left: 3.125rem;
     margin-right: 3.125rem;
+    margin-left: 3.125rem;
     width: auto;
+  }
+  #entry .sidebar .inner-sidebar {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #entry h1.sidebar .inner-sidebar::before {
+    left: 0;
+  }
+  #entry .text p a {
+    white-space: normal;
   }
   #entry .main-quote {
     float: none;
@@ -1862,9 +1885,19 @@ nav#nav-sequence a.close:hover svg {
   #entry .sidebar {
     float: none;
     display: block;
-    margin-left: 3.125rem;
     margin-right: 3.125rem;
+    margin-left: 3.125rem;
     width: auto;
+  }
+  #entry .sidebar .inner-sidebar {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #entry h1.sidebar .inner-sidebar::before {
+    left: 0;
+  }
+  #entry .text p a {
+    white-space: normal;
   }
   #entry .main-quote {
     float: none;
@@ -1919,9 +1952,19 @@ nav#nav-sequence a.close:hover svg {
   #entry .sidebar {
     float: none;
     display: block;
-    margin-left: 3.125rem;
     margin-right: 3.125rem;
+    margin-left: 3.125rem;
     width: auto;
+  }
+  #entry .sidebar .inner-sidebar {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #entry h1.sidebar .inner-sidebar::before {
+    left: 0;
+  }
+  #entry .text p a {
+    white-space: normal;
   }
   #entry .main-quote {
     float: none;
@@ -1938,10 +1981,5 @@ nav#nav-sequence a.close:hover svg {
     margin-right: auto;
     margin-left: auto;
     width: 727px;
-  }
-}
-@media (min-width: 1431px) {
-  #entry .sidebar {
-    width: 250px;
   }
 }

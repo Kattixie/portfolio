@@ -2,56 +2,57 @@
 
     <div class="container">
 
-        <div class="main-gallery">
-            <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent, video: media.type === 'vimeo' }">
+            <h1 class="sidebar">
+                <div ng-bind-html="data.entry.title" class="inner-sidebar">{{::data.entry.title}}</div>
+            </h1>
 
-                <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
+            <div class="main-gallery">
+                <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent, video: media.type === 'vimeo' }">
 
-                <img ng-if="media.type === undefined" ng-src="images/{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" my-preloader>
+                    <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
 
-            </div>
-        </div>
+                    <img ng-if="media.type === undefined" ng-src="images/{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" my-preloader>
 
-        <div ng-if="data.entry.quote" class="main-quote">
-            <div class="text" ng-bind-html="data.entry.quote.text">{{::data.entry.quote.text}}</div>
-            <svg>
-                <use xlink:href="#symbol-quote-pointer"></use>
-            </svg>
-            <div class="source">
-                <img ng-if="data.entry.quote.photo" ng-src="images/{{::data.entry.quote.photo}}" class="photo" height="126" width="126">
-                <div class="author">
-                    <div class="name" ng-bind-html="data.entry.quote.name">{{::data.entry.quote.name}}</div>
-                    <div class="title" ng-bind-html="data.entry.quote.title">{{::data.entry.quote.title}}</div>
-                    <div class="affiliation" ng-bind-html="data.entry.quote.affiliation">{{::data.entry.quote.affiliation}}</div>
                 </div>
             </div>
 
-        </div>
+            <div ng-if="data.entry.quote" class="main-quote">
+                <div class="text" ng-bind-html="data.entry.quote.text">{{::data.entry.quote.text}}</div>
+                <svg>
+                    <use xlink:href="#symbol-quote-pointer"></use>
+                </svg>
+                <div class="source">
+                    <img ng-if="data.entry.quote.photo" ng-src="images/{{::data.entry.quote.photo}}" class="photo" height="126" width="126">
+                    <div class="author">
+                        <div class="name" ng-bind-html="data.entry.quote.name">{{::data.entry.quote.name}}</div>
+                        <div class="title" ng-bind-html="data.entry.quote.title">{{::data.entry.quote.title}}</div>
+                        <div class="affiliation" ng-bind-html="data.entry.quote.affiliation">{{::data.entry.quote.affiliation}}</div>
+                    </div>
+                </div>
+            </div>
 
-        <h1 ng-bind-html="data.entry.title" class="sidebar">{{::data.entry.title}}</h1>
+            <div class="text" ng-bind-html="data.entry.description" my-external-links></div>
 
-        <div class="text" ng-bind-html="data.entry.description" my-external-links></div>
-
-        <div class="data-points sidebar">
-            <ul ng-if="data.entry.client">
-                <h2>Client</h2>
-                <li ng-repeat="client in data.entry.client" ng-bind-html="client">{{::client}}</li>
-            </ul>
-            <ul ng-if="data.entry.agencies">
-                <h2>Agencies</h2>
-                <li ng-repeat="agency in data.entry.agencies" ng-bind-html="agency">{{::agency}}</li>
-            </ul>
-            <ul ng-if="data.entry.role">
-                <h2>Roles</h2>
-                <li ng-repeat="role in data.entry.role" ng-bind-html="role">{{::role}}</li>
-            </ul>
-            <ul ng-if="data.entry.urls">
-                <h2>External Links</h2>
-                <li ng-repeat="url in data.entry.urls">
-                    <a ng-href="{{::url.path}}" nb-bind-html="url.label" my-external-links>{{::url.label}}</a>
-                </li>
-            </ul>
-        </div>
+            <div class="data-points sidebar">
+                <ul ng-if="data.entry.client" class="inner-sidebar">
+                    <h2>Client</h2>
+                    <li ng-repeat="client in data.entry.client" ng-bind-html="client">{{::client}}</li>
+                </ul>
+                <ul ng-if="data.entry.agencies" class="inner-sidebar">
+                    <h2>Agencies</h2>
+                    <li ng-repeat="agency in data.entry.agencies" ng-bind-html="agency">{{::agency}}</li>
+                </ul>
+                <ul ng-if="data.entry.role" class="inner-sidebar">
+                    <h2>Roles</h2>
+                    <li ng-repeat="role in data.entry.role" ng-bind-html="role">{{::role}}</li>
+                </ul>
+                <ul ng-if="data.entry.urls" class="inner-sidebar">
+                    <h2>External Links</h2>
+                    <li ng-repeat="url in data.entry.urls">
+                        <a ng-href="{{::url.path}}" nb-bind-html="url.label" my-external-links>{{::url.label}}</a>
+                    </li>
+                </ul>
+            </div>
 
     </div>
 

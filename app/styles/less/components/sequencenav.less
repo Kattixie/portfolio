@@ -1,8 +1,12 @@
 nav#nav-sequence
 {
     display: none;
-    position: absolute;
+    height: 100%;
+    position: fixed;
         top: 0;
+        left: 0;
+        //z-index: 99; // Need to change to this when screen in smaller
+    width: 100%;
 
     &.sequenced
     {
@@ -43,8 +47,9 @@ nav#nav-sequence
         height: 100%;
         text-decoration: none;
         //margin-top: -40px;
-        position: fixed;
+        position: absolute;
         	//top: 50%;
+            top: 0;
         width: @spacing_unit_root * 2;
 
         svg
@@ -162,6 +167,8 @@ nav#nav-sequence
 
         .sequence-nav-height(@factor);
 
+        z-index: 100;
+
         a.prev,
         a.next
         {
@@ -221,10 +228,12 @@ nav#nav-sequence
     }
 }
 
-@media (min-width: (@1_column_width + 1px)) and (max-width: (@2_column_width + 100px))
+@media (min-width: (@1_column_width + 1px)) and (max-width: (@2_column_width + 300px))
 {
     nav#nav-sequence
     {
+        z-index: 100;
+
         a.prev
         {
             padding-left: @spacing_unit_root;
@@ -256,16 +265,22 @@ nav#nav-sequence
         @factor: .75;
 
         .sequence-nav-height(@factor);
+
+        z-index: 100;
     }
 }
 
-@media (min-width: 728px) and (max-width: (@2_column_width + 100px))
+@media (min-width: 728px) and (max-width: (@2_column_width + 300px))
 {
     nav#nav-sequence
     {
         @factor: 1;
 
         .sequence-nav-height(@factor);
+
+        .sequence-nav-fixed-width(727px);
+
+        z-index: 100;
     }
 }
 
@@ -285,9 +300,9 @@ nav#nav-sequence
         {
             height: @header_height * @factor;
             margin-top: 0;
-            position: fixed;
-                top: 0;
-                z-index: 100;
+            //position: fixed;
+                //top: 0;
+                //z-index: 100;
 
             svg
             {
@@ -295,6 +310,13 @@ nav#nav-sequence
                 width: 0.875em; // 14px;
             }
         }
+}
+
+.sequence-nav-fixed-width(@width: 727px)
+{
+    left: 50%;
+    margin-left: -1 * (@width / 2);
+    width: @width;
 }
 
 // Animations

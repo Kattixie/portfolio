@@ -5,39 +5,45 @@
     .container
     {
         margin: 0 auto;
+        overflow: hidden;
     }
 
     h1
     {
-        border-top: 4px solid #3d3d3d;
-        padding-top: @spacing_unit_root / 2;
         font-family: 'Archivo Narrow', sans-serif;
         font-weight: bold;
         font-size: 2.375em; // 38px
         line-height: 1.111em; // 40px
-        margin-bottom: @spacing_unit_root / 2;
+        margin-bottom: @spacing_unit_root;
         position: relative;
             top: 0;
             left: 0;
 
-        /*
-        &::after
+        .inner-sidebar
         {
-            content: '';
-            border-bottom: 2px solid #3d3d3d;
-            position: absolute;
-                bottom: -30px;
+            padding-top: @spacing_unit_root / 2;
+            padding-left: @spacing_unit_root;
+            position: relative;
+                top: 0;
                 left: 0;
-            width: 100%;
+
+            &::before
+            {
+                content: '';
+                border-bottom: 4px solid #3d3d3d;
+                position: absolute;
+                    top: 0;
+                    left: @spacing_unit_root;
+                width: 100%;
+            }
         }
-        */
     }
 
     .main-gallery
     {
         //display: inline-block;
         float: left;
-        margin-right: @spacing_unit_root;
+        //margin-right: @spacing_unit_root;
         margin-bottom: @spacing_unit_root;
         width: @entry_image_width;
 
@@ -103,7 +109,7 @@
 
     .text
     {
-        clear: both;
+        //clear: both;
         color: #4c4c4c;
         //display: inline-block;
         float: left;
@@ -201,7 +207,18 @@
     {
         //float: right;
         display: inline-block;
-        width: 177px;
+        //width: 177px;
+        //padding-left: @spacing_unit_root;
+        //overflow: hidden;
+        //margin-left: 727px;
+        width: 100%;
+        margin-left: -727px;
+
+        .inner-sidebar
+        {
+            margin-left: 727px;
+            padding-left: @spacing_unit_root;
+        }
     }
 
     .main-quote
@@ -440,7 +457,7 @@
     {
         .sidebar
         {
-            width: 250px;
+            //width: 250px;
         }
     }
 }
@@ -505,9 +522,40 @@
         {
             float: none;
             display: block;
-            margin-left: @selective_margin;
             margin-right: @selective_margin;
+            margin-left: @selective_margin;
             width: auto;
+        }
+
+        .sidebar
+        {
+            .inner-sidebar
+            {
+                margin-left: 0;
+                padding-left: 0;
+            }
+        }
+
+        h1.sidebar
+        {
+            .inner-sidebar
+            {
+                &::before
+                {
+                    left: 0;
+                }
+            }
+        }
+
+        .text
+        {
+            p
+            {
+                a
+                {
+                    white-space: normal;
+                }
+            }
         }
 
         .main-quote
