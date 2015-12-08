@@ -762,7 +762,6 @@ nav#nav-main.compact .wrapper {
 }
 nav#nav-sequence {
   display: none;
-  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -810,7 +809,7 @@ nav#nav-sequence a.next {
   color: #bfbfbf;
   height: 100%;
   text-decoration: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 6.25rem;
 }
@@ -836,7 +835,7 @@ nav#nav-sequence a.prev:hover {
 }
 nav#nav-sequence a.prev svg {
   float: left;
-  margin-right: 1.5625rem;
+  margin-right: 1.04166667rem;
 }
 nav#nav-sequence a.prev span.text-label {
   float: left;
@@ -851,7 +850,7 @@ nav#nav-sequence a.next:hover {
 }
 nav#nav-sequence a.next svg {
   float: right;
-  margin-left: 1.5625em;
+  margin-left: 1.04166667em;
 }
 nav#nav-sequence a.next span.text-label {
   float: right;
@@ -901,30 +900,28 @@ nav#nav-sequence a.close:hover svg {
     height: 12.1875rem;
     width: 0.875em;
   }
+  nav#nav-sequence a.prev {
+    padding-left: 3.125rem;
+  }
+  nav#nav-sequence a.prev:hover {
+    padding-left: 3.125rem;
+    padding-right: 0;
+  }
+  nav#nav-sequence a.next {
+    padding-right: 3.125rem;
+  }
+  nav#nav-sequence a.next:hover {
+    padding-right: 3.125rem;
+    padding-left: 0;
+  }
   nav#nav-sequence a.prev svg,
   nav#nav-sequence a.next svg {
     fill: currentColor;
     stroke: none;
     width: 9px;
   }
-  nav#nav-sequence a.prev {
-    padding-left: 1.5625rem;
-    padding-right: 0;
-  }
-  nav#nav-sequence a.prev:hover {
-    padding-left: 1.5625rem;
-    padding-right: 0;
-  }
   nav#nav-sequence a.prev svg {
     margin-right: 0.625em;
-  }
-  nav#nav-sequence a.next {
-    padding-right: 1.5625rem;
-    padding-left: 0;
-  }
-  nav#nav-sequence a.next:hover {
-    padding-right: 1.5625rem;
-    padding-left: 0;
   }
   nav#nav-sequence a.next svg {
     margin-left: 0.625em;
@@ -937,26 +934,32 @@ nav#nav-sequence a.close:hover svg {
 @media (min-width: 478px) and (max-width: 1254px) {
   nav#nav-sequence {
     z-index: 100;
-  }
-  nav#nav-sequence a.prev {
-    padding-left: 3.125rem;
-  }
-  nav#nav-sequence a.prev:hover {
-    padding-left: 1.5625rem;
-    padding-right: 1.5625rem;
-  }
-  nav#nav-sequence a.next {
-    padding-right: 3.125rem;
-  }
-  nav#nav-sequence a.next:hover {
-    padding-right: 1.5625rem;
-    padding-left: 1.5625rem;
+    /*
+        a.prev
+        {
+            padding-left: @spacing_unit_root;
+
+            &:hover
+            {
+                padding-left: @spacing_unit_root - @spacing_unit_root / 2;
+                padding-right: @spacing_unit_root / 2;
+            }
+        }
+
+        a.next
+        {
+            padding-right: @spacing_unit_root;
+
+            &:hover
+            {
+                padding-right: @spacing_unit_root - @spacing_unit_root / 2;
+                padding-left: @spacing_unit_root / 2;
+            }
+        }
+        */
   }
 }
 @media (min-width: 478px) and (max-width: 727px) {
-  nav#nav-sequence {
-    z-index: 100;
-  }
   nav#nav-sequence span.text-label {
     display: block;
     height: 12.1875rem;
@@ -972,13 +975,57 @@ nav#nav-sequence a.close:hover svg {
     height: 12.1875rem;
     width: 0.875em;
   }
+  nav#nav-sequence a.prev {
+    padding-left: 3.125rem;
+  }
+  nav#nav-sequence a.prev:hover {
+    padding-left: 3.125rem;
+    padding-right: 0;
+  }
+  nav#nav-sequence a.next {
+    padding-right: 3.125rem;
+  }
+  nav#nav-sequence a.next:hover {
+    padding-right: 3.125rem;
+    padding-left: 0;
+  }
 }
-@media (min-width: 728px) and (max-width: 1254px) {
+@media (min-width: 728px) and (max-width: 827px) {
+  nav#nav-sequence span.text-label {
+    display: block;
+    height: 16.25rem;
+    line-height: 16.25rem;
+  }
+  nav#nav-sequence a.prev,
+  nav#nav-sequence a.next {
+    height: 16.25rem;
+    margin-top: 0;
+  }
+  nav#nav-sequence a.prev svg,
+  nav#nav-sequence a.next svg {
+    height: 16.25rem;
+    width: 0.875em;
+  }
+  nav#nav-sequence a.prev {
+    padding-left: 3.125rem;
+  }
+  nav#nav-sequence a.prev:hover {
+    padding-left: 3.125rem;
+    padding-right: 0;
+  }
+  nav#nav-sequence a.next {
+    padding-right: 3.125rem;
+  }
+  nav#nav-sequence a.next:hover {
+    padding-right: 3.125rem;
+    padding-left: 0;
+  }
+}
+@media (min-width: 828px) and (max-width: 1254px) {
   nav#nav-sequence {
     left: 50%;
     margin-left: -363.5px;
     width: 727px;
-    z-index: 100;
   }
   nav#nav-sequence span.text-label {
     display: block;
@@ -994,6 +1041,24 @@ nav#nav-sequence a.close:hover svg {
   nav#nav-sequence a.next svg {
     height: 16.25rem;
     width: 0.875em;
+  }
+  nav#nav-sequence a.prev {
+    padding-left: 0;
+  }
+  nav#nav-sequence a.prev:hover {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  nav#nav-sequence a.next {
+    padding-right: 0;
+  }
+  nav#nav-sequence a.next:hover {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  nav#nav-sequence a.prev,
+  nav#nav-sequence a.next {
+    position: absolute;
   }
 }
 @-webkit-keyframes spinOnce {

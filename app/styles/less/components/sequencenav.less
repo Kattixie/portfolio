@@ -1,11 +1,10 @@
 nav#nav-sequence
 {
     display: none;
-    height: 100%;
-    position: fixed;
+    // height: 100%; // Results in this element overlapping most content.
+    position: fixed; // Important when this element serves as a container.
         top: 0;
         left: 0;
-        //z-index: 99; // Need to change to this when screen in smaller
     width: 100%;
 
     &.sequenced
@@ -43,12 +42,13 @@ nav#nav-sequence
     {
         .transition(all 300ms ease-out);
 
+        //background: rgba(0,255,0, .25);
+
         color: #bfbfbf;
         height: 100%;
         text-decoration: none;
         //margin-top: -40px;
-        position: absolute;
-        	//top: 50%;
+        position: fixed;
             top: 0;
         width: @spacing_unit_root * 2;
 
@@ -84,7 +84,7 @@ nav#nav-sequence
         svg
         {
         	float: left;
-        	margin-right: @spacing_unit_root / 2;
+        	margin-right: @spacing_unit_root / 3;
         }
 
         span.text-label
@@ -110,7 +110,7 @@ nav#nav-sequence
         svg
         {
         	float: right;
-        	margin-left: @spacing_unit / 2;
+        	margin-left: @spacing_unit / 3;
         }
 
         span.text-label
@@ -167,6 +167,8 @@ nav#nav-sequence
 
         .sequence-nav-height(@factor);
 
+        .sequence-nav-edge-padding(@spacing_unit_root);
+
         z-index: 100;
 
         a.prev,
@@ -182,15 +184,6 @@ nav#nav-sequence
 
         a.prev
     	{
-            padding-left: @spacing_unit_root / 2;
-            padding-right: 0;
-
-            &:hover
-            {
-                padding-left: @spacing_unit_root / 2;
-                padding-right: 0;
-            }
-
             svg
             {
                 margin-right: @spacing_unit / 5;
@@ -199,15 +192,6 @@ nav#nav-sequence
 
         a.next
         {
-            padding-right: @spacing_unit_root / 2;
-            padding-left: 0;
-
-            &:hover
-            {
-                padding-right: @spacing_unit_root / 2;
-                padding-left: 0;
-            }
-
             svg
             {
                 margin-left: @spacing_unit / 5;
@@ -234,6 +218,7 @@ nav#nav-sequence
     {
         z-index: 100;
 
+        /*
         a.prev
         {
             padding-left: @spacing_unit_root;
@@ -255,6 +240,7 @@ nav#nav-sequence
                 padding-left: @spacing_unit_root / 2;
             }
         }
+        */
     }
 }
 
@@ -266,11 +252,23 @@ nav#nav-sequence
 
         .sequence-nav-height(@factor);
 
-        z-index: 100;
+        .sequence-nav-edge-padding(@spacing_unit_root);
     }
 }
 
-@media (min-width: 728px) and (max-width: (@2_column_width + 300px))
+@media (min-width: (@entry_image_width + 1px)) and (max-width: (@entry_image_width + 100px))
+{
+    nav#nav-sequence
+    {
+        @factor: 1;
+
+        .sequence-nav-height(@factor);
+
+        .sequence-nav-edge-padding(@spacing_unit_root);
+    }
+}
+
+@media (min-width: (@entry_image_width + 101px)) and (max-width: (@2_column_width + 300px))
 {
     nav#nav-sequence
     {
@@ -279,8 +277,6 @@ nav#nav-sequence
         .sequence-nav-height(@factor);
 
         .sequence-nav-fixed-width(727px);
-
-        z-index: 100;
     }
 }
 
@@ -312,11 +308,44 @@ nav#nav-sequence
         }
 }
 
-.sequence-nav-fixed-width(@width: 727px)
+.sequence-nav-fixed-width(@width: 727px, @padding: 0)
 {
-    left: 50%;
-    margin-left: -1 * (@width / 2);
-    width: @width;
+    .sequence-nav-edge-padding(0);
+
+        left: 50%;
+        margin-left: -1 * (@width / 2);
+        width: @width;
+
+        a.prev,
+        a.next
+        {
+            position: absolute;
+        }
+}
+
+.sequence-nav-edge-padding(@padding: 0)
+{
+        a.prev
+        {
+            padding-left: @padding;
+
+            &:hover
+            {
+                padding-left: @padding;
+                padding-right: 0;
+            }
+        }
+
+        a.next
+        {
+            padding-right: @padding;
+
+            &:hover
+            {
+                padding-right: @padding;
+                padding-left: 0;
+            }
+        }
 }
 
 // Animations
