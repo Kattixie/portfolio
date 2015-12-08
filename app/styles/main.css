@@ -293,10 +293,19 @@ ul#contact li.linked-in svg {
   left: 0;
   width: 1.438em;
 }
+ul#contact li.github svg {
+  position: relative;
+  top: 0;
+  left: 1px;
+  width: 1.875em;
+}
 ul#contact li.twitter svg {
   position: relative;
   top: 0.063em;
   left: 0.063em;
+}
+ul#contact li.delicious svg {
+  width: 1.375em;
 }
 ul#contact li.pinterest svg {
   width: 1.875em;
@@ -907,7 +916,7 @@ nav#nav-sequence a.close:hover svg {
   fill: #3d3d3d;
   right: 25px;
 }
-@media (max-width: 477px) {
+@media (max-width: 727px) {
   nav#nav-sequence {
     z-index: 100;
   }
@@ -985,37 +994,19 @@ nav#nav-sequence a.close:hover svg {
         */
   }
 }
-@media (min-width: 478px) and (max-width: 727px) {
-  nav#nav-sequence span.text-label {
-    display: block;
-    height: 12.1875rem;
-    line-height: 12.1875rem;
-  }
-  nav#nav-sequence a.prev,
-  nav#nav-sequence a.next {
-    height: 12.1875rem;
-    margin-top: 0;
-  }
-  nav#nav-sequence a.prev svg,
-  nav#nav-sequence a.next svg {
-    height: 12.1875rem;
-    width: 0.875em;
-  }
-  nav#nav-sequence a.prev {
-    padding-left: 3.125rem;
-  }
-  nav#nav-sequence a.prev:hover {
-    padding-left: 3.125rem;
-    padding-right: 0;
-  }
-  nav#nav-sequence a.next {
-    padding-right: 3.125rem;
-  }
-  nav#nav-sequence a.next:hover {
-    padding-right: 3.125rem;
-    padding-left: 0;
-  }
+/*
+@media (min-width: (@1_column_width + 1px)) and (max-width: 727px)
+{
+    nav#nav-sequence
+    {
+        @factor: .75;
+
+        .sequence-nav-height(@factor);
+
+        .sequence-nav-edge-padding(@spacing_unit_root);
+    }
 }
+*/
 @media (min-width: 728px) and (max-width: 827px) {
   nav#nav-sequence span.text-label {
     display: block;
