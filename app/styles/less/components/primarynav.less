@@ -29,7 +29,7 @@ nav#nav-main
             top: 0;
             left: 0;
             z-index: 100;
-        width: 2.375em; //38px;
+        width: 2.000em; // 32px
 
         svg
         {
@@ -210,7 +210,7 @@ nav#nav-main.centered
 
 nav#nav-main.compact
 {
-    @factor: .45;
+    @factor: .35;
 
     .primary-nav-height(@factor);
 
@@ -245,6 +245,13 @@ nav#nav-main.compact
 
 @media (max-width: (@2_column_width + 300px))
 {
+    nav#nav-main
+    {
+        @factor: .75;
+
+        .primary-nav-height(@factor);
+    }
+
     nav#nav-main,
     nav#nav-main.compact
     {

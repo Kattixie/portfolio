@@ -364,7 +364,7 @@ ul#contact a.fa {
     width: auto;
   }
 }
-@media (max-width: 727px) {
+@media (max-width: 1254px) {
   header {
     height: 12.1875rem;
   }
@@ -455,7 +455,7 @@ nav#nav-main a#nav-icon {
   top: 0;
   left: 0;
   z-index: 100;
-  width: 2.375em;
+  width: 2.000em;
 }
 nav#nav-main a#nav-icon svg {
   width: 2.375em;
@@ -581,30 +581,30 @@ nav#nav-main.centered .nav-items ul.nav-primary::before {
   right: 50%;
 }
 nav#nav-main.compact a#nav-icon {
-  height: 7.3125rem;
+  height: 5.6875rem;
 }
 nav#nav-main.compact a#nav-icon svg {
-  height: 7.3125rem;
+  height: 5.6875rem;
 }
 nav#nav-main.compact .nav-items ul.nav-primary li {
-  height: 7.3125rem;
+  height: 5.6875rem;
 }
 nav#nav-main.compact .nav-items ul.nav-primary li.gallery a svg,
 nav#nav-main.compact .nav-items ul.nav-primary li.list a svg {
-  height: 7.3125rem;
+  height: 5.6875rem;
 }
 nav#nav-main.compact .nav-items ul.nav-primary li.gallery a span.text-label,
 nav#nav-main.compact .nav-items ul.nav-primary li.list a span.text-label {
-  height: 7.3125rem;
-  line-height: 7.3125rem;
+  height: 5.6875rem;
+  line-height: 5.6875rem;
 }
 nav#nav-main.compact .nav-items ul.nav-sub li {
-  height: 7.3125rem;
-  line-height: 7.3125rem;
+  height: 5.6875rem;
+  line-height: 5.6875rem;
 }
 nav#nav-main.compact .nav-items ul.nav-sub li a {
-  height: 7.3125rem;
-  line-height: 7.3125rem;
+  height: 5.6875rem;
+  line-height: 5.6875rem;
 }
 nav#nav-main.compact.collapsed {
   -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
@@ -646,6 +646,32 @@ nav#nav-main.compact .wrapper {
   }
 }
 @media (max-width: 1254px) {
+  nav#nav-main a#nav-icon {
+    height: 12.1875rem;
+  }
+  nav#nav-main a#nav-icon svg {
+    height: 12.1875rem;
+  }
+  nav#nav-main .nav-items ul.nav-primary li {
+    height: 12.1875rem;
+  }
+  nav#nav-main .nav-items ul.nav-primary li.gallery a svg,
+  nav#nav-main .nav-items ul.nav-primary li.list a svg {
+    height: 12.1875rem;
+  }
+  nav#nav-main .nav-items ul.nav-primary li.gallery a span.text-label,
+  nav#nav-main .nav-items ul.nav-primary li.list a span.text-label {
+    height: 12.1875rem;
+    line-height: 12.1875rem;
+  }
+  nav#nav-main .nav-items ul.nav-sub li {
+    height: 12.1875rem;
+    line-height: 12.1875rem;
+  }
+  nav#nav-main .nav-items ul.nav-sub li a {
+    height: 12.1875rem;
+    line-height: 12.1875rem;
+  }
   nav#nav-main,
   nav#nav-main.compact {
     position: fixed;
@@ -772,17 +798,17 @@ nav#nav-sequence.sequenced {
 }
 nav#nav-sequence.compact span.text-label {
   display: block;
-  height: 7.3125rem;
-  line-height: 7.3125rem;
+  height: 5.6875rem;
+  line-height: 5.6875rem;
 }
 nav#nav-sequence.compact a.prev,
 nav#nav-sequence.compact a.next {
-  height: 7.3125rem;
+  height: 5.6875rem;
   margin-top: 0;
 }
 nav#nav-sequence.compact a.prev svg,
 nav#nav-sequence.compact a.next svg {
-  height: 7.3125rem;
+  height: 5.6875rem;
   width: 0.875em;
 }
 nav#nav-sequence span.text-label {
@@ -993,17 +1019,17 @@ nav#nav-sequence a.close:hover svg {
 @media (min-width: 728px) and (max-width: 827px) {
   nav#nav-sequence span.text-label {
     display: block;
-    height: 16.25rem;
-    line-height: 16.25rem;
+    height: 12.1875rem;
+    line-height: 12.1875rem;
   }
   nav#nav-sequence a.prev,
   nav#nav-sequence a.next {
-    height: 16.25rem;
+    height: 12.1875rem;
     margin-top: 0;
   }
   nav#nav-sequence a.prev svg,
   nav#nav-sequence a.next svg {
-    height: 16.25rem;
+    height: 12.1875rem;
     width: 0.875em;
   }
   nav#nav-sequence a.prev {
@@ -1029,17 +1055,17 @@ nav#nav-sequence a.close:hover svg {
   }
   nav#nav-sequence span.text-label {
     display: block;
-    height: 16.25rem;
-    line-height: 16.25rem;
+    height: 12.1875rem;
+    line-height: 12.1875rem;
   }
   nav#nav-sequence a.prev,
   nav#nav-sequence a.next {
-    height: 16.25rem;
+    height: 12.1875rem;
     margin-top: 0;
   }
   nav#nav-sequence a.prev svg,
   nav#nav-sequence a.next svg {
-    height: 16.25rem;
+    height: 12.1875rem;
     width: 0.875em;
   }
   nav#nav-sequence a.prev {
