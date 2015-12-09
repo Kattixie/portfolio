@@ -113,7 +113,7 @@ nav#nav-sequence
     a.close
     {
         //.transition(all 300ms ease-out);
-        -webkit-animation: spinOnceBack 300ms ease-out;
+        .animation(spinOnceBack 300ms ease-out);
 
         display: none;
         height: 80px;
@@ -137,7 +137,7 @@ nav#nav-sequence
         &:hover
         {
             //.rotate(360deg);
-            -webkit-animation: spinOnce 300ms ease-out;
+            .animation(spinOnce 300ms ease-out);
 
             svg
             {
@@ -343,7 +343,7 @@ nav#nav-sequence
 
 // Animations
 
-@-webkit-keyframes spinOnce
+.keyframes(spinOnce,
 {
     0%
     {
@@ -354,9 +354,9 @@ nav#nav-sequence
     {
         .rotate(90deg);
     }
-}
+});
 
-@-webkit-keyframes spinOnceBack
+.keyframes(spinOnceBack
 {
     0%
     {
@@ -367,4 +367,4 @@ nav#nav-sequence
     {
         .rotate(-90deg);
     }
-}
+});

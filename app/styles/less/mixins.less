@@ -40,22 +40,32 @@
 
 // Shadows
 
+.box-shadow(@arguments)
+{
+    -webkit-box-shadow: @arguments;
+       -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
+}
+
 .inner-shadow(@vlength: 1px, @hlength: 1px, @blur: 1px, @spread: 0px, @r: 0, @g: 0, @b: 0, @a: 100%) when (isnumber(@r))
 {
     -webkit-box-shadow: inset @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
+       -moz-box-shadow: inset @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
             box-shadow: inset @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
 }
 
 .inner-shadow(@vlength: 1px, @hlength: 1px, @blur: 1px, @spread: 0px, @hex: #000) when (iscolor(@hex))
 {
     -webkit-box-shadow: inset @vlength @hlength @blur @spread @hex;
+       -moz-box-shadow: inset @vlength @hlength @blur @spread @hex;
             box-shadow: inset @vlength @hlength @blur @spread @hex;
 }
 
 .drop-shadow(@vlength: 1px, @hlength: 1px, @blur: 1px, @spread: 0px, @r: 0, @g: 0, @b: 0, @a: 100%) when (isnumber(@r))
 {
     -webkit-box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
-           box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
+       -moz-box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
+            box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
 }
 
 // Backgrounds
@@ -86,14 +96,32 @@
 
 // Animation
 
-.transition(@transition)
+.transition(@arguments)
 {
-    -webkit-transition: @transition;
-       -moz-transition: @transition;
-        -ms-transition: @transition;
-         -o-transition: @transition;
-            transition: @transition;
+    -webkit-transition: @arguments;
+       -moz-transition: @arguments;
+        -ms-transition: @arguments;
+         -o-transition: @arguments;
+            transition: @arguments;
 }
+
+.animation(@arguments)
+{
+    -webkit-animation: @arguments;
+       -moz-animation: @arguments;
+         -o-animation: @arguments;
+            animation: @arguments;
+}
+
+.keyframes(@identifier, @arguments)
+{
+    @-webkit-keyframes @identifier { @arguments(); }
+       @-moz-keyframes @identifier { @arguments(); }
+         @-o-keyframes @identifier { @arguments(); }
+            @keyframes @identifier { @arguments(); }
+}
+
+// Transformation
 
 .rotate(@degrees)
 {
