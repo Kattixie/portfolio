@@ -1223,11 +1223,6 @@ nav#nav-sequence a.close:hover svg {
 #entry-gallery {
   overflow: hidden;
 }
-#entry-gallery .container {
-  margin: 0 auto;
-  overflow: hidden;
-  width: auto;
-}
 #entry-gallery ul.gallery {
   line-height: 0;
   text-align: center;
@@ -1315,6 +1310,55 @@ nav#nav-sequence a.close:hover svg {
 #entry-gallery li.thumbnail:hover .description h3 {
   top: -1.5625em;
 }
+#entry-gallery li.thumbnail a {
+  /*
+            display: block;
+            height: 358px;
+            position: relative;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            overflow: hidden;
+            width: @thumb_width;
+            */
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  /*
+            &::before
+            {
+                content: '';
+                display: block;
+                padding-top: 100%; 	/* initial ratio of 1:1
+            }
+            */
+}
+#entry-gallery li.thumbnail a img {
+  display: block;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* Used this to test a downscaling issue that's emerged in the
+                latest version of Chrome. This helps, but it's worse at really
+                downscaled levels and it looks horrible in Firefox.
+                image-rendering: -moz-crisp-edges;
+                image-rendering: -o-crisp-edges;
+                image-rendering: -webkit-optimize-contrast;
+                */
+}
+#entry-gallery .container {
+  margin: 0 auto;
+  overflow: hidden;
+  width: auto;
+}
 #entry-gallery li.thumbnail.astronomical-league {
   background: #8f2d44;
 }
@@ -1391,50 +1435,6 @@ nav#nav-sequence a.close:hover svg {
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
   background-size: cover auto;
-}
-#entry-gallery a {
-  /*
-        display: block;
-        height: 358px;
-        position: relative;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        overflow: hidden;
-        width: @thumb_width;
-        */
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  /*
-        &::before
-        {
-            content: '';
-            display: block;
-            padding-top: 100%; 	/* initial ratio of 1:1
-        }
-        */
-}
-#entry-gallery a img {
-  display: block;
-  height: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  /* Used this to test a downscaling issue that's emerged in the
-            latest version of Chrome. This helps, but it's worse at really
-            downscaled levels and it looks horrible in Firefox.
-            image-rendering: -moz-crisp-edges;
-            image-rendering: -o-crisp-edges;
-            image-rendering: -webkit-optimize-contrast;
-            */
 }
 @media (max-width: 477px) {
   #entry-gallery ul.gallery li.thumbnail {
