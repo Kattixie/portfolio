@@ -1354,6 +1354,42 @@ nav#nav-sequence a.close:hover svg {
                 image-rendering: -webkit-optimize-contrast;
                 */
 }
+@media (max-width: 477px) {
+  #entry-gallery ul.gallery li.thumbnail {
+    height: auto;
+    width: 100%;
+  }
+}
+@media (min-width: 478px) and (max-width: 954px) {
+  #entry-gallery ul.gallery li.thumbnail {
+    height: auto;
+    width: 50%;
+  }
+}
+@media (min-width: 955px) and (max-width: 1431px) {
+  #entry-gallery ul.gallery li.thumbnail {
+    height: auto;
+    width: 33.33333333%;
+  }
+}
+@media (min-width: 1432px) and (max-width: 1908px) {
+  #entry-gallery ul.gallery li.thumbnail {
+    height: auto;
+    width: 25%;
+  }
+}
+@media (min-width: 1909px) and (max-width: 2385px) {
+  #entry-gallery ul.gallery li.thumbnail {
+    height: auto;
+    width: 20%;
+  }
+}
+@media (min-width: 2386px) {
+  #entry-gallery ul.gallery li.thumbnail {
+    height: auto;
+    width: 477px;
+  }
+}
 #entry-gallery .container {
   margin: 0 auto;
   overflow: hidden;
@@ -1435,42 +1471,6 @@ nav#nav-sequence a.close:hover svg {
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
   background-size: cover auto;
-}
-@media (max-width: 477px) {
-  #entry-gallery ul.gallery li.thumbnail {
-    height: auto;
-    width: 100%;
-  }
-}
-@media (min-width: 478px) and (max-width: 954px) {
-  #entry-gallery ul.gallery li.thumbnail {
-    height: auto;
-    width: 50%;
-  }
-}
-@media (min-width: 955px) and (max-width: 1431px) {
-  #entry-gallery ul.gallery li.thumbnail {
-    height: auto;
-    width: 33.33333333%;
-  }
-}
-@media (min-width: 1432px) and (max-width: 1908px) {
-  #entry-gallery ul.gallery li.thumbnail {
-    height: auto;
-    width: 25%;
-  }
-}
-@media (min-width: 1909px) and (max-width: 2385px) {
-  #entry-gallery ul.gallery li.thumbnail {
-    height: auto;
-    width: 20%;
-  }
-}
-@media (min-width: 2386px) {
-  #entry-gallery ul.gallery li.thumbnail {
-    height: auto;
-    width: 477px;
-  }
 }
 #entry-list {
   font-family: 'Archivo Narrow', sans-serif;
