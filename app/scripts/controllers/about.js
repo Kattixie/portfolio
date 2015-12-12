@@ -9,18 +9,23 @@
  */
 angular
     .module('portfolio')
-    .controller('AboutCtrl', function ($scope)
+    .controller('AboutCtrl', function ($log, $scope, About)
     {
+        $scope.data = {};
+        $scope.data.profile = null;
+
         if ( $scope.$parent.$parent )
         {
             $scope.$parent.$parent.setNextURI( null );
             $scope.$parent.$parent.setPrevURI( null );
         }
 
-        this.awesomeThings =
-        [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
+        About
+            .getProfile()
+            .then( function(data)
+            {
+                $scope.data.profile = data;
+
+                $log.debug('The profile data: %o', $scope.data.profile);
+            });
     });

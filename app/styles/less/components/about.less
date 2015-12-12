@@ -1,0 +1,37 @@
+#about
+{
+    .container
+    {
+        margin: 0 auto;
+    }
+
+    .intro
+    {
+        color: #0a0a0a;
+        font-family: 'Archivo Narrow', sans-serif;
+        font-size: 34px;
+        line-height: 45px;
+    }
+
+    .full-photo
+    {
+        height: 0; // To be set from supplied ratio
+        margin: @spacing_unit_root 0;
+        position: relative;
+            top: 0;
+            left: 0;
+        width: 100%;
+
+        img
+        {
+            height: 100%;
+            position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                z-index: 1;
+            width: 100%;
+        }
+    }
+}

@@ -1,1 +1,11 @@
-<p>This is the about view.</p>
+<div id="about">
+    <div class="container">
+
+        <div ng-if="data.profile.brief" class="intro" ng-bind-html="data.profile.brief">{{::data.profile.brief}}</div>
+
+        <div class="full-photo" ng-if="data.profile.photo.path" ng-style="{ paddingTop: data.profile.photo.ratio }">
+            <img  ng-src="images/{{::data.profile.photo.path}}" >
+        </div>
+
+    </div>
+</div>

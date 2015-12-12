@@ -19,7 +19,7 @@ angular
 
         var _categories = [];
 
-        // For quick look-up of inidividual entries by slug. Angular needs
+        // For quick look-up of individual entries by slug. Angular needs
         // an array with numeric indices for ng-repeat and filtering, so I'm
         // keeping track of two sets of entries. This one is only used for
         // finding single entries.

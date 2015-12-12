@@ -2076,7 +2076,7 @@ nav#nav-sequence a.close:hover svg {
   #entry .main-gallery .media.video {
     width: 100%;
     height: 0;
-    padding-bottom: 56.25%;
+    padding-top: 56.25%;
   }
   #entry .main-gallery .media.transparent {
     margin-right: 3.125rem;
@@ -2139,7 +2139,7 @@ nav#nav-sequence a.close:hover svg {
   #entry .main-gallery .media.video {
     width: 100%;
     height: 0;
-    padding-bottom: 56.25%;
+    padding-top: 56.25%;
   }
   #entry .main-gallery .media.transparent {
     margin-right: 3.125rem;
@@ -2206,7 +2206,7 @@ nav#nav-sequence a.close:hover svg {
   #entry .main-gallery .media.video {
     width: 100%;
     height: 0;
-    padding-bottom: 56.25%;
+    padding-top: 56.25%;
   }
   #entry .main-gallery .media.transparent {
     margin-right: 3.125rem;
@@ -2246,4 +2246,31 @@ nav#nav-sequence a.close:hover svg {
     margin-left: auto;
     width: 727px;
   }
+}
+#about .container {
+  margin: 0 auto;
+}
+#about .intro {
+  color: #0a0a0a;
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 34px;
+  line-height: 45px;
+}
+#about .full-photo {
+  height: 0;
+  margin: 3.125rem 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+#about .full-photo img {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
 }
