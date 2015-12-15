@@ -11,7 +11,7 @@
 
                     <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
 
-                    <img ng-if="media.type === undefined" ng-src="images/{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" my-preloader>
+                    <img ng-if="media.type === undefined" my-src="images/{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}">
 
                 </div>
             </div>
