@@ -105,6 +105,15 @@
             transition: @arguments;
 }
 
+.transition-delay(@arguments)
+{
+    -webkit-transition-delay: @arguments;
+       -moz-transition-delay: @arguments;
+        -ms-transition-delay: @arguments;
+         -o-transition-delay: @arguments;
+            transition-delay: @arguments;
+}
+
 .animation(@arguments)
 {
     -webkit-animation: @arguments;
@@ -123,13 +132,26 @@
 
 // Transformation
 
+.transform(@arguments)
+{
+    -webkit-transform: @arguments;
+       -moz-transform: @arguments;
+        -ms-transform: @arguments;
+         -o-transform: @arguments;
+            transform: @arguments;
+}
+
+.transform-origin(@x: center, @y: center)
+{
+    -webkit-transform-origin: @x @y;
+       -moz-transform-origin: @x @y;
+        -ms-transform-origin: @x @y;
+         -o-transform-origin: @x @y;
+}
+
 .rotate(@degrees)
 {
-    -webkit-transform: rotateZ(@degrees);
-       -moz-transform: rotateZ(@degrees);
-        -ms-transform: rotateZ(@degrees);
-         -o-transform: rotateZ(@degrees);
-            transform: rotateZ(@degrees);
+    .transform( rotate(@degrees) );
 }
 
 // Media Queries

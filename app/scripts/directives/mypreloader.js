@@ -19,7 +19,8 @@ angular
             restrict: 'A',
             link: function(scope, element)
             {
-                var loadingElement;
+                var loadingElement,
+                    spinnerElement;
 
                 scope.$watch('ngSrc', function()
                 {
@@ -27,13 +28,17 @@ angular
 
                     element.addClass('loading');
 
+                    spinnerElement = angular.element('<div>').addClass('spinner');
+
                     loadingElement = angular.element('<div>')
                                         .addClass('loader')
                                         .css(
                                         {
                                             height: element.height(), // Only available with jQuery
+                                            marginLeft: -1 * element.width() / 2,
                                             width: element.width(), // Only available with jQuery
-                                        });
+                                        })
+                                        .append( spinnerElement );
 
                     element
                         .parent()
@@ -44,9 +49,9 @@ angular
                 {
                     // Remove spinner and show element.
 
-                    element.removeClass('loading');
+                    //element.removeClass('loading');
 
-                    loadingElement.addClass('complete');
+                    //loadingElement.addClass('complete');
                 });
 
                 scope.$on('$destroy', function()

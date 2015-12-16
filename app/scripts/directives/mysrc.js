@@ -46,6 +46,8 @@ angular
 
                 self.init = function()
                 {
+                    $log.debug('Height observed.');
+
                     // There ~*MUST*~ be a better way to detect when the image
                     // elements have finished being populated. Without this,
                     // the offset properties are incredibly erroneous because
@@ -74,7 +76,7 @@ angular
 
                 self.loadElementInViewport = function()
                 {
-                    $log.debug('Is compiled? [%s]: %s', iAttrs.mySrc, scope.isCompiled);
+                    // $log.debug('Is compiled? [%s]: %s', iAttrs.mySrc, scope.isCompiled);
 
                     if ( ! self.isCompiled() )
                     {
@@ -117,6 +119,18 @@ angular
 
                 self.inViewport = function()
                 {
+                    // Oh boy, are there problems with this. The following
+                    // behaviors manifest:
+                    // 1. On large screens, the top offset is far too large
+                    //    as the view changes and new mySrc elements are loaded.
+                    //    This might be happening because they are loaded below
+                    //    the "exiting" view before it disappears. Note that
+                    //    width and height are explicitly set for large screens.
+                    // 2. On small screens, the offset is far too small on every
+                    //    load. This might be happening because the height is
+                    //    set to auto and hasn't been calculated yet.
+                    // The best solution I've found is to set a timeout. Ugh.
+                    // There must be a better solution.
                     var offset = self.element.offset();
 
                     $log.debug('The offset top: %o', offset.top);
@@ -151,7 +165,9 @@ angular
                 // This does not solve the problem of $digest being in progress.
                 //scope.$evalAsync( self.init );
 
-                self.init();
+                //self.init();
+
+                iAttrs.$observe('height', self.init );
             }
         };
 
