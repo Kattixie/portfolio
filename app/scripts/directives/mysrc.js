@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('mySrc', function ($log, $window, $compile)
+    .directive('mySrc', function ($log, $window, $timeout, $compile)
     {
         var directiveDefinitionObject =
         {
@@ -17,6 +17,7 @@ angular
             /*
             This works and could be handy at some point. Note that iElement
             is for instance element and tElement is for template element.
+            Note that link will not execute if this method exists.
             compile: function(tElement, tAttrs)
             {
                 tElement.attr('ng-src', tAttrs.mySrc);
@@ -38,20 +39,28 @@ angular
             {
                 var self = {};
 
-                var eWindow = angular.element( $window );
-                var element = angular.element( iElement );
+                self.eWindow = angular.element( $window );
+                self.element = angular.element( iElement );
+
+                scope.isCompiled = false;
 
                 self.init = function()
                 {
-                    // Bug happens here on first load.
-                    self.loadElementInViewport();
+                    // There ~*MUST*~ be a better way to detect when the image
+                    // elements have finished being populated. Without this,
+                    // the offset properties are incredibly erroneous because
+                    // they are calculated too soon.
+                    $timeout( function()
+                    {
+                        self.loadElementInViewport();
+                    }, 400);
                 };
 
-                // Definitely want to find a better way to test if this element
-                // has been compiled through the $compile service. I had a lot
-                // of trouble figuring out the mechanics of this.
                 self.isCompiled = function()
                 {
+                    return scope.isCompiled;
+
+                    /*
                     var tagName = iElement.prop('tagName');
 
                     if ( tagName )
@@ -60,17 +69,25 @@ angular
                     }
 
                     return tagName !== 'img';
+                    */
                 };
 
                 self.loadElementInViewport = function()
                 {
+                    $log.debug('Is compiled? [%s]: %s', iAttrs.mySrc, scope.isCompiled);
+
                     if ( ! self.isCompiled() )
                     {
-                        var offset = element.offset();
-
-                        if ( offset.top + element.height() * 0.25 < $window.pageYOffset + eWindow.height() )
+                        if ( self.inViewport() )
                         {
-                            scope.$apply( self.compileAsNgSrc );
+                            // A safety precaution that prevents $apply from
+                            // being invoked when in progress.
+                            $timeout( function()
+                            {
+                                $log.debug('Using scope.$apply');
+
+                                scope.$apply( self.compileAsNgSrc );
+                            });
                         }
                     }
                 };
@@ -79,30 +96,32 @@ angular
                 {
                     if ( ! self.isCompiled() )
                     {
-                        //$log.debug('Compling as ngSrc: %s', iAttrs.mySrc);
-
                         iElement.attr('ng-src', iAttrs.mySrc);
                         iElement.attr('my-preloader', true);
 
                         iElement.removeAttr('my-src');
 
-                        //$log.debug('The contents of the element: %s', iElement.prop('outerHTML') );
+                        // $log.debug('The contents of the element: %s', element.prop('outerHTML') );
 
                         // Use of the $compile service changes iElement. Note
                         // distinctions in use of $compile here (see "Returns"):
                         // https://docs.angularjs.org/api/ng/service/$compile
-                        $compile( iElement )(scope);
-
-                        /*
-                        var clonedElement = $compile( iElement )( scope, function( clonedElement )
+                        $compile( iElement )( scope, function( clonedElement )
                         {
                             iElement.replaceWith( clonedElement );
 
-                            //iElement.remove();
-                            //scope.$destroy();
+                            scope.isCompiled = true;
                         });
-                        */
                     }
+                };
+
+                self.inViewport = function()
+                {
+                    var offset = self.element.offset();
+
+                    $log.debug('The offset top: %o', offset.top);
+
+                    return ( offset.top + self.element.height() * 0.025 < $window.pageYOffset + self.eWindow.height() );
                 };
 
                 self.onWindowScroll = function()
@@ -110,12 +129,27 @@ angular
                     self.loadElementInViewport();
                 };
 
-                scope.$on('$destroy', function()
+                self.onWindowResize = function()
                 {
-                    eWindow.unbind('scroll', self.onWindowScroll);
-                });
+                    self.loadElementInViewport();
+                };
 
-                eWindow.bind('scroll', self.onWindowScroll);
+                // We can get a lot of wasted calls without this listener.
+                // It fires whenever a view changes so that this element is
+                // no longer displayed.
+                self.onDestroy = function()
+                {
+                    self.eWindow.unbind('scroll', self.onWindowScroll);
+                    self.eWindow.unbind('resize', self.onWindowResize);
+                };
+
+                self.eWindow.bind('scroll', self.onWindowScroll);
+                self.eWindow.bind('resize', self.onWindowResize);
+
+                scope.$on('$destroy', self.onDestroy);
+
+                // This does not solve the problem of $digest being in progress.
+                //scope.$evalAsync( self.init );
 
                 self.init();
             }
