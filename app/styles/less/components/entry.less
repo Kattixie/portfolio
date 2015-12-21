@@ -45,21 +45,35 @@
         float: left;
         //margin-right: @spacing_unit_root;
         margin-bottom: @spacing_unit_root;
+        text-align: center;
         width: @entry_image_width;
 
         .media
         {
             //float: left;
-            //display: inline-block;
-            //margin-bottom: 2px;
+            display: inline-block;
+            margin-bottom: @spacing_unit_root / 2;
             position: relative;
                 top: 0;
                 left: 0;
-            text-align: center;
+            width: @entry_image_width;
+
+
+            &:last-child
+            {
+                margin-bottom: 0;
+            }
 
             img
             {
                 display: inline-block;
+                position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                height: 100%;
+                width: 100%;
 
                 &:first-child
                 {

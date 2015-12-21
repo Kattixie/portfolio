@@ -46,8 +46,6 @@ angular
 
                 self.init = function()
                 {
-                    $log.debug('Height observed.');
-
                     // There ~*MUST*~ be a better way to detect when the image
                     // elements have finished being populated. Without this,
                     // the offset properties are incredibly erroneous because
@@ -129,11 +127,12 @@ angular
                     // 2. On small screens, the offset is far too small on every
                     //    load. This might be happening because the height is
                     //    set to auto and hasn't been calculated yet.
+                    //    Confirmed. height: auto is the source of the problem.
                     // The best solution I've found is to set a timeout. Ugh.
                     // There must be a better solution.
                     var offset = self.element.offset();
 
-                    $log.debug('The offset top: %o', offset.top);
+                    // $log.debug('The offset top: %o', offset.top);
 
                     return ( offset.top + self.element.height() * 0.025 < $window.pageYOffset + self.eWindow.height() );
                 };
@@ -167,7 +166,10 @@ angular
 
                 //self.init();
 
-                iAttrs.$observe('height', self.init );
+                iAttrs.$observe('height', function(value)
+                {
+                    $log.debug('The height has changed [%s]: %s', iAttrs.mySrc, value);
+                });
             }
         };
 

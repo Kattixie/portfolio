@@ -1910,16 +1910,29 @@ img .loading {
 #entry .main-gallery {
   float: left;
   margin-bottom: 3.125rem;
+  text-align: center;
   width: 727px;
 }
 #entry .main-gallery .media {
+  display: inline-block;
+  margin-bottom: 1.5625rem;
   position: relative;
   top: 0;
   left: 0;
-  text-align: center;
+  width: 727px;
+}
+#entry .main-gallery .media:last-child {
+  margin-bottom: 0;
 }
 #entry .main-gallery .media img {
   display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 #entry .main-gallery .media img:first-child {
   margin-top: 9px;

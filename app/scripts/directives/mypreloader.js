@@ -49,9 +49,9 @@ angular
                 {
                     // Remove spinner and show element.
 
-                    //element.removeClass('loading');
+                    element.removeClass('loading');
 
-                    //loadingElement.addClass('complete');
+                    loadingElement.addClass('complete');
                 });
 
                 scope.$on('$destroy', function()
