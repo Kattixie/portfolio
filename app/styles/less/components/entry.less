@@ -55,6 +55,11 @@
         {
             margin-bottom: @spacing_unit_root / 2;
 
+            &:last-child
+            {
+                margin-bottom: 0;
+            }
+
             &.transparent
             {
                 margin: @spacing_unit_root 0;
@@ -79,11 +84,6 @@
                 top: 0;
                 left: 0;
             width: @entry_image_width;
-
-            &:last-child
-            {
-                margin-bottom: 0;
-            }
 
             // Note that top or bottom padding on this element is relative to
             // the parent's width.
