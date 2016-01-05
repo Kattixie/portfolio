@@ -164,12 +164,17 @@ angular
                 // This does not solve the problem of $digest being in progress.
                 //scope.$evalAsync( self.init );
 
-                //self.init();
-
-                iAttrs.$observe('height', function(value)
+                if ( iAttrs.height )
                 {
-                    $log.debug('The height has changed [%s]: %s', iAttrs.mySrc, value);
-                });
+                    iAttrs.$observe('height', function(value)
+                    {
+                        $log.debug('The height has changed [%s]: %s', iAttrs.mySrc, value);
+                    });
+                }
+                else
+                {
+                    self.init();
+                }
             }
         };
 

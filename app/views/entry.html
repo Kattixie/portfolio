@@ -7,11 +7,15 @@
             </h1>
 
             <div class="main-gallery">
-                <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent, video: media.type === 'vimeo' }" style="padding-top: {{::media.ratio}}; width: {{::media.width}}px; max-width: {{::media.width}}px;">
+                <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent, video: media.type === 'vimeo' }" style="width: {{::media.width}}px; max-width: {{::media.width}}px;">
 
-                    <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" width="{{::media.width}}" height="{{::media.height}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
+                    <div class="ratio-wrapper" style="padding-top: {{::media.ratio}};">
 
-                    <img ng-if="media.type === undefined" my-src="images/{{::media.path}}">
+                        <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
+
+                        <img ng-if="media.type === undefined" my-src="images/{{::media.path}}">
+                        
+                    </div>
 
                 </div>
             </div>
@@ -34,19 +38,27 @@
             <div class="text" ng-bind-html="data.entry.description" my-external-links></div>
 
             <div class="data-points sidebar">
-                <ul ng-if="data.entry.client" class="inner-sidebar">
+                <ul ng-if="data.entry.client.length > 0" class="inner-sidebar">
                     <h2>Client</h2>
                     <li ng-repeat="client in data.entry.client" ng-bind-html="client">{{::client}}</li>
                 </ul>
-                <ul ng-if="data.entry.agencies" class="inner-sidebar">
+                <ul ng-if="data.entry.agencies.length > 0" class="inner-sidebar">
                     <h2>Agencies</h2>
                     <li ng-repeat="agency in data.entry.agencies" ng-bind-html="agency">{{::agency}}</li>
                 </ul>
-                <ul ng-if="data.entry.role" class="inner-sidebar">
+                <ul ng-if="data.entry.role.length > 0" class="inner-sidebar">
                     <h2>Roles</h2>
                     <li ng-repeat="role in data.entry.role" ng-bind-html="role">{{::role}}</li>
                 </ul>
-                <ul ng-if="data.entry.urls" class="inner-sidebar">
+                <ul ng-if="data.entry.courses.length > 0" class="inner-sidebar">
+                    <h2>Course</h2>
+                    <ul ng-repeat="course in data.entry.courses">
+                        <li ng-if="course.label" ng-bind-html="course.label">{{::course.label}}</li>
+                        <li ng-if="course.program" ng-bind-html="course.program">{{::course.program}}</li>
+                        <li ng-if="course.institution" ng-bind-html="course.institution">{{::course.institution}}</li>
+                    </ul>
+                </ul>
+                <ul ng-if="data.entry.urls.length > 0" class="inner-sidebar">
                     <h2>External Links</h2>
                     <li ng-repeat="url in data.entry.urls">
                         <a ng-href="{{::url.path}}" nb-bind-html="url.label" my-external-links>{{::url.label}}</a>

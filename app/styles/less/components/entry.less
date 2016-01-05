@@ -43,6 +43,7 @@
     {
         //display: inline-block;
         float: left;
+        font-size: 0;
         //margin-right: @spacing_unit_root;
         margin-bottom: @spacing_unit_root;
         text-align: center;
@@ -58,13 +59,22 @@
                 left: 0;
             width: @entry_image_width;
 
-
             &:last-child
             {
                 margin-bottom: 0;
             }
 
-            img
+            // Note that top or bottom padding on this element is relative to
+            // the parent's width.
+            .ratio-wrapper
+            {
+                position: relative;
+                    top: 0;
+                    left: 0;
+            }
+
+            img,
+            iframe
             {
                 display: inline-block;
                 position: absolute;
@@ -313,6 +323,11 @@
                 margin-top: 0;
             }
 
+            ul
+            {
+                margin-top: 0;
+            }
+
             li
             {
                 a
@@ -475,14 +490,16 @@
                 position: relative;
                     top: 0;
                     left: 0;
-                width: auto;
+                // Not ideal. This is due to width being set inline.
+                width: 100% !important;
+                //width: auto;
 
                 img,
                 iframe
                 {
-                    height: auto;
-                    width: 100%;
-                    max-width: @entry_image_width;
+                    //height: auto;
+                    //width: 100%;
+                    //max-width: @entry_image_width;
                 }
 
                 iframe
@@ -495,15 +512,15 @@
 
                 &.video
                 {
-                    width: 100%;
-                    height: 0;
-                    padding-top: 56.25%; // This enforces an assumed ratio.
+                    //width: 100%;
+                    //height: 0;
+                    //padding-top: 56.25%; // This enforces an assumed ratio.
                 }
 
                 &.transparent
                 {
-                    margin-right: @spacing_unit_root;
-                    margin-left: @spacing_unit_root;
+                    //margin-right: @spacing_unit_root;
+                    //margin-left: @spacing_unit_root;
                 }
             }
         }
