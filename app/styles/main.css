@@ -1285,9 +1285,6 @@ div.loader .spinner {
   border-bottom-color: #3d3d3d;
   border-left-color: #3d3d3d;
 }
-img .loading {
-  visibility: hidden;
-}
 @-webkit-keyframes spinner {
   0% {
     -webkit-transform: rotate(0deg);
@@ -1914,9 +1911,20 @@ img .loading {
   text-align: center;
   width: 727px;
 }
+#entry .main-gallery .main-gallery-item {
+  margin-bottom: 1.5625rem;
+}
+#entry .main-gallery .main-gallery-item.transparent {
+  margin: 3.125rem 0;
+}
+#entry .main-gallery .main-gallery-item.transparent:first-child {
+  margin-top: 0;
+}
+#entry .main-gallery .main-gallery-item.transparent:last-child {
+  margin-bottom: 0;
+}
 #entry .main-gallery .media {
   display: inline-block;
-  margin-bottom: 1.5625rem;
   position: relative;
   top: 0;
   left: 0;
@@ -1945,14 +1953,11 @@ img .loading {
 #entry .main-gallery .media iframe:first-child {
   margin-top: 9px;
 }
-#entry .main-gallery .media.transparent {
-  margin: 3.125rem 0;
+#entry .main-gallery .media img {
+  visibility: hidden;
 }
-#entry .main-gallery .media.transparent:first-child {
-  margin-top: 0;
-}
-#entry .main-gallery .media.transparent:last-child {
-  margin-bottom: 0;
+#entry .main-gallery .media img.complete {
+  visibility: visible;
 }
 #entry .text {
   color: #4c4c4c;
@@ -1987,17 +1992,6 @@ img .loading {
   position: relative;
   top: 0;
   left: 0;
-  /*
-                    &::before
-                    {
-                        content: '';
-                        border-bottom: 1px solid #e1e1e1;
-                        position: absolute;
-                            bottom: 0;
-                            left: 0;
-                        width: 100%;
-                    }
-                    */
 }
 #entry .text p a.external::after {
   -webkit-transition: all 250ms ease-out;
@@ -2024,12 +2018,6 @@ img .loading {
 }
 #entry .text p a:hover span {
   border-color: #c4c4c4;
-  /*
-                        &::before
-                        {
-                            border-color: #848484;
-                        }
-                        */
 }
 #entry .text p a:hover.external::after {
   background: #b6e7e4;
@@ -2190,6 +2178,10 @@ img .loading {
     margin-left: auto;
     width: auto;
   }
+  #entry .main-gallery .main-gallery-item.transparent {
+    margin-right: 3.125rem;
+    margin-left: 3.125rem;
+  }
   #entry .main-gallery .media {
     float: none;
     position: relative;
@@ -2238,6 +2230,10 @@ img .loading {
     margin-left: auto;
     width: auto;
   }
+  #entry .main-gallery .main-gallery-item.transparent {
+    margin-right: 3.125rem;
+    margin-left: 3.125rem;
+  }
   #entry .main-gallery .media {
     float: none;
     position: relative;
@@ -2278,7 +2274,7 @@ img .loading {
   #entry .main-quote .text {
     margin: 0;
   }
-  #entry .main-gallery .media {
+  #entry .main-gallery .main-gallery-item {
     margin-right: 3.125rem;
     margin-left: 3.125rem;
   }
@@ -2289,6 +2285,10 @@ img .loading {
     margin-right: auto;
     margin-left: auto;
     width: auto;
+  }
+  #entry .main-gallery .main-gallery-item.transparent {
+    margin-right: 3.125rem;
+    margin-left: 3.125rem;
   }
   #entry .main-gallery .media {
     float: none;

@@ -7,14 +7,18 @@
             </h1>
 
             <div class="main-gallery">
-                <div class="media" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent, video: media.type === 'vimeo' }" style="width: {{::media.width}}px; max-width: {{::media.width}}px;">
+                <div class="main-gallery-item" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent }">
 
-                    <div class="ratio-wrapper" style="padding-top: {{::media.ratio}};">
+                    <div class="media" ng-class="{ video: media.type === 'vimeo' }" style="width: {{::media.width}}px; max-width: {{::media.width}}px;">
 
-                        <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
+                        <div class="ratio-wrapper" style="padding-top: {{::media.ratio}};">
 
-                        <img ng-if="media.type === undefined" my-src="images/{{::media.path}}">
-                        
+                            <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
+
+                            <img ng-if="media.type === undefined" my-src="images/{{::media.path}}">
+
+                        </div>
+
                     </div>
 
                 </div>

@@ -49,11 +49,32 @@
         text-align: center;
         width: @entry_image_width;
 
+        // Put outer spacing on this element. The ratio implementation makes
+        // things a little tricky.
+        .main-gallery-item
+        {
+            margin-bottom: @spacing_unit_root / 2;
+
+            &.transparent
+            {
+                margin: @spacing_unit_root 0;
+
+                &:first-child
+                {
+                    margin-top: 0;
+                }
+
+                &:last-child
+                {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
         .media
         {
             //float: left;
             display: inline-block;
-            margin-bottom: @spacing_unit_root / 2;
             position: relative;
                 top: 0;
                 left: 0;
@@ -91,18 +112,17 @@
                 }
             }
 
-            &.transparent
+            // Need to set this as default unfortunately due to how the elements
+            // are loading with a custom directive in Angular. The image is
+            // visible before it has loaded otherwise. It became a problem
+            // with the introduction of the my-src directive, I believe.
+            img
             {
-                margin: @spacing_unit_root 0;
+                visibility: hidden;
 
-                &:first-child
+                &.complete
                 {
-                    margin-top: 0;
-                }
-
-                &:last-child
-                {
-                    margin-bottom: 0;
+                    visibility: visible;
                 }
             }
         }
@@ -110,9 +130,7 @@
 
     .text
     {
-        //clear: both;
         color: #4c4c4c;
-        //display: inline-block;
         float: left;
         font-family: 'Fira Sans', sans-serif;
         font-size: 0.938em; // 15px
@@ -147,18 +165,6 @@
                     position: relative;
                         top: 0;
                         left: 0;
-
-                    /*
-                    &::before
-                    {
-                        content: '';
-                        border-bottom: 1px solid #e1e1e1;
-                        position: absolute;
-                            bottom: 0;
-                            left: 0;
-                        width: 100%;
-                    }
-                    */
                 }
 
                 &.external::after
@@ -186,13 +192,6 @@
                     span
                     {
                         border-color: #c4c4c4;
-
-                        /*
-                        &::before
-                        {
-                            border-color: #848484;
-                        }
-                        */
                     }
 
                     &.external::after
@@ -206,12 +205,7 @@
 
     .sidebar
     {
-        //float: right;
         display: inline-block;
-        //width: 177px;
-        //padding-left: @spacing_unit_root;
-        //overflow: hidden;
-        //margin-left: 727px;
         width: 100%;
         margin-left: -727px;
 
@@ -225,7 +219,6 @@
     .main-quote
     {
         float: left;
-        //overflow: hidden;
         margin-left: auto;
         margin-right: auto;
         width: @entry_image_width;
@@ -305,7 +298,6 @@
         font-family: 'Fira Sans', sans-serif;
         font-size: 0.875em; // 14px
         line-height: 1.625em; // 26px
-        //margin-top: @spacing_unit_root;
 
         h2
         {
@@ -431,10 +423,17 @@
 
         .main-gallery
         {
-            .media
+            .main-gallery-item
             {
                 margin-right: @spacing_unit_root;
                 margin-left: @spacing_unit_root;
+            }
+
+            .media
+            {
+                // Changed with the image ratio implementation.
+                //margin-right: @spacing_unit_root;
+                //margin-left: @spacing_unit_root;
             }
         }
     }
@@ -484,6 +483,15 @@
             margin-left: auto;
             width: auto;
 
+            .main-gallery-item
+            {
+                &.transparent
+                {
+                    margin-right: @spacing_unit_root;
+                    margin-left: @spacing_unit_root;
+                }
+            }
+
             .media
             {
                 float: none;
@@ -492,7 +500,7 @@
                     left: 0;
                 // Not ideal. This is due to width being set inline.
                 width: 100% !important;
-                //width: auto;
+                //width: auto !important;
 
                 img,
                 iframe

@@ -49,7 +49,9 @@ angular
                 {
                     // Remove spinner and show element.
 
-                    element.removeClass('loading');
+                    element
+                        .removeClass('loading')
+                        .addClass('complete');
 
                     loadingElement.addClass('complete');
                 });
