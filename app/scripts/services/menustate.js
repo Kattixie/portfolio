@@ -5,7 +5,7 @@
  * @name portfolio.MenuState
  * @description
  * # MenuState
- * Factory that maintains information about menu state, which is helpful in
+ * Service that maintains information about menu state, which is helpful in
  * cases where we don't want to worry about controller and directive
  * relationships (parent vs. child, siblings, etc).
  */

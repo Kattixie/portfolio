@@ -17,8 +17,8 @@ angular
             // establishes new child scope for this directive. It has the
             // potential to break anything that relies on this directive being
             // part of a broader scope. We can't refer to methods in this
-            // controller through $scope.methodName anymore. Instead we use
-            // must use $scope.$parent syntax. Also note that scope: {...}
+            // controller through $scope.methodName anymore. Instead we must use
+            // $scope.$parent syntax. Also note that scope: {...}
             // would create "isolate" scope that does not prototypically
             // inherit.
             scope: true,

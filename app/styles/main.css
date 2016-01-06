@@ -1411,7 +1411,12 @@ div.loader .spinner {
   width: 60px;
 }
 #entry-gallery li.thumbnail .description ul.roles {
-  display: none;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  display: block;
   position: absolute;
   bottom: 3.125em;
   left: 0;
@@ -1422,7 +1427,7 @@ div.loader .spinner {
   color: #fff;
   display: inline-block;
   font-family: 'Fira Sans', sans-serif;
-  font-size: 0.938em;
+  font-size: 0.813em;
   font-style: italic;
   font-weight: 400;
   line-height: 1.625em;
@@ -1435,6 +1440,21 @@ div.loader .spinner {
 #entry-gallery li.thumbnail .description ul.roles li:first-child::before {
   content: '';
   margin-right: 0;
+}
+#entry-gallery li.thumbnail.large {
+  font-size: 1.25rem;
+}
+#entry-gallery li.thumbnail.large .description ul.roles {
+  display: block;
+}
+#entry-gallery li.thumbnail.small {
+  font-size: .85rem;
+}
+#entry-gallery li.thumbnail.small .description h3::after {
+  border-bottom: 0;
+}
+#entry-gallery li.thumbnail.small .description ul.roles {
+  display: none;
 }
 #entry-gallery li.thumbnail:hover .description h3 {
   top: -1.5625em;

@@ -2,7 +2,7 @@
 
     <div class="container">
         <ul class="gallery">
-            <li ng-repeat="entry in data.entries" class="{{::entry.slug}} thumbnail" my-thumbnail>
+            <li ng-repeat="entry in data.entries" class="{{::entry.slug}} thumbnail {{sizeClassName}}" my-thumbnail>
                 <div class="description">
                     <h3 ng-bind-html="entry.titleShort">{{::entry.titleShort}}</h3>
                     <ul class="roles">
