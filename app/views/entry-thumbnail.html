@@ -1,9 +1,11 @@
-<div class="description">
-    <h3 ng-bind-html="entry.titleShort">{{::entry.titleShort}}</h3>
-    <ul class="roles">
-        <li ng-repeat="role in entry.thumbCategories">{{::role}}</li>
-    </ul>
-</div>
-<a href="#/{{::entry.slug}}">
-    <img ng-src="images/{{::entry.thumb}}">
-</a>
+<li class="canvas {{::entry.slug}} {{sizeClassName}}">
+    <div class="description">
+        <h3 ng-bind-html="entry.titleShort">{{::entry.titleShort}}</h3>
+        <ul class="roles">
+            <li ng-repeat="role in entry.thumbCategories">{{::role}}</li>
+        </ul>
+    </div>
+    <a ng-href="#/{{::entry.slug}}">
+        <img ng-src="images/{{::entry.thumb}}">
+    </a>
+</li>

@@ -12,11 +12,15 @@ angular
     {
         var directiveDefinitionObject =
         {
-            restrict: 'A',
-            //scope: true,
-            // templateUrl: 'views/entry-thumbnail.html',
+            restrict: 'EA',
+            scope: {
+                entry: '=data'
+            },
+            templateUrl: 'views/entry-thumbnail.html',
             link: function(scope, element)
             {
+                $log.debug('The thumbnail scope: %o', scope);
+
                 var self = {};
 
                 self.eWindow = angular.element( $window );
@@ -26,12 +30,13 @@ angular
 
                 scope.sizeClassName = '';
 
-                // I noticed some lagginess with the thumbnail animations with
-                // straight CSS. They seem to perform better with Velocity.
-
                 var delay       =   100,
                     duration    =   250;
 
+                // We need to set a class to determine how to display thumbnail
+                // contents because the width of the thumbnail is dynamic. The
+                // width provides us some insight on how much real estate we
+                // have on this particular screen.
                 self.setSizeClass = function()
                 {
                     var width = self.image.width();
@@ -49,8 +54,11 @@ angular
                         scope.sizeClassName = GalleryState.maxClassName;
                     }
 
-                    $log.debug('The class name is: %s', scope.sizeClassName);
+                    // $log.debug('The class name is: %s', scope.sizeClassName);
                 };
+
+                // I noticed some lagginess with the thumbnail animations with
+                // straight CSS. They seem to perform better with Velocity.
 
                 self.onElementHover = function()
                 {
@@ -106,7 +114,11 @@ angular
                     $timeout.cancel( self.resizeTO );
                 };
 
-                self.element.on({ mouseenter: self.onElementHover, mouseleave: self.offElementHover });
+                self.element.on(
+                {
+                    mouseenter: self.onElementHover,
+                    mouseleave: self.offElementHover
+                });
 
                 scope.$on('$destroy', self.onDestroy);
 

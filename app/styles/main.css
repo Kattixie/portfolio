@@ -1360,21 +1360,27 @@ div.loader .spinner {
   line-height: 0;
   text-align: center;
 }
-#entry-gallery li.thumbnail {
+#entry-gallery .thumbnail {
   display: inline-block;
   font-size: 1rem;
-  height: 358px;
   position: relative;
   top: 0;
   left: 0;
   width: 477px;
 }
-#entry-gallery li.thumbnail::before {
+#entry-gallery .thumbnail li.canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#entry-gallery .thumbnail::before {
   content: '';
   display: block;
   padding-bottom: 75.0524109%;
 }
-#entry-gallery li.thumbnail .description {
+#entry-gallery .thumbnail .description {
   position: absolute;
   top: 0;
   right: 0;
@@ -1382,7 +1388,7 @@ div.loader .spinner {
   left: 0;
   text-align: center;
 }
-#entry-gallery li.thumbnail .description h3 {
+#entry-gallery .thumbnail .description h3 {
   -webkit-transition: all 200ms ease-out;
   -moz-transition: all 200ms ease-out;
   -ms-transition: all 200ms ease-out;
@@ -1400,7 +1406,7 @@ div.loader .spinner {
   top: 0;
   left: 0;
 }
-#entry-gallery li.thumbnail .description h3::after {
+#entry-gallery .thumbnail .description h3::after {
   -webkit-transition: all 300ms ease-out;
   -moz-transition: all 300ms ease-out;
   -ms-transition: all 300ms ease-out;
@@ -1414,7 +1420,7 @@ div.loader .spinner {
   margin-left: -30px;
   width: 60px;
 }
-#entry-gallery li.thumbnail .description ul.roles {
+#entry-gallery .thumbnail .description ul.roles {
   -webkit-transition: all 300ms ease-out;
   -moz-transition: all 300ms ease-out;
   -ms-transition: all 300ms ease-out;
@@ -1427,7 +1433,7 @@ div.loader .spinner {
   text-align: center;
   width: 100%;
 }
-#entry-gallery li.thumbnail .description ul.roles li {
+#entry-gallery .thumbnail .description ul.roles li {
   color: #fff;
   display: inline-block;
   font-family: 'Fira Sans', sans-serif;
@@ -1437,33 +1443,33 @@ div.loader .spinner {
   line-height: 1.625em;
   margin-left: .625em;
 }
-#entry-gallery li.thumbnail .description ul.roles li::before {
+#entry-gallery .thumbnail .description ul.roles li::before {
   content: '+';
   margin-right: .625em;
 }
-#entry-gallery li.thumbnail .description ul.roles li:first-child::before {
+#entry-gallery .thumbnail .description ul.roles li:first-child::before {
   content: '';
   margin-right: 0;
 }
-#entry-gallery li.thumbnail.large {
+#entry-gallery .thumbnail.large {
   font-size: 1.25rem;
 }
-#entry-gallery li.thumbnail.large .description ul.roles {
+#entry-gallery .thumbnail.large .description ul.roles {
   display: block;
 }
-#entry-gallery li.thumbnail.small {
+#entry-gallery .thumbnail.small {
   font-size: .85rem;
 }
-#entry-gallery li.thumbnail.small .description h3::after {
+#entry-gallery .thumbnail.small .description h3::after {
   border-bottom: 0;
 }
-#entry-gallery li.thumbnail.small .description ul.roles {
+#entry-gallery .thumbnail.small .description ul.roles {
   display: none;
 }
-#entry-gallery li.thumbnail:hover .description h3 {
+#entry-gallery .thumbnail:hover .description h3 {
   top: -1.5625em;
 }
-#entry-gallery li.thumbnail a {
+#entry-gallery .thumbnail a {
   /*
             display: block;
             height: 358px;
@@ -1490,7 +1496,7 @@ div.loader .spinner {
             }
             */
 }
-#entry-gallery li.thumbnail a img {
+#entry-gallery .thumbnail a img {
   display: block;
   height: auto;
   position: absolute;
@@ -1508,37 +1514,37 @@ div.loader .spinner {
                 */
 }
 @media (max-width: 477px) {
-  #entry-gallery ul.gallery li.thumbnail {
+  #entry-gallery ul.gallery .thumbnail {
     height: auto;
     width: 100%;
   }
 }
 @media (min-width: 478px) and (max-width: 954px) {
-  #entry-gallery ul.gallery li.thumbnail {
+  #entry-gallery ul.gallery .thumbnail {
     height: auto;
     width: 50%;
   }
 }
 @media (min-width: 955px) and (max-width: 1431px) {
-  #entry-gallery ul.gallery li.thumbnail {
+  #entry-gallery ul.gallery .thumbnail {
     height: auto;
     width: 33.33333333%;
   }
 }
 @media (min-width: 1432px) and (max-width: 1908px) {
-  #entry-gallery ul.gallery li.thumbnail {
+  #entry-gallery ul.gallery .thumbnail {
     height: auto;
     width: 25%;
   }
 }
 @media (min-width: 1909px) and (max-width: 2385px) {
-  #entry-gallery ul.gallery li.thumbnail {
+  #entry-gallery ul.gallery .thumbnail {
     height: auto;
     width: 20%;
   }
 }
 @media (min-width: 2386px) {
-  #entry-gallery ul.gallery li.thumbnail {
+  #entry-gallery ul.gallery .thumbnail {
     height: auto;
     width: 477px;
   }
@@ -1548,77 +1554,77 @@ div.loader .spinner {
   overflow: hidden;
   width: auto;
 }
-#entry-gallery li.thumbnail.astronomical-league {
+#entry-gallery .thumbnail li.astronomical-league {
   background: #8f2d44;
 }
-#entry-gallery li.thumbnail.maker-camp {
+#entry-gallery .thumbnail li.maker-camp {
   background: no-repeat url(../../../images/thumbs/maker_camp_thumb2.jpg);
   -webkit-background-size: cover auto;
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
   background-size: cover auto;
 }
-#entry-gallery li.thumbnail.maker-camp .description h3 {
+#entry-gallery .thumbnail li.maker-camp .description h3 {
   color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.maker-camp .description h3::after {
+#entry-gallery .thumbnail li.maker-camp .description h3::after {
   border-color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.maker-camp .description ul.roles li {
+#entry-gallery .thumbnail li.maker-camp .description ul.roles li {
   color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.nintendo-community {
+#entry-gallery .thumbnail li.nintendo-community {
   background: #e03f47;
 }
-#entry-gallery li.thumbnail.wedding {
+#entry-gallery .thumbnail li.wedding {
   background: url(../../../images/thumbs/bg_paper_light.jpg);
 }
-#entry-gallery li.thumbnail.wedding .description h3 {
+#entry-gallery .thumbnail li.wedding .description h3 {
   color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.wedding .description h3::after {
+#entry-gallery .thumbnail li.wedding .description h3::after {
   border-color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.wedding .description ul.roles li {
+#entry-gallery .thumbnail li.wedding .description ul.roles li {
   color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.choose-your-own-birth {
+#entry-gallery .thumbnail li.choose-your-own-birth {
   background: #e3418a;
 }
-#entry-gallery li.thumbnail.learning-creative-learning {
+#entry-gallery .thumbnail li.learning-creative-learning {
   background: #ace8dc;
 }
-#entry-gallery li.thumbnail.learning-creative-learning .description h3 {
+#entry-gallery .thumbnail li.learning-creative-learning .description h3 {
   color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.learning-creative-learning .description h3::after {
+#entry-gallery .thumbnail li.learning-creative-learning .description h3::after {
   border-color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.learning-creative-learning .description ul.roles li {
+#entry-gallery .thumbnail li.learning-creative-learning .description ul.roles li {
   color: #3d3d3d;
 }
-#entry-gallery li.thumbnail.audubon-birding-the-net {
+#entry-gallery .thumbnail li.audubon-birding-the-net {
   background: #e5ab3d;
 }
-#entry-gallery li.thumbnail.subaru-work-play-love {
+#entry-gallery .thumbnail li.subaru-work-play-love {
   background: #2c5fa1;
 }
-#entry-gallery li.thumbnail.airforce-rotc-scholarship {
+#entry-gallery .thumbnail li.airforce-rotc-scholarship {
   background: #79bace;
 }
-#entry-gallery li.thumbnail.girl-rock-nation {
+#entry-gallery .thumbnail li.girl-rock-nation {
   background: #00b5cb;
 }
-#entry-gallery li.thumbnail.coaches-vs-cancer {
+#entry-gallery .thumbnail li.coaches-vs-cancer {
   background: #cc6327;
 }
-#entry-gallery li.thumbnail.paris-from-memory {
+#entry-gallery .thumbnail li.paris-from-memory {
   background: #0d0b13;
 }
-#entry-gallery li.thumbnail.late-night-camp-hyrule {
+#entry-gallery .thumbnail li.late-night-camp-hyrule {
   background: #1e4c72;
 }
-#entry-gallery li.thumbnail.sugarcrave {
+#entry-gallery .thumbnail li.sugarcrave {
   background: no-repeat url(../../../images/thumbs/sugarcrave_thumb2.jpg);
   -webkit-background-size: cover auto;
   -moz-background-size: cover auto;

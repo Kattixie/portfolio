@@ -2,6 +2,8 @@
 
     <div class="container">
         <ul class="gallery">
+            <my-thumbnail ng-repeat="entry in data.entries" class="thumbnail" data="entry"></my-thumbnail>
+            <!--
             <li ng-repeat="entry in data.entries" class="{{::entry.slug}} thumbnail {{sizeClassName}}" my-thumbnail>
                 <div class="description">
                     <h3 ng-bind-html="entry.titleShort">{{::entry.titleShort}}</h3>
@@ -13,6 +15,7 @@
                     <img ng-src="images/{{::entry.thumb}}">
                 </a>
             </li>
+            -->
         </ul>
     </div>
 
