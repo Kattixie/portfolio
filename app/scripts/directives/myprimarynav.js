@@ -34,6 +34,8 @@ angular
                 self.hamburgerIcon = $element.find('#nav-icon');
                 self.logo = $element.find('h1#logo');
 
+                MenuState.setHamburgerIcon( self.hamburgerIcon );
+
                 // Values
 
                 self.prevPageYOffset = $window.pageYOffset;
@@ -85,7 +87,7 @@ angular
 
                 self.toggleMenu = function()
                 {
-                    if ( self.menuIsCollapsable() )
+                    if ( MenuState.isCollapsible() )
                     {
                         if ( MenuState.isOpen )
                         {
@@ -169,14 +171,9 @@ angular
                     return MenuState.selectedGalleryMode === mode;
                 };
 
-                self.menuIsCollapsable = function()
-                {
-                    return ( self.hamburgerIcon.filter(':visible').length > 0 ) ? true : false;
-                };
-
                 self.setMenu = function()
                 {
-                    if ( self.menuIsCollapsable() )
+                    if ( MenuState.isCollapsible() )
                     {
                         self.dropdownMenu.hide();
 
@@ -250,7 +247,7 @@ angular
 
                 self.setLogo = function()
                 {
-                    if (self.menuIsCollapsable() && $routeParams.slug)
+                    if (MenuState.isCollapsible() && $routeParams.slug)
                     {
                         self.logo.addClass( MenuState.centerClassName );
                     }
@@ -259,7 +256,7 @@ angular
                         self.logo.removeClass( MenuState.centerClassName );
                     }
                     /*
-                    if ( self.menuIsCollapsable() && $routeParams.slug )
+                    if ( MenuState.isCollapsible() && $routeParams.slug )
                     {
                         self.logo.hide();
                     }
@@ -279,7 +276,7 @@ angular
                     self.setMenuAlignment();
                     self.setLogo();
 
-                    if ( self.menuIsCollapsable() )
+                    if ( MenuState.isCollapsible() )
                     {
                         self.toggleCompactMenu();
                     }
@@ -294,7 +291,7 @@ angular
 
                 self.onWindowScroll = function()
                 {
-                    if ( self.menuIsCollapsable() )
+                    if ( MenuState.isCollapsible() )
                     {
                         self.toggleCompactMenu();
                     }
@@ -340,7 +337,7 @@ angular
 
                 self.onNavItemClick = function()
                 {
-                    if ( MenuState.isOpen && self.menuIsCollapsable() )
+                    if ( MenuState.isOpen && MenuState.isCollapsible() )
                     {
                         self.closeMenu( 100 );
                     }

@@ -116,7 +116,15 @@ angular
 
                 self.onWindowResize = function()
                 {
-                    self.setCompactMenu();
+                    if ( MenuState.isCollapsible() )
+                    {
+                        self.setCompactMenu();
+                    }
+                    else
+                    {
+                        self.container.removeClass( MenuState.compactClassName );
+                    }
+
                 };
 
                 self.onWindowScroll = function()
@@ -126,6 +134,7 @@ angular
 
                 $scope.$on('$routeChangeSuccess', self.onRouteChange);
 
+                self.eWindow.bind('resize', self.onWindowResize);
                 self.eWindow.bind('scroll', self.onWindowScroll);
             }
         };

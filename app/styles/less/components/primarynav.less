@@ -18,7 +18,7 @@ nav#nav-main
 
     a#nav-icon
     {
-        .transition(all 300ms ease-out);
+        .transition(all 600ms ease-out);
 
         color: #808080;
         display: none;
@@ -29,11 +29,13 @@ nav#nav-main
             top: 0;
             left: 0;
             z-index: 100;
-        width: 2.000em; // 32px
+        //width: 1.875em; // 30px
+        width: 2.375em; //38px;
 
         svg
         {
-            width: 2.375em; //38px;
+            //width: 2.375em; //38px;
+            width: 100%;
             stroke: currentColor;
         }
 
@@ -191,6 +193,7 @@ nav#nav-main.centered
     {
         float: none;
         margin: 0 auto;
+        opacity: 0;
     }
 
     .nav-items
@@ -213,6 +216,11 @@ nav#nav-main.compact
     @factor: .35;
 
     .primary-nav-height(@factor);
+
+    a#nav-icon
+    {
+        opacity: 1;
+    }
 
     &.collapsed
     {

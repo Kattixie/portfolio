@@ -26,6 +26,18 @@ angular
             centerClassName:        'centered'
         };
 
+        var _hamburgerIcon = null;
+
+        service.setHamburgerIcon = function( element )
+        {
+            _hamburgerIcon = element;
+        };
+
+        service.isCollapsible = function()
+        {
+            return ( _hamburgerIcon.filter(':visible').length > 0 ) ? true : false;
+        };
+
         // Public API
         return service;
     });
