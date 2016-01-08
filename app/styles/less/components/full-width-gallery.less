@@ -24,6 +24,37 @@
                 right: 0;
                 bottom: 0;
                 left: 0;
+
+            &.large
+            {
+                font-size: 1.25rem;
+
+                .description
+                {
+                    ul.roles
+                    {
+                        display: block;
+                    }
+                }
+            }
+
+            &.small
+            {
+                font-size: .85rem;
+
+                .description
+                {
+                    h3::after
+                    {
+                        border-bottom: 0;
+                    }
+
+                    ul.roles
+                    {
+                        display: none;
+                    }
+                }
+            }
         }
 
         &::before
@@ -114,37 +145,6 @@
                         content: '';
                         margin-right: 0;
                     }
-                }
-            }
-        }
-
-        &.large
-        {
-            font-size: 1.25rem;
-
-            .description
-            {
-                ul.roles
-                {
-                    display: block;
-                }
-            }
-        }
-
-        &.small
-        {
-            font-size: .85rem;
-
-            .description
-            {
-                h3::after
-                {
-                    border-bottom: 0;
-                }
-
-                ul.roles
-                {
-                    display: none;
                 }
             }
         }

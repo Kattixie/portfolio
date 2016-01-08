@@ -3,9 +3,13 @@
 
         <div ng-if="data.profile.brief" class="intro" ng-bind-html="data.profile.brief">{{::data.profile.brief}}</div>
 
+        <my-ratio-img ng-if="data.profile.photo.path" path="images/{{::data.profile.photo.path}}" height="{{::data.profile.photo.height}}" width="{{::data.profile.photo.width}}" full-size="true">
+
+        <!--
         <div class="full-photo" ng-if="data.profile.photo.path" ng-style="{ paddingTop: data.profile.photo.ratio }">
             <img  ng-src="images/{{::data.profile.photo.path}}" >
         </div>
+        -->
 
     </div>
 </div>

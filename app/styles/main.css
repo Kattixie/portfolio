@@ -1375,6 +1375,21 @@ div.loader .spinner {
   bottom: 0;
   left: 0;
 }
+#entry-gallery .thumbnail li.canvas.large {
+  font-size: 1.25rem;
+}
+#entry-gallery .thumbnail li.canvas.large .description ul.roles {
+  display: block;
+}
+#entry-gallery .thumbnail li.canvas.small {
+  font-size: .85rem;
+}
+#entry-gallery .thumbnail li.canvas.small .description h3::after {
+  border-bottom: 0;
+}
+#entry-gallery .thumbnail li.canvas.small .description ul.roles {
+  display: none;
+}
 #entry-gallery .thumbnail::before {
   content: '';
   display: block;
@@ -1450,21 +1465,6 @@ div.loader .spinner {
 #entry-gallery .thumbnail .description ul.roles li:first-child::before {
   content: '';
   margin-right: 0;
-}
-#entry-gallery .thumbnail.large {
-  font-size: 1.25rem;
-}
-#entry-gallery .thumbnail.large .description ul.roles {
-  display: block;
-}
-#entry-gallery .thumbnail.small {
-  font-size: .85rem;
-}
-#entry-gallery .thumbnail.small .description h3::after {
-  border-bottom: 0;
-}
-#entry-gallery .thumbnail.small .description ul.roles {
-  display: none;
 }
 #entry-gallery .thumbnail:hover .description h3 {
   top: -1.5625em;
@@ -1958,26 +1958,10 @@ div.loader .spinner {
 }
 #entry .main-gallery .media {
   display: inline-block;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 727px;
-}
-#entry .main-gallery .media .ratio-wrapper {
-  position: relative;
-  top: 0;
-  left: 0;
 }
 #entry .main-gallery .media img,
 #entry .main-gallery .media iframe {
   display: inline-block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
 }
 #entry .main-gallery .media img:first-child,
 #entry .main-gallery .media iframe:first-child {
@@ -2214,9 +2198,6 @@ div.loader .spinner {
   }
   #entry .main-gallery .media {
     float: none;
-    position: relative;
-    top: 0;
-    left: 0;
     width: 100% !important;
   }
   #entry .main-gallery .media iframe {
@@ -2266,9 +2247,6 @@ div.loader .spinner {
   }
   #entry .main-gallery .media {
     float: none;
-    position: relative;
-    top: 0;
-    left: 0;
     width: 100% !important;
   }
   #entry .main-gallery .media iframe {
@@ -2322,9 +2300,6 @@ div.loader .spinner {
   }
   #entry .main-gallery .media {
     float: none;
-    position: relative;
-    top: 0;
-    left: 0;
     width: 100% !important;
   }
   #entry .main-gallery .media iframe {
@@ -2360,6 +2335,9 @@ div.loader .spinner {
   #entry .main-quote .text {
     margin: 0;
   }
+  #entry .main-gallery {
+    width: 727px;
+  }
   #entry .text,
   #entry .sidebar,
   #entry .main-quote {
@@ -2377,21 +2355,11 @@ div.loader .spinner {
   font-size: 34px;
   line-height: 45px;
 }
-#about .full-photo {
-  height: 0;
+#about .media {
   margin: 3.125rem 0;
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
-#about .full-photo img {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  width: 100%;
+@media (max-width: 1254px) {
+  .intro {
+    margin: 0 3.125rem;
+  }
 }

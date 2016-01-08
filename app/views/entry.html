@@ -9,17 +9,9 @@
             <div class="main-gallery">
                 <div class="main-gallery-item" ng-repeat="(index, media) in data.entry.images" ng-class="{ transparent: media.transparent }">
 
-                    <div class="media" ng-class="{ video: media.type === 'vimeo' }" style="width: {{::media.width}}px; max-width: {{::media.width}}px;">
+                    <my-ratio-video ng-if="media.type === 'vimeo'" path="{{::media.path}}" height="{{::media.height}}" width="{{::media.width}}"></my-ratio-video>
 
-                        <div class="ratio-wrapper" style="padding-top: {{::media.ratio}};">
-
-                            <iframe ng-if="media.type === 'vimeo'" ng-src="{{::media.path}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen my-preloader></iframe>
-
-                            <img ng-if="media.type === undefined" my-src="images/{{::media.path}}">
-
-                        </div>
-
-                    </div>
+                    <my-ratio-img ng-if="media.type === undefined" path="images/{{::media.path}}" height="{{::media.height}}" width="{{::media.width}}"></my-ratio-img>
 
                 </div>
             </div>

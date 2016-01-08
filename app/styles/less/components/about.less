@@ -13,25 +13,16 @@
         line-height: 45px;
     }
 
-    .full-photo
+    .media
     {
-        height: 0; // To be set from supplied ratio
         margin: @spacing_unit_root 0;
-        position: relative;
-            top: 0;
-            left: 0;
-        width: 100%;
+    }
+}
 
-        img
-        {
-            height: 100%;
-            position: absolute;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-                z-index: 1;
-            width: 100%;
-        }
+@media (max-width: (@2_column_width + 300px))
+{
+    .intro
+    {
+        margin: 0 @spacing_unit_root;
     }
 }
