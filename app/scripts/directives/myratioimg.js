@@ -12,8 +12,16 @@
  */
 angular
     .module('portfolio')
-    .directive('myRatioImg', function ($log)
+    .directive('myRatioImg', function ($log, myRatioDirective)
     {
+        var base = myRatioDirective[0];
+
+        // This works in overriding properties and functions, but it offers no
+        // way to invoke the functions it overrides (because they are simply
+        // overwritten). We could try doing this only for properties that
+        // we want to override without invoking the parent.
+        // var directiveDefinitionObject = angular.extend( base, { } );
+
         var directiveDefinitionObject =
         {
             restrict: 'E',
@@ -27,31 +35,32 @@ angular
             },
             template: function(tElement, tAttrs)
             {
-                //var template = '<my-ratio height="{{height}}" width="{{width}}" full-size="{{fullSize}}">';
-                var template = '<my-ratio>';
+                var baseTemplate = base.template();
+
+                var subTemplate = '';
 
                 if ( tAttrs.useNgSrc === 'true' )
                 {
-                    // template += '<img ng-src="' + tAttrs.path + '">';
-                    template += '<img ng-src="{{path}}">';
+                    // subTemplate += '<img ng-src="' + tAttrs.path + '">';
+                    subTemplate += '<img ng-src="{{path}}">';
                 }
                 else
                 {
-                    // template += '<img my-src="' + tAttrs.path + '">';
-                    template += '<img my-src="{{path}}">';
+                    // subTemplate += '<img my-src="' + tAttrs.path + '">';
+                    subTemplate += '<img my-src="{{path}}">';
                 }
 
-                template += '</my-ratio>';
+                // Replace the transclude tag with the sub-template. This
+                // assumes there is only one transclude element in the base
+                // template and that it is an element and not an attribute.
+                var template = baseTemplate.replace('<ng-transclude></ng-transclude>', subTemplate);
 
                 return template;
             },
-            link: function(scope, iElement, iAttrs, ratioCtrl)
+            link: function(scope, iElement, iAttrs)
             {
-                var self = {};
-
-                // $log.debug('The ratio as set in myRatio directive: %s', scope.ratio);
-
-                self.element = iElement;
+                // You're gonna share stuff and you're gonna freaking like it.
+                base.link(scope, iElement, iAttrs);
 
                 // Width and height of 100% are specified because there
                 // may be cases where the image is being blown up if the
@@ -69,6 +78,8 @@ angular
                     });
             }
         };
+
+        $log.debug('myRatioImg: %o', directiveDefinitionObject);
 
         return directiveDefinitionObject;
     });

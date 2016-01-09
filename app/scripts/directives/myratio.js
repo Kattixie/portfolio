@@ -13,51 +13,32 @@ angular
     {
         var directiveDefinitionObject =
         {
-            restrict: 'E',
+            restrict: 'EA',
             transclude: true,
-            templateUrl: 'views/ratio.html',
-            controller: function($scope, $element, $attrs)
+            //scope: true, // Create child scope to be shared with other directives on same element.
+            scope:
             {
-                var self = this;
+                fullSize: '=',
+                height: '=',
+                width: '='
+            },
+            //templateUrl: 'views/ratio.html',
+            template: function()
+            {
+                return '<div class="media"><div class="ratio"></div><ng-transclude></ng-transclude></div>';
+            },
+            link: function(scope, iElement)
+            {
+                var self = {};
 
-                self.element = $element;
+                scope.ratio = null;
 
-                // $log.debug('The attributes: %o', $attrs);
+                scope.fullWidth = ( scope.fullSize === 'true' ) ? '100%' : scope.width;
 
-                // $log.debug('The scope width: %s', $scope.width);
-                // $log.debug('The scope height: %s', $scope.height);
-
-                var _width = ( $scope.fullSize === 'true' ) ? '100%' : $scope.width;
-
-                $scope.ratio = null;
-
-                var _init = function()
+                self.init = function()
                 {
-                    self.setMediaContainer();
                     self.setRatio();
-                    self.setElementStyles();
-                };
-
-                self.setMediaContainer = function()
-                {
-                    if ( _width )
-                    {
-                        $element
-                            .find('.media')
-                            .css(
-                            {
-                                position: 'relative',
-                                top: 0,
-                                left: 0,
-                                width: _width,
-                                maxWidth: $scope.width
-                            });
-                    }
-                    else
-                    {
-                        $log.error('The aspect ratio element requires a width.');
-                    }
-
+                    self.setMediaContainer();
                 };
 
                 // These styles are set here because they are necessary in
@@ -66,23 +47,21 @@ angular
                 // is involved as part of the calculation.
                 self.setRatio = function()
                 {
-                    if ( $scope.height && $scope.width )
+                    if ( scope.height && scope.width )
                     {
-                        // $log.debug('The ratio was calculated from: %s, %s', $scope.height, $scope.width);
-
-                        $scope.ratio = $scope.height / $scope.width * 100;
+                        scope.ratio = scope.height / scope.width * 100;
                     }
 
-                    if ( $scope.ratio )
+                    if ( scope.ratio )
                     {
                         // Not using a psuedo-element to create the padding that
                         // represents the ratio because it's a mess to work with
                         // dynamically.
-                        $element
+                        iElement
                             .find('.ratio')
                             .css(
                             {
-                                paddingTop: $scope.ratio + '%',
+                                paddingTop: scope.ratio + '%',
                                 position: 'relative',
                                     top: 0,
                                     left: 0
@@ -94,12 +73,33 @@ angular
                     }
                 };
 
-                self.setElementStyles = function()
+                self.setMediaContainer = function()
                 {
-                    $element.width( $scope.width );
+                    if ( scope.width )
+                    {
+                        iElement
+                            .find('.media')
+                            .css(
+                            {
+                                position: 'relative',
+                                top: 0,
+                                left: 0,
+                                width: scope.fullWidth,
+                                maxWidth: scope.width
+                            });
+                    }
+                    else
+                    {
+                        $log.error('The aspect ratio element requires a width.');
+                    }
                 };
 
-                _init();
+                self.setElementStyles = function()
+                {
+                    iElement.width( scope.width );
+                };
+
+                self.init();
             }
         };
 
