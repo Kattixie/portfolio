@@ -2358,6 +2358,47 @@ div.loader .spinner {
 #about .media {
   margin: 3.125rem 0;
 }
+#about .media .flag {
+  background: #f56392;
+  color: #fff;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 13px;
+  padding: 10px 15px;
+}
+#about .media .flag .pointer {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 0;
+  border-color: #f56392 transparent transparent transparent;
+}
+#about .media .crosshair {
+  position: relative;
+  left: -15px;
+  height: 30px;
+  width: 30px;
+}
+#about .media .crosshair::before {
+  background: #f56392;
+  content: '';
+  display: block;
+  height: 30px;
+  position: absolute;
+  top: -15px;
+  left: 15px;
+  width: 2px;
+}
+#about .media .crosshair::after {
+  background: #f56392;
+  content: '';
+  display: block;
+  height: 2px;
+  position: absolute;
+  width: 30px;
+}
 @media (max-width: 1254px) {
   .intro {
     margin: 0 3.125rem;

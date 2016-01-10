@@ -16,6 +16,60 @@
     .media
     {
         margin: @spacing_unit_root 0;
+
+        .flag
+        {
+            background: @hot_pink;
+            color: #fff;
+            font-family: 'Fira Sans', sans-serif;
+            font-size: 13px;
+            padding: 10px 15px;
+
+            // Not a psuedo-element because we need to account for it when
+            // calculating position using JavaScript.
+            .pointer
+            {
+                position: absolute;
+                    bottom: -10px;
+                    left: 0;
+
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 10px 10px 0 0;
+                border-color: @hot_pink transparent transparent transparent;
+            }
+        }
+
+        .crosshair
+        {
+            position: relative;
+                left: -15px;
+            height: 30px;
+            width: 30px;
+
+            &::before
+            {
+                background: @hot_pink;
+                content: '';
+                display: block;
+                height: 30px;
+                position: absolute;
+                    top: -15px;
+                    left: 15px;
+                width: 2px;
+            }
+
+            &::after
+            {
+                background: @hot_pink;
+                content: '';
+                display: block;
+                height: 2px;
+                position: absolute;
+                width: 30px;
+            }
+        }
     }
 }
 

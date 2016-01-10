@@ -25,6 +25,7 @@ angular
         var directiveDefinitionObject =
         {
             restrict: 'E',
+            transclude: true,
             scope:
             {
                 fullSize: '@',
@@ -42,13 +43,15 @@ angular
                 if ( tAttrs.useNgSrc === 'true' )
                 {
                     // subTemplate += '<img ng-src="' + tAttrs.path + '">';
-                    subTemplate += '<img ng-src="{{path}}">';
+                    subTemplate += '<img ng-src="{{::path}}">';
                 }
                 else
                 {
                     // subTemplate += '<img my-src="' + tAttrs.path + '">';
-                    subTemplate += '<img my-src="{{path}}">';
+                    subTemplate += '<img my-src="{{::path}}">';
                 }
+
+                subTemplate += '<ng-transclude></ng-transclude>';
 
                 // Replace the transclude tag with the sub-template. This
                 // assumes there is only one transclude element in the base
@@ -56,6 +59,20 @@ angular
                 var template = baseTemplate.replace('<ng-transclude></ng-transclude>', subTemplate);
 
                 return template;
+            },
+            controller: function($scope)
+            {
+                var self = this;
+
+                self.getHeight = function()
+                {
+                    return $scope.height;
+                };
+
+                self.getWidth = function()
+                {
+                    return $scope.width;
+                };
             },
             link: function(scope, iElement, iAttrs)
             {
@@ -78,8 +95,6 @@ angular
                     });
             }
         };
-
-        $log.debug('myRatioImg: %o', directiveDefinitionObject);
 
         return directiveDefinitionObject;
     });
