@@ -62,7 +62,7 @@ angular
 
                     // This position must be set independent of the percent
                     // calculation because the size of the flag and its content
-                    // are relative to the calculated pixels.
+                    // is static compared to a scaled image.
                     var top = -1 * parseInt( flagElement.outerHeight() );
 
                     top -= parseInt( pointerElement.outerHeight() );

@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myPreloader', function ()
+    .directive('myPreloader', function ($timeout)
     {
         // Moving this bracket to the next line actually breaks this code in
         // Chrome (and possibly other browsers). Return returns undefined when
@@ -32,12 +32,6 @@ angular
 
                     loadingElement = angular.element('<div>')
                                         .addClass('loader')
-                                        .css(
-                                        {
-                                            height: element.height(), // Only available with jQuery
-                                            marginLeft: -1 * element.width() / 2,
-                                            width: element.width(), // Only available with jQuery
-                                        })
                                         .append( spinnerElement );
 
                     element
@@ -53,7 +47,8 @@ angular
                         .removeClass('loading')
                         .addClass('complete');
 
-                    loadingElement.addClass('complete');
+                    loadingElement
+                        .addClass('complete');
                 });
 
                 scope.$on('$destroy', function()
