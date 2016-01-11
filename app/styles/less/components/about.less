@@ -3,6 +3,7 @@
     .container
     {
         margin: 0 auto;
+        overflow: hidden;
     }
 
     .intro
@@ -13,62 +14,136 @@
         line-height: 45px;
     }
 
-    .media
+    .media-item
     {
         margin: @spacing_unit_root 0;
 
-        .flag
+        .media
         {
-            background: @hot_pink;
-            color: #fff;
-            font-family: 'Fira Sans', sans-serif;
-            font-size: 13px;
-            padding: 10px 15px;
-
-            // Not a psuedo-element because we need to account for it when
-            // calculating position using JavaScript.
-            .pointer
+            .flag
             {
-                position: absolute;
-                    bottom: -10px;
-                    left: 0;
+                background: @hot_pink;
+                color: #fff;
+                font-family: 'Fira Sans', sans-serif;
+                font-size: 13px;
+                padding: 10px 15px;
 
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 10px 10px 0 0;
-                border-color: @hot_pink transparent transparent transparent;
+                // Not a psuedo-element because we need to account for it when
+                // calculating position using JavaScript.
+                .pointer
+                {
+                    position: absolute;
+                        bottom: -10px;
+                        left: 0;
+
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 10px 10px 0 0;
+                    border-color: @hot_pink transparent transparent transparent;
+                }
+            }
+
+            .crosshair
+            {
+                position: relative;
+                    left: -15px;
+                height: 30px;
+                width: 30px;
+
+                &::before
+                {
+                    background: @hot_pink;
+                    content: '';
+                    display: block;
+                    height: 30px;
+                    position: absolute;
+                        top: -15px;
+                        left: 15px;
+                    width: 2px;
+                }
+
+                &::after
+                {
+                    background: @hot_pink;
+                    content: '';
+                    display: block;
+                    height: 2px;
+                    position: absolute;
+                    width: 30px;
+                }
             }
         }
 
-        .crosshair
+        .description
         {
-            position: relative;
-                left: -15px;
-            height: 30px;
-            width: 30px;
+            color: #999;
+            font-family: 'Fira Sans', sans-serif;
+            font-style: italic;
+            font-size: 0.813em; // 13px
+            line-height: 20px;
+            margin-top: @spacing_unit_root / 3;
+            margin-left: @spacing_unit_root / 2;
+            margin-right: @spacing_unit_root / 2;
+        }
+    }
 
-            &::before
-            {
-                background: @hot_pink;
-                content: '';
-                display: block;
-                height: 30px;
-                position: absolute;
-                    top: -15px;
-                    left: 15px;
-                width: 2px;
-            }
+    .bio
+    {
+        color: #4c4c4c;
+        float: left;
+        font-family: 'Fira Sans', sans-serif;
+        font-size: 0.938em; // 15px
+        line-height: 2.000em; // 30px
+        width: @entry_image_width;
 
-            &::after
+        p
+        {
+            .external-text-links();
+
+            margin: @spacing_unit_root / 2 0;
+
+            &:first-child
             {
-                background: @hot_pink;
-                content: '';
-                display: block;
-                height: 2px;
-                position: absolute;
-                width: 30px;
+                margin-top: 0;
             }
+        }
+    }
+
+    .sidebar
+    {
+        display: inline-block;
+        width: 100%;
+        margin-left: -1 * @entry_image_width;
+        position: relative;
+            z-index: -1;
+
+        .inner-sidebar
+        {
+            margin-bottom: @spacing_unit_root / 2;
+            margin-left: @entry_image_width;
+            padding-left: @spacing_unit_root;
+        }
+    }
+
+    .media-item-small
+    {
+        img
+        {
+            .rounded(5px, 5px, 0, 0);
+        }
+
+        .brief
+        {
+            .rounded(0, 0, 5px, 5px);
+
+            color: #494949;
+            background: #f5f5f5;
+            font-family: 'Archivo Narrow', sans-serif;
+            font-size: 16px;
+            font-style: italic;
+            line-height: 22px;
+            padding: 15px 25px;
         }
     }
 }
@@ -78,5 +153,75 @@
     .intro
     {
         margin: 0 @spacing_unit_root;
+    }
+}
+
+// Mixins
+
+@media (max-width: @entry_image_width)
+{
+    #about
+    {
+        .about-single-column();
+
+        .bio
+        {
+            margin-right: @spacing_unit_root;
+            margin-left: @spacing_unit_root;
+        }
+    }
+}
+
+@media (min-width: (@entry_image_width + 1px)) and (max-width: (@entry_image_width + 100px))
+{
+    #about
+    {
+        .about-single-column();
+
+        .bio
+        {
+            margin-right: @spacing_unit_root;
+            margin-left: @spacing_unit_root;
+        }
+    }
+}
+
+@media (min-width: (@entry_image_width + 101px)) and (max-width: (@2_column_width + 300px))
+{
+    #about
+    {
+        .about-single-column();
+
+        .intro,
+        .bio,
+        .sidebar
+        {
+            margin-right: auto;
+            margin-left: auto;
+            width: @entry_image_width;
+        }
+    }
+}
+
+.about-single-column(@selective_margin: @spacing_unit_root)
+{
+    .bio
+    {
+        float: none;
+        width: auto;
+    }
+
+    .sidebar
+    {
+        display: block;
+        margin-right: @selective_margin;
+        margin-left: @selective_margin;
+        width: auto;
+
+        .inner-sidebar
+        {
+            margin-left: 0;
+            padding-left: 0;
+        }
     }
 }

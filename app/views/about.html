@@ -3,20 +3,26 @@
 
         <div ng-if="data.profile.brief" class="intro" ng-bind-html="data.profile.brief">{{::data.profile.brief}}</div>
 
-        <my-ratio-img ng-if="data.profile.photo.path" path="images/{{::data.profile.photo.path}}" height="{{::data.profile.photo.height}}" width="{{::data.profile.photo.width}}" full-size="true">
-            <my-flag ng-if="data.profile.photo.flag" target-position="data.profile.photo.flag.targetPosition" offset="data.profile.photo.flag.offset">
-                {{::data.profile.photo.flag.text}}
-            </my-flag>
-        </my-ratio-image>
-        <div class="description" ng-if="media.description">
-            {{::data.profile.photo.description}}
+        <div class="media-item">
+            <my-ratio-img ng-if="data.profile.photo.path" path="images/{{::data.profile.photo.path}}" height="{{::data.profile.photo.height}}" width="{{::data.profile.photo.width}}" full-size="true">
+                <my-flag ng-if="data.profile.photo.flag" target-position="data.profile.photo.flag.targetPosition" offset="data.profile.photo.flag.offset">
+                    {{::data.profile.photo.flag.text}}
+                </my-flag>
+            </my-ratio-img>
+            <div class="description" ng-if="data.profile.photo.description">
+                {{::data.profile.photo.description}}
+            </div>
         </div>
 
-        <!--
-        <div class="full-photo" ng-if="data.profile.photo.path" ng-style="{ paddingTop: data.profile.photo.ratio }">
-            <img  ng-src="images/{{::data.profile.photo.path}}" >
+        <div class="bio" ng-bind-html="data.profile.bio" my-external-links>{{::data.profile.bio}}</div>
+
+        <div class="sidebar">
+            <div class="inner-sidebar media-item-small" ng-repeat="media in data.profile.sidePhotos">
+                <my-ratio-img path="images/{{::media.path}}" height="{{::media.height}}" width="{{::media.width}}" full-size="true"></my-ratio-img>
+                <div class="brief">{{::media.brief}}</div>
+            </div>
         </div>
-        -->
+
 
     </div>
 </div>

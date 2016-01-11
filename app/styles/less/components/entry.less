@@ -116,66 +116,13 @@
 
         p
         {
+            .external-text-links();
+
             margin: @spacing_unit_root / 2 0;
 
             &:first-child
             {
                 margin-top: 0;
-            }
-
-            a
-            {
-                color: #3d3d3d;
-                position: relative;
-                    top: 0;
-                    left: 0;
-                text-decoration: none;
-                white-space: nowrap;
-
-                span
-                {
-                    .transition(all 250ms ease-out);
-
-                    border-bottom: 1px solid #f4f4f4;
-                    //display: inline-block;
-                    padding-bottom: 2px;
-                    position: relative;
-                        top: 0;
-                        left: 0;
-                }
-
-                &.external::after
-                {
-                    .transition(all 250ms ease-out);
-                    .rounded(1em); // 13px
-
-                    background: @blue_light;
-                    color: #3d3d3d;
-                    content: '\f08e';
-                    display: inline-block;
-                    font-family: 'FontAwesome';
-                    font-size: 0.813em; // 13px
-                    height: 2.000em; // 26px;
-                    line-height: 2.225em;
-                    margin: 0 0.077em 0 0.308em; //0 1px 0 4px;
-                    position: relative;
-                        top: -0.077em; // -1px
-                    text-align: center;
-                    width: 2.000em; // 26px;
-                }
-
-                &:hover
-                {
-                    span
-                    {
-                        border-color: #c4c4c4;
-                    }
-
-                    &.external::after
-                    {
-                        background: @blue;
-                    }
-                }
             }
         }
     }
@@ -184,11 +131,13 @@
     {
         display: inline-block;
         width: 100%;
-        margin-left: -727px;
+        margin-left: -1 * @entry_image_width;
+        position: relative;
+            z-index: -1;
 
         .inner-sidebar
         {
-            margin-left: 727px;
+            margin-left: @entry_image_width;
             padding-left: @spacing_unit_root;
         }
     }
@@ -434,17 +383,6 @@
             margin-right: auto;
             margin-left: auto;
             width: @entry_image_width;
-        }
-    }
-}
-
-@media (min-width: @3_column_width)
-{
-    #entry
-    {
-        .sidebar
-        {
-            //width: 250px;
         }
     }
 }

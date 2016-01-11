@@ -162,13 +162,14 @@ ul#contact
     h3
     {
         color: #4c4c4c;
-        font-family: 'Fira Sans', sans-serif;
-        font-size: 1.375em; //22px
-        font-style: italic;
+        font-family: 'Archivo Narrow', sans-serif;
+        font-size: 1.188em; // 19px
+        //font-style: italic;
         font-weight: 500;
+        letter-spacing: 1px;
         margin: 0 0 (@spacing_unit_root / 2) 0;
         //margin: @header_height auto 0.938em auto; //200px auto 40px auto;
-        text-transform: lowercase;
+        text-transform: uppercase;
     }
 
     li,
@@ -265,6 +266,66 @@ ul#contact
     margin-bottom: @spacing_unit_root;
     text-align: center;
     text-transform: uppercase;
+}
+
+// Mixins
+
+.external-text-links()
+{
+    a
+    {
+        color: #3d3d3d;
+        position: relative;
+            top: 0;
+            left: 0;
+        text-decoration: none;
+        white-space: nowrap;
+
+        span
+        {
+            .transition(all 250ms ease-out);
+
+            border-bottom: 1px solid #f4f4f4;
+            //display: inline-block;
+            padding-bottom: 2px;
+            position: relative;
+                top: 0;
+                left: 0;
+        }
+
+        &.external::after
+        {
+            .transition(all 250ms ease-out);
+            .rounded(1em); // 13px
+
+            background: @blue_light;
+            color: #3d3d3d;
+            content: '\f08e';
+            display: inline-block;
+            font-family: 'FontAwesome';
+            font-size: 0.813em; // 13px
+            height: 2.000em; // 26px;
+            line-height: 2.225em;
+            margin: 0 0.077em 0 0.308em; //0 1px 0 4px;
+            position: relative;
+                top: -0.077em; // -1px
+            text-align: center;
+            width: 2.000em; // 26px;
+        }
+
+        &:hover
+        {
+            span
+            {
+                border-color: #c4c4c4;
+            }
+
+            &.external::after
+            {
+                background: @blue;
+            }
+        }
+    }
 }
 
 // Media Queries
