@@ -2487,7 +2487,7 @@ div.loader .spinner {
 #about .sidebar .inner-sidebar {
   margin-bottom: 1.5625rem;
   margin-left: 727px;
-  padding-left: 3.125rem;
+  padding-left: 4.6875rem;
 }
 #about .media-item-small img {
   -webkit-border-radius: 5px 5px 0 0;
@@ -2511,20 +2511,71 @@ div.loader .spinner {
     margin: 0 3.125rem;
   }
 }
-@media (max-width: 727px) {
+@media (max-width: 477px) {
   #about .bio {
     float: none;
     width: auto;
   }
   #about .sidebar {
-    display: block;
+    display: table;
+    margin-top: 3.125rem;
     margin-right: 3.125rem;
     margin-left: 3.125rem;
     width: auto;
   }
   #about .sidebar .inner-sidebar {
+    display: table-cell;
     margin-left: 0;
     padding-left: 0;
+    width: 50%;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+    padding-right: 0.78125rem;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n) {
+    padding-left: 0.78125rem;
+  }
+  #about .bio {
+    margin-right: 3.125rem;
+    margin-left: 3.125rem;
+  }
+  #about .sidebar {
+    display: block;
+  }
+  #about .sidebar .inner-sidebar {
+    display: block;
+    width: auto;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+    padding-right: 0;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n) {
+    padding-left: 0;
+  }
+}
+@media (min-width: 478px) and (max-width: 727px) {
+  #about .bio {
+    float: none;
+    width: auto;
+  }
+  #about .sidebar {
+    display: table;
+    margin-top: 3.125rem;
+    margin-right: 3.125rem;
+    margin-left: 3.125rem;
+    width: auto;
+  }
+  #about .sidebar .inner-sidebar {
+    display: table-cell;
+    margin-left: 0;
+    padding-left: 0;
+    width: 50%;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+    padding-right: 0.78125rem;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n) {
+    padding-left: 0.78125rem;
   }
   #about .bio {
     margin-right: 3.125rem;
@@ -2537,14 +2588,23 @@ div.loader .spinner {
     width: auto;
   }
   #about .sidebar {
-    display: block;
+    display: table;
+    margin-top: 3.125rem;
     margin-right: 3.125rem;
     margin-left: 3.125rem;
     width: auto;
   }
   #about .sidebar .inner-sidebar {
+    display: table-cell;
     margin-left: 0;
     padding-left: 0;
+    width: 50%;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+    padding-right: 0.78125rem;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n) {
+    padding-left: 0.78125rem;
   }
   #about .bio {
     margin-right: 3.125rem;
@@ -2557,14 +2617,23 @@ div.loader .spinner {
     width: auto;
   }
   #about .sidebar {
-    display: block;
+    display: table;
+    margin-top: 3.125rem;
     margin-right: 3.125rem;
     margin-left: 3.125rem;
     width: auto;
   }
   #about .sidebar .inner-sidebar {
+    display: table-cell;
     margin-left: 0;
     padding-left: 0;
+    width: 50%;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+    padding-right: 0.78125rem;
+  }
+  #about .sidebar .inner-sidebar:nth-child(2n) {
+    padding-left: 0.78125rem;
   }
   #about .intro,
   #about .bio,
@@ -2572,5 +2641,10 @@ div.loader .spinner {
     margin-right: auto;
     margin-left: auto;
     width: 727px;
+  }
+}
+@media (min-width: 1254px) and (max-width: 1431px) {
+  #about .sidebar .inner-sidebar {
+    padding-left: 3.125rem;
   }
 }

@@ -17,7 +17,7 @@
         <div class="bio" ng-bind-html="data.profile.bio" my-external-links>{{::data.profile.bio}}</div>
 
         <div class="sidebar">
-            <div class="inner-sidebar media-item-small" ng-repeat="media in data.profile.sidePhotos">
+            <div class="inner-sidebar media-item-small" ng-repeat="(index, media) in data.profile.sidePhotos">
                 <my-ratio-img path="images/{{::media.path}}" height="{{::media.height}}" width="{{::media.width}}" full-size="true"></my-ratio-img>
                 <div class="brief">{{::media.brief}}</div>
             </div>
