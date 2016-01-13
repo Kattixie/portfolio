@@ -1981,6 +1981,8 @@ div.loader .spinner {
   font-family: 'Fira Sans', sans-serif;
   font-size: 0.938em;
   line-height: 2.000em;
+  position: relative;
+  z-index: 1;
   width: 727px;
 }
 #entry .text p {
@@ -2042,8 +2044,6 @@ div.loader .spinner {
   display: inline-block;
   width: 100%;
   margin-left: -727px;
-  position: relative;
-  z-index: -1;
 }
 #entry .sidebar .inner-sidebar {
   margin-left: 727px;
@@ -2420,6 +2420,8 @@ div.loader .spinner {
   font-family: 'Fira Sans', sans-serif;
   font-size: 0.938em;
   line-height: 2.000em;
+  position: relative;
+  z-index: 1;
   width: 727px;
 }
 #about .bio p {
@@ -2481,8 +2483,6 @@ div.loader .spinner {
   display: inline-block;
   width: 100%;
   margin-left: -727px;
-  position: relative;
-  z-index: -1;
 }
 #about .sidebar .inner-sidebar {
   margin-bottom: 1.5625rem;
