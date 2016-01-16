@@ -2493,8 +2493,10 @@ div.loader .spinner {
   margin-left: -727px;
 }
 #about .sidebar .inner-sidebar {
-  margin-bottom: 1.5625rem;
+  display: block;
   margin-left: 727px;
+  padding-bottom: 1.5625rem;
+  overflow: hidden;
   padding-left: 4.6875rem;
 }
 #about .media-item-small img {

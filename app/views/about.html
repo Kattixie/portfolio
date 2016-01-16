@@ -26,7 +26,11 @@
             <div class="bio" ng-bind-html="data.profile.bio" my-external-links>{{::data.profile.bio}}</div>
 
             <div class="sidebar">
-                <my-side-item ng-repeat="media in data.profile.sidePhotos" data="media"></my-side-item>
+                <my-side-item
+                    ng-repeat="media in data.profile.sidePhotos"
+                    data="media"
+                    class="inner-sidebar media-item-small">
+                </my-side-item>
             </div>
 
         </my-synced-columns>

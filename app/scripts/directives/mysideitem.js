@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('mySideItem', function ($log, $timeout)
+    .directive('mySideItem', function ($log, $window, $timeout, MenuState)
     {
         var directiveDefinitionObject =
         {
@@ -25,16 +25,26 @@ angular
 
                 scope.id = scope.media.id;
                 scope.height = 0;
+                scope.marginTop = 0;
 
-                var _heightTO = null;
+                // You know, I use this enough that I should really find a
+                // better place for it to live.
+                self.eWindow = angular.element( $window );
+
+                scope.marginTop = iElement.css('marginTop');
+
+                var _heightTO = null,
+                    _resizeTO = null;
 
                 self.init = function()
                 {
+                    /*
                     iElement.css(
                     {
                         display: 'block',
                         overflow: 'hidden'
                     });
+                    */
 
                     columnsCtrl.setMediaItem( scope );
 
@@ -43,16 +53,22 @@ angular
 
                 self.setMargin = function()
                 {
-                    var offset = columnsCtrl.getMarkerPosition( scope.id );
-
-                    if ( offset )
+                    if ( MenuState.isCollapsible() )
                     {
-                        var occupiedSpace = columnsCtrl.prevSideItemsHeight( scope.id );
-                        //var occupiedSpace = 0;
+                        // Set to original margin top.
 
-                        iElement
-                            .find('.inner-sidebar')
-                            .css('marginTop', offset - occupiedSpace);
+                        iElement.css('marginTop', scope.marginTop);
+                    }
+                    else
+                    {
+                        var offset = columnsCtrl.getMarkerPosition( scope.id );
+
+                        if ( offset )
+                        {
+                            var occupiedSpace = columnsCtrl.prevSideItemsHeight( scope.id );
+
+                            iElement.css('marginTop', offset - occupiedSpace);
+                        }
                     }
                 };
 
@@ -68,6 +84,8 @@ angular
 
                     $log.debug('Evaluating height for item with text: %s', iElement.find('.brief').text() );
 
+                    //return iElement.outerHeight() + parseInt( iElement.css('marginTop') );
+
                     return iElement.outerHeight(true);
                 };
 
@@ -75,7 +93,7 @@ angular
                 {
                     _heightTO = null;
 
-                    var height = iElement.height();
+                    var height = iElement.outerHeight();
 
                     if (scope.height !== height)
                     {
@@ -85,6 +103,20 @@ angular
 
                             self.setMargin();
                         });
+                    }
+                };
+
+                self.onWindowResize = function()
+                {
+                    if ( ! _resizeTO )
+                    {
+                        _resizeTO = $timeout( function()
+                        {
+                            _resizeTO = null;
+
+                            self.setMargin();
+
+                        }, 50);
                     }
                 };
 
@@ -101,10 +133,8 @@ angular
                 self.onDestroy = function()
                 {
                     $timeout.cancel( _heightTO );
+                    $timeout.cancel( _resizeTO );
                 };
-
-                iElement.on('mouseover', self.onMouseOver );
-                iElement.on('mouseout', self.onMouseOut );
 
                 // Borrowed from: http://stackoverflow.com/a/31884266
                 scope.$watch(function()
@@ -116,6 +146,11 @@ angular
                 });
 
                 scope.$on('$destroy', self.onDestroy);
+
+                iElement.on('mouseover', self.onMouseOver );
+                iElement.on('mouseout', self.onMouseOut );
+
+                self.eWindow.on('resize', self.onWindowResize);
 
                 self.init();
             }
