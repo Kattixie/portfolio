@@ -2479,6 +2479,14 @@ div.loader .spinner {
 #about .bio p:first-child {
   margin-top: 0;
 }
+#about .bio p span.highlight {
+  -webkit-transition: all 300 easeout;
+  -moz-transition: all 300 easeout;
+  -ms-transition: all 300 easeout;
+  -o-transition: all 300 easeout;
+  transition: all 300 easeout;
+  border-bottom: 1px solid #000;
+}
 #about .sidebar {
   display: inline-block;
   width: 100%;

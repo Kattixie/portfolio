@@ -4,24 +4,32 @@
         <div ng-if="data.profile.brief" class="intro" ng-bind-html="data.profile.brief">{{::data.profile.brief}}</div>
 
         <div class="media-item">
-            <my-ratio-img ng-if="data.profile.photo.path" path="images/{{::data.profile.photo.path}}" height="{{::data.profile.photo.height}}" width="{{::data.profile.photo.width}}" full-size="true">
+            <my-ratio-img
+                ng-if="data.profile.photo.path"
+                path="images/{{::data.profile.photo.path}}"
+                height="{{::data.profile.photo.height}}"
+                width="{{::data.profile.photo.width}}"
+                full-size="true">
+
                 <my-flag ng-if="data.profile.photo.flag" target-position="data.profile.photo.flag.targetPosition" offset="data.profile.photo.flag.offset">
                     {{::data.profile.photo.flag.text}}
                 </my-flag>
+
             </my-ratio-img>
             <div class="description" ng-if="data.profile.photo.description">
                 {{::data.profile.photo.description}}
             </div>
         </div>
 
-        <div class="bio" ng-bind-html="data.profile.bio" my-external-links>{{::data.profile.bio}}</div>
+        <my-synced-columns>
 
-        <div class="sidebar">
-            <div class="inner-sidebar media-item-small" ng-repeat="(index, media) in data.profile.sidePhotos">
-                <my-ratio-img path="images/{{::media.path}}" height="{{::media.height}}" width="{{::media.width}}" full-size="true"></my-ratio-img>
-                <div class="brief">{{::media.brief}}</div>
+            <div class="bio" ng-bind-html="data.profile.bio" my-external-links>{{::data.profile.bio}}</div>
+
+            <div class="sidebar">
+                <my-side-item ng-repeat="media in data.profile.sidePhotos" data="media"></my-side-item>
             </div>
-        </div>
+
+        </my-synced-columns>
 
 
     </div>
