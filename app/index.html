@@ -1,5 +1,7 @@
 <!doctype html>
-<html>
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <title>The Life & Times of Stressica</title>
@@ -22,7 +24,7 @@
   <body ng-app="portfolio" thumbnail-width="477">
 
     <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <div id="browse-happy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to enjoy a better web experience.</div>
     <![endif]-->
 
     <div ng-include="'includes/svg.html'"></div>
@@ -76,10 +78,14 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+
+        <script src="scripts/constants/keycodes.js"></script>
+
         <script src="scripts/services/entry.js"></script>
         <script src="scripts/services/about.js"></script>
         <script src="scripts/services/menustate.js"></script>
         <script src="scripts/services/gallerystate.js"></script>
+        <script src="scripts/services/keyboard.js"></script>
 
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>

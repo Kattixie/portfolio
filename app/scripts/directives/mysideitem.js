@@ -57,7 +57,9 @@ angular
                     {
                         // Set to original margin top.
 
-                        iElement.css('marginTop', scope.marginTop);
+                        iElement
+                            .find('.inner-sidebar')
+                            .css('marginTop', scope.marginTop);
                     }
                     else
                     {
@@ -67,7 +69,9 @@ angular
                         {
                             var occupiedSpace = columnsCtrl.prevSideItemsHeight( scope.id );
 
-                            iElement.css('marginTop', offset - occupiedSpace);
+                            iElement
+                                .find('.inner-sidebar')
+                                .css('marginTop', offset - occupiedSpace);
                         }
                     }
                 };

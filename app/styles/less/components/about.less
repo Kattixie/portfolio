@@ -26,7 +26,10 @@
                 color: #fff;
                 font-family: 'Fira Sans', sans-serif;
                 font-size: 13px;
+                font-style: italic;
+                letter-spacing: 1px;
                 padding: 10px 15px;
+                text-transform: uppercase;
 
                 // Not a psuedo-element because we need to account for it when
                 // calculating position using JavaScript.
@@ -125,13 +128,19 @@
         width: 100%;
         margin-left: -1 * @entry_image_width;
 
-        .inner-sidebar
+        .side-item
         {
             display: block;
-            margin-left: @entry_image_width;
-            padding-bottom: @spacing_unit_root / 2;
             overflow: hidden;
-            padding-left: @spacing_unit_root * 1.5;
+
+            .inner-sidebar
+            {
+                display: block;
+                margin-left: @entry_image_width;
+                margin-bottom: @spacing_unit_root / 2;
+                overflow: hidden;
+                padding-left: @spacing_unit_root * 1.5;
+            }
         }
     }
 
@@ -183,19 +192,33 @@
         {
             display: block;
 
-            .inner-sidebar
+            .side-item
             {
                 display: block;
                 width: auto;
 
+                .inner-sidebar
+                {
+                    display: block;
+                    width: auto;
+                }
+
                 &:nth-child(2n+1)
                 {
-                    padding-right: 0;
+                    .inner-sidebar
+                    {
+                        padding-right: 0;
+                    }
+
                 }
 
                 &:nth-child(2n)
                 {
-                    padding-left: 0;
+                    .inner-sidebar
+                    {
+                        padding-left: 0;
+                    }
+
                 }
             }
         }
@@ -253,9 +276,12 @@
     {
         .sidebar
         {
-            .inner-sidebar
+            .side-item
             {
-                padding-left: @spacing_unit_root;
+                .inner-sidebar
+                {
+                    padding-left: @spacing_unit_root;
+                }
             }
         }
     }
@@ -271,27 +297,41 @@
 
     .sidebar
     {
-        display: table; // I totally just did that.
+        display: block;
         margin-top: @spacing_unit_root;
         margin-right: @selective_margin;
         margin-left: @selective_margin;
+        text-align: center;
         width: auto;
 
-        .inner-sidebar
+        .side-item
         {
-            display: table-cell;
-            margin-left: 0;
-            padding-left: 0;
+            display: inline-block;
+            vertical-align: top;
             width: 50%;
+
+            .inner-sidebar
+            {
+                margin-left: 0;
+                padding-left: 0;
+            }
 
             &:nth-child(2n+1)
             {
-                padding-right: @spacing_unit_root / 4;
+                .inner-sidebar
+                {
+                    padding-right: @spacing_unit_root / 4;
+                }
+
             }
 
             &:nth-child(2n)
             {
-                padding-left: @spacing_unit_root / 4;
+                .inner-sidebar
+                {
+                    padding-left: @spacing_unit_root / 4;
+                }
+
             }
         }
     }

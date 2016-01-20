@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('mySequenceNav', function ($log, $window, $location, $routeParams, MenuState)
+    .directive('mySequenceNav', function ($log, $window, $location, $routeParams, MenuState, Keyboard)
     {
         return {
             restrict: 'E',
@@ -131,6 +131,22 @@ angular
                 {
                     self.setCompactMenu();
                 };
+
+                Keyboard.on('LEFT', function()
+                {
+                    if ( $routeParams.slug )
+                    {
+                        self.onPrev();
+                    }
+                });
+
+                Keyboard.on('RIGHT', function()
+                {
+                    if ( $routeParams.slug )
+                    {
+                        self.onNext();
+                    }
+                });
 
                 $scope.$on('$routeChangeSuccess', self.onRouteChange);
 

@@ -248,40 +248,7 @@
 
             li
             {
-                a
-                {
-                    .transition(all 200ms ease-out);
-
-                    color: @hot_pink;
-                    display: inline-block;
-                    opacity: .75;
-                    position: relative;
-                    text-decoration: none;
-
-                    &:hover
-                    {
-                        opacity: 1;
-                    }
-
-                    &::after
-                    {
-                        .transition(width 250ms ease-out);
-
-                        content: '';
-                        background: @hot_pink;
-                        height: 1px;
-                        position: absolute;
-                            bottom: 2px;
-                            left: 0;
-                            z-index: -1;
-                        width: 0%;
-                    }
-
-                    &:hover::after
-                    {
-                        width: 100%;
-                    }
-                }
+                .growing-line-links(@hot_pink);
             }
         }
     }

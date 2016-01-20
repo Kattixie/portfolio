@@ -268,7 +268,73 @@ ul#contact
     text-transform: uppercase;
 }
 
+#browse-happy
+{
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 3.250em; // 52px
+    font-weight: 700;
+    line-height: 1.019em; // 53px
+    margin: @spacing_unit; // IE8 and lower doesn't support rems
+
+    a
+    {
+        color: @hot_pink;
+        text-decoration: none;
+
+        &:hover
+        {
+            border-bottom: 2px solid @hot_pink;
+        }
+    }
+}
+
 // Mixins
+
+.growing-line-links(@color)
+{
+    a
+    {
+        .transition(all 200ms ease-out);
+
+        color: @color;
+        display: inline-block;
+        opacity: .75;
+        position: relative;
+        text-decoration: none;
+
+        &:hover
+        {
+            opacity: 1;
+        }
+
+        &::after
+        {
+            .transition(width 250ms ease-out);
+
+            content: '';
+            background: @hot_pink;
+            height: 1px;
+            position: absolute;
+                bottom: 2px;
+                left: 0;
+                z-index: -1;
+            width: 0%;
+        }
+
+        &:hover::after
+        {
+            width: 100%;
+        }
+    }
+}
+
+.external-highlight-links()
+{
+    a
+    {
+
+    }
+}
 
 .external-text-links()
 {

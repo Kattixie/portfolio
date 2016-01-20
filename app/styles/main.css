@@ -358,6 +358,20 @@ ul#contact a.fa {
   text-align: center;
   text-transform: uppercase;
 }
+#browse-happy {
+  font-family: 'Archivo Narrow', sans-serif;
+  font-size: 3.250em;
+  font-weight: 700;
+  line-height: 1.019em;
+  margin: 3.125em;
+}
+#browse-happy a {
+  color: #f56392;
+  text-decoration: none;
+}
+#browse-happy a:hover {
+  border-bottom: 2px solid #f56392;
+}
 @media (max-width: 477px) {
   html {
     font-size: 14px;
@@ -2368,7 +2382,10 @@ div.loader .spinner {
   color: #fff;
   font-family: 'Fira Sans', sans-serif;
   font-size: 13px;
+  font-style: italic;
+  letter-spacing: 1px;
   padding: 10px 15px;
+  text-transform: uppercase;
 }
 #about .media-item .media .flag .pointer {
   position: absolute;
@@ -2492,10 +2509,14 @@ div.loader .spinner {
   width: 100%;
   margin-left: -727px;
 }
-#about .sidebar .inner-sidebar {
+#about .sidebar .side-item {
+  display: block;
+  overflow: hidden;
+}
+#about .sidebar .side-item .inner-sidebar {
   display: block;
   margin-left: 727px;
-  padding-bottom: 1.5625rem;
+  margin-bottom: 1.5625rem;
   overflow: hidden;
   padding-left: 4.6875rem;
 }
@@ -2527,22 +2548,26 @@ div.loader .spinner {
     width: auto;
   }
   #about .sidebar {
-    display: table;
+    display: block;
     margin-top: 3.125rem;
     margin-right: 3.125rem;
     margin-left: 3.125rem;
+    text-align: center;
     width: auto;
   }
-  #about .sidebar .inner-sidebar {
-    display: table-cell;
-    margin-left: 0;
-    padding-left: 0;
+  #about .sidebar .side-item {
+    display: inline-block;
+    vertical-align: top;
     width: 50%;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+  #about .sidebar .side-item .inner-sidebar {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #about .sidebar .side-item:nth-child(2n+1) .inner-sidebar {
     padding-right: 0.78125rem;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n) {
+  #about .sidebar .side-item:nth-child(2n) .inner-sidebar {
     padding-left: 0.78125rem;
   }
   #about .bio {
@@ -2552,14 +2577,18 @@ div.loader .spinner {
   #about .sidebar {
     display: block;
   }
-  #about .sidebar .inner-sidebar {
+  #about .sidebar .side-item {
     display: block;
     width: auto;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+  #about .sidebar .side-item .inner-sidebar {
+    display: block;
+    width: auto;
+  }
+  #about .sidebar .side-item:nth-child(2n+1) .inner-sidebar {
     padding-right: 0;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n) {
+  #about .sidebar .side-item:nth-child(2n) .inner-sidebar {
     padding-left: 0;
   }
 }
@@ -2569,22 +2598,26 @@ div.loader .spinner {
     width: auto;
   }
   #about .sidebar {
-    display: table;
+    display: block;
     margin-top: 3.125rem;
     margin-right: 3.125rem;
     margin-left: 3.125rem;
+    text-align: center;
     width: auto;
   }
-  #about .sidebar .inner-sidebar {
-    display: table-cell;
-    margin-left: 0;
-    padding-left: 0;
+  #about .sidebar .side-item {
+    display: inline-block;
+    vertical-align: top;
     width: 50%;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+  #about .sidebar .side-item .inner-sidebar {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #about .sidebar .side-item:nth-child(2n+1) .inner-sidebar {
     padding-right: 0.78125rem;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n) {
+  #about .sidebar .side-item:nth-child(2n) .inner-sidebar {
     padding-left: 0.78125rem;
   }
   #about .bio {
@@ -2598,22 +2631,26 @@ div.loader .spinner {
     width: auto;
   }
   #about .sidebar {
-    display: table;
+    display: block;
     margin-top: 3.125rem;
     margin-right: 3.125rem;
     margin-left: 3.125rem;
+    text-align: center;
     width: auto;
   }
-  #about .sidebar .inner-sidebar {
-    display: table-cell;
-    margin-left: 0;
-    padding-left: 0;
+  #about .sidebar .side-item {
+    display: inline-block;
+    vertical-align: top;
     width: 50%;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+  #about .sidebar .side-item .inner-sidebar {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #about .sidebar .side-item:nth-child(2n+1) .inner-sidebar {
     padding-right: 0.78125rem;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n) {
+  #about .sidebar .side-item:nth-child(2n) .inner-sidebar {
     padding-left: 0.78125rem;
   }
   #about .bio {
@@ -2627,22 +2664,26 @@ div.loader .spinner {
     width: auto;
   }
   #about .sidebar {
-    display: table;
+    display: block;
     margin-top: 3.125rem;
     margin-right: 3.125rem;
     margin-left: 3.125rem;
+    text-align: center;
     width: auto;
   }
-  #about .sidebar .inner-sidebar {
-    display: table-cell;
-    margin-left: 0;
-    padding-left: 0;
+  #about .sidebar .side-item {
+    display: inline-block;
+    vertical-align: top;
     width: 50%;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n+1) {
+  #about .sidebar .side-item .inner-sidebar {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  #about .sidebar .side-item:nth-child(2n+1) .inner-sidebar {
     padding-right: 0.78125rem;
   }
-  #about .sidebar .inner-sidebar:nth-child(2n) {
+  #about .sidebar .side-item:nth-child(2n) .inner-sidebar {
     padding-left: 0.78125rem;
   }
   #about .intro,
@@ -2654,7 +2695,7 @@ div.loader .spinner {
   }
 }
 @media (min-width: 1254px) and (max-width: 1431px) {
-  #about .sidebar .inner-sidebar {
+  #about .sidebar .side-item .inner-sidebar {
     padding-left: 3.125rem;
   }
 }
