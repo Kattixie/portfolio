@@ -27,7 +27,7 @@ angular
             }
         };
 
-        // Services are singletons
+        // Services are singletons, so I suppose this is acceptable.
         $document.on('keydown', function(even)
         {
             var keyDown = _keyHandlers[ event.keyCode ];

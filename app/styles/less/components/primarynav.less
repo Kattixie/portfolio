@@ -117,11 +117,10 @@ nav#nav-main
                         font-family: 'Archivo Narrow', sans-serif;
                         //font-size: 46px;
                         font-size: @spacing_unit_root * .8;
-                        font-weight: 300;
-                        letter-spacing: 5px;
+                        font-weight: 100;
+                        letter-spacing: 4px;
                         margin-left: @spacing_unit_root / 2;
                         text-transform: uppercase;
-
                     }
 
                     &:hover
@@ -311,22 +310,22 @@ nav#nav-main.compact
 
                     a
                     {
-                        color: @hot_pink;
+                        color: #555;
                         width: 100%;
 
                         svg
                         {
-                            fill: currentColor;
                             height: @item_height;
                             line-height: @item_height;
                             margin-left: @spacing_unit_root;
+                            stroke: currentColor;
                             //stroke: transparent;
                             //width: @spacing_unit_root * .8;
                         }
 
                         span.text-label
                         {
-                            color: #FFF;
+                            color: @hot_pink;
                             display: block;
                             height: @item_height;
                             line-height: @item_height;

@@ -88,20 +88,6 @@
                     margin-top: 9px;
                 }
             }
-
-            // Need to set this as default unfortunately due to how the elements
-            // are loading with a custom directive in Angular. The image is
-            // visible before it has loaded otherwise. It became a problem
-            // with the introduction of the my-src directive, I believe.
-            img
-            {
-                visibility: hidden;
-
-                &.complete
-                {
-                    visibility: visible;
-                }
-            }
         }
     }
 
@@ -302,6 +288,11 @@
     #entry
     {
         .entry-single-column();
+
+        h1.sidebar
+        {
+            text-align: center;
+        }
     }
 }
 
@@ -425,10 +416,14 @@
 
         h1.sidebar
         {
+            font-size: 2.625em; // 48px
+            margin-bottom: @spacing_unit_root / 2;
+
             .inner-sidebar
             {
                 &::before
                 {
+                    border-bottom: 0;
                     left: 0;
                 }
             }

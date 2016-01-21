@@ -113,11 +113,17 @@
                 margin-top: 0;
             }
 
-            span.highlight
+            span
             {
-                .transition(all 300 easeout);
+                .transition(all 300ms ease-out);
 
-                border-bottom: 1px solid #000;
+                border-bottom: 1px dashed transparent;
+                padding-bottom: 1px;
+
+                &.highlight
+                {
+                    border-bottom: 1px dashed #c4c4c4;
+                }
             }
         }
     }
@@ -162,6 +168,20 @@
             font-style: italic;
             line-height: 22px;
             padding: 15px 25px;
+
+            a
+            {
+                .transition(all 200ms ease-out);
+
+                border-bottom: 1px solid transparent;
+                color: @hot_pink;
+                text-decoration: none;
+
+                &:hover
+                {
+                    border-bottom: 1px solid @hot_pink;
+                }
+            }
         }
     }
 }

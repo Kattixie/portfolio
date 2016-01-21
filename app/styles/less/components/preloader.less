@@ -2,6 +2,7 @@ div.loader
 {
     .transition(all 300ms ease-out);
 
+    //background: rgba(255,255,255, .85);
     height: 100%;
     opacity: 1;
     position: absolute;
@@ -13,7 +14,7 @@ div.loader
     &.complete
     {
         opacity: 0;
-        z-index: -1; // Need this check that this doesn't happen until opacity fades. I'm not sure what it will do.
+        // z-index: -1; // Need this check that this doesn't happen until opacity fades. I'm not sure what it will do.
     }
 
     .spinner
@@ -22,8 +23,8 @@ div.loader
 
         border-top: 2px solid rgba(255,255,255, 0);
         border-right: 2px solid rgba(255,255,255, 0);
-        border-bottom: 2px solid #fff;
-        border-left: 2px solid #fff;
+        border-bottom: 2px solid #3d3d3d;
+        border-left: 2px solid #3d3d3d;
         font-size: 10px;
         //margin-top: -1.500em;
         //margin-left: -1.500em;
@@ -71,6 +72,32 @@ div.loader
         {
             border-bottom-color: #3d3d3d;
             border-left-color: #3d3d3d;
+        }
+    }
+}
+
+.media
+{
+    // Need to set this as default unfortunately due to how the elements
+    // are loading with a custom directive in Angular. The image is
+    // visible before it has loaded otherwise. It became a problem
+    // with the introduction of the my-src directive, I believe.
+    img
+    {
+        .transition(all 300ms ease-out);
+
+        visibility: hidden; // Needs to exist.
+
+        &.loading
+        {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        &.complete
+        {
+            opacity: 1;
+            visibility: visible;
         }
     }
 }
