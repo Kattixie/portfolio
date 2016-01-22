@@ -10,8 +10,7 @@ angular
     .module('portfolio')
     .directive('mySyncedColumns', function ($log)
     {
-        var directiveDefinitionObject =
-        {
+        return {
             restrict: 'E',
             //transclude: true,
             controller: function($scope, $element)
@@ -110,6 +109,4 @@ angular
                 self.init();
             }
         };
-
-        return directiveDefinitionObject;
     });
