@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myPreloader', function ($timeout)
+    .directive('myPreloader', function ()
     {
         // Moving this bracket to the next line actually breaks this code in
         // Chrome (and possibly other browsers). Return returns undefined when

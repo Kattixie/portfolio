@@ -436,6 +436,16 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
+    // Added
+    if (target === 'norev') {
+      return grunt.task.run(['buildNoRev', 'connect:dist:keepalive']);
+    }
+
+    // Added
+    if (target === 'nomin') {
+      return grunt.task.run(['buildNoMin', 'connect:dist:keepalive']);
+    }
+
     grunt.task.run([
       'clean:server',
       'wiredep',
@@ -475,6 +485,44 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
+    'htmlmin'
+  ]);
+
+  // Added
+  grunt.registerTask('buildNoMin', [
+    'clean:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'ngtemplates',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
+    // 'cssmin',
+    // 'uglify',
+    'filerev',
+    'usemin'
+    // 'htmlmin'
+  ]);
+
+  // Added
+  grunt.registerTask('buildNoRev', [
+    'clean:dist',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:dist',
+    'autoprefixer',
+    'ngtemplates',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    // 'filerev',
+    // 'usemin',
     'htmlmin'
   ]);
 

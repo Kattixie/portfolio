@@ -9,7 +9,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myFlag', function ($log, $timeout)
+    .directive('myFlag', function ($log)
     {
         var directiveDefinitionObject =
         {

@@ -14,7 +14,11 @@ angular
     .module('portfolio')
     .directive('myRatioImg', function ($log, myRatioDirective)
     {
-        var base = myRatioDirective[0];
+        $log.debug('Setting myRatioImg base.');
+
+        // var base = myRatioDirective[0];
+
+        $log.debug('Done setting myRatioImg base.');
 
         // This works in overriding properties and functions, but it offers no
         // way to invoke the functions it overrides (because they are simply
@@ -36,6 +40,10 @@ angular
             },
             template: function(tElement, tAttrs)
             {
+                $log.debug('Setting myRatioImg template');
+
+                var base = myRatioDirective[0];
+
                 var baseTemplate = base.template();
 
                 var subTemplate = '';
@@ -62,6 +70,8 @@ angular
             },
             controller: function($scope)
             {
+                $log.debug('Setting controller of myRatioImg.');
+
                 var self = this;
 
                 self.getHeight = function()
@@ -76,8 +86,14 @@ angular
             },
             link: function(scope, iElement, iAttrs)
             {
+                $log.debug('Setting myRatioImg link');
+
+                var base = myRatioDirective[0];
+
                 // You're gonna share stuff and you're gonna freaking like it.
                 base.link(scope, iElement, iAttrs);
+
+                $log.debug('Done setting base link');
 
                 // Width and height of 100% are specified because there
                 // may be cases where the image is being blown up if the

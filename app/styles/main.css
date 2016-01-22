@@ -796,7 +796,7 @@ nav#nav-main.compact .wrapper {
   nav#nav-main.compact .nav-items ul.nav-primary li.gallery.active a,
   nav#nav-main .nav-items ul.nav-primary li.list.active a,
   nav#nav-main.compact .nav-items ul.nav-primary li.list.active a {
-    color: #f56392;
+    color: #fff;
   }
   nav#nav-main .nav-items ul.nav-sub,
   nav#nav-main.compact .nav-items ul.nav-sub {
@@ -1286,19 +1286,19 @@ div.loader .spinner {
   animation: spinner 800ms infinite linear;
   border-top: 2px solid rgba(255, 255, 255, 0);
   border-right: 2px solid rgba(255, 255, 255, 0);
-  border-bottom: 2px solid #3d3d3d;
-  border-left: 2px solid #3d3d3d;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
   font-size: 10px;
   position: absolute;
-  top: 1.04166667rem;
-  right: 1.04166667rem;
+  top: 1.5625rem;
+  right: 1.5625rem;
   text-indent: -9999em;
 }
 div.loader .spinner {
   border-radius: 50%;
   display: block;
-  height: 3.000em;
-  width: 3.000em;
+  height: 4.000em;
+  width: 4.000em;
 }
 .transparent div.loader {
   background: rgba(255, 255, 255, 0.85);
@@ -1313,7 +1313,6 @@ div.loader .spinner {
   -ms-transition: all 300ms ease-out;
   -o-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
-  visibility: hidden;
 }
 .media img.loading {
   opacity: 0;
@@ -1592,7 +1591,7 @@ div.loader .spinner {
   background: #8f2d44;
 }
 #entry-gallery .thumbnail li.maker-camp {
-  background: no-repeat url(../../../images/thumbs/maker_camp_thumb2.jpg);
+  background: no-repeat url(../images/thumbs/maker_camp_thumb2.jpg);
   -webkit-background-size: cover auto;
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
@@ -1611,7 +1610,7 @@ div.loader .spinner {
   background: #e03f47;
 }
 #entry-gallery .thumbnail li.wedding {
-  background: url(../../../images/thumbs/bg_paper_light.jpg);
+  background: url(../images/thumbs/bg_paper_light.jpg);
 }
 #entry-gallery .thumbnail li.wedding .description h3 {
   color: #3d3d3d;
@@ -1659,7 +1658,7 @@ div.loader .spinner {
   background: #1e4c72;
 }
 #entry-gallery .thumbnail li.sugarcrave {
-  background: no-repeat url(../../../images/thumbs/sugarcrave_thumb2.jpg);
+  background: no-repeat url(../images/thumbs/sugarcrave_thumb2.jpg);
   -webkit-background-size: cover auto;
   -moz-background-size: cover auto;
   -o-background-size: cover auto;
@@ -2058,7 +2057,7 @@ div.loader .spinner {
   width: 2.000em;
 }
 #entry .text p a:hover span {
-  border-color: #c4c4c4;
+  border-color: #606060;
 }
 #entry .text p a:hover.external::after {
   background: #b6e7e4;
@@ -2518,7 +2517,7 @@ div.loader .spinner {
   width: 2.000em;
 }
 #about .bio p a:hover span {
-  border-color: #c4c4c4;
+  border-color: #606060;
 }
 #about .bio p a:hover.external::after {
   background: #b6e7e4;
@@ -2536,7 +2535,7 @@ div.loader .spinner {
   padding-bottom: 1px;
 }
 #about .bio p span.highlight {
-  border-bottom: 1px dashed #c4c4c4;
+  border-bottom: 1px dashed #606060;
 }
 #about .sidebar {
   display: inline-block;
