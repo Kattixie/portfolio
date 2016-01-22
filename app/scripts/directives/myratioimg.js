@@ -14,11 +14,10 @@ angular
     .module('portfolio')
     .directive('myRatioImg', function ($log, myRatioDirective)
     {
-        $log.debug('Setting myRatioImg base.');
-
-        // var base = myRatioDirective[0];
-
-        $log.debug('Done setting myRatioImg base.');
+        // Possible problem: this seems to only get instantiated once when this
+        // directive is loaded. Therefore, I think all instances share this
+        // single base, which is just weird. Came up during debugging.
+        var base = myRatioDirective[0];
 
         // This works in overriding properties and functions, but it offers no
         // way to invoke the functions it overrides (because they are simply
@@ -26,8 +25,9 @@ angular
         // we want to override without invoking the parent.
         // var directiveDefinitionObject = angular.extend( base, { } );
 
-        var directiveDefinitionObject =
-        {
+        // Must use this syntax if we are also using the controller function.
+        // ngAnnotate can't handle long-form dependency injection otherwise.
+        return {
             restrict: 'E',
             transclude: true,
             scope:
@@ -40,10 +40,6 @@ angular
             },
             template: function(tElement, tAttrs)
             {
-                $log.debug('Setting myRatioImg template');
-
-                var base = myRatioDirective[0];
-
                 var baseTemplate = base.template();
 
                 var subTemplate = '';
@@ -70,8 +66,6 @@ angular
             },
             controller: function($scope)
             {
-                $log.debug('Setting controller of myRatioImg.');
-
                 var self = this;
 
                 self.getHeight = function()
@@ -86,14 +80,8 @@ angular
             },
             link: function(scope, iElement, iAttrs)
             {
-                $log.debug('Setting myRatioImg link');
-
-                var base = myRatioDirective[0];
-
                 // You're gonna share stuff and you're gonna freaking like it.
                 base.link(scope, iElement, iAttrs);
-
-                $log.debug('Done setting base link');
 
                 // Width and height of 100% are specified because there
                 // may be cases where the image is being blown up if the
@@ -111,6 +99,4 @@ angular
                     });
             }
         };
-
-        return directiveDefinitionObject;
     });

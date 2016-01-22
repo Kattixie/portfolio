@@ -488,7 +488,8 @@ module.exports = function (grunt) {
     'htmlmin'
   ]);
 
-  // Added
+  // Added: This needs debugging. It at least produces near-final files so we
+  // can see what ngAnnotate is doing.
   grunt.registerTask('buildNoMin', [
     'clean:dist',
     'wiredep',
