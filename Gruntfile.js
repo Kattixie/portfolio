@@ -170,8 +170,6 @@ module.exports = function (grunt) {
 
     // Add vendor prefixed styles
 
-    // Why exactly does this exist? It seems to produce an empty vendor CSS
-    // file.
     autoprefixer: {
       options: {
         browsers: ['last 1 version']
@@ -389,6 +387,7 @@ module.exports = function (grunt) {
             'images/{,*/}*.{webp}',
             'data/{,*/}*.*', // Added
             'includes/{,*/}*.*', // Added
+            'fonts/{,*/}*.*', // Added, because this is where FontAwesome bower component wants this to live.
             'styles/fonts/{,*/}*.*'
           ]
         }, {
