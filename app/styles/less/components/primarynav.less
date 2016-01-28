@@ -21,19 +21,19 @@ nav#nav-main
         .transition(all 600ms ease-out);
 
         color: #808080;
+        // display: block; // Remember that this determines single-column layout.
         display: none;
         float: right;
-        //line-height: @header_height + @svg_height / 2;
         margin-right: @spacing_unit_root / 2;
         position: relative;
             top: 0;
             left: 0;
             z-index: 100;
-        //width: 1.875em; // 30px
         width: 2.375em; //38px;
 
         svg
         {
+            fill: transparent;
             //width: 2.375em; //38px;
             width: 100%;
             stroke: currentColor;

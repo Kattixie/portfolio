@@ -165,6 +165,19 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      // Added
+      noimages: {
+        files: [{
+          dot: true,
+          src: [
+            '.tmp',
+            '<%= yeoman.dist %>/{,*/}*',
+            '!<%= yeoman.dist %>/.git{,*/}*',
+            '!<%= yeoman.dist %>/images/**',
+            '!<%= yeoman.dist %>/images/*'
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -222,6 +235,34 @@ module.exports = function (grunt) {
     // Renames files for browser caching purposes
     filerev: {
       dist: {
+        src: [
+          '<%= yeoman.dist %>/scripts/{,*/}*.js',
+          '<%= yeoman.dist %>/styles/{,*/}*.css',
+          '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.dist %>/styles/fonts/*',
+          '<%= yeoman.dist %>/data/{,*/}*.json' // Added
+        ]
+      },
+      // Added
+      noimages: {
+        options: {
+          // This doesn't seem to impact how assets are synced with usemin.
+          // Need to figure out where and how this is happening.
+          process: function(basename, name, extension) {
+
+              // If you want to test with all assets broken, create fake paths
+              // here. Note that passed extension doesn't have a dot ('jpg').
+
+              if ( extension.match(/^(png|jpg|jpeg|gif|webp|svg)$/i ) ) {
+
+                  return [basename, extension].join('.');
+              }
+              else {
+
+                  return [basename, name, extension].join('.');
+              }
+          }
+        },
         src: [
           '<%= yeoman.dist %>/scripts/{,*/}*.js',
           '<%= yeoman.dist %>/styles/{,*/}*.css',
@@ -387,7 +428,7 @@ module.exports = function (grunt) {
             'images/{,*/}*.{webp}',
             'data/{,*/}*.*', // Added
             'includes/{,*/}*.*', // Added
-            'fonts/{,*/}*.*', // Added, because this is where FontAwesome bower component wants this to live.
+            'fonts/{,*/}*.*', // Added, because this is where FontAwesome Bower component wants this to live.
             'styles/fonts/{,*/}*.*'
           ]
         }, {
@@ -402,6 +443,20 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+        },
+      // Added
+      nomin: {
+        files: [{
+            expand: true,
+            cwd: '.tmp',
+            dest: '<%= yeoman.dist %>',
+            src: 'styles/{,*/}*.css'
+        }, {
+            expand: true,
+            cwd: '.tmp/concat',
+            dest: '<%= yeoman.dist %>',
+            src: 'scripts/{,*/}*.js'
+        }]
       }
     },
 
@@ -445,6 +500,11 @@ module.exports = function (grunt) {
       return grunt.task.run(['buildNoMin', 'connect:dist:keepalive']);
     }
 
+    // Added
+    if (target === 'noimages') {
+      return grunt.task.run(['buildIgnoreImages', 'connect:dist:keepalive']);
+    }
+
     grunt.task.run([
       'clean:server',
       'wiredep',
@@ -482,13 +542,14 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'filerev',
+    'filerev:dist', // Modified
     'usemin',
     'htmlmin'
   ]);
 
   // Added: This needs debugging. It at least produces near-final files so we
-  // can see what ngAnnotate is doing.
+  // can see what ngAnnotate and other processes are doing.
+  // Todo: figure out why fingerprinted assets are not being renamed.
   grunt.registerTask('buildNoMin', [
     'clean:dist',
     'wiredep',
@@ -502,12 +563,14 @@ module.exports = function (grunt) {
     'cdnify',
     // 'cssmin',
     // 'uglify',
-    'filerev',
-    'usemin'
+    'filerev:dist',
+    'usemin',
     // 'htmlmin'
+    'copy:nomin' // Added
   ]);
 
-  // Added
+  // Added: Does everything that build does, but without asset
+  // fingerprinting.
   grunt.registerTask('buildNoRev', [
     'clean:dist',
     'wiredep',
@@ -521,8 +584,33 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    // 'filerev',
+    // 'filerev:dist',
     // 'usemin',
+    'htmlmin'
+  ]);
+
+  // Added: Debugging. Leaves existing fingerprinted images in the dist folder.
+  // Was in process of trying to get usemin to rename based on pre-existing
+  // images folder when I figured out that filerev does revisioning based on
+  // file contents. This means the file name only changes if the content does.
+  // Still, for the purpose of speed, it would be nice to get this running
+  // for cases when we want to build and we know images haven't changed.
+  grunt.registerTask('buildIgnoreImages', [
+    'clean:noimages',
+    'wiredep',
+    'useminPrepare',
+    'concurrent:server', // Originally concurrent:dist
+    'autoprefixer',
+    'ngtemplates',
+    'concat',
+    'ngAnnotate',
+    'copy:dist',
+    'cdnify',
+    'cssmin',
+    'uglify',
+    //'filerev',
+    'filerev:noimages',
+    'usemin',
     'htmlmin'
   ]);
 
