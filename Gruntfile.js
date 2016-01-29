@@ -283,12 +283,15 @@ module.exports = function (grunt) {
         flow: {
           html: {
             steps: {
+              // Without a step here, "include" blocks won't get combined into
+              // a single file. However, is this the place we want them?
+              // include: ['concat'], // Added
               js: ['concat', 'uglifyjs'],
               css: ['cssmin']
             },
             post: {}
           }
-        }
+        },
       }
     },
 
@@ -297,7 +300,8 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       js: ['<%= yeoman.dist %>/scripts/{,*/}*.js'],
-      json: ['<%= yeoman.dist %>/data/{,*/}*.json'], // Added
+      json: ['<%= yeoman.dist %>/data/{,*/}*.json'], // Added,
+      // includes: ['<%= yeoman.dist %>/includes/{,*/}*.html'], // Added
       options: {
         assetsDirs: [
           '<%= yeoman.dist %>',
@@ -310,6 +314,30 @@ module.exports = function (grunt) {
               [/(images\/[^''""]*\.(png|jpg|jpeg|gif|webp|svg))/g, 'Replacing references to images'],
               [/(data\/[^''""]*\.json)/g, 'Replacing references to JSON data'] // Added
           ]
+        },
+        // Added: Replaces include elements with template content in index.html
+        // The expectation is that ngInclude is only used in the index to keep
+        // it clean.
+        blockReplacements: {
+          include: function(block) {
+
+            var contents = '';
+
+            for (var i = 0; i < block.src.length; i++) {
+
+              // Without an output path, searchPath is an empty array.
+              if (block.searchPath.length === 0) {
+
+                  contents += grunt.file.read( grunt.config.get('yeoman.app') + '/' + block.src[i] );
+              }
+              else {
+
+                  contents += grunt.file.read( block.searchPath + '/' + block.src[i] );
+              }
+            }
+
+            return contents;
+          }
         }
       }
     },
@@ -427,7 +455,7 @@ module.exports = function (grunt) {
             '*.html',
             'images/{,*/}*.{webp}',
             'data/{,*/}*.*', // Added
-            'includes/{,*/}*.*', // Added
+            // 'includes/{,*/}*.*', // Added
             'fonts/{,*/}*.*', // Added, because this is where FontAwesome Bower component wants this to live.
             'styles/fonts/{,*/}*.*'
           ]

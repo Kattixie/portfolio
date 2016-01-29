@@ -26,7 +26,10 @@
       <div id="browse-happy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to enjoy a better web experience.</div>
     <![endif]-->
 
-    <ng-include src="'includes/svg.html'"></ng-include>
+    <!-- src/href is used on ng-include purely for usemin's sake -->
+    <!-- build:include(.) -->
+    <div ng-include="'includes/svg.html'" src="includes/svg.html"></div>
+    <!-- endbuild -->
 
     <header>
         <my-primary-nav></my-primary-nav>
@@ -42,7 +45,9 @@
         </my-sequence-nav>
     </div>
 
-    <ul id="contact" ng-include="'includes/social.html'" my-external-links></ul>
+    <!-- build:include(.) -->
+    <div ng-include="'includes/social.html'" src="includes/social.html"></div>
+    <!-- endbuild -->
 
     <div id="earth-crafted">
         Earth-crafted Pixels
