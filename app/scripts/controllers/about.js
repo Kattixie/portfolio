@@ -9,10 +9,12 @@
  */
 angular
     .module('portfolio')
-    .controller('AboutCtrl', function ($log, $scope, About)
+    .controller('AboutCtrl', function ($log, $scope, About, PageState)
     {
         $scope.data = {};
         $scope.data.profile = null;
+
+        PageState.setTitle('About');
 
         if ( $scope.$parent.$parent )
         {

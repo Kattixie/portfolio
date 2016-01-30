@@ -9,7 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('EntryCtrl', function ($log, $scope, $routeParams, $sce, Entry, MenuState)
+    .controller('EntryCtrl', function ($log, $scope, $routeParams, $sce, Entry, PageState, MenuState)
     {
 
         // Much struggle took place in this here controller. It seems that I
@@ -43,6 +43,8 @@ angular
                 $scope.data.entry = data;
 
                 $log.debug('The entry for %s: %o', $routeParams.slug, $scope.data.entry);
+
+                PageState.setTitle( $scope.data.entry.title );
 
                 // This works! We are updating the same scope as sequenceNav.
                 // But it works whether or not EntryCtrl is a child of

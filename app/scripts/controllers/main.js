@@ -9,10 +9,12 @@
  */
 angular
     .module('portfolio')
-    .controller('MainCtrl', function ($scope, Entry)
+    .controller('MainCtrl', function ($scope, Entry, PageState)
     {
         $scope.data = {};
         $scope.data.entries = null;
+
+        PageState.setTitle();
 
         // Yarrr...
         if ( $scope.$parent.$parent )

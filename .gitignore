@@ -8,3 +8,5 @@
 /app/images/people
 /app/images/work
 /app/includes/social.html
+/app/includes/analytics.html
+/app/scripts/constants/config.js

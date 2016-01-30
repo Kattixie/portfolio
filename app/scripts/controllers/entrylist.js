@@ -9,7 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('EntryListCtrl', function ($scope, $log, $routeParams, Entry)
+    .controller('EntryListCtrl', function ($scope, $log, $routeParams, Entry, PageState)
     {
         var self = this;
 
@@ -20,6 +20,8 @@ angular
         $scope.state = {};
         $scope.state.categoryIsClicked = false;
         $scope.state.selectedCategories = [];
+
+        PageState.setTitle();
 
         if ( $scope.$parent.$parent )
         {
