@@ -29,7 +29,7 @@ nav#nav-main
             top: 0;
             left: 0;
             z-index: 100;
-        width: 2.375em; //38px;
+        width: 2.125em; // 34px
 
         svg
         {
@@ -212,7 +212,7 @@ nav#nav-main.centered
 
 nav#nav-main.compact
 {
-    @factor: .35;
+    @factor: .3;
 
     .primary-nav-height(@factor);
 
@@ -240,17 +240,28 @@ nav#nav-main.compact
 
 // Media Queries
 
-@media (max-width: 727px)
+@media (max-width: @1_column_width)
 {
     nav#nav-main
     {
-        @factor: .75;
+        @factor: .5;
 
         .primary-nav-height(@factor);
     }
+
+    nav#nav-main,
+    nav#nav-main.compact
+    {
+        .collapsible-menu-a();
+
+        a#nav-icon
+        {
+            width: 2.100em;
+        }
+    }
 }
 
-@media (max-width: (@2_column_width + 300px))
+@media (min-width: (@1_column_width + 1px)) and (max-width: @entry_image_width)
 {
     nav#nav-main
     {
@@ -262,138 +273,23 @@ nav#nav-main.compact
     nav#nav-main,
     nav#nav-main.compact
     {
-        //font-size: 1.25rem;
-        position: fixed;
+        .collapsible-menu-a();
+    }
+}
 
-        a#nav-icon
-        {
-            display: block;
-            font-size: 1rem;
-        }
+@media (min-width: (@entry_image_width + 1px)) and (max-width: (@2_column_width + 300px))
+{
+    nav#nav-main
+    {
+        @factor: .75;
 
-        .nav-items
-        {
-            //@item_height: @spacing_unit_root * 1.2;
-            @item_height: @spacing_unit_root * 1.6;
+        .primary-nav-height(@factor);
+    }
 
-            background: #1f1f1f;
-            clear: both;
-            display: none;
-            padding-top: @spacing_unit_root / 2;
-            width: 100%;
-
-            ul.nav-primary
-            {
-                //float: none;
-                //display: none;
-                position: relative;
-                	top: 0;
-                	left: 0;
-                width: 100%;
-
-                li
-                {
-                    height: @item_height;
-                    line-height: @item_height;
-                    margin: 0;
-
-                    &:first-child
-                    {
-                        margin: 0;
-                    }
-                }
-
-                li.gallery,
-                li.list
-                {
-                    width: 100%;
-
-                    a
-                    {
-                        color: #555;
-                        width: 100%;
-
-                        svg
-                        {
-                            height: @item_height;
-                            line-height: @item_height;
-                            margin-left: @spacing_unit_root;
-                            stroke: currentColor;
-                            //stroke: transparent;
-                            //width: @spacing_unit_root * .8;
-                        }
-
-                        span.text-label
-                        {
-                            color: @hot_pink;
-                            display: block;
-                            height: @item_height;
-                            line-height: @item_height;
-                        }
-
-                        &:hover
-                        {
-                            color: #FFF;
-                            background: #343434;
-
-                            svg
-                            {
-                                stroke: currentColor;
-                            }
-                        }
-                    }
-
-                    &.active
-                    {
-                        a
-                        {
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-
-            ul.nav-sub
-            {
-                float: left;
-                padding-top: @spacing_unit_root / 2;
-                padding-bottom: @spacing_unit_root / 2 + @spacing_unit_root / 3;
-                width: 100%;
-
-                li
-                {
-                    @item_height: @spacing_unit_root;
-
-                    height: @item_height;
-                    line-height: @item_height;
-
-                    width: 100%;
-
-                    a
-                    {
-                        color: #FFF;
-                        height: @item_height;
-                        line-height: @item_height;
-                        padding-left: @spacing_unit_root;
-                        //padding-left: @spacing_unit_root / 2 + .3em + 2.375em + @spacing_unit_root / 4 + .4em; // Small offset necessary due to SVG not being flush with container
-                        width: 100%;
-
-                        &:hover
-                        {
-                        	color: @blue;
-                        }
-                    }
-
-                    &.active
-                    {
-                        a
-                        {
-                            color: #FFF;
-                        }
-                    }
-                }
-            }
-        }
+    nav#nav-main,
+    nav#nav-main.compact
+    {
+        .collapsible-menu-a();
     }
 }
 
@@ -450,6 +346,142 @@ nav#nav-main.compact
                 {
                     height: @header_height * @factor;
                     line-height: @header_height * @factor;
+                }
+            }
+        }
+    }
+}
+
+.collapsible-menu-a()
+{
+    //font-size: 1.25rem;
+    position: fixed;
+
+    a#nav-icon
+    {
+        display: block;
+        font-size: 1rem;
+    }
+
+    .nav-items
+    {
+        //@item_height: @spacing_unit_root * 1.2;
+        @item_height: @spacing_unit_root * 1.6;
+
+        background: #1f1f1f;
+        clear: both;
+        display: none;
+        padding-top: @spacing_unit_root / 2;
+        width: 100%;
+
+        ul.nav-primary
+        {
+            //float: none;
+            //display: none;
+            position: relative;
+                top: 0;
+                left: 0;
+            width: 100%;
+
+            li
+            {
+                height: @item_height;
+                line-height: @item_height;
+                margin: 0;
+
+                &:first-child
+                {
+                    margin: 0;
+                }
+            }
+
+            li.gallery,
+            li.list
+            {
+                width: 100%;
+
+                a
+                {
+                    color: #555;
+                    width: 100%;
+
+                    svg
+                    {
+                        height: @item_height;
+                        line-height: @item_height;
+                        margin-left: @spacing_unit_root;
+                        stroke: currentColor;
+                        //stroke: transparent;
+                        //width: @spacing_unit_root * .8;
+                    }
+
+                    span.text-label
+                    {
+                        color: @hot_pink;
+                        display: block;
+                        height: @item_height;
+                        line-height: @item_height;
+                    }
+
+                    &:hover
+                    {
+                        color: #FFF;
+                        background: #343434;
+
+                        svg
+                        {
+                            stroke: currentColor;
+                        }
+                    }
+                }
+
+                &.active
+                {
+                    a
+                    {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        ul.nav-sub
+        {
+            float: left;
+            padding-top: @spacing_unit_root / 2;
+            padding-bottom: @spacing_unit_root / 2 + @spacing_unit_root / 3;
+            width: 100%;
+
+            li
+            {
+                @item_height: @spacing_unit_root;
+
+                height: @item_height;
+                line-height: @item_height;
+
+                width: 100%;
+
+                a
+                {
+                    color: #FFF;
+                    height: @item_height;
+                    line-height: @item_height;
+                    padding-left: @spacing_unit_root;
+                    //padding-left: @spacing_unit_root / 2 + .3em + 2.375em + @spacing_unit_root / 4 + .4em; // Small offset necessary due to SVG not being flush with container
+                    width: 100%;
+
+                    &:hover
+                    {
+                        color: @blue;
+                    }
+                }
+
+                &.active
+                {
+                    a
+                    {
+                        color: #FFF;
+                    }
                 }
             }
         }

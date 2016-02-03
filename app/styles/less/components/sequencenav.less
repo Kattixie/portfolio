@@ -14,7 +14,7 @@ nav#nav-sequence
 
     &.compact
     {
-    	@factor: .35;
+    	@factor: .3;
 
         .sequence-nav-height(@factor);
     }
@@ -24,7 +24,7 @@ nav#nav-sequence
         display: none;
         color: #808080;
         font-family: 'Archivo Narrow', sans-serif;
-        font-size: 1.125em; // 18px
+        font-size: 1.063em; // 17px
         height: @header_height;
         letter-spacing: 0.188em;
         line-height: @header_height;
@@ -150,7 +150,23 @@ nav#nav-sequence
 
 // Media Queries
 
-@media (max-width: @entry_image_width)
+@media(max-width: @1_column_width)
+{
+    nav#nav-sequence
+    {
+        @factor: .5;
+
+        .sequence-nav-height(@factor);
+
+        .sequence-nav-edge-padding( @spacing_unit_root / 2 );
+
+        .sequence-nav-compact();
+
+        z-index: 100;
+    }
+}
+
+@media (min-width: (@1_column_width + 1px)) and (max-width: @entry_image_width)
 {
     nav#nav-sequence
     {
@@ -158,96 +174,13 @@ nav#nav-sequence
 
         .sequence-nav-height(@factor);
 
-        .sequence-nav-edge-padding(@spacing_unit_root);
+        .sequence-nav-edge-padding( @spacing_unit_root / 2 );
+
+        .sequence-nav-compact();
 
         z-index: 100;
-
-        a.prev,
-        a.next
-        {
-            svg
-            {
-                fill: currentColor;
-                stroke: none;
-                width: 9px;
-            }
-        }
-
-        a.prev
-    	{
-            svg
-            {
-                margin-right: @spacing_unit / 5;
-            }
-        }
-
-        a.next
-        {
-            svg
-            {
-                margin-left: @spacing_unit / 5;
-            }
-        }
-
-        &.compact
-        {
-            a.prev,
-            a.next
-            {
-                svg
-                {
-                    width: 9px;
-                }
-            }
-        }
     }
 }
-
-@media (min-width: (@1_column_width + 1px)) and (max-width: (@2_column_width + 300px))
-{
-    nav#nav-sequence
-    {
-        z-index: 100;
-
-        /*
-        a.prev
-        {
-            padding-left: @spacing_unit_root;
-
-            &:hover
-            {
-                padding-left: @spacing_unit_root - @spacing_unit_root / 2;
-                padding-right: @spacing_unit_root / 2;
-            }
-        }
-
-        a.next
-        {
-            padding-right: @spacing_unit_root;
-
-            &:hover
-            {
-                padding-right: @spacing_unit_root - @spacing_unit_root / 2;
-                padding-left: @spacing_unit_root / 2;
-            }
-        }
-        */
-    }
-}
-
-/*
-@media (min-width: (@1_column_width + 1px)) and (max-width: 727px)
-{
-    nav#nav-sequence
-    {
-        @factor: .75;
-
-        .sequence-nav-height(@factor);
-
-        .sequence-nav-edge-padding(@spacing_unit_root);
-    }
-}
-*/
 
 @media (min-width: (@entry_image_width + 1px)) and (max-width: (@entry_image_width + 100px))
 {
@@ -258,6 +191,8 @@ nav#nav-sequence
         .sequence-nav-height(@factor);
 
         .sequence-nav-edge-padding(@spacing_unit_root);
+
+        z-index: 100;
     }
 }
 
@@ -270,6 +205,8 @@ nav#nav-sequence
         .sequence-nav-height(@factor);
 
         .sequence-nav-fixed-width(727px);
+
+        z-index: 100;
     }
 }
 
@@ -337,6 +274,48 @@ nav#nav-sequence
             {
                 padding-right: @padding;
                 padding-left: 0;
+            }
+        }
+}
+
+.sequence-nav-compact()
+{
+        a.prev,
+        a.next
+        {
+            svg
+            {
+                fill: currentColor;
+                stroke: none;
+                width: 9px;
+            }
+        }
+
+        a.prev
+        {
+            svg
+            {
+                margin-right: @spacing_unit / 5;
+            }
+        }
+
+        a.next
+        {
+            svg
+            {
+                margin-left: @spacing_unit / 5;
+            }
+        }
+
+        &.compact
+        {
+            a.prev,
+            a.next
+            {
+                svg
+                {
+                    width: 9px;
+                }
             }
         }
 }

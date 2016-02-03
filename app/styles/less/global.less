@@ -60,14 +60,12 @@ svg#symbols
 
 header
 {
-    font-size: 1rem; // 16px
-    //margin: 1.563em 0 3.125em 0;
-    //margin: 3.125em 0;
-    height: @header_height;
+    .header-height();
+
     margin: 0 auto;
     position: relative;
-    top: 0;
-    left: 0;
+        top: 0;
+        left: 0;
 
     h1#logo
     {
@@ -79,10 +77,8 @@ header
         background-position: center;
         background-repeat: no-repeat;
         display: table;
-        //float: left;
-        height: 6.875em; //110px
-        //margin: 0 auto;
-        width: 6.875em; //110px
+        height: 6.875em; // 110px
+        width: 6.875em; // 110px
 
         &,
         &.centered
@@ -99,11 +95,11 @@ header
         {
             color: #FFF;
             display: table-cell;
-            height: 6.875em; //110px
-            line-height: 1.500em; //24px;
+            height: 6.875em; // 110px
+            line-height: 1.500em; // 24px
             text-align: center;
             text-decoration: none;
-            width: 6.875em; //110px
+            width: 6.875em; // 110px
             vertical-align: middle;
 
             img
@@ -182,13 +178,7 @@ ul#contact
 
     li
     {
-        //margin-left: 12px;
-        margin: 0 0 0.75em 0.75em;
-
-        &:first-child
-        {
-            margin-left: 0;
-        }
+        margin: 0 0.300em 0.750em 0.300em;
     }
 
     li.linked-in svg
@@ -203,7 +193,7 @@ ul#contact
     {
         position: relative;
             top: 0;
-            left: 1px; // This actually scales better as a pixel unit in Chrome.
+            left: 0; // This actually scales better as a pixel unit in Chrome.
         width: 1.875em; // 30px
     }
 
@@ -405,7 +395,7 @@ ul#contact
 {
     html
     {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     header
@@ -431,9 +421,31 @@ ul#contact
     }
 }
 
-@media (min-width: (@1_column_width + 1px))
+@media (max-width: @1_column_width)
+{
+    @factor: .5;
+
+    .header-height(@factor);
+
+    html
+    {
+        font-size: 16px;
+    }
+
+    header
+    {
+        font-size: .75 * 1rem;
+        width: auto;
+    }
+}
+
+@media (min-width: (@1_column_width + 1px)) and (max-width: (@2_column_width + 300px))
 {
     .query-name('min-width: 1 column width + 1px');
+
+    @factor: .75;
+
+    .header-height(@factor);
 
     html
     {
@@ -446,23 +458,13 @@ ul#contact
     }
 }
 
-@media (max-width: (@2_column_width + 300px))
+@media (min-width: (@2_column_width + 301px))
 {
-    header
-    {
-        @factor: .75;
-
-        height: @header_height * @factor;
-    }
-}
-
-@media (min-width: (@2_column_width + 300px))
-{
-    .query-name('min-width: 2 column width + 300px');
+    .query-name('min-width: 2 column width + 301px');
 
     html
     {
-        font-size: 16px;
+        font-size: 17px;
     }
 
     body
@@ -492,3 +494,13 @@ ul#contact
         width: @max_fixed_column_width;
     }
 }
+
+// Mixins
+
+.header-height(@factor: 1)
+{
+    header
+    {
+        height: @header_height * @factor;
+    }
+};
