@@ -14,8 +14,6 @@ angular
 
         var _projectTitle = '';
 
-        var _pageTitle = '';
-
         service.setProjectTitle = function(title)
         {
             _projectTitle = (title) ? title : config.PROJECT_TITLE;

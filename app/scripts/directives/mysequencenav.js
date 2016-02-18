@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('mySequenceNav', function ($log, $window, $location, $routeParams, MenuState, Keyboard)
+    .directive('mySequenceNav', function ($log, $window, $location, $routeParams, WindowState, MenuState, Keyboard)
     {
         return {
             restrict: 'E',
@@ -29,7 +29,9 @@ angular
             {
                 var self = this;
 
-                self.eWindow = angular.element( $window );
+                self.resizeTimeoutId = null;
+                self.scrollTimeoutId = null;
+
                 self.container = $element.find('nav');
 
                 $scope.paths =
@@ -67,6 +69,8 @@ angular
                 {
                     if ( MenuState.isCompact )
                     {
+                        $log.debug('The sequence menu is compact, making sure compact class is on.');
+
                         if ( ! self.container.hasClass( MenuState.compactClassName ) )
                         {
                             self.container.addClass( MenuState.compactClassName );
@@ -74,6 +78,8 @@ angular
                     }
                     else
                     {
+                        $log.debug('The sequence menu is not compact, taking off compact class.');
+
                         if ( self.container.hasClass( MenuState.compactClassName ) )
                         {
                             self.container.removeClass( MenuState.compactClassName );
@@ -132,6 +138,12 @@ angular
                     self.setCompactMenu();
                 };
 
+                self.onDestroy = function()
+                {
+                    WindowState.destroyResize( self.resizeTimeoutId, 'sequencenav' );
+                    WindowState.destroyScroll( self.scrollTimeoutId, 'sequencenav' );
+                };
+
                 Keyboard.on('LEFT', function()
                 {
                     if ( $routeParams.slug )
@@ -150,8 +162,11 @@ angular
 
                 $scope.$on('$routeChangeSuccess', self.onRouteChange);
 
-                self.eWindow.bind('resize', self.onWindowResize);
-                self.eWindow.bind('scroll', self.onWindowScroll);
+                self.resizeTimeoutId = WindowState.onResize(self.onWindowResize, 'sequencenav', 100);
+                self.scrollTimeoutId = WindowState.onScroll(self.onWindowScroll, 'sequencenav', 300);
+
+                // self.eWindow.bind('resize', self.onWindowResize);
+                // self.eWindow.bind('scroll', self.onWindowScroll);
             }
         };
     });

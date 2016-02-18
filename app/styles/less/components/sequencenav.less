@@ -1,10 +1,8 @@
 nav#nav-sequence
 {
+    // Default
+
     display: none;
-    // height: 100%; // Results in this element overlapping most content.
-    position: fixed; // Important when this element serves as a container.
-        top: 0;
-        left: 0;
     width: 100%;
 
     &.sequenced
@@ -16,7 +14,7 @@ nav#nav-sequence
     {
     	@factor: .3;
 
-        .sequence-nav-height(@factor);
+        .height(@factor);
     }
 
     span.text-label
@@ -25,15 +23,13 @@ nav#nav-sequence
         color: #808080;
         font-family: 'Archivo Narrow', sans-serif;
         font-size: 1.063em; // 17px
-        height: @header_height;
         letter-spacing: 0.188em;
-        line-height: @header_height;
         text-decoration: none;
         text-transform: uppercase;
 
         &:hover
         {
-            color: #000;
+            color: #808080;
         }
     }
 
@@ -43,18 +39,15 @@ nav#nav-sequence
         .transition(all 300ms ease-out);
 
         color: #bfbfbf;
-        height: 100%;
         text-decoration: none;
-        position: fixed;
-            top: 0;
-        width: @spacing_unit_root * 2;
+        // position: fixed;
+            // top: 0;
 
         svg
         {
             display: block;
             fill: none;
             stroke: currentColor;
-            height: 100%;
             width: 1.313em; // 21px
         }
 
@@ -67,18 +60,10 @@ nav#nav-sequence
     a.prev
     {
         left: 0;
-        padding-left: @spacing_unit_root + @spacing_unit_root / 2;
-
-        &:hover
-        {
-            padding-left: @spacing_unit_root;
-            padding-right: @spacing_unit_root / 2;
-        }
 
         svg
         {
-        	float: left;
-        	margin-right: @spacing_unit_root / 3;
+            float: left;
         }
 
         span.text-label
@@ -90,18 +75,10 @@ nav#nav-sequence
     a.next
     {
         right: 0;
-        padding-right: @spacing_unit_root + @spacing_unit_root / 2;
-
-        &:hover
-        {
-            padding-right: @spacing_unit_root;
-            padding-left: @spacing_unit_root / 2;
-        }
 
         svg
         {
-        	float: right;
-        	margin-left: @spacing_unit / 3;
+            float: right;
         }
 
         span.text-label
@@ -112,7 +89,6 @@ nav#nav-sequence
 
     a.close
     {
-        //.transition(all 300ms ease-out);
         .animation(spinOnceBack 300ms ease-out);
 
         display: none;
@@ -136,7 +112,6 @@ nav#nav-sequence
 
         &:hover
         {
-            //.rotate(360deg);
             .animation(spinOnce 300ms ease-out);
 
             svg
@@ -146,10 +121,325 @@ nav#nav-sequence
             }
         }
     }
+
+    // Media Queries
+
+    .respond-until-including(@2_column_width + 300px,
+    {
+        .position(absolute);
+
+        z-index: 100;
+
+        &.compact
+        {
+            .position(fixed);
+        }
+    });
+
+    .respond-until-including(@1_column_width,
+    {
+        @factor: .5;
+
+        .height(@factor);
+
+        .edge-padding( @spacing_unit_root / 2 );
+
+        .condensed-buttons();
+    });
+
+    .respond-between(@1_column_width, @2_column_width + 300px,
+    {
+        @factor: .75;
+
+        .height(@factor);
+    });
+
+    .respond-between(@1_column_width, @entry_image_width,
+    {
+        .edge-padding( @spacing_unit_root / 2 );
+
+        .condensed-buttons();
+    });
+
+    .respond-between(@entry_image_width, @entry_image_width + 100px,
+    {
+        .edge-padding(@spacing_unit_root);
+
+        .intermediate-buttons();
+
+        span.text-label
+        {
+            font-size: 1.100em; // 17px
+        }
+    });
+
+    .respond-between(@entry_image_width + 100px, @2_column_width + 300px,
+    {
+        .fixed-width(727px);
+
+        .intermediate-buttons();
+
+        span.text-label
+        {
+            font-size: 1.100em; // 17px
+        }
+    });
+
+    .respond-after(@2_column_width + 300px,
+    {
+        @contained: false;
+
+        .position(fixed, @contained);
+
+        .full-height-buttons();
+    });
+
+    // Local Mixins
+
+    .position(@position: fixed, @contained: true) when (@contained = true)
+    {
+        // Important when this element serves as a container.
+        position: @position;
+            top: 0;
+            //left: 0;
+
+        a.prev,
+        a.next
+        {
+            // If absolute, buttons will be contained within parent.
+            // If fixed, buttons will be relative to window and ignore container.
+            position: absolute;
+                top: 0;
+        }
+    }
+
+    // This default syntax is really confusing, but it makes this like an "else"
+    // block.
+    .position(@position: fixed, @contained: true) when (default())
+    {
+        position: @position;
+            top: 0;
+
+        a.prev,
+        a.next
+        {
+            position: fixed;
+                top: 0;
+        }
+    }
+
+    .height(@factor: 1)
+    {
+        span.text-label
+        {
+            display: block;
+            height: @header_height * @factor;
+            line-height: @header_height * @factor;
+        }
+
+        a.prev,
+        a.next
+        {
+            height: @header_height * @factor;
+            margin-top: 0;
+
+            svg
+            {
+                height: @header_height * @factor;
+                width: 0.875em; // 14px;
+            }
+        }
+    }
+
+    .fixed-width(@width: 727px, @padding: 0)
+    {
+        .edge-padding(0);
+
+        left: 50%;
+        margin-left: -1 * (@width / 2);
+        width: @width;
+
+        a.prev,
+        a.next
+        {
+            //position: absolute;
+        }
+    }
+
+    .edge-padding(@padding: 0)
+    {
+        a.prev
+        {
+            padding-left: @padding;
+
+            &:hover
+            {
+                padding-left: @padding;
+                padding-right: 0;
+            }
+        }
+
+        a.next
+        {
+            padding-right: @padding;
+
+            &:hover
+            {
+                padding-right: @padding;
+                padding-left: 0;
+            }
+        }
+    }
+
+    .full-height-buttons()
+    {
+        a.prev,
+        a.next
+        {
+            height: 100%;
+
+            svg
+            {
+                height: 100%;
+                width: 1.313em; // 21px
+            }
+        }
+
+        a.prev
+        {
+            padding-left: @spacing_unit_root + @spacing_unit_root / 2;
+
+            &:hover
+            {
+                padding-left: @spacing_unit_root;
+                padding-right: @spacing_unit_root / 2;
+            }
+
+            svg
+            {
+                margin-right: @spacing_unit_root / 3;
+            }
+        }
+
+        a.next
+        {
+            padding-right: @spacing_unit_root + @spacing_unit_root / 2;
+
+            &:hover
+            {
+                padding-right: @spacing_unit_root;
+                padding-left: @spacing_unit_root / 2;
+            }
+
+            svg
+            {
+                margin-left: @spacing_unit / 3;
+            }
+        }
+    }
+
+    .intermediate-buttons()
+    {
+        a.prev,
+        a.next
+        {
+            svg
+            {
+                width: 0.750em; // 12px
+            }
+        }
+
+        a.prev
+        {
+            svg
+            {
+                margin-right: @spacing_unit_root / 3;
+            }
+        }
+
+        a.next
+        {
+            svg
+            {
+                margin-left: @spacing_unit / 3;
+            }
+        }
+    }
+
+    .condensed-buttons()
+    {
+        a.prev,
+        a.next
+        {
+            svg
+            {
+                fill: currentColor;
+                stroke: none;
+                width: 9px;
+            }
+        }
+
+        a.prev
+        {
+            svg
+            {
+                margin-right: @spacing_unit / 5;
+            }
+        }
+
+        a.next
+        {
+            svg
+            {
+                margin-left: @spacing_unit / 5;
+            }
+        }
+
+        &.compact
+        {
+            a.prev,
+            a.next
+            {
+                svg
+                {
+                    width: 9px;
+                }
+            }
+        }
+    }
+
+    // Animations
+
+    .keyframes(spinOnce,
+    {
+        0%
+        {
+            .rotate(0);
+        }
+
+        100%
+        {
+            .rotate(90deg);
+        }
+    });
+
+    .keyframes(spinOnceBack
+    {
+        0%
+        {
+            .rotate(0);
+        }
+
+        100%
+        {
+            .rotate(-90deg);
+        }
+    });
 }
 
 // Media Queries
 
+/*
 @media(max-width: @1_column_width)
 {
     nav#nav-sequence
@@ -160,9 +450,16 @@ nav#nav-sequence
 
         .sequence-nav-edge-padding( @spacing_unit_root / 2 );
 
-        .sequence-nav-compact();
+        .sequence-nav-position(absolute);
+
+        .sequence-nav-condensed-buttons();
 
         z-index: 100;
+
+        &.compact
+        {
+            .sequence-nav-position(fixed);
+        }
     }
 }
 
@@ -176,9 +473,16 @@ nav#nav-sequence
 
         .sequence-nav-edge-padding( @spacing_unit_root / 2 );
 
-        .sequence-nav-compact();
+        .sequence-nav-position(absolute);
+
+        .sequence-nav-condensed-buttons();
 
         z-index: 100;
+
+        &.compact
+        {
+            .sequence-nav-position(fixed);
+        }
     }
 }
 
@@ -192,7 +496,21 @@ nav#nav-sequence
 
         .sequence-nav-edge-padding(@spacing_unit_root);
 
+        .sequence-nav-position(absolute);
+
+        .sequence-nav-intermediate-buttons();
+
         z-index: 100;
+
+        &.compact
+        {
+            .sequence-nav-position(fixed);
+        }
+
+        span.text-label
+        {
+            font-size: 1.100em; // 17px
+        }
     }
 }
 
@@ -204,13 +522,72 @@ nav#nav-sequence
 
         .sequence-nav-height(@factor);
 
+        .sequence-nav-position(absolute);
+
         .sequence-nav-fixed-width(727px);
 
+        .sequence-nav-intermediate-buttons();
+
         z-index: 100;
+
+        &.compact
+        {
+            .sequence-nav-position(fixed);
+        }
+
+        span.text-label
+        {
+            font-size: 1.100em; // 17px
+        }
     }
 }
 
+@media (min-width: (@2_column_width + 301px))
+{
+    nav#nav-sequence
+    {
+        @contained: false;
+
+        .sequence-nav-position(fixed, @contained);
+
+        .sequence-nav-full-height-buttons();
+    }
+}
+*/
+
 // Mixins
+
+/*
+.sequence-nav-position(@position: fixed, @contained: true) when (@contained = true)
+{
+        // Important when this element serves as a container.
+        position: @position;
+            top: 0;
+            //left: 0;
+
+        a.prev,
+        a.next
+        {
+            // If absolute, buttons will be contained within parent.
+            // If fixed, buttons will be relative to window and ignore container.
+            position: absolute;
+                top: 0;
+        }
+}
+
+// This default syntax is really confusing, but it makes this like an "else."
+.sequence-nav-position(@position: fixed, @contained: true) when (default())
+{
+        position: @position;
+            top: 0;
+
+        a.prev,
+        a.next
+        {
+            position: fixed;
+                top: 0;
+        }
+}
 
 .sequence-nav-height(@factor: 1)
 {
@@ -226,9 +603,6 @@ nav#nav-sequence
         {
             height: @header_height * @factor;
             margin-top: 0;
-            //position: fixed;
-                //top: 0;
-                //z-index: 100;
 
             svg
             {
@@ -249,7 +623,7 @@ nav#nav-sequence
         a.prev,
         a.next
         {
-            position: absolute;
+            //position: absolute;
         }
 }
 
@@ -278,7 +652,82 @@ nav#nav-sequence
         }
 }
 
-.sequence-nav-compact()
+.sequence-nav-full-height-buttons()
+{
+        a.prev,
+        a.next
+        {
+            height: 100%;
+
+            svg
+            {
+                height: 100%;
+                width: 1.313em; // 21px
+            }
+        }
+
+        a.prev
+        {
+            padding-left: @spacing_unit_root + @spacing_unit_root / 2;
+
+            &:hover
+            {
+                padding-left: @spacing_unit_root;
+                padding-right: @spacing_unit_root / 2;
+            }
+
+            svg
+            {
+                margin-right: @spacing_unit_root / 3;
+            }
+        }
+
+        a.next
+        {
+            padding-right: @spacing_unit_root + @spacing_unit_root / 2;
+
+            &:hover
+            {
+                padding-right: @spacing_unit_root;
+                padding-left: @spacing_unit_root / 2;
+            }
+
+            svg
+            {
+                margin-left: @spacing_unit / 3;
+            }
+        }
+}
+
+.sequence-nav-intermediate-buttons()
+{
+        a.prev,
+        a.next
+        {
+            svg
+            {
+                width: 0.750em; // 12px
+            }
+        }
+
+        a.prev
+        {
+            svg
+            {
+                margin-right: @spacing_unit_root / 3;
+            }
+        }
+
+        a.next
+        {
+            svg
+            {
+                margin-left: @spacing_unit / 3;
+            }
+        }
+}
+
+.sequence-nav-condensed-buttons()
 {
         a.prev,
         a.next
@@ -347,3 +796,4 @@ nav#nav-sequence
         .rotate(-90deg);
     }
 });
+*/

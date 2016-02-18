@@ -178,6 +178,33 @@
 
 // Media Queries
 
+// Domain: [0, @width]
+.respond-until-including(@width, @rules)
+{
+    @media (max-width: @width)
+    {
+        @rules();
+    }
+}
+
+// Domain interval: (min, max]
+.respond-between(@min, @max, @rules)
+{
+    @media (min-width: (@min + 1px)) and (max-width: @max)
+    {
+        @rules();
+    }
+}
+
+// Domain: (@width, infinity)
+.respond-after(@width, @rules)
+{
+    @media (min-width: (@width + 1px))
+    {
+        @rules();
+    }
+}
+
 .query-name(@name)
 {
     // This kind of works for detecting the current query. It gets funny due to
