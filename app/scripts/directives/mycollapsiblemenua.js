@@ -137,7 +137,7 @@ angular
                     }
 
                     return MenuState.isCentered;
-                }
+                };
 
                 // Sets element classes based on current menu alignment.
                 self.setMenuAlignment = function()
