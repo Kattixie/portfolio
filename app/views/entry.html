@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <div class="text" ng-bind-html="data.entry.description" my-external-links></div>
+            <div class="text" my-bind-html="data.entry.description">{{::data.entry.description}}</div>
 
             <div class="data-points sidebar">
                 <ul ng-if="data.entry.client.length > 0" class="inner-sidebar">
@@ -69,7 +69,7 @@
                 <ul ng-if="data.entry.urls.length > 0" class="inner-sidebar">
                     <h2>External Links</h2>
                     <li ng-repeat="url in data.entry.urls">
-                        <a ng-href="{{::url.path}}" nb-bind-html="url.label" my-external-links>{{::url.label}}</a>
+                        <a ng-href="{{::url.path}}" my-bind-html="url.label">{{::url.label}}</a>
                     </li>
                 </ul>
             </div>

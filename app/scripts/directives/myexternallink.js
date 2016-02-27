@@ -2,41 +2,52 @@
 
 /**
  * @ngdoc directive
- * @name portfolio.directive:myExternalLinks
+ * @name portfolio.directive:myExternalLink
  * @description
- * # myExternalLinks
+ * # myExternalLink
+ * Appropriately templates external URLs. Transclude is not used here (though it
+ * feels natural) because an extra span tag will appear around the label, and
+ * this requires precise control of mark-up.
  */
 angular
     .module('portfolio')
-    .directive('myExternalLinks', function ()
+    .directive('myExternalLink', function ($log, $parse)
     {
-        return {
-            restrict: 'A',
-            // priority: 10, // Turns out this is not necessary.
-            link: function(scope, element, attrs)
+        var ddo =
+        {
+            restrict: 'E',
+            scope:
             {
-                scope.$watch(attrs.ngBindHtml, function()
-                {
-                    var boundElement;
+                href: '@',
+                label: '@'
+            },
+            template: function(tElement, tAttrs)
+            {
+                // Because values are passed as strings, we can do text
+                // manipulation here. No binding is taking place.
+                var lastSpaceIndex = tAttrs.label.lastIndexOf(' ');
 
-                    if ( element.is('a') )
-                    {
-                        boundElement = element;
-                    }
-                    else
-                    {
-                        boundElement = element.find('a');
-                    }
+                var template = '';
 
-                    boundElement
-                        .filter( function()
-                        {
-                            return this.hostname && this.hostname !== window.location.hostname;
-                        })
-                        .addClass('external')
-                        .attr('target', '_blank')
-                        .wrapInner('<span>');
-                });
+                template += '<span class="external">';
+                    template += '<a href="' + tAttrs.href + '" target="_blank">';
+                        template += '<span class="first-words">' + tAttrs.label.slice(0, lastSpaceIndex + 1) + '</span>';
+                        template += '<span class="no-wrap">';
+                            template += '<span class="last-word">' + tAttrs.label.slice( lastSpaceIndex + 1 ) + '</span>';
+                            template += '<span class="icon"><span class="svg-container"><svg><use xlink:href="#symbol-diagonal-arrow"></use></svg></span></span>';
+
+                            if (tAttrs.punctuation)
+                            {
+                                template += '<span class="punctuation">' + tAttrs.punctuation + '</span>';
+                            }
+
+                        template += '</span>';
+                    template += '</a>';
+                template += '</span>';
+
+                return template;
             }
         };
+
+        return ddo;
     });

@@ -335,57 +335,106 @@ ul#contact
 
 .external-text-links()
 {
-    a
+    span.external
     {
-        color: #3d3d3d;
-        position: relative;
-            top: 0;
-            left: 0;
-        text-decoration: none;
-        white-space: nowrap;
-
-        span
+        a
         {
-            .transition(all 250ms ease-out);
-
-            border-bottom: 2px solid #e5e5e5;
-            // display: inline-block;
-            // padding-bottom: 1px;
-            position: relative;
-                top: 0;
-                left: 0;
-        }
-
-        &.external::after
-        {
-            .transition(all 250ms ease-out);
-            .rounded(1em); // 13px
-
-            background: @blue_light;
             color: #3d3d3d;
-            content: '\f08e';
-            display: inline-block;
-            font-family: 'FontAwesome';
-            font-size: 0.813em; // 13px
-            height: 2.000em; // 26px;
-            line-height: 2.225em;
-            margin: 0 0.077em 0 0.308em; //0 1px 0 4px;
-            position: relative;
-                top: -0.077em; // -1px
-            text-align: center;
-            width: 2.000em; // 26px;
-        }
+            text-decoration: none;
 
-        &:hover
-        {
-            span
-            {
-                border-color: #606060;
-            }
-
+            /*
             &.external::after
             {
-                background: @blue;
+                .transition(all 250ms ease-out);
+                .rounded(1em); // 13px
+
+                background: @blue_light;
+                color: #3d3d3d;
+                content: '\f08e';
+                display: inline-block;
+                font-family: 'FontAwesome';
+                font-size: 0.813em; // 13px
+                height: 2.000em; // 26px;
+                line-height: 2.225em;
+                margin: 0 0.077em 0 0.308em; //0 1px 0 4px;
+                position: relative;
+                    top: -0.077em; // -1px
+                text-align: center;
+                width: 2.000em; // 26px;
+            }
+            */
+
+            &:hover
+            {
+                span.first-words,
+                span.no-wrap span.last-word
+                {
+                    border-color: #606060;
+                }
+
+                span.no-wrap span.icon span.svg-container
+                {
+                    // background: @blue;
+                }
+            }
+
+            span.first-words,
+            span.no-wrap span.last-word
+            {
+                .transition(all 250ms ease-out);
+
+                border-bottom: 2px solid #e5e5e5;
+            }
+
+            span.no-wrap
+            {
+                white-space: nowrap;
+
+                span.last-word
+                {
+
+                }
+
+                span.icon
+                {
+                    @base_unit: 1.500em;
+
+                    display: inline-block;
+                    margin: 0 0.077em 0 0.231em; // 0 1px 0 3px
+                    position: relative;
+                        top: -1 * @base_unit / 1.5;
+                    width: @base_unit;
+
+                    span.svg-container
+                    {
+                        .rounded(@base_unit);
+
+                        background: @blue_light;
+                        display: inline-block;
+                        height: @base_unit;
+                        position: absolute;
+                            top: 0;
+                            left: 0;
+                        width: @base_unit;
+
+                        svg
+                        {
+                            @percentage: 35%;
+
+                            height: @percentage;
+                            position: absolute;
+                                top: (100% - @percentage) / 2;
+                                left: (100% - @percentage) / 2;
+                            stroke: #3d3d3d;
+                            width: @percentage;
+                        }
+                    }
+                }
+
+                span.punctuation
+                {
+
+                }
             }
         }
     }
@@ -487,7 +536,8 @@ ul#contact
 
     html
     {
-        font-size: 18px;
+        //font-size: 18px;
+        font-size: 19px;
     }
 
     header,

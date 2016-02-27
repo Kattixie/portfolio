@@ -1,7 +1,14 @@
 <div id="about">
     <div class="container">
 
-        <div ng-if="data.profile.brief" class="intro" ng-bind-html="data.profile.brief">{{::data.profile.brief}}</div>
+        <div
+            class="intro"
+            ng-if="data.profile.brief"
+            ng-bind-html="data.profile.brief">
+
+            {{::data.profile.brief}}
+
+        </div>
 
         <div class="media-item">
             <my-ratio-img
@@ -23,7 +30,13 @@
 
         <my-synced-columns my-content-marker>
 
-            <div class="bio" ng-bind-html="data.profile.bio" my-external-links>{{::data.profile.bio}}</div>
+            <div
+                class="bio"
+                my-bind-html="data.profile.bio">
+
+                {{::data.profile.bio}}
+
+            </div>
 
             <div class="sidebar">
                 <my-side-item
