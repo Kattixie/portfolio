@@ -225,7 +225,7 @@ header h1#logo.centered {
   z-index: 101;
 }
 header h1#logo a {
-  color: #FFF;
+  color: #fff;
   display: table-cell;
   height: 6.875em;
   line-height: 1.500em;
@@ -283,7 +283,7 @@ ul#contact {
   text-align: center;
 }
 ul#contact h3 {
-  color: #4c4c4c;
+  color: #4d4d4d;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 1.188em;
   font-weight: 500;
@@ -334,7 +334,7 @@ ul#contact svg {
   width: 1.625em;
 }
 ul#contact a {
-  color: #979797;
+  color: #999999;
   background: #ededed;
   -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
   -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
@@ -356,7 +356,7 @@ ul#contact a.fa {
   display: inline;
 }
 #earth-crafted {
-  color: #ccc;
+  color: #d9d9d9;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 1rem;
   letter-spacing: 0.125em;
@@ -469,7 +469,7 @@ nav#nav-main.compact a#nav-icon svg {
   height: 4.875rem;
 }
 nav#nav-main.compact .wrapper {
-  background: #FFF;
+  background: #fff;
   border-bottom: 1px solid transparent;
 }
 nav#nav-main.compact.collapsed {
@@ -572,7 +572,7 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   }
   nav#nav-main .nav-items ul.nav-primary li.gallery a,
   nav#nav-main .nav-items ul.nav-primary li.list a {
-    color: #555;
+    color: #4d4d4d;
     text-decoration: none;
   }
   nav#nav-main .nav-items ul.nav-primary li.gallery a svg,
@@ -615,7 +615,7 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     line-height: 4rem;
   }
   nav#nav-main .nav-items ul.nav-sub li a {
-    color: #FFF;
+    color: #fff;
     font-family: 'Archivo Narrow', sans-serif;
     font-size: 1.25em;
     letter-spacing: 0.188em;
@@ -1241,7 +1241,7 @@ div.loader {
   /*
     .spinner::after
     {
-        background: #3d3d3d;
+        background: @black_24;
         border-radius: 50%;
         content: '';
         display: block;
@@ -1697,7 +1697,7 @@ div.loader .spinner {
   animation: fadeInWithPause 300ms cubic-bezier(0.755, 0.05, 0.855, 0.06);
 }
 #entry-list ul.entries li.ng-hide-remove a {
-  color: #dadada;
+  color: #d9d9d9;
 }
 @-webkit-keyframes fadeInWithPause {
   0% {
@@ -1806,7 +1806,7 @@ div.loader .spinner {
   text-decoration: none;
 }
 #entry-list ul.entries a:hover {
-  color: #181818;
+  color: #171717;
 }
 #entry-list ul.entries a::after {
   -webkit-transition: width 250ms ease-out;
@@ -1840,37 +1840,39 @@ div.loader .spinner {
   -ms-transition: all 250ms ease-out;
   -o-transition: all 250ms ease-out;
   transition: all 250ms ease-out;
-  color: #666;
-  border: 2px solid #dadada;
+  color: #a6a6a6;
+  border: 2px solid #d9d9d9;
   display: inline-block;
   font-family: 'Open Sans';
   font-size: 15px;
   font-style: italic;
-  font-weight: 500;
+  font-weight: 600;
   height: 38px;
-  line-height: 38px;
+  line-height: 37px;
   margin-bottom: 7px;
   padding: 0 15px;
   text-decoration: none;
 }
 #entry-list ul.categories a:hover {
+  color: #171717;
   border-color: #a6a6a6;
 }
 #entry-list ul.categories a.faded {
-  opacity: .5;
+  color: #d9d9d9;
+  border-color: #e6e6e6;
 }
 #entry-list ul.categories a.faded:hover {
-  border-color: #3d3d3d;
-  color: #000;
+  color: #171717;
 }
 #entry-list ul.categories a.active {
+  color: #3d3d3d;
   background-color: #daf3f1;
   border-color: #daf3f1;
   opacity: 1;
 }
 #entry-list ul.categories a.active:hover {
   border-color: #daf3f1;
-  color: #000;
+  color: #171717;
 }
 #entry-list ul.categories a span.count {
   display: none;
@@ -1982,7 +1984,7 @@ div.loader .spinner {
   margin-top: 9px;
 }
 #entry .text {
-  color: #4c4c4c;
+  color: #4d4d4d;
   float: left;
   font-family: 'Open Sans';
   font-size: 0.938em;
@@ -1994,7 +1996,21 @@ div.loader .spinner {
 #entry .text p {
   margin: 1.5625rem 0;
 }
+#entry .text p a {
+  -webkit-transition: all 250ms ease-out;
+  -moz-transition: all 250ms ease-out;
+  -ms-transition: all 250ms ease-out;
+  -o-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
+  border-bottom: 2px solid #e6e6e6;
+  color: #3d3d3d;
+  text-decoration: none;
+}
+#entry .text p a:hover {
+  border-color: #616161;
+}
 #entry .text p span.external a {
+  border: 0;
   color: #3d3d3d;
   text-decoration: none;
   /*
@@ -2004,7 +2020,7 @@ div.loader .spinner {
                 .rounded(1em); // 13px
 
                 background: @blue_light;
-                color: #3d3d3d;
+                color: @black_24;
                 content: '\f08e';
                 display: inline-block;
                 font-family: 'FontAwesome';
@@ -2021,7 +2037,7 @@ div.loader .spinner {
 }
 #entry .text p span.external a:hover span.first-words,
 #entry .text p span.external a:hover span.no-wrap span.last-word {
-  border-color: #606060;
+  border-color: #616161;
 }
 #entry .text p span.external a span.first-words,
 #entry .text p span.external a span.no-wrap span.last-word {
@@ -2030,7 +2046,7 @@ div.loader .spinner {
   -ms-transition: all 250ms ease-out;
   -o-transition: all 250ms ease-out;
   transition: all 250ms ease-out;
-  border-bottom: 2px solid #e5e5e5;
+  border-bottom: 2px solid #e6e6e6;
 }
 #entry .text p span.external a span.no-wrap {
   white-space: nowrap;
@@ -2081,7 +2097,7 @@ div.loader .spinner {
   width: 727px;
 }
 #entry .main-quote .text {
-  border-top: 1px solid #e9e9e9;
+  border-top: 1px solid #e6e6e6;
   color: #3d3d3d;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 1.625em;
@@ -2127,7 +2143,7 @@ div.loader .spinner {
 }
 #entry .main-quote .source .title,
 #entry .main-quote .source .affiliation {
-  color: #979797;
+  color: #999999;
   font-family: 'Open Sans';
   font-size: 0.813em;
   font-style: italic;
@@ -2135,17 +2151,17 @@ div.loader .spinner {
 }
 #entry .main-quote svg {
   height: 1.688em;
-  stroke: #e9e9e9;
+  stroke: #e6e6e6;
   width: 100%;
 }
 #entry .data-points {
-  color: #999;
+  color: #999999;
   font-family: 'Open Sans';
   font-size: 0.813em;
   line-height: 1.625em;
 }
 #entry .data-points h2 {
-  color: #666;
+  color: #808080;
   font-style: italic;
   font-weight: 600;
 }
@@ -2404,7 +2420,7 @@ div.loader .spinner {
   overflow: hidden;
 }
 #about .intro {
-  color: #0a0a0a;
+  color: #171717;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 2.125em;
   line-height: 1.324em;
@@ -2457,7 +2473,7 @@ div.loader .spinner {
   width: 30px;
 }
 #about .media-item .description {
-  color: #999;
+  color: #999999;
   font-family: 'Open Sans';
   font-style: italic;
   font-size: 0.813em;
@@ -2467,7 +2483,7 @@ div.loader .spinner {
   margin-right: 1.5625rem;
 }
 #about .bio {
-  color: #4c4c4c;
+  color: #4d4d4d;
   float: left;
   font-family: 'Open Sans';
   position: relative;
@@ -2479,7 +2495,21 @@ div.loader .spinner {
   line-height: 2.000em;
   margin: 1.5625rem 0;
 }
+#about .bio p a {
+  -webkit-transition: all 250ms ease-out;
+  -moz-transition: all 250ms ease-out;
+  -ms-transition: all 250ms ease-out;
+  -o-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
+  border-bottom: 2px solid #e6e6e6;
+  color: #3d3d3d;
+  text-decoration: none;
+}
+#about .bio p a:hover {
+  border-color: #616161;
+}
 #about .bio p span.external a {
+  border: 0;
   color: #3d3d3d;
   text-decoration: none;
   /*
@@ -2489,7 +2519,7 @@ div.loader .spinner {
                 .rounded(1em); // 13px
 
                 background: @blue_light;
-                color: #3d3d3d;
+                color: @black_24;
                 content: '\f08e';
                 display: inline-block;
                 font-family: 'FontAwesome';
@@ -2506,7 +2536,7 @@ div.loader .spinner {
 }
 #about .bio p span.external a:hover span.first-words,
 #about .bio p span.external a:hover span.no-wrap span.last-word {
-  border-color: #606060;
+  border-color: #616161;
 }
 #about .bio p span.external a span.first-words,
 #about .bio p span.external a span.no-wrap span.last-word {
@@ -2515,7 +2545,7 @@ div.loader .spinner {
   -ms-transition: all 250ms ease-out;
   -o-transition: all 250ms ease-out;
   transition: all 250ms ease-out;
-  border-bottom: 2px solid #e5e5e5;
+  border-bottom: 2px solid #e6e6e6;
 }
 #about .bio p span.external a span.no-wrap {
   white-space: nowrap;
@@ -2550,17 +2580,31 @@ div.loader .spinner {
 #about .bio p:first-child {
   margin-top: 0;
 }
-#about .bio p span {
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
-  border-bottom: 1px dashed transparent;
-  padding-bottom: 1px;
+#about .bio p span.side-photo-link {
+  display: inline-block;
+  padding: 0 0.139em;
+  position: relative;
+  top: 0;
+  left: 0;
+  text-decoration: none;
+  transition: all 250ms ease-out;
 }
-#about .bio p span.highlight {
-  border-bottom: 1px dashed #606060;
+#about .bio p span.side-photo-link::after {
+  transition: all 250ms ease-out;
+  content: '';
+  background: #ededed;
+  display: block;
+  position: absolute;
+  z-index: -1;
+}
+#about .bio p span.side-photo-link::after {
+  height: 80%;
+  bottom: 10%;
+  left: 0;
+  width: 0%;
+}
+#about .bio p span.side-photo-link.highlight::after {
+  width: 100%;
 }
 #about .sidebar {
   display: inline-block;
@@ -2587,8 +2631,8 @@ div.loader .spinner {
   -webkit-border-radius: 0 0 5px 5px;
   -moz-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
-  color: #494949;
-  background: #f5f5f5;
+  color: #4d4d4d;
+  background: #f2f2f2;
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 0.944em;
   font-style: italic;

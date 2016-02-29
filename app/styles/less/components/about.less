@@ -8,7 +8,7 @@
 
     .intro
     {
-        color: #0a0a0a;
+        color: @black_9;
         font-family: @title_face;
         font-size: 2.125em; // 34px
         line-height: 1.324em; // 45px
@@ -80,7 +80,7 @@
 
         .description
         {
-            color: #999;
+            color: @black_60;
             font-family: @body_face;
             font-style: italic;
             font-size: 0.813em; // 13px
@@ -93,7 +93,7 @@
 
     .bio
     {
-        color: #4c4c4c;
+        color: @black_30;
         float: left;
         font-family: @body_face;
         position: relative;
@@ -102,6 +102,7 @@
 
         p
         {
+            .internal-text-links();
             .external-text-links();
 
             font-size: 0.938em; // 15px
@@ -113,16 +114,19 @@
                 margin-top: 0;
             }
 
-            span
+            span.side-photo-link
             {
-                .transition(all 300ms ease-out);
+                //.transition(all 300ms ease-out);
 
-                border-bottom: 1px dashed transparent;
-                padding-bottom: 1px;
+                //border-bottom: 1px dashed transparent;
+                //padding-bottom: 1px;
+
+                .highlight-text-ltr(@black_93, '.highlight', 80%);
 
                 &.highlight
                 {
-                    border-bottom: 1px dashed #606060;
+
+                    //border-bottom: 1px dashed #606060;
                 }
             }
         }
@@ -161,8 +165,8 @@
         {
             .rounded(0, 0, 5px, 5px);
 
-            color: #494949;
-            background: #f5f5f5;
+            color: @black_30;
+            background: @black_95;
             font-family: @title_face;
             font-size: 0.944em;
             font-style: italic;

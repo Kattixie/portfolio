@@ -37,7 +37,7 @@
             a
             {
                 //opacity: 0;
-                //color: #dadada;
+                //color: @black_85;
             }
 
             a::after
@@ -52,7 +52,7 @@
 
             a
             {
-                color: #dadada;
+                color: @black_85;
             }
         }
 
@@ -120,7 +120,7 @@
         {
             .transition(all 250ms ease-out);
 
-            color: #3d3d3d;
+            color: @black_24;
             display: inline-block;
             padding: 5px 10px;
             position: relative;
@@ -130,8 +130,7 @@
 
             &:hover
             {
-                //color: @hot_pink;
-                color: #181818;
+                color: @black_9;
             }
 
             &::after
@@ -167,37 +166,41 @@
             .rounded(22px); // Must include border when halving the height
             .transition(all 250ms ease-out);
 
-            color: #666; // Forgive me
-            border: 2px solid #dadada;
+            color: @black_65;
+            border: 2px solid @black_85;
             display: inline-block;
             font-family: @body_face;
             font-size: 15px;
             font-style: italic;
-            font-weight: 500;
+            font-weight: 600;
             height: 38px;
-            line-height: 38px;
+            line-height: 37px;
             margin-bottom: 7px;
             padding: 0 15px;
             text-decoration: none;
 
             &:hover
             {
-                border-color: #a6a6a6;
+                color: @black_9;
+                border-color: @black_65;
             }
 
             &.faded
             {
-                opacity: .5;
+                // opacity: 0.55;
+                color: @black_85;
+                border-color: @black_90;
 
                 &:hover
                 {
-                    border-color: #3d3d3d;
-                    color: #000;
+                    // border-color: @black_24;
+                    color: @black_9;
                 }
             }
 
             &.active
             {
+                color: @black_24;
                 background-color: @blue_light;
                 border-color: @blue_light;
                 opacity: 1;
@@ -205,7 +208,7 @@
                 &:hover
                 {
                     border-color: @blue_light;
-                    color: #000;
+                    color: @black_9;
                 }
             }
 

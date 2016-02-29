@@ -1,6 +1,6 @@
 body
 {
-    color: #3d3d3d;
+    color: @black_24;
 }
 
 a
@@ -94,7 +94,7 @@ header
 
         a
         {
-            color: #FFF;
+            color: #fff;
             display: table-cell;
             height: 6.875em; // 110px
             line-height: 1.500em; // 24px
@@ -158,7 +158,7 @@ ul#contact
 
     h3
     {
-        color: #4c4c4c;
+        color: @black_30;
         font-family: @title_face;
         font-size: 1.188em; // 19px
         //font-style: italic;
@@ -231,8 +231,8 @@ ul#contact
 
     a
     {
-        color: #979797;
-        background: #ededed;
+        color: @black_60;
+        background: @black_93;
         //font-size: 28px;
         //line-height: 52px;
 
@@ -243,7 +243,7 @@ ul#contact
 
     a:hover
     {
-        color: #3d3d3d;
+        color: @black_24;
         background: @blue;
     }
 
@@ -255,7 +255,7 @@ ul#contact
 
 #earth-crafted
 {
-    color: #ccc;
+    color: @black_85;
     font-family: @title_face;
     font-size: 1rem;
     letter-spacing: 0.125em; // 2px
@@ -325,11 +325,20 @@ ul#contact
     }
 }
 
-.external-highlight-links()
+.internal-text-links()
 {
     a
     {
+        .transition(all 250ms ease-out);
 
+        border-bottom: 2px solid @black_90;
+        color: @black_24;
+        text-decoration: none;
+
+        &:hover
+        {
+            border-color: @black_38;
+        }
     }
 }
 
@@ -339,7 +348,8 @@ ul#contact
     {
         a
         {
-            color: #3d3d3d;
+            border: 0;
+            color: @black_24;
             text-decoration: none;
 
             /*
@@ -349,7 +359,7 @@ ul#contact
                 .rounded(1em); // 13px
 
                 background: @blue_light;
-                color: #3d3d3d;
+                color: @black_24;
                 content: '\f08e';
                 display: inline-block;
                 font-family: 'FontAwesome';
@@ -369,7 +379,7 @@ ul#contact
                 span.first-words,
                 span.no-wrap span.last-word
                 {
-                    border-color: #606060;
+                    border-color: @black_38;
                 }
 
                 span.no-wrap span.icon span.svg-container
@@ -383,7 +393,7 @@ ul#contact
             {
                 .transition(all 250ms ease-out);
 
-                border-bottom: 2px solid #e5e5e5;
+                border-bottom: 2px solid @black_90;
             }
 
             span.no-wrap
@@ -437,6 +447,79 @@ ul#contact
                 }
             }
         }
+    }
+}
+
+.highlight-text-base(@color: #000, @hover-selector-param: ':hover')
+{
+    @hover-selector: ~'@{hover-selector-param}';
+
+    display: inline-block;
+    // padding: 0.069em 0.139em; // 5px 10px
+    padding: 0 0.139em; // 0 10px
+    position: relative;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+    transition: all 250ms ease-out;
+
+    &@{hover-selector}
+    {
+
+    }
+
+    &::after
+    {
+        transition: all 250ms ease-out;
+        content: '';
+        background: @color;
+        display: block;
+        position: absolute;
+            z-index: -1;
+    }
+}
+
+.highlight-text-ltr(@color: #000, @hover-selector-param: ':hover', @percentage: 100%)
+{
+    .highlight-text-base(@color, @hover-selector-param);
+
+    @hover-selector: ~'@{hover-selector-param}';
+
+    &::after
+    {
+        // height: 1.090em;
+        height: @percentage;
+        // Using bottom instead of top to keep spacing similar between
+        // variations.
+        // top: 0.069em; // 5px
+        bottom: (100% - @percentage) / 2;
+        left: 0;
+        width: 0%;
+    }
+
+    &@{hover-selector}::after
+    {
+        width: 100%;
+    }
+}
+
+.highlight-text-btt(@color: #000, @hover-selector-param: ':hover')
+{
+    .highlight-text-base(@color, @hover-selector-param);
+
+    @hover-selector: ~'@{hover-selector-param}';
+
+    &::after
+    {
+        height: 0;
+        bottom: 0.069em; // 5px
+        left: 0;
+        width: 100%;
+    }
+
+    &@{hover-selector}::after
+    {
+        height: 1.090em;
     }
 }
 
