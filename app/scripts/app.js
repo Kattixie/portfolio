@@ -17,9 +17,10 @@ angular
         'ngSanitize',
         'ngTouch'
     ])
+    .config( LogDecorator )
     .config( function($logProvider, $routeProvider) {
 
-        $logProvider.debugEnabled(true);
+        //$logProvider.debugEnabled(true);
 
         $routeProvider
             .when('/', {

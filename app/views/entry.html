@@ -6,7 +6,7 @@
                 <div ng-bind-html="data.entry.title" class="inner-sidebar">{{::data.entry.title}}</div>
             </h1>
 
-            <div class="main-gallery">
+            <div class="main-gallery" my-content-marker>
                 <div class="main-gallery-item"
                     ng-repeat="(index, media) in data.entry.images"
                     ng-class="{ transparent: media.transparent }">

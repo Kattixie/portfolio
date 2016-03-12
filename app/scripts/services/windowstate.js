@@ -10,7 +10,7 @@
  */
 angular
     .module('portfolio')
-    .factory('WindowState', function( $log, $window, $timeout )
+    .factory('WindowState', function( $log, $window, $document, $timeout )
     {
         var service =
         {
@@ -19,10 +19,16 @@ angular
 
             defaultDelay:       500,
             resizeEventPrefix:  'resize',
-            scrollEventPrefix:  'scroll'
+            scrollEventPrefix:  'scroll',
+
+            SCROLL_UP:          'up',
+            SCROLL_DOWN:        'down'
         };
 
-        var _timeouts = [];
+        var _timeouts = [],
+            _prevDir,
+            _currDir,
+            _prevPageYOffset;
 
         // Private Methods
 
@@ -148,6 +154,164 @@ angular
             }
 
             _destroyEvent(timeoutId, event);
+        };
+
+        /* SCROLL POSITION */
+
+        // Returns pixels scrolled from top.
+        service.getPixelsScrolledY = function()
+        {
+            return $window.pageYOffset;
+        };
+
+        service.getViewportTopPosition = function()
+        {
+            return service.getPixelsScrolledY();
+        };
+
+        service.getViewportBottomPosition = function()
+        {
+            return service.getPixelsScrolledY() + service.jqWindow.height();
+        };
+
+        service.scrollDirectionHasChanged = function()
+        {
+            return _prevDir !== service.getScrollDirection();
+        };
+
+        service.getScrollDirection = function()
+        {
+            var currPageYOffset = $window.pageYOffset,
+                dir;
+
+            // Return stored direction if the offsets are the same.
+            // This can happen if this function is called numerous times on
+            // one scroll event.
+            if ( _currDir && currPageYOffset === _prevPageYOffset )
+            {
+                // $log.debug('WindowState', 'No need to update current direction.');
+
+                return _currDir;
+            }
+
+            // $log.debug('WindowState', 'Comparing current position [%s] to prev position [%s]', currPageYOffset, _prevPageYOffset);
+
+            if ( _prevPageYOffset === undefined || currPageYOffset > _prevPageYOffset )
+            {
+                dir = service.SCROLL_DOWN;
+            }
+            else
+            {
+                dir = service.SCROLL_UP;
+            }
+
+            $log.debug('WindowState', 'Upating position');
+
+            _prevPageYOffset = currPageYOffset;
+
+            // Assign previous direction so we can detect changes in direction.
+            _prevDir = _currDir;
+
+            // Assign what we've determined is the current direction.
+            _currDir = dir;
+
+            return dir;
+        };
+
+        /**
+         * Determines if element is in view.
+         * @param elementScrollProps - Element props to test position with.
+         * @param topPercentOffset - Percentage of element that needs to be in view (scrolling down).
+         * @param bottomPercentOffset - Percentage of element that needs to be in view (scrolling up).
+         */
+        service.inView = function( props, topPercentOffset, bottomPercentOffset )
+        {
+            if ( ! topPercentOffset )
+            {
+                topPercentOffset = 0;
+            }
+
+            if ( ! bottomPercentOffset )
+            {
+                bottomPercentOffset = 0;
+            }
+
+            var dir = service.getScrollDirection(),
+                maxBoundary = $document.height(),
+                elementVitalBoundary,
+                viewportTopY = service.getViewportTopPosition(),
+                viewportBottomY = service.getViewportBottomPosition();
+
+            if ( dir === service.SCROLL_DOWN )
+            {
+                // $log.debug('WindowState', 'Scrolling down, percentage of element that must be in viewport: %s', topPercentOffset * 100 + '%');
+
+                // We are scrolling down, and the boundary is some percentage
+                // from the top of the element.
+                elementVitalBoundary = props.top + props.height * topPercentOffset;
+            }
+            else
+            {
+                // $log.debug('WindowState', 'Scrolling up, percentage of element that must be in viewport: %s', bottomPercentOffset * 100 + '%');
+
+                // We are scrolling up, and the boundary is some percentage
+                // from the bottom of the element.
+                elementVitalBoundary = props.bottom - props.height * bottomPercentOffset;
+            }
+
+            // In edge cases, we can end up with a boundary that is outside the
+            // range of the document. Enforce lower and upper limits here.
+            if ( elementVitalBoundary < 0 )
+            {
+                elementVitalBoundary = 0;
+            }
+
+            if ( elementVitalBoundary > maxBoundary)
+            {
+                elementVitalBoundary = maxBoundary;
+            }
+
+            $log.debug('WindowState', 'The element top [%s] and bottom [%s]', props.top, props.bottom);
+            $log.debug('WindowState', 'The vital element boundary: %s', elementVitalBoundary);
+
+            // Test if the boundary is above or below the appropriate viewport
+            // horizon depending on scroll direction if in back-tracking mode.
+            // Back-tracking mode is most likely being used because the element
+            // is already in view. We still test here to help us figure out
+            // when we can turn back-tracking mode off.
+            if ( props.backTrackingMode )
+            {
+                if ( dir === service.SCROLL_DOWN )
+                {
+                    if ( elementVitalBoundary > viewportTopY )
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if ( elementVitalBoundary < viewportBottomY )
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // $log.debug('WindowState', 'The viewport top [%s] and bottom [%s]', viewportTopY, viewportBottomY);
+
+            // Test if the boundary is within the viewport region. We are
+            // unaware of direction here. Note inclusive range at both endpoints.
+            if (elementVitalBoundary >= viewportTopY && elementVitalBoundary <= viewportBottomY )
+            {
+                $log.debug('WindowState', 'The element boundary is in range: %s <= %s <= %s.',
+                    viewportTopY,
+                    elementVitalBoundary,
+                    viewportBottomY);
+
+                return true;
+            }
+
+            return false;
         };
 
         return service;

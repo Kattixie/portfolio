@@ -202,11 +202,6 @@ header h1#logo {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  -webkit-transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-  transition: all 300ms ease-out;
   background-color: #f56392;
   background-image: url(../images/jess_pink.png);
   background-position: center;
@@ -223,6 +218,48 @@ header h1#logo.centered {
   top: 50%;
   left: 50%;
   z-index: 101;
+}
+header h1#logo.ng-visible {
+  -webkit-animation: 200ms cubic-bezier(0.47, 0, 0.745, 0.715) slideInLogo;
+  -moz-animation: 200ms cubic-bezier(0.47, 0, 0.745, 0.715) slideInLogo;
+  -o-animation: 200ms cubic-bezier(0.47, 0, 0.745, 0.715) slideInLogo;
+  animation: 200ms cubic-bezier(0.47, 0, 0.745, 0.715) slideInLogo;
+}
+header h1#logo.ng-hidden,
+header h1#logo.ng-hidden-remove {
+  top: -3.4375em;
+}
+@-webkit-keyframes slideInLogo {
+  from {
+    top: -3.4375em;
+  }
+  to {
+    top: 50%;
+  }
+}
+@-moz-keyframes slideInLogo {
+  from {
+    top: -3.4375em;
+  }
+  to {
+    top: 50%;
+  }
+}
+@-o-keyframes slideInLogo {
+  from {
+    top: -3.4375em;
+  }
+  to {
+    top: 50%;
+  }
+}
+@keyframes slideInLogo {
+  from {
+    top: -3.4375em;
+  }
+  to {
+    top: 50%;
+  }
 }
 header h1#logo a {
   color: #fff;
@@ -468,23 +505,23 @@ nav#nav-main.compact a#nav-icon {
 nav#nav-main.compact a#nav-icon svg {
   height: 4.875rem;
 }
-nav#nav-main.compact .wrapper {
+nav#nav-main.compact .nav-icon-wrapper {
   background: #fff;
   border-bottom: 1px solid transparent;
 }
 nav#nav-main.compact.collapsed {
-  -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  -moz-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
-  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.04);
+  -webkit-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.07);
+  box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.07);
 }
-nav#nav-main.compact.collapsed .wrapper {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+nav#nav-main.compact.collapsed .nav-icon-wrapper {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 nav#nav-main.centered a#nav-icon {
   float: none;
   margin: 0 auto;
 }
-nav#nav-main .wrapper {
+nav#nav-main .nav-icon-wrapper {
   overflow: hidden;
   border-bottom: 1px solid transparent;
 }
@@ -546,7 +583,6 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main a#nav-icon {
     display: block;
     float: right;
-    font-size: 1rem;
     margin-right: 1.5625rem;
     position: relative;
     top: 0;
@@ -2424,6 +2460,25 @@ div.loader .spinner {
   font-family: 'Archivo Narrow', sans-serif;
   font-size: 2.125em;
   line-height: 1.324em;
+  position: relative;
+}
+#about .intro.ng-visible {
+  animation-name: fadeInIntro;
+  animation-duration: 500ms;
+}
+#about .intro.ng-hidden,
+#about .intro.ng-hidden-remove {
+  opacity: 0;
+}
+@keyframes fadeInIntro {
+  from {
+    opacity: 0;
+    top: 1.000em;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
 }
 #about .media-item {
   margin: 3.125rem 0;
@@ -2440,13 +2495,32 @@ div.loader .spinner {
 }
 #about .media-item .media .flag .pointer {
   position: absolute;
-  bottom: -0.769em;
+  bottom: -9px;
   left: 0;
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0.769em 0.769em 0 0;
+  border-width: 10px 10px 0 0;
   border-color: #f56392 transparent transparent transparent;
+}
+#about .media-item .media .flag.ng-visible {
+  animation-name: fadeInFlag;
+  animation-delay: 300ms;
+  animation-duration: 500ms;
+}
+#about .media-item .media .flag.ng-hidden,
+#about .media-item .media .flag.ng-hidden-remove {
+  opacity: 0;
+}
+@keyframes fadeInFlag {
+  from {
+    opacity: 0;
+    margin-top: 1.000em;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
 }
 #about .media-item .media .crosshair {
   position: relative;

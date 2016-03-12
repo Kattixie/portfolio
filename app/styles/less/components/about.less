@@ -12,6 +12,34 @@
         font-family: @title_face;
         font-size: 2.125em; // 34px
         line-height: 1.324em; // 45px
+        position: relative;
+
+        &.ng-visible
+        {
+            animation-name: fadeInIntro;
+            animation-duration: 500ms;
+        }
+
+        &.ng-hidden,
+        &.ng-hidden-remove
+        {
+            opacity: 0;
+        }
+
+        @keyframes fadeInIntro
+        {
+            from
+            {
+                opacity: 0;
+                top: 1.000em;
+            }
+
+            to
+            {
+                opacity: 1;
+                top: 0;
+            }
+        }
     }
 
     .media-item
@@ -36,14 +64,46 @@
                 .pointer
                 {
                     position: absolute;
-                        bottom: -1 * 0.769em; // -10px
+                        // bottom: -1 * 0.769em; // -10px
+                        // A gap is visible in some cases, so let's overlap
+                        // this a little and set the pointer in pixels.
+                        bottom: -9px;
                         left: 0;
 
                     width: 0;
                     height: 0;
                     border-style: solid;
-                    border-width: 0.769em 0.769em 0 0; // 10px 10px 0 0
+                    // border-width: 0.769em 0.769em 0 0; // 10px 10px 0 0
+                    border-width: 10px 10px 0 0;
                     border-color: @hot_pink transparent transparent transparent;
+                }
+
+                &.ng-visible
+                {
+                    animation-name: fadeInFlag;
+                    animation-delay: 300ms;
+                    animation-duration: 500ms;
+                }
+
+                &.ng-hidden,
+                &.ng-hidden-remove
+                {
+                    opacity: 0;
+                }
+
+                @keyframes fadeInFlag
+                {
+                    from
+                    {
+                        opacity: 0;
+                        margin-top: 1.000em;
+                    }
+
+                    to
+                    {
+                        opacity: 1;
+                        margin-top: 0;
+                    }
                 }
             }
 
