@@ -56,7 +56,7 @@ function LogDecorator($provide, $logProvider, config)
         }
 
         var min = 0,
-            max = enabledNamespaces.length;
+            max = enabledNamespaces.length - 1;
 
         while ( min <= max )
         {
