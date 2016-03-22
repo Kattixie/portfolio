@@ -18,166 +18,172 @@ angular
             templateUrl: 'views/primarynav.html',
             controller: function($scope, $element)
             {
-                var self = this;
+                var ctrl = this;
 
                 // Elements
 
-                self.container = $element.find('nav');
-                self.dropdownMenu = $element.find('.nav-items');
-                self.primaryListItems = self.dropdownMenu.find('ul.nav-primary');
-                self.hamburgerIcon = $element.find('#nav-icon');
-                self.logo = $element.find('h1#logo');
-
-                MenuState.setHamburgerIcon( self.hamburgerIcon );
+                ctrl.container = $element.find('nav');
+                ctrl.dropdownMenu = $element.find('.nav-items');
+                ctrl.primaryListItems = ctrl.dropdownMenu.find('ul.nav-primary');
+                ctrl.hamburgerIcon = $element.find('#nav-icon');
+                ctrl.logo = $element.find('h1#logo');
 
                 // Values
 
-                self.prevPageYOffset = $window.pageYOffset;
-                self.contentPositionY = 0;
-                self.positionYCompactUp = undefined;
-                self.positionYCompactDown = undefined;
-                self.resizeTimeoutId = undefined;
-                self.scrollTimeoutId = undefined;
+                ctrl.resizeTimeoutId = undefined;
+                ctrl.scrollTimeoutId = undefined;
 
                 // Timers
 
                 var _positionTO;
 
-                self.init = function()
+                ctrl.init = function()
                 {
-                    self.setCompactPositions();
-                    self.setMenu();
+                    MenuState.setIcon( ctrl.hamburgerIcon );
+
+                    ctrl.reset();
+                };
+
+                ctrl.reset = function()
+                {
+                    ctrl.setContentPosition();
+                    ctrl.setMenuDefaults();
                 };
 
                 /* SETUP */
 
-                self.setMenuHeight = function( height )
+                ctrl.setMenuHeight = function( height )
                 {
                     if ( ! height )
                     {
                         var originalProps =
                         {
-                            display: self.dropdownMenu.css('display'),
-                            visibility: self.dropdownMenu.css('visibility')
+                            display: ctrl.dropdownMenu.css('display'),
+                            visibility: ctrl.dropdownMenu.css('visibility')
                         };
 
                         // $log.debug('The original properties: %o', originalProps);
 
-                        self.dropdownMenu.css({
+                        ctrl.dropdownMenu.css({
                             visibility: 'hidden',
                             display:    'block'
                         });
 
-                        var position = self.dropdownMenu.offset();
+                        var position = ctrl.dropdownMenu.offset();
 
-                        self.dropdownMenu.css( originalProps );
+                        ctrl.dropdownMenu.css( originalProps );
 
                         height = WindowState.jqWindow.height() - position.top;
                     }
 
-                    self.dropdownMenu.height( height );
+                    ctrl.dropdownMenu.height( height );
 
-                    // $log.debug('The offset of element %o: %s', self.dropdownMenu, position.top);
+                    // $log.debug('The offset of element %o: %s', ctrl.dropdownMenu, position.top);
                 };
 
-                self.setMenu = function()
+                ctrl.setMenuDefaults = function()
                 {
                     if ( MenuState.isCollapsible() )
                     {
-                        self.setCollapsibleDefaults();
+                        ctrl.setCollapsibleDefaults();
+                        ctrl.setCompactedDefaults();
                     }
                     else
                     {
-                        self.setHorizontalDefaults();
+                        ctrl.setHorizontalDefaults();
                     }
+
+                    ctrl.setAlignmentDefaults();
                 };
 
                 // Establishes default settings/behavior for when menu is in
                 // non-collapsible horizontal state on larger screens.
-                self.setHorizontalDefaults = function()
+                ctrl.setHorizontalDefaults = function()
                 {
-                    self.dropdownMenu.show();
+                    ctrl.dropdownMenu.show();
 
-                    // self.setMenuHeight('auto');
+                    // ctrl.setMenuHeight('auto');
 
-                    MenuState.isOpen = false;
+                    MenuState.setCollapsed(false);
 
-                    self.container.removeClass( MenuState.collapsedClassName );
+                    // ctrl.container.removeClass( MenuState.collapsedClassName );
                 };
 
                 // Establishes default settings/behavior for when menu is in
                 // collapsible vertical state on smaller screens.
-                self.setCollapsibleDefaults = function()
+                ctrl.setCollapsibleDefaults = function()
                 {
-                    self.dropdownMenu.hide();
+                    ctrl.dropdownMenu.hide();
 
                     // Iffy on whether or not this is a behavior I want.
-                    // self.setMenuHeight();
+                    // ctrl.setMenuHeight();
 
-                    MenuState.isOpen = false;
+                    MenuState.addCollapsibleElement( ctrl.container );
 
-                    self.container.addClass( MenuState.collapsedClassName );
+                    MenuState.setCollapsed(false);
+
+                    //ctrl.container.addClass( MenuState.collapsedClassName );
+                };
+
+                ctrl.setAlignmentDefaults = function()
+                {
+                    MenuState.addCenterableElement( ctrl.container );
+                    MenuState.addCenterableElement( ctrl.logo );
+
+                    MenuState.isCentered(false);
+                };
+
+                ctrl.setCompactedDefaults = function()
+                {
+                    MenuState.addCompactibleElement( ctrl.container );
+
+                    MenuState.setCompacted(false);
                 };
 
                 // Determines if the menu should have "centered" state and
                 // returns answer.
-                self.isCentered = function()
+                ctrl.isCentered = function()
                 {
                     // If a slug parameter exists, an entry exists. Assume
                     // centered state.
                     if ( $routeParams.slug )
                     {
-                        MenuState.isCentered = true;
+                        MenuState.setCentered(true);
                     }
                     else
                     {
-                        MenuState.isCentered = false;
+                        MenuState.setCentered(false);
                     }
 
-                    return MenuState.isCentered;
+                    return MenuState.isCentered();
                 };
 
                 // Sets element classes based on current menu alignment.
-                self.setMenuAlignment = function()
+                ctrl.setMenuAlignment = function()
                 {
-                    if ( self.isCentered() )
+                    if ( MenuState.isCollapsible() && ctrl.isCentered() )
                     {
-                        if ( ! self.container.hasClass( MenuState.centerClassName ) )
-                        {
-                            self.container.addClass( MenuState.centerClassName );
-                        }
+                        MenuState.setCentered(true);
                     }
                     else
                     {
-                        self.container.removeClass( MenuState.centerClassName );
-                    }
-                };
-
-                self.setLogo = function()
-                {
-                    if ( MenuState.isCollapsible() && self.isCentered() )
-                    {
-                        self.logo.addClass( MenuState.centerClassName );
-                    }
-                    else
-                    {
-                        self.logo.removeClass( MenuState.centerClassName );
+                        MenuState.setCentered(false);
                     }
                 };
 
                 /* ACTIONS */
 
-                self.toggleMenu = function()
+                ctrl.toggleMenu = function()
                 {
                     if ( MenuState.isCollapsible() )
                     {
-                        if ( MenuState.isOpen )
+                        if ( MenuState.isCollapsed() )
                         {
-                            self.closeMenu();
+                            ctrl.openMenu();
                         }
                         else
                         {
-                            self.openMenu();
+                            ctrl.closeMenu();
                         }
                     }
                     else
@@ -186,16 +192,16 @@ angular
                     }
                 };
 
-                self.openMenu = function( duration )
+                ctrl.openMenu = function( duration )
                 {
                     if ( ! duration )
                     {
                         duration = 300;
                     }
 
-                    self.primaryListItems.addClass('animating');
+                    ctrl.primaryListItems.addClass('animating');
 
-                    self.dropdownMenu
+                    ctrl.dropdownMenu
                         .velocity('slideDown',
                         {
                             delay:  0,
@@ -203,25 +209,25 @@ angular
                             easing: 'easeInBack',
                             complete: function()
                             {
-                                self.primaryListItems.removeClass('animating');
+                                ctrl.primaryListItems.removeClass('animating');
                             }
                         });
 
-                    MenuState.isOpen = true;
+                    MenuState.setCollapsed(false);
 
-                    self.container.removeClass( MenuState.collapsedClassName );
+                    // ctrl.container.removeClass( MenuState.collapsedClassName );
                 };
 
-                self.closeMenu = function( duration )
+                ctrl.closeMenu = function( duration )
                 {
                     if ( ! duration )
                     {
                         duration = 300;
                     }
 
-                    self.primaryListItems.addClass('animating');
+                    ctrl.primaryListItems.addClass('animating');
 
-                    self.dropdownMenu
+                    ctrl.dropdownMenu
                         .velocity('slideUp',
                         {
                             delay:  0,
@@ -229,105 +235,67 @@ angular
                             easing: 'easeInBack',
                             complete: function()
                             {
-                                self.primaryListItems.removeClass('animating');
+                                ctrl.primaryListItems.removeClass('animating');
                             }
                         });
 
-                    MenuState.isOpen = false;
+                    MenuState.setCollapsed(true);
 
-                    self.container.addClass( MenuState.collapsedClassName );
+                    // ctrl.container.addClass( MenuState.collapsedClassName );
                 };
 
                 /* COMPACT SETUP & BEHAVIOR */
 
-                // Retrieves content position, as determined by current
-                // sub-view's "my-content-marker" directive. If no marker has
-                // been used, a default position is chosen here.
-                self.getContentPosition = function()
-                {
-                    var position = MenuState.getContentPosition();
-
-                    // Use logo height by default if no marker exists for the
-                    // current view.
-                    if ( ! position )
-                    {
-                        position = self.logo.outerHeight();
-                    }
-
-                    return position;
-                };
-
                 // Sets position that menu should go into "compact" state at.
-                // Can be modified depending on scroll direction. The best
-                // position can be determined by adding the "my-content-marker"
-                // directive to sub-view templates.
-                self.setCompactPositions = function(position)
+                // The best position can be determined by adding the
+                // "my-content-marker" directive to sub-view template elements.
+                ctrl.setContentPosition = function()
                 {
-                    if ( ! position )
+                    if ( ! MenuState.getContentPosition() )
                     {
-                        position = self.getContentPosition();
+                        // Use logo height by default if no marker exists for the
+                        // current view.
+                        MenuState.setContentPosition( ctrl.logo, 1.00 );
                     }
-
-                    self.contentPositionY = position;
-
-                    $log.debug('myCollapsibleMenuB', 'The Y position: %s', self.contentPositionY);
-
-                    self.positionYCompactDown = self.contentPositionY;
-                    self.positionYCompactUp = self.contentPositionY;
                 };
 
                 // This works, but seems like overkill when we can less
                 // frequently rely on scroll/resize behavior to check for the
                 // position.
-                self.onPositionTO = function()
+                ctrl.onPositionTO = function()
                 {
                     _positionTO = null;
 
-                    var position = self.getContentPosition();
+                    var position = ctrl.getContentPosition();
 
-                    if (self.contentPositionY !== position)
+                    if (ctrl.contentPositionY !== position)
                     {
                         $log.debug('myCollapsibleMenuB', 'The position has changed.');
 
                         $scope.$apply(function()
                         {
-                            self.setCompactPositions(position);
+                            ctrl.setContentPosition(position);
                         });
                     }
                 };
 
-                self.setCompactMenu = function()
+                ctrl.setCompactedState = function()
                 {
-                    var position = ( $window.pageYOffset >= self.prevPageYOffset ) ? self.positionYCompactDown : self.positionYCompactUp;
-
-                    // $log.debug('Compared current offset (%s) to prev offset (%s): ', $window.pageYOffset, self.prevPageYOffset);
-                    $log.debug('myCollapsibleMenuB', 'The position to go compact is: %s', position);
-
-                    if ( $window.pageYOffset > position )
+                    if ( WindowState.hasScrolledTo( MenuState.getContentPosition() ) )
                     {
-                        if ( ! self.container.hasClass( MenuState.compactClassName ) )
-                        {
-                            self.container.addClass( MenuState.compactClassName );
+                        $log.debug('myCollapsibleMenuB', 'We have scrolled to the content position: %s', ctrl.contentPositionY);
 
-                            MenuState.isCompact = true;
-
-                            //self.setMenuHeight();
-                        }
+                        MenuState.setCompacted(true);
                     }
                     else
                     {
-                        if ( self.container.hasClass( MenuState.compactClassName ) )
-                        {
-                            self.container.removeClass( MenuState.compactClassName );
-
-                            MenuState.isCompact = false;
-                        }
+                        MenuState.setCompacted(false);
                     }
                 };
 
                 /* GALLERY MODE STATE */
 
-                self.updateGalleryMode = function( mode, callbackURI )
+                ctrl.updateGalleryMode = function( mode, callbackURI )
                 {
                     MenuState.selectedGalleryMode = mode;
 
@@ -337,59 +305,59 @@ angular
                     }
                 };
 
-                self.isSelectedGalleryMode = function( mode )
+                ctrl.isSelectedGalleryMode = function( mode )
                 {
                     return MenuState.selectedGalleryMode === mode;
                 };
 
                 /* EVENT HANDLERS */
 
-                self.onWindowResize = function()
+                ctrl.onWindowResize = function()
                 {
-                    self.setCompactPositions();
-                    self.setMenu();
-                    self.setMenuAlignment();
-                    self.setLogo();
+                    ctrl.reset();
+                    //ctrl.setContentPosition();
+                    //ctrl.setMenuDefaults();
+                    ctrl.setMenuAlignment();
+                    // ctrl.setLogo();
 
                     if ( MenuState.isCollapsible() )
                     {
-                        self.setCompactMenu();
+                        ctrl.setCompactedState();
                     }
                     // Currently, the menu is only compacted if it's also
                     // collapsible.
                     else
                     {
-                        self.container.removeClass( MenuState.compactClassName );
-
-                        MenuState.isCompact = false;
+                        MenuState.setCompacted(false);
                     }
                 };
 
-                self.onWindowScroll = function()
+                ctrl.onWindowScroll = function()
                 {
-                    self.setCompactPositions();
+                    // ctrl.setContentPosition();
 
                     if ( MenuState.isCollapsible() )
                     {
-                        self.setCompactMenu();
+                        ctrl.setCompactedState();
+
+                        if ( ! MenuState.isCollapsed() )
+                        {
+                            ctrl.closeMenu( 100 );
+                        }
                     }
-                    // Currently, the menu is only compacted if it's also collapsable.
+                    // Currently, the menu is only compacted if it's also collapsible.
                     else
                     {
-                        self.container.removeClass( MenuState.compactClassName );
-
-                        MenuState.isCompact = false;
+                        MenuState.setCompacted(false);
                     }
-
-                    self.prevPageYOffset = $window.pageYOffset;
                 };
 
                 // Really nice solution borrowed from: http://stackoverflow.com/a/22854824
-                self.onRouteChange = function()
+                ctrl.onRouteChange = function()
                 {
-                    // self.setCompactPositions();
-                    self.setMenuAlignment();
-                    self.setLogo();
+                    // ctrl.setCompactPositions();
+                    ctrl.setMenuAlignment();
+                    // ctrl.setLogo();
 
                     var hrefs = [
                                     '/#' + $location.path(),
@@ -414,41 +382,41 @@ angular
                     });
                 };
 
-                self.onNavItemClick = function()
+                ctrl.onNavItemClick = function()
                 {
-                    if ( MenuState.isOpen && MenuState.isCollapsible() )
+                    if ( MenuState.isCollapsible() && ! MenuState.isCollapsed() )
                     {
-                        self.closeMenu( 100 );
+                        ctrl.closeMenu( 100 );
                     }
                 };
 
-                self.onDestroy = function()
+                ctrl.onDestroy = function()
                 {
-                    WindowState.destroyResize( self.resizeTimeoutId, 'primarynav' );
-                    WindowState.destroyScroll( self.scrollTimeoutId, 'primarynav' );
+                    WindowState.destroyResize( ctrl.resizeTimeoutId, 'primarynav' );
+                    WindowState.destroyScroll( ctrl.scrollTimeoutId, 'primarynav' );
 
                     $timeout.cancel( _positionTO );
                 };
 
-                //self.init();
+                ctrl.init();
 
-                self.resizeTimeoutId = WindowState.onResize(self.onWindowResize, 'primarynav', 100);
-                self.scrollTimeoutId = WindowState.onScroll(self.onWindowScroll, 'primarynav', 10);
+                ctrl.resizeTimeoutId = WindowState.onResize(ctrl.onWindowResize, 'primarynav', 100);
+                ctrl.scrollTimeoutId = WindowState.onScroll(ctrl.onWindowScroll, 'primarynav', 10);
 
-                $scope.$on('$routeChangeSuccess', self.onRouteChange);
-                $scope.$on('$destroy', self.onDestroy);
+                $scope.$on('$routeChangeSuccess', ctrl.onRouteChange);
+                $scope.$on('$destroy', ctrl.onDestroy);
 
                 /*
                 $scope.$watch(function()
                 {
                     if ( ! _positionTO )
                     {
-                        _positionTO = $timeout(self.onPositionTO, 50);
+                        _positionTO = $timeout(ctrl.onPositionTO, 50);
                     }
                 });
                 */
 
-                self.dropdownMenu.find('a').on('click', self.onNavItemClick);
+                ctrl.dropdownMenu.find('a').on('click', ctrl.onNavItemClick);
             }
         };
     });

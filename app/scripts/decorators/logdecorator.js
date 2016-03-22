@@ -80,4 +80,4 @@ function LogDecorator($provide, $logProvider, config)
     };
 
     this.init();
-};
+}

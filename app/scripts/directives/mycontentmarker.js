@@ -16,7 +16,7 @@ angular
         {
             restrict: 'A',
             priority: 1,
-            link: function(scope, iElement)
+            link: function(scope, iElement, iAttrs)
             {
                 var self = {};
 
@@ -26,12 +26,28 @@ angular
                     // thousands of pixels off. All I can figure is that it's
                     // a result of a sub-view being in the process of loading.
                     // All attempts to detect when sub-views have finished
-                    // have failed. Is there a better way?
+                    // have failed. Is there a better way? Possibly also related
+                    // to CSS animation fade-in for view?
                     $timeout(function()
                     {
-                        MenuState.setContentPosition( iElement );
+                        if (iAttrs.startAt === 'first')
+                        {
+                            $log.debug('myContentMarker', 'Choosing the first child.');
 
-                        $log.debug('Setting content marker element.');
+                            iElement = iElement.children().eq(0);
+                        }
+                        else if (iAttrs.startAt === 'mid')
+                        {
+                            var children = iElement.children();
+
+                            $log.debug('myContentMarker', 'The number of children: %s', children.length);
+
+                            $log.debug('myContentMarker', 'Choosing the mid child at index [%s].', Math.floor(children.length / 2));
+
+                            iElement = children.eq( Math.floor(children.length / 2) );
+                        }
+
+                        MenuState.setContentPosition( iElement, iAttrs.entrancePoint );
 
                     }, 300);
                 };

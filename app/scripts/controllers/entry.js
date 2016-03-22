@@ -34,7 +34,7 @@ angular
         $scope.data = {};
         $scope.data.entry = null;
 
-        MenuState.isCentered = true;
+        MenuState.isCentered(true);
 
         Entry
             .getBySlug( $routeParams.slug )

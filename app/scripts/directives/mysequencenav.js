@@ -27,12 +27,9 @@ angular
             templateUrl: 'views/sequencenav.html',
             controller: function($scope, $element)
             {
-                var self = this;
+                var ctrl = this;
 
-                self.resizeTimeoutId = null;
-                self.scrollTimeoutId = null;
-
-                self.container = $element.find('nav');
+                ctrl.container = $element.find('nav');
 
                 $scope.paths =
                 {
@@ -55,46 +52,37 @@ angular
                     $scope.paths.nextURI = nextURI;
                 };
 
-                self.prevExists = function()
+                ctrl.init = function()
+                {
+                    ctrl.setCompactedDefaults();
+                };
+
+                ctrl.setCompactedDefaults = function()
+                {
+                    // This ties the container to MenuState behavior so that
+                    // we don't have to duplicate behavior here that exists
+                    // in other core menu directives.
+                    MenuState.addCompactibleElement( ctrl.container );
+                };
+
+                ctrl.prevExists = function()
                 {
                     return $scope.paths.prevURI;
                 };
 
-                self.nextExists = function()
+                ctrl.nextExists = function()
                 {
                     return $scope.paths.nextURI;
                 };
 
-                self.setCompactMenu = function()
-                {
-                    if ( MenuState.isCompact )
-                    {
-                        $log.debug('The sequence menu is compact, making sure compact class is on.');
-
-                        if ( ! self.container.hasClass( MenuState.compactClassName ) )
-                        {
-                            self.container.addClass( MenuState.compactClassName );
-                        }
-                    }
-                    else
-                    {
-                        $log.debug('The sequence menu is not compact, taking off compact class.');
-
-                        if ( self.container.hasClass( MenuState.compactClassName ) )
-                        {
-                            self.container.removeClass( MenuState.compactClassName );
-                        }
-                    }
-                };
-
                 // Event Handlers
 
-                self.onNext = function()
+                ctrl.onNext = function()
                 {
                     $location.url( $scope.paths.nextURI );
                 };
 
-                self.onPrev = function()
+                ctrl.onPrev = function()
                 {
                     $location.url( $scope.paths.prevURI );
                 };
@@ -108,47 +96,23 @@ angular
                 // display in the meantime. It assumes any element that's a
                 // child of this one will have a slug value of some sort to
                 // distinguish between elements in the sequence.
-                self.onRouteChange = function()
+                ctrl.onRouteChange = function()
                 {
                     if ( $routeParams.slug )
                     {
-                        self.container.addClass('sequenced');
+                        ctrl.container.addClass('sequenced');
                     }
                     else
                     {
-                        self.container.removeClass('sequenced');
+                        ctrl.container.removeClass('sequenced');
                     }
-                };
-
-                self.onWindowResize = function()
-                {
-                    if ( MenuState.isCollapsible() )
-                    {
-                        self.setCompactMenu();
-                    }
-                    else
-                    {
-                        self.container.removeClass( MenuState.compactClassName );
-                    }
-
-                };
-
-                self.onWindowScroll = function()
-                {
-                    self.setCompactMenu();
-                };
-
-                self.onDestroy = function()
-                {
-                    WindowState.destroyResize( self.resizeTimeoutId, 'sequencenav' );
-                    WindowState.destroyScroll( self.scrollTimeoutId, 'sequencenav' );
                 };
 
                 Keyboard.on('LEFT', function()
                 {
                     if ( $routeParams.slug )
                     {
-                        self.onPrev();
+                        ctrl.onPrev();
                     }
                 });
 
@@ -156,17 +120,13 @@ angular
                 {
                     if ( $routeParams.slug )
                     {
-                        self.onNext();
+                        ctrl.onNext();
                     }
                 });
 
-                $scope.$on('$routeChangeSuccess', self.onRouteChange);
+                $scope.$on('$routeChangeSuccess', ctrl.onRouteChange);
 
-                self.resizeTimeoutId = WindowState.onResize(self.onWindowResize, 'sequencenav', 100);
-                self.scrollTimeoutId = WindowState.onScroll(self.onWindowScroll, 'sequencenav', 300);
-
-                // self.eWindow.bind('resize', self.onWindowResize);
-                // self.eWindow.bind('scroll', self.onWindowScroll);
+                ctrl.init();
             }
         };
     });

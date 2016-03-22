@@ -16,9 +16,6 @@ angular
         var service =
         {
             selectedGalleryMode:    null,
-            isOpen:                 false,
-            isCompact:              false,
-            isCentered:             false,
 
             collapsedClassName:     'collapsed',
             compactClassName:       'compact',
@@ -26,18 +23,155 @@ angular
             centerClassName:        'centered'
         };
 
-        var _hamburgerIcon;
+        var _isCompact = false,
+            _isCollapsed = false,
+            _isCentered = false;
+
+        var _icon;
 
         var _currContentElement;
 
         var _contentPositionY;
 
-        service.setHamburgerIcon = function( element )
+        var _collapsibleElements = [];
+
+        var _compactibleElements = [];
+
+        var _centerableElements = [];
+
+        service.isCompacted = function()
         {
-            _hamburgerIcon = element;
+            return _isCompact;
         };
 
-        service.setContentPosition = function( element )
+        service.isCollapsed = function()
+        {
+            return _isCollapsed;
+        };
+
+        service.isCentered = function()
+        {
+            return _isCentered;
+        };
+
+        service.setIcon = function( element )
+        {
+            _icon = element;
+        };
+
+        service.addCollapsibleElement = function( element )
+        {
+            _collapsibleElements.push(element);
+        };
+
+        service.addCompactibleElement = function( element )
+        {
+            $log.debug('MenuState', 'Adding a compactible element.');
+
+            _compactibleElements.push(element);
+        };
+
+        service.addCenterableElement = function( element )
+        {
+            _centerableElements.push(element);
+        };
+
+        service.setCompacted = function( isCompact )
+        {
+            var switchedState = ( _isCompact !== isCompact );
+
+            // $log.debug('MenuState', 'Comparing passed compact state to set compact state: %s vs. %s', isCompact, _isCompact);
+
+            if ( ! switchedState )
+            {
+                // $log.debug('MenuState', 'The compact state has not changed.');
+
+                return switchedState;
+            }
+
+            // $log.debug('MenuState', 'Changing compact state to: %s', isCompact);
+
+            _isCompact = isCompact;
+
+            // $log.debug('MenuState', 'The number of compactible elements: %s', _compactibleElements.length);
+
+            for (var i = 0; i < _compactibleElements.length; i++)
+            {
+                if (_isCompact)
+                {
+                    if ( ! _compactibleElements[i].hasClass(service.compactClassName) )
+                    {
+                        _compactibleElements[i].addClass(service.compactClassName);
+                    }
+                }
+                else
+                {
+                    if ( _compactibleElements[i].hasClass(service.compactClassName))
+                    {
+                        _compactibleElements[i].removeClass(service.compactClassName);
+                    }
+                }
+            }
+
+            return switchedState;
+        };
+
+        service.setCollapsed = function( isCollapsed )
+        {
+            var switchedState = ( _isCollapsed !== isCollapsed );
+
+            if ( ! switchedState )
+            {
+                return switchedState;
+            }
+
+            _isCollapsed = isCollapsed;
+
+            for (var i = 0; i < _collapsibleElements.length; i++)
+            {
+                if ( _isCollapsed )
+                {
+                    _collapsibleElements[i].addClass(service.collapsedClassName);
+                }
+                else
+                {
+                    _collapsibleElements[i].removeClass(service.collapsedClassName);
+                }
+            }
+
+            return switchedState;
+        };
+
+        service.setCentered = function( isCentered )
+        {
+            var switchedState = ( _isCentered !== isCentered );
+
+            if ( ! switchedState )
+            {
+                return switchedState;
+            }
+
+            _isCentered = isCentered;
+
+            for (var i = 0; i < _centerableElements.length; i++)
+            {
+                if ( _isCentered )
+                {
+                    if ( ! _centerableElements[i].hasClass(service.centerClassName) )
+                    {
+                        _centerableElements[i].addClass(service.centerClassName);
+                    }
+                }
+                else
+                {
+                    _centerableElements[i].removeClass(service.centerClassName);
+                }
+            }
+
+            return switchedState;
+        };
+
+        service.setContentPosition = function( element, entrancePoint )
         {
             if ( element )
             {
@@ -49,12 +183,19 @@ angular
                 _contentPositionY = _currContentElement.offset().top;
             }
 
-            $log.debug('The content position from MenuState: %s', _contentPositionY);
+            if ( entrancePoint )
+            {
+                $log.debug('MenuState', 'Applying an offset... %s', _currContentElement.height() * entrancePoint);
+
+                _contentPositionY = _contentPositionY + _currContentElement.height() * entrancePoint;
+            }
+
+            $log.debug('MenuState', 'The content position: %s', _contentPositionY);
         };
 
         service.getContentPosition = function()
         {
-            service.setContentPosition();
+            // service.setContentPosition();
 
             return _contentPositionY;
         };
@@ -67,7 +208,7 @@ angular
 
         service.isCollapsible = function()
         {
-            return ( _hamburgerIcon.filter(':visible').length > 0 ) ? true : false;
+            return ( _icon.filter(':visible').length > 0 ) ? true : false;
         };
 
         // Public API

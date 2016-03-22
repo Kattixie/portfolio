@@ -205,7 +205,7 @@ angular
                 dir = service.SCROLL_UP;
             }
 
-            $log.debug('WindowState', 'Upating position');
+            // $log.debug('WindowState', 'Upating position');
 
             _prevPageYOffset = currPageYOffset;
 
@@ -218,11 +218,111 @@ angular
             return dir;
         };
 
+        service.applyWindowOffsetTo = function( positionY, windowOffset, offsetDir )
+        {
+            if ( windowOffset )
+            {
+                if ( ! offsetDir )
+                {
+                    offsetDir = -1;
+                }
+
+                var height = service.jqWindow.height();
+
+                var oldPosition = positionY;
+
+                positionY = positionY + offsetDir * height * windowOffset;
+
+                if ( positionY < 0 )
+                {
+                    positionY = 0;
+                }
+
+                $log.debug('WindowState', 'The offset has been applied: %s --> %s', oldPosition, positionY);
+            }
+
+            return positionY;
+        };
+
+        /**
+         * Determines if the position has been scrolled to from the top of the
+         * document.
+         */
+        service.hasScrolledTo = function( pixelsY, windowOffset )
+        {
+            pixelsY = service.applyWindowOffsetTo( pixelsY, windowOffset );
+
+            // $log.debug('WindowState', 'The position compared to the pixels scrolled: %s vs. %s', pixelsY, service.getPixelsScrolledY());
+
+            return pixelsY <= service.getPixelsScrolledY();
+        };
+
+        /**
+         * Determines if the position has entered the viewport from an
+         * a horizon that corresponds with the scroll direction.
+         * @param positionY - The vertical position in question.
+         * @param dir - The scroll direction. This is important because we need
+         *  to know if we're looking for the position from the top or bottom of
+         *  the window. If no direction is provided, the most recent scroll
+         *  direction is used.
+         * @param windowOffset - A positive or negative percentage of the
+         *  viewport to apply as an offset. A value of -1.00, for instance,
+         *  would trigger a "true" response if scrolling down once the position
+         *  is at the top of the viewport (position - 100% of the window).
+         */
+        service.hasEnteredViewport = function( positionY, dir, windowOffset )
+        {
+            if ( ! dir )
+            {
+                dir = service.getScrollDirection();
+            }
+
+            var horizon;
+
+            positionY = service.applyWindowOffsetTo( positionY, windowOffset );
+
+            if ( dir === service.SCROLL_DOWN )
+            {
+                horizon = service.getViewportBottomPosition();
+
+                if ( positionY <= horizon )
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            else
+            {
+                horizon = service.getViewportTopPosition();
+
+                if ( positionY >= horizon )
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        };
+
+        service.hasEnteredViewportFromBottom = function( positionY, windowOffset )
+        {
+            return service.hasEnteredViewport( positionY, service.SCROLL_DOWN, windowOffset );
+        };
+
+        service.hasEnteredViewportFromTop = function( positionY, windowOffset )
+        {
+            return service.hasEnteredViewport( positionY, service.SCROLL_UP, windowOffset );
+        };
+
         /**
          * Determines if element is in view.
          * @param elementScrollProps - Element props to test position with.
-         * @param topPercentOffset - Percentage of element that needs to be in view (scrolling down).
-         * @param bottomPercentOffset - Percentage of element that needs to be in view (scrolling up).
+         *  Expected properties are top, height, and bottom.
+         * @param topPercentOffset - Percentage of element that needs to be in
+         *  view (scrolling down).
+         * @param bottomPercentOffset - Percentage of element that needs to be
+         *  in view (scrolling up).
          */
         service.inView = function( props, topPercentOffset, bottomPercentOffset )
         {
@@ -271,8 +371,8 @@ angular
                 elementVitalBoundary = maxBoundary;
             }
 
-            $log.debug('WindowState', 'The element top [%s] and bottom [%s]', props.top, props.bottom);
-            $log.debug('WindowState', 'The vital element boundary: %s', elementVitalBoundary);
+            // $log.debug('WindowState', 'The element top [%s] and bottom [%s]', props.top, props.bottom);
+            // $log.debug('WindowState', 'The vital element boundary: %s', elementVitalBoundary);
 
             // Test if the boundary is above or below the appropriate viewport
             // horizon depending on scroll direction if in back-tracking mode.
