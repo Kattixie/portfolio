@@ -13,44 +13,15 @@ angular
         return {
             restrict: 'E',
             controllerAs: 'sequenceNav',
-            // Let's talk about this scope: true value. This property
-            // establishes new child scope for this directive. It has the
-            // potential to break anything that relies on this directive being
-            // part of a broader scope. We can't refer to methods in this
-            // controller through $scope.methodName anymore. Instead we must use
-            // $scope.$parent syntax. Also note that scope: {...}
-            // would create "isolate" scope that does not prototypically
-            // inherit.
             scope: true,
             // bindToController: true,
-            transclude: true, // This also creates new scope. Why didn't it break $scope.methodName calls?
+            transclude: true,
             templateUrl: 'views/sequencenav.html',
             controller: function($scope, $element)
             {
                 var ctrl = this;
 
                 ctrl.container = $element.find('nav');
-
-                $scope.paths =
-                {
-                    prevURI:    null,
-                    nextURI:    null,
-                    closeURI:   null
-                };
-
-                $scope.setPrevURI = function( prevURI )
-                {
-                    $log.debug('Updating prev URI to: %s', prevURI);
-
-                    $scope.paths.prevURI = prevURI;
-                };
-
-                $scope.setNextURI = function( nextURI )
-                {
-                    $log.debug('Updating next URI to: %s', nextURI);
-
-                    $scope.paths.nextURI = nextURI;
-                };
 
                 ctrl.init = function()
                 {
@@ -67,24 +38,24 @@ angular
 
                 ctrl.prevExists = function()
                 {
-                    return $scope.paths.prevURI;
+                    return MenuState.prevExists();
                 };
 
                 ctrl.nextExists = function()
                 {
-                    return $scope.paths.nextURI;
+                    return MenuState.nextExists();
                 };
 
                 // Event Handlers
 
-                ctrl.onNext = function()
-                {
-                    $location.url( $scope.paths.nextURI );
-                };
-
                 ctrl.onPrev = function()
                 {
-                    $location.url( $scope.paths.prevURI );
+                    $location.url( MenuState.getPrevURI() );
+                };
+
+                ctrl.onNext = function()
+                {
+                    $location.url( MenuState.getNextURI() );
                 };
 
                 // This was added after all of the work to sniff out whether a

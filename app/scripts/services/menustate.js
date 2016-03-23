@@ -39,6 +39,9 @@ angular
 
         var _centerableElements = [];
 
+        var _prevURI,
+            _nextURI;
+
         service.isCompacted = function()
         {
             return _isCompact;
@@ -209,6 +212,46 @@ angular
         service.isCollapsible = function()
         {
             return ( _icon.filter(':visible').length > 0 ) ? true : false;
+        };
+
+        service.setPrevURI = function(uri)
+        {
+            _prevURI = uri;
+        };
+
+        service.setNextURI = function(uri)
+        {
+            _nextURI = uri;
+        };
+
+        service.prevExists = function()
+        {
+            if (_prevURI)
+            {
+                return true;
+            }
+
+            return false;
+        };
+
+        service.nextExists = function()
+        {
+            if (_nextURI)
+            {
+                return true;
+            }
+
+            return false;
+        };
+
+        service.getPrevURI = function()
+        {
+            return _prevURI;
+        };
+
+        service.getNextURI = function()
+        {
+            return _nextURI;
         };
 
         // Public API

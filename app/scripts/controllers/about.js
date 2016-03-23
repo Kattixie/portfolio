@@ -9,18 +9,15 @@
  */
 angular
     .module('portfolio')
-    .controller('AboutCtrl', function ($log, $scope, About, PageState)
+    .controller('AboutCtrl', function ($log, $scope, About, PageState, MenuState)
     {
         $scope.data = {};
         $scope.data.profile = null;
 
         PageState.setTitle('About');
 
-        if ( $scope.$parent.$parent )
-        {
-            $scope.$parent.$parent.setNextURI( null );
-            $scope.$parent.$parent.setPrevURI( null );
-        }
+        MenuState.setPrevURI(undefined);
+        MenuState.setNextURI(undefined);
 
         About
             .getProfile()

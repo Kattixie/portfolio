@@ -9,19 +9,15 @@
  */
 angular
     .module('portfolio')
-    .controller('MainCtrl', function ($scope, Entry, PageState)
+    .controller('MainCtrl', function ($scope, Entry, PageState, MenuState)
     {
         $scope.data = {};
         $scope.data.entries = null;
 
         PageState.setTitle();
 
-        // Yarrr...
-        if ( $scope.$parent.$parent )
-        {
-            $scope.$parent.$parent.setNextURI( null );
-            $scope.$parent.$parent.setPrevURI( null );
-        }
+        MenuState.setPrevURI(undefined);
+        MenuState.setNextURI(undefined);
 
         Entry
             .getAll()

@@ -11,14 +11,6 @@ angular
     .module('portfolio')
     .controller('EntryCtrl', function ($log, $scope, $routeParams, $sce, Entry, PageState, MenuState)
     {
-
-        // Much struggle took place in this here controller. It seems that I
-        // can't avoid using $scope if I want to invoke a parent's methods.
-        // Furthermore, if I remove "this" entirely, I can't refer to the
-        // controller via its controllerAs name. Theory: the unintuitive nature
-        // of this problem is due to both ng-view and the use of
-        // transclude: true creating new scope.
-
         var self = this;
 
         $log.debug('EntryCtrl scope: %o, this: %o', $scope, self);
@@ -46,20 +38,8 @@ angular
 
                 PageState.setTitle( $scope.data.entry.title );
 
-                // This works! We are updating the same scope as sequenceNav.
-                // But it works whether or not EntryCtrl is a child of
-                // sequenceNav. See sequenceNav comments for more details.
-                //$scope.setNextURI( $scope.data.entry.nextSlug || '/' );
-                //$scope.setPrevURI( $scope.data.entry.prevSlug || '/' );
-
-                // The chain: EntryCtrl -> ngView -> sequenceNav
-                // I know, I know, so much for decoupling!
-
-                if ( $scope.$parent.$parent )
-                {
-                    $scope.$parent.$parent.setNextURI( $scope.data.entry.nextSlug || '/' );
-                    $scope.$parent.$parent.setPrevURI( $scope.data.entry.prevSlug || '/' );
-                }
+                MenuState.setPrevURI( $scope.data.entry.prevSlug || '/' );
+                MenuState.setNextURI( $scope.data.entry.nextSlug || '/' );
 
                 self.setIframes();
                 self.setLinks();

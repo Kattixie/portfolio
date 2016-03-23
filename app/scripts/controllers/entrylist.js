@@ -9,7 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('EntryListCtrl', function ($scope, $log, $routeParams, Entry, PageState)
+    .controller('EntryListCtrl', function ($scope, $log, $routeParams, Entry, PageState, MenuState)
     {
         var self = this;
 
@@ -23,11 +23,8 @@ angular
 
         PageState.setTitle();
 
-        if ( $scope.$parent.$parent )
-        {
-            $scope.$parent.$parent.setNextURI( null );
-            $scope.$parent.$parent.setPrevURI( null );
-        }
+        MenuState.setPrevURI(undefined);
+        MenuState.setNextURI(undefined);
 
         $log.debug('The scope for EntryListCtrl: %o', $scope);
 
