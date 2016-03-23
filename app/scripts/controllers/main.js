@@ -11,8 +11,10 @@ angular
     .module('portfolio')
     .controller('MainCtrl', function ($scope, Entry, PageState, MenuState)
     {
-        $scope.data = {};
-        $scope.data.entries = null;
+        var vm = $scope;
+
+        vm.data = {};
+        vm.data.entries = null;
 
         PageState.setTitle();
 
@@ -23,6 +25,6 @@ angular
             .getAll()
             .then( function(data)
             {
-                $scope.data.entries = data;
+                vm.data.entries = data;
             });
     });

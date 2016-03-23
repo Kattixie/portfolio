@@ -11,8 +11,10 @@ angular
     .module('portfolio')
     .controller('AboutCtrl', function ($log, $scope, About, PageState, MenuState)
     {
-        $scope.data = {};
-        $scope.data.profile = null;
+        var vm = $scope;
+
+        vm.data = {};
+        vm.data.profile = null;
 
         PageState.setTitle('About');
 
@@ -23,8 +25,8 @@ angular
             .getProfile()
             .then( function(data)
             {
-                $scope.data.profile = data;
+                vm.data.profile = data;
 
-                $log.debug('The profile data: %o', $scope.data.profile);
+                $log.debug('The profile data: %o', vm.data.profile);
             });
     });

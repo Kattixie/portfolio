@@ -11,9 +11,7 @@ angular
     .module('portfolio')
     .controller('EntryCtrl', function ($log, $scope, $routeParams, $sce, Entry, PageState, MenuState)
     {
-        var self = this;
-
-        $log.debug('EntryCtrl scope: %o, this: %o', $scope, self);
+        var vm = $scope;
 
         // Using primitives or a scalar value here is bad practice due to how
         // prototypical inheritance and property shadowing works. I do think I
@@ -23,8 +21,8 @@ angular
         //     http://embed.plnkr.co/qRhLfw/preview
         // $scope.entry = null;
 
-        $scope.data = {};
-        $scope.data.entry = null;
+        vm.data = {};
+        vm.data.entry = null;
 
         MenuState.isCentered(true);
 
@@ -32,14 +30,14 @@ angular
             .getBySlug( $routeParams.slug )
             .then( function(data)
             {
-                $scope.data.entry = data;
+                vm.data.entry = data;
 
-                $log.debug('The entry for %s: %o', $routeParams.slug, $scope.data.entry);
+                $log.debug('The entry for %s: %o', $routeParams.slug, vm.data.entry);
 
-                PageState.setTitle( $scope.data.entry.title );
+                PageState.setTitle( vm.data.entry.title );
 
-                MenuState.setPrevURI( $scope.data.entry.prevSlug || '/' );
-                MenuState.setNextURI( $scope.data.entry.nextSlug || '/' );
+                MenuState.setPrevURI( vm.data.entry.prevSlug || '/' );
+                MenuState.setNextURI( vm.data.entry.nextSlug || '/' );
 
                 self.setIframes();
                 self.setLinks();
@@ -47,16 +45,16 @@ angular
 
         self.setIframes = function()
         {
-            if ( $scope.data.entry.images )
+            if ( vm.data.entry.images )
             {
-                for ( var i = 0; i < $scope.data.entry.images.length; i++)
+                for ( var i = 0; i < vm.data.entry.images.length; i++)
                 {
-                    // $log.debug('Is the path an instance of String? %s', $scope.data.entry.images[i].path instanceof String );
-                    // $log.debug('Is the path type string? %s', typeof $scope.data.entry.images[i].path === 'string');
+                    // $log.debug('Is the path an instance of String? %s', vm.data.entry.images[i].path instanceof String );
+                    // $log.debug('Is the path type string? %s', typeof vm.data.entry.images[i].path === 'string');
 
-                    if ( $scope.data.entry.images[i].type === 'vimeo' && typeof $scope.data.entry.images[i].path === 'string' )
+                    if ( vm.data.entry.images[i].type === 'vimeo' && typeof vm.data.entry.images[i].path === 'string' )
                     {
-                        $scope.data.entry.images[i].path = $sce.trustAsResourceUrl( $scope.data.entry.images[i].path );
+                        vm.data.entry.images[i].path = $sce.trustAsResourceUrl( vm.data.entry.images[i].path );
                     }
                 }
             }
@@ -64,15 +62,15 @@ angular
 
         self.setLinks = function()
         {
-            if ( $scope.data.entry.urls )
+            if ( vm.data.entry.urls )
             {
-                for ( var i = 0; i < $scope.data.entry.urls.length; i++)
+                for ( var i = 0; i < vm.data.entry.urls.length; i++)
                 {
                     // It is possible to have the links set twice if the user
                     //  visits the same entry more than once.
-                    if ( typeof $scope.data.entry.urls[i].path === 'string' )
+                    if ( typeof vm.data.entry.urls[i].path === 'string' )
                     {
-                        $scope.data.entry.urls[i].path = $sce.trustAsResourceUrl( $scope.data.entry.urls[i].path );
+                        vm.data.entry.urls[i].path = $sce.trustAsResourceUrl( vm.data.entry.urls[i].path );
                     }
                 }
             }

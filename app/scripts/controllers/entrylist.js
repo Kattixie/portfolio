@@ -11,103 +11,104 @@ angular
     .module('portfolio')
     .controller('EntryListCtrl', function ($scope, $log, $routeParams, Entry, PageState, MenuState)
     {
-        var self = this;
+        var vm = $scope,
+            ctrl = this;
 
-        $scope.data = {};
-        $scope.data.entries = [];
-        $scope.data.categories = [];
+        vm.data = {};
+        vm.data.entries = [];
+        vm.data.categories = [];
 
-        $scope.state = {};
-        $scope.state.categoryIsClicked = false;
-        $scope.state.selectedCategories = [];
+        vm.state = {};
+        vm.state.categoryIsClicked = false;
+        vm.state.selectedCategories = [];
 
         PageState.setTitle();
 
         MenuState.setPrevURI(undefined);
         MenuState.setNextURI(undefined);
 
-        $log.debug('The scope for EntryListCtrl: %o', $scope);
+        $log.debug('The scope for EntryListCtrl: %o', vm);
 
         Entry
             .getAll()
             .then( function(data)
             {
-                $scope.data.entries = data;
-                $scope.data.categories = Entry.getAllCategories();
+                vm.data.entries = data;
+                vm.data.categories = Entry.getAllCategories();
 
-                self.setDefaultCategoryState();
+                ctrl.setDefaultCategoryState();
 
-                $log.debug('The entries: %o', $scope.data.entries);
-                $log.debug('The categories: %o', $scope.data.categories);
-                $log.debug('The selected categories: %o', $scope.state.selectedCategories);
+                $log.debug('The entries: %o', vm.data.entries);
+                $log.debug('The categories: %o', vm.data.categories);
+                $log.debug('The selected categories: %o', vm.state.selectedCategories);
             });
 
         // Todo: I can probably move a lot of this to a custom directive.
-        self.setDefaultCategoryState = function()
+        ctrl.setDefaultCategoryState = function()
         {
 
             var routeCategories = ( $routeParams.categories ) ? $routeParams.categories.split(',').map(Number) : [];
 
-            $scope.state.categoryIsClicked = false;
+            vm.state.categoryIsClicked = false;
 
-            for ( var i = 0; i < $scope.data.categories.length; i++)
+            for ( var i = 0; i < vm.data.categories.length; i++)
             {
-                if ( routeCategories.indexOf( $scope.data.categories[i].id ) !== -1 )
+                if ( routeCategories.indexOf( vm.data.categories[i].id ) !== -1 )
                 {
-                    $scope.data.categories[i].isSelected = true;
+                    vm.data.categories[i].isSelected = true;
                 }
                 else
                 {
-                    $scope.data.categories[i].isSelected = null;
+                    vm.data.categories[i].isSelected = null;
                 }
 
-                if ( $scope.data.categories[i].count > 0 )
+                if ( vm.data.categories[i].count > 0 )
                 {
-                    $scope.state.selectedCategories.push( $scope.data.categories[i].id );
+                    vm.state.selectedCategories.push( vm.data.categories[i].id );
                 }
             }
         };
 
-        self.toggleCategory = function( i )
+        ctrl.toggleCategory = function( i )
         {
-            if ( ! $scope.state.categoryIsClicked )
+            if ( ! vm.state.categoryIsClicked )
             {
-                $scope.state.categoryIsClicked = true;
+                vm.state.categoryIsClicked = true;
 
-                $scope.state.selectedCategories = [];
+                vm.state.selectedCategories = [];
             }
 
-            if ( $scope.data.categories[i].isSelected === true )
+            if ( vm.data.categories[i].isSelected === true )
             {
-                $scope.data.categories[i].isSelected = false;
+                vm.data.categories[i].isSelected = false;
 
-                var j = $scope.state.selectedCategories.indexOf( $scope.data.categories[i].id );
+                var j = vm.state.selectedCategories.indexOf( vm.data.categories[i].id );
 
                 if ( j !== -1 )
                 {
-                    $scope.state.selectedCategories.splice(j, 1);
+                    vm.state.selectedCategories.splice(j, 1);
                 }
 
-                if ( $scope.state.selectedCategories.length === 0 )
+                if ( vm.state.selectedCategories.length === 0 )
                 {
-                    self.setDefaultCategoryState();
+                    ctrl.setDefaultCategoryState();
                 }
             }
             else
             {
-                $scope.data.categories[i].isSelected = true;
+                vm.data.categories[i].isSelected = true;
 
-                $scope.state.selectedCategories.push( $scope.data.categories[i].id );
+                vm.state.selectedCategories.push( vm.data.categories[i].id );
             }
         };
 
-        self.inSelectedCategories = function( i )
+        ctrl.inSelectedCategories = function( i )
         {
             var found = false;
 
-            for ( var j = 0; j < $scope.state.selectedCategories.length && ! found; j++ )
+            for ( var j = 0; j < vm.state.selectedCategories.length && ! found; j++ )
             {
-                if ( $scope.data.entries[i].categoryIds.indexOf( $scope.state.selectedCategories[j] ) >= 0 )
+                if ( vm.data.entries[i].categoryIds.indexOf( vm.state.selectedCategories[j] ) >= 0 )
                 {
                     found = true;
                 }
