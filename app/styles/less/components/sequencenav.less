@@ -10,13 +10,6 @@ nav#nav-sequence
         display: block;
     }
 
-    &.compact
-    {
-    	@factor: .3;
-
-        .height(@factor);
-    }
-
     span.text-label
     {
         display: none;
@@ -36,7 +29,7 @@ nav#nav-sequence
     a.prev,
     a.next
     {
-        .transition(all 300ms ease-out);
+        .transition(all 200ms @ease_in_sine);
 
         color: @black_75;
         text-decoration: none;
@@ -119,6 +112,49 @@ nav#nav-sequence
                 fill: @black_24;
                 right: 25px;
             }
+        }
+    }
+
+    // Transitions tied to classes (order matters here).
+
+    &.compact-add
+    {
+        .transition-duration(@time_compact_animation);
+
+        // Default pre-animation state.
+        a.prev,
+        a.next
+        {
+            // This is super important in the case of this element, I think
+            // because a transition is applied to these links for the
+            // non-compact state. It might be good practice to set transtions
+            // to none for pre-animation classes like this one.
+            .transition(none);
+
+            opacity: 0;
+        }
+    }
+
+    &.compact
+    {
+        @factor: .3;
+
+        .height(@factor);
+
+        a.prev,
+        a.next
+        {
+            .transition(opacity 100ms @ease_in_sine 200ms);
+        }
+    }
+
+    &.compact-add-active
+    {
+        // Post-animation state.
+        a.prev,
+        a.next
+        {
+            opacity: 1;
         }
     }
 

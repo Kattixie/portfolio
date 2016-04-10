@@ -134,6 +134,21 @@ angular
                     }
                 };
 
+                // Couldn't find a sane way to do this in the CSS file.
+                ctrl.setDropdownOpenPosition = function()
+                {
+                    var height = ctrl.dropdownMenu.outerHeight();
+
+                    ctrl.dropdownMenu.css('bottom', -1 * height + MenuState.getIconHeight() );
+                }
+
+                // Default bottom positions should be set in the CSS files.
+                // Unset inline styling here.
+                ctrl.setDropdownCollapsedPosition = function()
+                {
+                    ctrl.dropdownMenu.css('bottom', '' );
+                };
+
                 /* ACTIONS */
 
                 ctrl.toggleMenu = function()
@@ -162,7 +177,7 @@ angular
                         duration = 300;
                     }
 
-                    ctrl.dropdownMenu.addClass('open');
+                    // ctrl.dropdownMenu.addClass('open');
 
                     /*
                     ctrl.primaryListItems.addClass('animating');
@@ -181,6 +196,8 @@ angular
                     */
 
                     MenuState.setCollapsed(false);
+
+                    ctrl.setDropdownOpenPosition();
                 };
 
                 ctrl.closeMenu = function( duration )
@@ -208,6 +225,8 @@ angular
                     */
 
                     MenuState.setCollapsed(true);
+
+                    ctrl.setDropdownCollapsedPosition();
                 };
 
                 /* COMPACT SETUP & BEHAVIOR */

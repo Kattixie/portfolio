@@ -11,7 +11,7 @@
  */
 angular
     .module('portfolio')
-    .factory('MenuState', function ($log)
+    .factory('MenuState', function ($log, $animate)
     {
         var service =
         {
@@ -62,6 +62,11 @@ angular
             _icon = element;
         };
 
+        service.getIconHeight = function()
+        {
+            return _icon.outerHeight();
+        };
+
         service.addCollapsibleElement = function( element )
         {
             _collapsibleElements.push(element);
@@ -100,19 +105,35 @@ angular
 
             for (var i = 0; i < _compactibleElements.length; i++)
             {
-                if (_isCompact)
+                if ( _isCompact)
                 {
+                    // Adds following classes in order:
+                    // ng-animate
+                    // [service.compactClassName]-add
+                    // [service.compactClassName]
+                    // [service.compactClassName]-add-active
+                    $animate.addClass(_compactibleElements[i], service.compactClassName);
+
+                    /*
                     if ( ! _compactibleElements[i].hasClass(service.compactClassName) )
                     {
                         _compactibleElements[i].addClass(service.compactClassName);
-                    }
+                    } */
                 }
                 else
                 {
+                    // Adds following classes in order:
+                    // ng-animate
+                    // [service.compactClassName]-remove
+                    // [service.compactClassName]-remove-active
+                    $animate.removeClass(_compactibleElements[i], service.compactClassName);
+
+                    /*
                     if ( _compactibleElements[i].hasClass(service.compactClassName))
                     {
                         _compactibleElements[i].removeClass(service.compactClassName);
                     }
+                    */
                 }
             }
 

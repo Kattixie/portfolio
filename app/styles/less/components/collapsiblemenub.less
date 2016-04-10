@@ -1,0 +1,173 @@
+.collapsible-menu-b()
+{
+    // .transition(all 100ms ease-out);
+
+    //font-size: 1.25rem;
+    // height: 0;
+
+    &.compact
+    {
+        // @factor: 0.3;
+
+        // height: @header_height * @factor;
+    }
+
+    a#nav-icon
+    {
+        display: block;
+        float: right;
+        //font-size: 1rem;
+        margin-right: @spacing_unit_root / 2;
+        position: relative;
+            top: 0;
+            left: 0;
+            z-index: 100;
+    }
+
+    .nav-items
+    {
+        @item_height: 4.000rem;
+
+        background: #1f1f1f;
+        display: none;
+        padding: @spacing_unit_root / 2 0;
+
+        ul.nav-primary
+        {
+            position: relative;
+                top: 0;
+                left: 0;
+
+            li
+            {
+                line-height: @item_height;
+                margin: 0;
+
+                &:first-child
+                {
+                    margin: 0;
+                }
+            }
+
+            li.gallery,
+            li.list
+            {
+                a
+                {
+                    color: @black_30;
+                    text-decoration: none;
+
+                    svg
+                    {
+                        display: none;
+
+                        height: @item_height;
+                        line-height: @item_height;
+                        margin-left: @spacing_unit_root;
+                        stroke: currentColor;
+                    }
+
+                    span.text-label
+                    {
+                        color: @hot_pink;
+                        display: block;
+                        font-family: @title_face;
+                        font-size: @spacing_unit * 0.8;
+                        font-weight: 100;
+                        letter-spacing: 4px;
+                        line-height: @item_height;
+                        text-transform: uppercase;
+
+                        .respond-until-including(@entry_image_width,
+                        {
+                            margin: 0 @spacing_unit_root / 2;
+                        });
+
+                        .respond-between(@entry_image_width, @entry_image_width + 100px,
+                        {
+                            margin: 0 @spacing_unit_root;
+                        });
+
+                        .respond-after(@entry_image_width + 100px,
+                        {
+                            margin: 0 auto;
+                            width: @entry_image_width;
+                        });
+                    }
+
+                    &:hover
+                    {
+                        color: #fff;
+                        background: #343434;
+
+                        svg
+                        {
+                            stroke: currentColor;
+                        }
+
+                        span.text-label
+                        {
+                            color: #fff;
+                        }
+                    }
+                }
+
+                &.active
+                {
+                    a
+                    {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        ul.nav-sub
+        {
+            li
+            {
+                line-height: @item_height;
+
+                a
+                {
+                    color: #fff;
+                    font-family: @title_face;
+                    font-size: @spacing_unit * 0.4;
+                    letter-spacing: 0.188em;
+                    line-height: @item_height;
+                    text-decoration: none;
+                    text-transform: uppercase;
+
+                    .respond-until-including(@entry_image_width,
+                    {
+                        padding: 0 @spacing_unit_root / 2;
+                    });
+
+                    .respond-between(@entry_image_width, @entry_image_width + 100px,
+                    {
+                        padding: 0 @spacing_unit_root;
+                    });
+
+                    .respond-after(@entry_image_width + 100px,
+                    {
+                        margin: 0 auto;
+                        width: @entry_image_width;
+                    });
+
+                    &:hover
+                    {
+                        color: @blue;
+                    }
+                }
+
+                &.active
+                {
+                    a
+                    {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

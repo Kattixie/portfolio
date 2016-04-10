@@ -136,6 +136,15 @@
             transition-delay: @arguments;
 }
 
+.transition-duration(@time)
+{
+    -webkit-transition-duration: @time;
+       -moz-transition-duration: @time;
+        -ms-transition-duration: @time;
+         -o-transition-duration: @time;
+            transition-duration: @time;
+}
+
 .animation(@arguments)
 {
     -webkit-animation: @arguments;
