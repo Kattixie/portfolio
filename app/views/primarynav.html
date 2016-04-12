@@ -20,7 +20,7 @@
 
         <ul class="nav-primary">
             <li class="gallery">
-                <a ng-href="#/">
+                <a ng-href="#/" ng-click="nav.onNavItemClick()">
                     <svg>
                         <use xlink:href="#symbol-gallery-icon"></use>
                     </svg>
@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="list">
-                <a ng-href="#/list">
+                <a ng-href="#/list" ng-click="nav.onNavItemClick()">
                     <svg>
                         <use xlink:href="#symbol-list-icon"></use>
                     </svg>
@@ -38,7 +38,7 @@
         </ul>
 
         <ul class="nav-sub">
-            <li><a ng-href="#/about">About</a></li>
+            <li><a ng-href="#/about" ng-click="nav.onNavItemClick()">About</a></li>
             <!--<li><a ng-href="#/skills">Skills</a></li>-->
             <!--<li><a ng-href="#/contact">Contact</a></li>-->
         </ul>

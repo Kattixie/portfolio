@@ -41,16 +41,30 @@ angular
                 {
                     MenuState.setIcon( ctrl.hamburgerIcon );
 
+                    ctrl.setMenuStateElements();
+                    ctrl.setMenuDefaults();
                     ctrl.reset();
                 };
 
                 ctrl.reset = function()
                 {
                     ctrl.setContentPosition();
-                    ctrl.setMenuDefaults();
+
+                    // Why isn't this needed? Where is this getting set?
+                    // ctrl.setMenuAlignment();
                 };
 
                 /* SETUP */
+
+                ctrl.setMenuStateElements = function()
+                {
+                    MenuState.addCollapsibleElement( ctrl.container );
+
+                    MenuState.addCenterableElement( ctrl.container );
+                    MenuState.addCenterableElement( ctrl.logo );
+
+                    MenuState.addCompactibleElement( ctrl.container );
+                };
 
                 ctrl.setMenuDefaults = function()
                 {
@@ -71,8 +85,6 @@ angular
                 // non-collapsible horizontal state on larger screens.
                 ctrl.setHorizontalDefaults = function()
                 {
-                    // ctrl.dropdownMenu.show();
-
                     MenuState.setCollapsed(false);
                 };
 
@@ -80,26 +92,17 @@ angular
                 // collapsible vertical state on smaller screens.
                 ctrl.setCollapsibleDefaults = function()
                 {
-                    // ctrl.dropdownMenu.hide();
-
-                    MenuState.addCollapsibleElement( ctrl.container );
-
                     // Originally set to false <---
                     MenuState.setCollapsed(true);
                 };
 
                 ctrl.setAlignmentDefaults = function()
                 {
-                    MenuState.addCenterableElement( ctrl.container );
-                    MenuState.addCenterableElement( ctrl.logo );
-
-                    MenuState.isCentered(false);
+                    MenuState.setCentered(false);
                 };
 
                 ctrl.setCompactedDefaults = function()
                 {
-                    MenuState.addCompactibleElement( ctrl.container );
-
                     MenuState.setCompacted(false);
                 };
 
@@ -140,7 +143,7 @@ angular
                     var height = ctrl.dropdownMenu.outerHeight();
 
                     ctrl.dropdownMenu.css('bottom', -1 * height + MenuState.getIconHeight() );
-                }
+                };
 
                 // Default bottom positions should be set in the CSS files.
                 // Unset inline styling here.
@@ -170,60 +173,15 @@ angular
                     }
                 };
 
-                ctrl.openMenu = function( duration )
+                ctrl.openMenu = function()
                 {
-                    if ( ! duration )
-                    {
-                        duration = 300;
-                    }
-
-                    // ctrl.dropdownMenu.addClass('open');
-
-                    /*
-                    ctrl.primaryListItems.addClass('animating');
-
-                    ctrl.dropdownMenu
-                        .velocity('slideDown',
-                        {
-                            delay:  0,
-                            duration: duration,
-                            easing: 'easeInBack',
-                            complete: function()
-                            {
-                                ctrl.primaryListItems.removeClass('animating');
-                            }
-                        });
-                    */
-
                     MenuState.setCollapsed(false);
 
                     ctrl.setDropdownOpenPosition();
                 };
 
-                ctrl.closeMenu = function( duration )
+                ctrl.closeMenu = function()
                 {
-                    if ( ! duration )
-                    {
-                        duration = 300;
-                    }
-
-                    /*
-                    ctrl.primaryListItems.addClass('animating');
-
-                    ctrl.dropdownMenu
-                        .velocity('slideUp',
-                        {
-                            delay:  0,
-                            duration: duration,
-                            easing: 'easeInBack',
-                            complete: function()
-                            {
-                                ctrl.primaryListItems.removeClass('animating');
-                            }
-                        });
-
-                    */
-
                     MenuState.setCollapsed(true);
 
                     ctrl.setDropdownCollapsedPosition();
@@ -236,12 +194,16 @@ angular
                 // "my-content-marker" directive to sub-view template elements.
                 ctrl.setContentPosition = function()
                 {
+                    // var prevPosition = MenuState.getContentPosition();
+
                     if ( ! MenuState.getContentPosition() )
                     {
                         // Use logo height by default if no marker exists for the
                         // current view.
                         MenuState.setContentPosition( ctrl.logo, 1.00 );
                     }
+
+                    // $log.debug('myCollapsibleMenuC', 'The content position, set from this directive: %s -> %s', prevPosition, MenuState.getContentPosition());
                 };
 
                 // This works, but seems like overkill when we can less
@@ -266,7 +228,21 @@ angular
 
                 ctrl.setCompactedState = function()
                 {
-                    if ( WindowState.hasScrolledTo( MenuState.getContentPosition() ) )
+                    var position = MenuState.getContentPosition();
+
+                    if ( position === undefined )
+                    {
+                        // Use this directive's defaults to determine a content
+                        // position in the absence of a my-content-marker
+                        // attribute in the view.
+                        ctrl.setContentPosition();
+
+                        position = MenuState.getContentPosition();
+                    }
+
+                    // $log.debug('myCollapsibleMenuC', 'The position, as determined in setCompactedState: %s', position);
+
+                    if ( isFinite(position) && WindowState.hasScrolledTo( position ) )
                     {
                         MenuState.setCompacted(true);
                     }
@@ -298,14 +274,18 @@ angular
                 ctrl.onWindowResize = function()
                 {
                     ctrl.reset();
-                    //ctrl.setContentPosition();
-                    //ctrl.setMenuDefaults();
                     ctrl.setMenuAlignment();
-                    // ctrl.setLogo();
 
                     if ( MenuState.isCollapsible() )
                     {
                         ctrl.setCompactedState();
+
+                        // Not having this caused some -add and -remove classes
+                        // to linger indefinitely.
+                        if ( ! MenuState.isCollapsed() )
+                        {
+                            ctrl.closeMenu();
+                        }
                     }
                     // Currently, the menu is only compacted if it's also
                     // collapsible.
@@ -317,15 +297,13 @@ angular
 
                 ctrl.onWindowScroll = function()
                 {
-                    // ctrl.setContentPosition();
-
                     if ( MenuState.isCollapsible() )
                     {
                         ctrl.setCompactedState();
 
                         if ( ! MenuState.isCollapsed() )
                         {
-                            ctrl.closeMenu( 100 );
+                            ctrl.closeMenu();
                         }
                     }
                     // Currently, the menu is only compacted if it's also collapsible.
@@ -335,12 +313,26 @@ angular
                     }
                 };
 
-                // Really nice solution borrowed from: http://stackoverflow.com/a/22854824
-                ctrl.onRouteChange = function()
+                ctrl.onRouteChangeStart = function()
                 {
-                    // ctrl.setCompactPositions();
+                    // $log.debug('myCollapsibleMenuC', 'Route change is starting. Resetting the content position.');
+
+                    MenuState.resetContentPosition();
+
+                    // Important to set to default state since content positions
+                    // are going to get re-calculated.
+                    ctrl.setCompactedDefaults();
+                };
+
+                // Really nice solution borrowed from:
+                // http://stackoverflow.com/a/22854824
+                ctrl.onRouteChangeSuccess = function()
+                {
                     ctrl.setMenuAlignment();
-                    // ctrl.setLogo();
+
+                    // This gets invoked too soon. We need to wait and see if
+                    // there's a content marker in the view.
+                    // ctrl.setCompactedState();
 
                     var hrefs = [
                                     '/#' + $location.path(),
@@ -369,24 +361,37 @@ angular
                 {
                     if ( MenuState.isCollapsible() && ! MenuState.isCollapsed() )
                     {
-                        ctrl.closeMenu( 100 );
+                        ctrl.closeMenu();
                     }
                 };
 
                 ctrl.onDestroy = function()
                 {
-                    WindowState.destroyResize( ctrl.resizeTimeoutId, 'primarynav' );
-                    WindowState.destroyScroll( ctrl.scrollTimeoutId, 'primarynav' );
+                    ctrl.unsetEventListeners();
 
                     $timeout.cancel( _positionTO );
                 };
 
+                ctrl.unsetEventListeners = function()
+                {
+                    WindowState.destroyResize( ctrl.resizeTimeoutId, 'primarynav' );
+                    WindowState.destroyScroll( ctrl.scrollTimeoutId, 'primarynav' );
+                }
+
+                ctrl.setEventListeners = function()
+                {
+                    ctrl.resizeTimeoutId = WindowState.onResize(ctrl.onWindowResize, 'primarynav', 10);
+                    ctrl.scrollTimeoutId = WindowState.onScroll(ctrl.onWindowScroll, 'primarynav', 10);
+
+                    // Is the more Angular way to set ng-click in view?
+                    // ctrl.dropdownMenu.find('a').on('click', ctrl.onNavItemClick);
+                };
+
                 ctrl.init();
+                ctrl.setEventListeners();
 
-                ctrl.resizeTimeoutId = WindowState.onResize(ctrl.onWindowResize, 'primarynav', 10);
-                ctrl.scrollTimeoutId = WindowState.onScroll(ctrl.onWindowScroll, 'primarynav', 10);
-
-                $scope.$on('$routeChangeSuccess', ctrl.onRouteChange);
+                $scope.$on('$routeChangeStart', ctrl.onRouteChangeStart);
+                $scope.$on('$routeChangeSuccess', ctrl.onRouteChangeSuccess);
                 $scope.$on('$destroy', ctrl.onDestroy);
 
                 /*
@@ -398,8 +403,6 @@ angular
                     }
                 });
                 */
-
-                ctrl.dropdownMenu.find('a').on('click', ctrl.onNavItemClick);
             }
         };
     });

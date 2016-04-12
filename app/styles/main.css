@@ -502,6 +502,14 @@ nav#nav-main.centered .nav-icon-wrapper a#nav-icon {
   float: none;
   margin: 0 auto;
 }
+nav#nav-main.centered .nav-items ul.nav-primary li a,
+nav#nav-main.centered .nav-items ul.nav-sub li a,
+nav#nav-main.centered .nav-items ul.nav-primary li.gallery a,
+nav#nav-main.centered .nav-items ul.nav-sub li.gallery a,
+nav#nav-main.centered .nav-items ul.nav-primary li.list a,
+nav#nav-main.centered .nav-items ul.nav-sub li.list a {
+  text-align: center;
+}
 nav#nav-main .nav-icon-wrapper {
   overflow: hidden;
 }
@@ -569,6 +577,11 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     z-index: 100;
   }
   nav#nav-main .nav-items {
+    -webkit-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    -ms-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
     overflow-y: auto;
   }
   nav#nav-main .nav-items ul.nav-primary li a,
@@ -581,7 +594,7 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     font-family: 'Archivo Narrow', sans-serif;
     font-size: 1.5625em;
     letter-spacing: 0.188em;
-    text-align: right;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
   }
@@ -608,6 +621,60 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-items ul.nav-primary li.list a:hover svg {
     stroke: currentColor;
   }
+  nav#nav-main.collapsed-remove {
+    -webkit-transition-duration: 300ms;
+    -moz-transition-duration: 300ms;
+    -ms-transition-duration: 300ms;
+    -o-transition-duration: 300ms;
+    transition-duration: 300ms;
+  }
+  nav#nav-main.collapsed-remove .nav-items ul.nav-primary li.gallery a,
+  nav#nav-main.collapsed-remove .nav-items ul.nav-primary li.list a,
+  nav#nav-main.collapsed-remove .nav-items ul.nav-sub li a {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+    opacity: 0;
+  }
+  nav#nav-main.collapsed-remove-active .nav-items ul.nav-primary li.gallery a,
+  nav#nav-main.collapsed-remove-active .nav-items ul.nav-primary li.list a,
+  nav#nav-main.collapsed-remove-active .nav-items ul.nav-sub li a {
+    -webkit-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+    -moz-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+    -ms-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+    -o-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+    transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+    opacity: 1;
+  }
+  nav#nav-main.collapsed-add {
+    -webkit-transition-duration: 200ms;
+    -moz-transition-duration: 200ms;
+    -ms-transition-duration: 200ms;
+    -o-transition-duration: 200ms;
+    transition-duration: 200ms;
+  }
+  nav#nav-main.collapsed-add .nav-items ul.nav-primary li.gallery a,
+  nav#nav-main.collapsed-add .nav-items ul.nav-primary li.list a,
+  nav#nav-main.collapsed-add .nav-items ul.nav-sub li a {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+    opacity: 1;
+  }
+  nav#nav-main.collapsed .nav-items ul.nav-primary li.gallery a,
+  nav#nav-main.collapsed .nav-items ul.nav-primary li.list a,
+  nav#nav-main.collapsed .nav-items ul.nav-sub li a {
+    -webkit-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    -moz-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    -ms-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    -o-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    opacity: 0;
+  }
   nav#nav-main.compact-add {
     -webkit-transition-duration: 300ms;
     -moz-transition-duration: 300ms;
@@ -616,6 +683,11 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     transition-duration: 300ms;
   }
   nav#nav-main.compact-add .nav-icon-wrapper a#nav-icon {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
     opacity: 0;
   }
   nav#nav-main.compact .nav-icon-wrapper a#nav-icon {
@@ -624,6 +696,7 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     -ms-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
     -o-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
     transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+    opacity: 1;
   }
   nav#nav-main.compact .nav-items {
     -webkit-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -632,8 +705,12 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     -o-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
     transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
   }
-  nav#nav-main.compact-add-active .nav-icon-wrapper a#nav-icon {
-    opacity: 1;
+  nav#nav-main.compact-remove .nav-items {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
   }
   nav#nav-main.compact .nav-items {
     padding-top: 9.75rem;
@@ -837,6 +914,46 @@ nav#nav-sequence {
 nav#nav-sequence.sequenced {
   display: block;
 }
+nav#nav-sequence.compact-add {
+  -webkit-transition-duration: 300ms;
+  -moz-transition-duration: 300ms;
+  -ms-transition-duration: 300ms;
+  -o-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+nav#nav-sequence.compact-add a.prev,
+nav#nav-sequence.compact-add a.next {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+  opacity: 0;
+}
+nav#nav-sequence.compact span.text-label {
+  display: block;
+  height: 4.875rem;
+  line-height: 4.875rem;
+}
+nav#nav-sequence.compact a.prev,
+nav#nav-sequence.compact a.next {
+  height: 4.875rem;
+  margin-top: 0;
+}
+nav#nav-sequence.compact a.prev svg,
+nav#nav-sequence.compact a.next svg {
+  height: 4.875rem;
+  width: 0.875em;
+}
+nav#nav-sequence.compact a.prev,
+nav#nav-sequence.compact a.next {
+  -webkit-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+  -moz-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+  -ms-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+  -o-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+  transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+  opacity: 1;
+}
 nav#nav-sequence span.text-label {
   display: none;
   color: #808080;
@@ -919,49 +1036,6 @@ nav#nav-sequence a.close:hover {
 nav#nav-sequence a.close:hover svg {
   fill: #3d3d3d;
   right: 25px;
-}
-nav#nav-sequence.compact-add {
-  -webkit-transition-duration: 300ms;
-  -moz-transition-duration: 300ms;
-  -ms-transition-duration: 300ms;
-  -o-transition-duration: 300ms;
-  transition-duration: 300ms;
-}
-nav#nav-sequence.compact-add a.prev,
-nav#nav-sequence.compact-add a.next {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
-  opacity: 0;
-}
-nav#nav-sequence.compact span.text-label {
-  display: block;
-  height: 4.875rem;
-  line-height: 4.875rem;
-}
-nav#nav-sequence.compact a.prev,
-nav#nav-sequence.compact a.next {
-  height: 4.875rem;
-  margin-top: 0;
-}
-nav#nav-sequence.compact a.prev svg,
-nav#nav-sequence.compact a.next svg {
-  height: 4.875rem;
-  width: 0.875em;
-}
-nav#nav-sequence.compact a.prev,
-nav#nav-sequence.compact a.next {
-  -webkit-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
-  -moz-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
-  -ms-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
-  -o-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
-  transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
-}
-nav#nav-sequence.compact-add-active a.prev,
-nav#nav-sequence.compact-add-active a.next {
-  opacity: 1;
 }
 @media (max-width: 1254px) {
   nav#nav-sequence {

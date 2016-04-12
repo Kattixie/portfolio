@@ -74,7 +74,7 @@ angular
 
         service.addCompactibleElement = function( element )
         {
-            $log.debug('MenuState', 'Adding a compactible element.');
+            // $log.debug('MenuState', 'Adding a compactible element.');
 
             _compactibleElements.push(element);
         };
@@ -155,11 +155,13 @@ angular
             {
                 if ( _isCollapsed )
                 {
-                    _collapsibleElements[i].addClass(service.collapsedClassName);
+                    $animate.addClass(_collapsibleElements[i], service.collapsedClassName);
+                    // _collapsibleElements[i].addClass(service.collapsedClassName);
                 }
                 else
                 {
-                    _collapsibleElements[i].removeClass(service.collapsedClassName);
+                    $animate.removeClass(_collapsibleElements[i], service.collapsedClassName);
+                    // _collapsibleElements[i].removeClass(service.collapsedClassName);
                 }
             }
 
@@ -195,6 +197,13 @@ angular
             return switchedState;
         };
 
+        service.resetContentPosition = function()
+        {
+            _currContentElement = undefined;
+
+            _contentPositionY = undefined;
+        };
+
         service.setContentPosition = function( element, entrancePoint )
         {
             if ( element )
@@ -204,17 +213,30 @@ angular
 
             if ( _currContentElement )
             {
+                // We want the final position, not any positions associated with
+                // animation states.
+                if ( element.hasClass('ng-animate') )
+                {
+                    $log.debug('MenuState', 'The content position could not be determined due to the element currently animating.');
+
+                    return false;
+                }
+
                 _contentPositionY = _currContentElement.offset().top;
             }
 
+            $log.debug('MenuState', 'The content position, determined before offset is appied: %s', _contentPositionY);
+
             if ( entrancePoint )
             {
-                $log.debug('MenuState', 'Applying an offset... %s', _currContentElement.height() * entrancePoint);
+                $log.debug('MenuState', 'Applying a content position entrance point offset... %s', _currContentElement.height() * entrancePoint);
 
                 _contentPositionY = _contentPositionY + _currContentElement.height() * entrancePoint;
             }
 
             $log.debug('MenuState', 'The content position: %s', _contentPositionY);
+
+            return _contentPositionY;
         };
 
         service.getContentPosition = function()

@@ -101,6 +101,8 @@ angular
 
         var _destroyEvent = function(timeoutId, event)
         {
+            $log.debug('WindowState', 'The event is being removed from the window: %o', event);
+
             service.jqWindow.off(event);
 
             _removeTimeoutById(timeoutId);
@@ -174,6 +176,11 @@ angular
             return service.getPixelsScrolledY() + service.jqWindow.height();
         };
 
+        service.isAtTop = function()
+        {
+            return service.getPixelsScrolledY() === 0;
+        };
+
         service.scrollDirectionHasChanged = function()
         {
             return _prevDir !== service.getScrollDirection();
@@ -204,8 +211,6 @@ angular
             {
                 dir = service.SCROLL_UP;
             }
-
-            // $log.debug('WindowState', 'Upating position');
 
             _prevPageYOffset = currPageYOffset;
 

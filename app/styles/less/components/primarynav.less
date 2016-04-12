@@ -13,12 +13,6 @@ nav#nav-main
     {
         .icon-height(@factor_compact_header);
 
-        // .list-top-padding(@factor_compact_header * 1.5);
-
-        // Only needed in case of compact view (to account for bottom padding
-        // that's equal to the icon height).
-        // .list-bottom-padding(@factor_compact_header);
-
         position: fixed;
             top: 0;
 
@@ -43,12 +37,28 @@ nav#nav-main
                 // opacity: 0;
             }
         }
+
+        .nav-items
+        {
+            ul.nav-primary,
+            ul.nav-sub
+            {
+                li,
+                li.gallery,
+                li.list
+                {
+                    a
+                    {
+                        text-align: center;
+                    }
+                }
+            }
+        }
     }
 
     .nav-icon-wrapper
     {
         overflow: hidden;
-        // border-bottom: 1px solid transparent;
 
         // Importantly, this icon's visibility determines if the menu is collapsible.
         a#nav-icon
@@ -83,24 +93,8 @@ nav#nav-main
 
     .nav-items
     {
-        //float: left;
-        //width: 100%;
-
         ul.nav-primary
         {
-            //float: left;
-
-            li
-            {
-                //float: left;
-                //margin-left: @spacing_unit_root / 2;
-            }
-
-            li:first-child
-            {
-                //margin-left: 0;
-            }
-
             li.gallery,
             li.list
             {
@@ -140,19 +134,8 @@ nav#nav-main
 
         ul.nav-sub
         {
-            //float: right;
-
             li
             {
-                //float: left;
-                //margin-right: @spacing_unit_root;
-                //width: auto;
-
-                &:last-child
-                {
-                    //margin-right: 0;
-                }
-
                 a
                 {
                     .transition(all 300ms ease-out);
@@ -202,8 +185,6 @@ nav#nav-main
         .icon-height(@factor);
         .list-top-padding(@factor);
         .list-bottom-padding(@factor_compact_header);
-        //.list-vertical-padding(@factor);
-        //.list-margin-offset(@factor);
     });
 
     .respond-between(@1_column_width, @multi_column_bp,
@@ -213,8 +194,6 @@ nav#nav-main
         .icon-height(@factor);
         .list-top-padding(@factor);
         .list-bottom-padding(@factor_compact_header);
-        //.list-vertical-padding(@factor);
-        //.list-margin-offset(@factor);
     });
 
     .respond-after(@multi_column_bp,
@@ -425,19 +404,10 @@ nav#nav-main
 
 .collapsible-menu-c()
 {
-    // This is used by ngAnimate to determine how long add/remove animation
-    // classes should be applied to this element. This is kind of unintuitive
-    // because transition properties need to be applied to child elements.
-    // But for the sake of the JavaScript, this must exist on the parent.
-    // .transition-duration(@time_compact_animation);
-
     .nav-icon-wrapper
     {
         a#nav-icon
         {
-
-            // .transition-delay(@time_compact_animation);
-
             display: block;
             float: right;
             position: relative;
@@ -470,6 +440,8 @@ nav#nav-main
 
     .nav-items
     {
+        .transition(bottom 200ms @ease_in_sine);
+
         // background: @black_95;
         // background: #fff;
         // background: rgba(255, 255, 255, 0.95);
@@ -495,7 +467,7 @@ nav#nav-main
                     font-family: @title_face;
                     font-size: @spacing_unit * 0.5;
                     letter-spacing: 0.188em;
-                    text-align: right;
+                    text-align: center;
                     text-decoration: none;
                     text-transform: uppercase;
 
@@ -614,15 +586,81 @@ nav#nav-main
         }
     }
 
+    &.collapsed-add
+    {
+        // .transition-duration(5s);
+    }
+
+    // Menu opening:
+
+    &.collapsed-remove
+    {
+        .transition-duration(300ms);
+
+        .nav-items
+        {
+            ul.nav-primary li.gallery a,
+            ul.nav-primary li.list a,
+            ul.nav-sub li a
+            {
+                .transition(none);
+
+                opacity: 0;
+            }
+        }
+    }
+
+    &.collapsed-remove-active
+    {
+        .nav-items
+        {
+            ul.nav-primary li.gallery a,
+            ul.nav-primary li.list a,
+            ul.nav-sub li a
+            {
+                .transition(opacity 100ms @ease_in_sine 200ms);
+
+                opacity: 1;
+            }
+        }
+
+    }
+
+    // Menu closing:
+
+    &.collapsed-add
+    {
+        .transition-duration(200ms);
+
+        .nav-items
+        {
+            ul.nav-primary li.gallery a,
+            ul.nav-primary li.list a,
+            ul.nav-sub li a
+            {
+                .transition(none);
+
+                opacity: 1;
+            }
+        }
+    }
+
     &.collapsed
     {
         .nav-items
         {
-            // bottom: -100%;
-            // display: none;
-            // top: 0;
-            // height: 0;
-            // overflow: hidden;
+            // Final bottom state should go here, but since I needed to fall
+            // back to JavaScript to get the bottom position right, this is
+            // empty.
+
+            ul.nav-primary li.gallery a,
+            ul.nav-primary li.list a,
+            ul.nav-sub li a
+            {
+                .transition(opacity 100ms @ease_in_sine);
+
+                opacity: 0;
+            }
         }
     }
 
@@ -634,6 +672,8 @@ nav#nav-main
         {
             a#nav-icon
             {
+                .transition(none);
+
                 opacity: 0;
             }
         }
@@ -646,6 +686,8 @@ nav#nav-main
             a#nav-icon
             {
                 .transition(opacity 100ms @ease_in_sine 200ms);
+
+                opacity: 1;
             }
         }
 
@@ -671,22 +713,11 @@ nav#nav-main
         }
     }
 
-    &.compact-add-active
-    {
-        .nav-icon-wrapper
-        {
-            a#nav-icon
-            {
-                opacity: 1;
-            }
-        }
-    }
-
     &.compact-remove
     {
         .nav-items
         {
-            // .transition(none);
+            .transition(none);
         }
     }
 };
