@@ -42,16 +42,14 @@ angular
                     MenuState.setIcon( ctrl.hamburgerIcon );
 
                     ctrl.setMenuStateElements();
-                    ctrl.setMenuDefaults();
                     ctrl.reset();
                 };
 
                 ctrl.reset = function()
                 {
+                    ctrl.setMenuDefaults();
                     ctrl.setContentPosition();
-
-                    // Why isn't this needed? Where is this getting set?
-                    // ctrl.setMenuAlignment();
+                    ctrl.setMenuAlignment();
                 };
 
                 /* SETUP */
@@ -71,7 +69,6 @@ angular
                     if ( MenuState.isCollapsible() )
                     {
                         ctrl.setCollapsibleDefaults();
-                        ctrl.setCompactedDefaults();
                     }
                     else
                     {
@@ -79,6 +76,7 @@ angular
                     }
 
                     ctrl.setAlignmentDefaults();
+                    ctrl.setDropdownPositionDefault();
                 };
 
                 // Establishes default settings/behavior for when menu is in
@@ -86,24 +84,20 @@ angular
                 ctrl.setHorizontalDefaults = function()
                 {
                     MenuState.setCollapsed(false);
+                    MenuState.setCompacted(false);
                 };
 
                 // Establishes default settings/behavior for when menu is in
                 // collapsible vertical state on smaller screens.
                 ctrl.setCollapsibleDefaults = function()
                 {
-                    // Originally set to false <---
                     MenuState.setCollapsed(true);
+                    MenuState.setCompacted(false);
                 };
 
                 ctrl.setAlignmentDefaults = function()
                 {
                     MenuState.setCentered(false);
-                };
-
-                ctrl.setCompactedDefaults = function()
-                {
-                    MenuState.setCompacted(false);
                 };
 
                 // Determines if the menu should have "centered" state and
@@ -138,7 +132,7 @@ angular
                 };
 
                 // Couldn't find a sane way to do this in the CSS file.
-                ctrl.setDropdownOpenPosition = function()
+                ctrl.setDropdownPositionOpen = function()
                 {
                     var height = ctrl.dropdownMenu.outerHeight();
 
@@ -147,7 +141,7 @@ angular
 
                 // Default bottom positions should be set in the CSS files.
                 // Unset inline styling here.
-                ctrl.setDropdownCollapsedPosition = function()
+                ctrl.setDropdownPositionDefault = function()
                 {
                     ctrl.dropdownMenu.css('bottom', '' );
                 };
@@ -177,14 +171,14 @@ angular
                 {
                     MenuState.setCollapsed(false);
 
-                    ctrl.setDropdownOpenPosition();
+                    ctrl.setDropdownPositionOpen();
                 };
 
                 ctrl.closeMenu = function()
                 {
                     MenuState.setCollapsed(true);
 
-                    ctrl.setDropdownCollapsedPosition();
+                    ctrl.setDropdownPositionDefault();
                 };
 
                 /* COMPACT SETUP & BEHAVIOR */
@@ -274,24 +268,10 @@ angular
                 ctrl.onWindowResize = function()
                 {
                     ctrl.reset();
-                    ctrl.setMenuAlignment();
 
                     if ( MenuState.isCollapsible() )
                     {
                         ctrl.setCompactedState();
-
-                        // Not having this caused some -add and -remove classes
-                        // to linger indefinitely.
-                        if ( ! MenuState.isCollapsed() )
-                        {
-                            ctrl.closeMenu();
-                        }
-                    }
-                    // Currently, the menu is only compacted if it's also
-                    // collapsible.
-                    else
-                    {
-                        MenuState.setCompacted(false);
                     }
                 };
 
