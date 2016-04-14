@@ -590,13 +590,30 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-items ul.nav-sub li.gallery a,
   nav#nav-main .nav-items ul.nav-primary li.list a,
   nav#nav-main .nav-items ul.nav-sub li.list a {
-    color: #4d4d4d;
+    color: #3d3d3d;
     font-family: 'Archivo Narrow', sans-serif;
-    font-size: 1.5625em;
+    font-size: 2.34375rem;
     letter-spacing: 0.188em;
+    line-height: 3.125rem;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+  }
+  nav#nav-main .nav-items ul.nav-primary li a:hover,
+  nav#nav-main .nav-items ul.nav-sub li a:hover,
+  nav#nav-main .nav-items ul.nav-primary li.gallery a:hover,
+  nav#nav-main .nav-items ul.nav-sub li.gallery a:hover,
+  nav#nav-main .nav-items ul.nav-primary li.list a:hover,
+  nav#nav-main .nav-items ul.nav-sub li.list a:hover {
+    color: #171717;
+  }
+  nav#nav-main .nav-items ul.nav-primary li.active a,
+  nav#nav-main .nav-items ul.nav-sub li.active a,
+  nav#nav-main .nav-items ul.nav-primary li.gallery.active a,
+  nav#nav-main .nav-items ul.nav-sub li.gallery.active a,
+  nav#nav-main .nav-items ul.nav-primary li.list.active a,
+  nav#nav-main .nav-items ul.nav-sub li.list.active a {
+    text-decoration: line-through;
   }
   nav#nav-main .nav-items ul.nav-primary {
     position: relative;

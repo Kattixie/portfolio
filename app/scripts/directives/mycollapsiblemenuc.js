@@ -301,7 +301,8 @@ angular
 
                     // Important to set to default state since content positions
                     // are going to get re-calculated.
-                    ctrl.setCompactedDefaults();
+                    // ctrl.setCompactedDefaults();
+                    ctrl.setMenuDefaults();
                 };
 
                 // Really nice solution borrowed from:
