@@ -1888,9 +1888,6 @@ div.loader .spinner {
 }
 #entry-list ul.entries {
   float: left;
-  font-size: 3.250em;
-  font-weight: 700;
-  line-height: 1.019em;
   overflow: hidden;
   /* For filter implementation.
         li.ng-move,
@@ -2031,6 +2028,9 @@ div.loader .spinner {
   transition: all 250ms ease-out;
   color: #3d3d3d;
   display: inline-block;
+  font-size: 3.250em;
+  font-weight: 700;
+  line-height: 1.019em;
   padding: 5px 10px;
   position: relative;
   top: 0;
@@ -2049,9 +2049,9 @@ div.loader .spinner {
   content: '';
   background: #daf3f1;
   display: block;
-  height: 1.096em;
+  height: 100%;
   position: absolute;
-  top: 6px;
+  top: 0.058em;
   left: 0;
   z-index: -1;
   width: 0%;
