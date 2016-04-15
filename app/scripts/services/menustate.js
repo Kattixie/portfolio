@@ -18,6 +18,7 @@ angular
             selectedGalleryMode:    null,
 
             collapsedClassName:     'collapsed',
+            collapsedHardClassName: 'collapsed-hard',
             compactClassName:       'compact',
             activeClassName:        'active',
             centerClassName:        'centered'
@@ -25,7 +26,8 @@ angular
 
         var _isCompact = false,
             _isCollapsed = false,
-            _isCentered = false;
+            _isCentered = false,
+            _isHard = false;
 
         var _icon;
 
@@ -153,14 +155,28 @@ angular
 
             for (var i = 0; i < _collapsibleElements.length; i++)
             {
+                var element = _collapsibleElements[i];
+
                 if ( _isCollapsed )
                 {
-                    $animate.addClass(_collapsibleElements[i], service.collapsedClassName);
-                    // _collapsibleElements[i].addClass(service.collapsedClassName);
+                    if ( _isHard )
+                    {
+                        $log.debug('MenuState', 'The menu hardness is true, so a special class will be added.');
+
+                        element.addClass(service.collapsedHardClassName);
+                    }
+
+                    $animate
+                        .addClass(element, service.collapsedClassName)
+                        .then( function()
+                        {
+                            element.removeClass(service.collapsedHardClassName);
+                        });
+                    // element.addClass(service.collapsedClassName);
                 }
                 else
                 {
-                    $animate.removeClass(_collapsibleElements[i], service.collapsedClassName);
+                    $animate.removeClass(element, service.collapsedClassName);
                     // _collapsibleElements[i].removeClass(service.collapsedClassName);
                 }
             }
@@ -193,6 +209,23 @@ angular
                     _centerableElements[i].removeClass(service.centerClassName);
                 }
             }
+
+            return switchedState;
+        };
+
+        // Intended to allow some control over how much animation is allowed.
+        // If true, we want minimal animation for state change and will add
+        // a special class for CSS animation purposes.
+        service.setHard = function( isHard )
+        {
+            var switchedState = ( _isHard !== isHard );
+
+            if ( ! switchedState )
+            {
+                return switchedState;
+            }
+
+            _isHard = isHard;
 
             return switchedState;
         };

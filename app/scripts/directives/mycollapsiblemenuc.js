@@ -309,6 +309,8 @@ angular
                 // http://stackoverflow.com/a/22854824
                 ctrl.onRouteChangeSuccess = function()
                 {
+                    MenuState.setHard(false);
+
                     ctrl.setMenuAlignment();
 
                     // This gets invoked too soon. We need to wait and see if
@@ -342,6 +344,8 @@ angular
                 {
                     if ( MenuState.isCollapsible() && ! MenuState.isCollapsed() )
                     {
+                        MenuState.setHard(true);
+
                         ctrl.closeMenu();
                     }
                 };
