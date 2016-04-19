@@ -526,6 +526,9 @@ nav#nav-main.centered .nav-items ul.nav-sub li.list a {
 nav#nav-main .nav-icon-wrapper {
   overflow: hidden;
 }
+nav#nav-main .nav-icon-wrapper .nav-icon-inner {
+  overflow: hidden;
+}
 nav#nav-main .nav-icon-wrapper a#nav-icon {
   color: #808080;
 }
@@ -587,8 +590,12 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main.scrollable {
     position: fixed;
   }
-  nav#nav-main.scrollable .nav-icon-wrapper {
+  nav#nav-main.scrollable.compact .nav-icon-wrapper .nav-icon-inner {
     background: #fff;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
   nav#nav-main.scrollable .nav-items {
     overflow-y: auto;
@@ -893,13 +900,13 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-icon-wrapper a#nav-icon svg {
     height: 8.125rem;
   }
-  nav#nav-main .nav-items .nav-items-wrapper {
+  nav#nav-main .nav-items .nav-items-inner {
     padding-top: 8.125rem;
   }
-  nav#nav-main .nav-items .nav-items-wrapper {
+  nav#nav-main .nav-items .nav-items-inner {
     padding-bottom: 2.34375rem;
   }
-  nav#nav-main.compact .nav-items .nav-items-wrapper {
+  nav#nav-main.compact .nav-items .nav-items-inner {
     padding-top: 7.21875rem;
   }
 }
@@ -910,13 +917,13 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-icon-wrapper a#nav-icon svg {
     height: 12.1875rem;
   }
-  nav#nav-main .nav-items .nav-items-wrapper {
+  nav#nav-main .nav-items .nav-items-inner {
     padding-top: 12.1875rem;
   }
-  nav#nav-main .nav-items .nav-items-wrapper {
+  nav#nav-main .nav-items .nav-items-inner {
     padding-bottom: 3.515625rem;
   }
-  nav#nav-main.compact .nav-items .nav-items-wrapper {
+  nav#nav-main.compact .nav-items .nav-items-inner {
     padding-top: 8.390625rem;
   }
 }

@@ -8,20 +8,6 @@ nav#nav-main
         z-index: 99;
     width: 100%;
 
-    &.scrollable
-    {
-        .nav-items
-        {
-            // overflow-y: auto;
-            // position: fixed;
-            //     top: 0;
-            //     right: 0;
-            //     bottom: 100%;
-            //     left: 0;
-        }
-
-    }
-
     // Usually the state after scrolling from the top of the page.
     &.compact
     {
@@ -73,6 +59,11 @@ nav#nav-main
     .nav-icon-wrapper
     {
         overflow: hidden;
+
+        .nav-icon-inner
+        {
+            overflow: hidden;
+        }
 
         // Importantly, this icon's visibility determines if the menu is collapsible.
         a#nav-icon
@@ -243,7 +234,7 @@ nav#nav-main
 
     .list-top-match-header(@factor_height: 1, @factor_padding: 0)
     {
-        .nav-items .nav-items-wrapper
+        .nav-items .nav-items-inner
         {
             padding-top: (@header_height * @factor_height) + (@header_padding * @factor_padding);
         }
@@ -251,7 +242,7 @@ nav#nav-main
 
     .list-bottom-match-header(@factor: 1)
     {
-        .nav-items .nav-items-wrapper
+        .nav-items .nav-items-inner
         {
             padding-bottom: @header_height * @factor;
         }
@@ -259,7 +250,7 @@ nav#nav-main
 
     .list-top-header-padding(@factor: 1)
     {
-        .nav-items .nav-items-wrapper
+        .nav-items .nav-items-inner
         {
             padding-top: @header_padding * @factor;
         }
@@ -267,7 +258,7 @@ nav#nav-main
 
     .list-bottom-header-padding(@factor: 1)
     {
-        .nav-items .nav-items-wrapper
+        .nav-items .nav-items-inner
         {
             padding-bottom: @header_padding * @factor;
         }
@@ -453,9 +444,21 @@ nav#nav-main
         // width and adding padding to account for missing scrollbar.
         position: fixed;
 
-        .nav-icon-wrapper
+        // Currently only force white background on compact view. Scrolling
+        // works OK with logo.
+        &.compact
         {
-            background: #fff;
+            .nav-icon-wrapper
+            {
+                .nav-icon-inner
+                {
+                    background: #fff;
+                    position: relative;
+                        top: 0;
+                        left: 0;
+                        z-index: 1;
+                }
+            }
         }
 
         .nav-items
