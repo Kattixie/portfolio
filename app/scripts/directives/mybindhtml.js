@@ -41,7 +41,7 @@ angular
                             var htmlString = $sanitize( myBindHtmlGetter(scope) );
 
                             // Insert hooks for custom directive replacements
-                            // here.v Note that all custom directives used here
+                            // here. Note that all custom directives used here
                             // will need to do one-way string binding.
                             htmlString = htmlString.replace(_linkPattern, '<my-external-link href="$1$2" label="$3" punctuation="$4"></my-external-link>');
 
