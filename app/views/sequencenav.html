@@ -1,18 +1,22 @@
 <nav id="nav-sequence">
 
-    <a class="prev" ng-if="sequenceNav.prevExists()" ng-click="sequenceNav.onPrev()">
-        <svg>
-            <use xlink:href="#symbol-arrow-prev-line"></use>
-        </svg>
-        <span class="text-label">Prev</span>
-    </a>
+    <div class="buttons-directional">
 
-    <a class="next" ng-if="sequenceNav.nextExists()" ng-click="sequenceNav.onNext()">
-        <svg>
-            <use xlink:href="#symbol-arrow-next-line"></use>
-        </svg>
-        <span class="text-label">Next</span>
-    </a>
+        <a class="prev" ng-if="sequenceNav.prevExists()" ng-click="sequenceNav.onPrev()">
+            <svg>
+                <use xlink:href="#symbol-arrow-prev-line"></use>
+            </svg>
+            <span class="text-label">Prev</span>
+        </a>
+
+        <a class="next" ng-if="sequenceNav.nextExists()" ng-click="sequenceNav.onNext()">
+            <svg>
+                <use xlink:href="#symbol-arrow-next-line"></use>
+            </svg>
+            <span class="text-label">Next</span>
+        </a>
+
+    </div>
 
     <a ng-href="#/" class="close">
         <svg>

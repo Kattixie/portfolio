@@ -13,6 +13,24 @@ a[ng-click]
     cursor: pointer;
 }
 
+/* This hides scrollbars entirely.
+::-webkit-scrollbar {
+    display: none;
+}
+*/
+
+// Using this kind of wrapper will allow better control over scrollbars, but
+// it isn't very manageable. If we want layer scrollbars to overlap, they need
+// to be siblings.
+#content-wrapper
+{
+    position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    overflow-y: scroll;
+}
 
 svg#symbols
 {

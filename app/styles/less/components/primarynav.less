@@ -8,6 +8,20 @@ nav#nav-main
         z-index: 99;
     width: 100%;
 
+    &.scrollable
+    {
+        .nav-items
+        {
+            // overflow-y: auto;
+            // position: fixed;
+            //     top: 0;
+            //     right: 0;
+            //     bottom: 100%;
+            //     left: 0;
+        }
+
+    }
+
     // Usually the state after scrolling from the top of the page.
     &.compact
     {
@@ -171,12 +185,6 @@ nav#nav-main
     .respond-until-including(@multi_column_bp,
     {
         .collapsible-menu-c();
-
-        &.compact
-        {
-            .list-top-padding(@factor_compact_header * 2);
-            .list-bottom-padding(@factor_compact_header);
-        }
     });
 
     .respond-until-including(@1_column_width,
@@ -184,8 +192,13 @@ nav#nav-main
         @factor: 0.5;
 
         .icon-height(@factor);
-        .list-top-padding(@factor);
+        .list-top-match-header(@factor);
+        .list-bottom-header-padding(@factor);
 
+        &.compact
+        {
+            .list-top-match-header(@factor_compact_header, @factor);
+        }
     });
 
     .respond-between(@1_column_width, @multi_column_bp,
@@ -193,8 +206,13 @@ nav#nav-main
         @factor: 0.75;
 
         .icon-height(@factor);
-        .list-top-padding(@factor);
-        // .list-bottom-padding(@factor_compact_header);
+        .list-top-match-header(@factor);
+        .list-bottom-header-padding(@factor);
+
+        &.compact
+        {
+            .list-top-match-header(@factor_compact_header, @factor);
+        }
     });
 
     .respond-after(@multi_column_bp,
@@ -223,19 +241,35 @@ nav#nav-main
         }
     }
 
-    .list-top-padding(@factor: 1)
+    .list-top-match-header(@factor_height: 1, @factor_padding: 0)
     {
-        .nav-items
+        .nav-items .nav-items-wrapper
         {
-            padding-top: @header_height * @factor;
+            padding-top: (@header_height * @factor_height) + (@header_padding * @factor_padding);
         }
     }
 
-    .list-bottom-padding(@factor: 1)
+    .list-bottom-match-header(@factor: 1)
     {
-        .nav-items
+        .nav-items .nav-items-wrapper
         {
             padding-bottom: @header_height * @factor;
+        }
+    }
+
+    .list-top-header-padding(@factor: 1)
+    {
+        .nav-items .nav-items-wrapper
+        {
+            padding-top: @header_padding * @factor;
+        }
+    }
+
+    .list-bottom-header-padding(@factor: 1)
+    {
+        .nav-items .nav-items-wrapper
+        {
+            padding-bottom: @header_padding * @factor;
         }
     }
 
@@ -405,6 +439,37 @@ nav#nav-main
 
 .collapsible-menu-c()
 {
+    // position: absolute;
+    //     top: 0;
+    //     right: 0;
+    //     left: 0;
+
+    &.scrollable
+    {
+        // Without this, we get two scrollbars. Position being fixed is what
+        // causes the hamburger icon to shift horizontally when the window
+        // scrollbar is hidden. This makes sense, because the position is
+        // relative to the window. Fixed in JavaScript by sniffing out scrollbar
+        // width and adding padding to account for missing scrollbar.
+        position: fixed;
+
+        .nav-icon-wrapper
+        {
+            background: #fff;
+        }
+
+        .nav-items
+        {
+            overflow-y: auto;
+
+            position: absolute;
+                // top: 0;
+                // bottom: 0;
+                left: 0;
+                right: 0;
+        }
+    }
+
     .nav-icon-wrapper
     {
         a#nav-icon
@@ -441,12 +506,17 @@ nav#nav-main
 
     .nav-items
     {
+        // position: fixed;
+        //     top: 0;
+        //     right: 0;
+        //     bottom: 100%;
+        //     left: 0;
+
         // .transition(bottom 400ms @ease_in_sine);
 
         // background: rgba(255, 255, 255, 0.95);
         // height: 100%;
-        overflow-y: auto;
-        padding-bottom: @spacing_unit_root;
+        // overflow-y: auto;
         // padding: @spacing_unit_root 0;
         // position: fixed;
             // top: 0; // Animate from -100%
@@ -590,9 +660,11 @@ nav#nav-main
             // position: fixed;
                 // top: 0;
             position: absolute;
+                // top: -100%;
+                right: 0;
                 bottom: 100%; // Default for non-compacted state
                 left: 0;
-            width: 100%;
+            // width: 100%;
         });
 
         .respond-until-including(@1_column_width,
@@ -606,12 +678,32 @@ nav#nav-main
         });
     }
 
+    &.compact
+    {
+        .nav-items
+        {
+            .drop-shadow(0, 2px, 0, 0, 0, 0, 0, .07);
+
+            .respond-until-including(@1_column_width,
+            {
+                // padding-top: 0;
+            });
+
+            .respond-after(@1_column_width,
+            {
+                // padding-top: @spacing_unit_root;
+            });
+        }
+    }
+
     /* NON-SIMPLE TRANSITIONS & ANIMATIONS */
 
     .nav-items
     {
         // Best to have a default due to bottom value being set in JavaScript.
         .transition(bottom 300ms @ease_in_sine);
+
+        // overflow-y: auto;
     }
 
     // Menu opening:
@@ -624,6 +716,8 @@ nav#nav-main
         {
             // This also works in case of JavaScript setting bottom value.
             // .transition(bottom 400ms @ease_in_sine);
+
+            //overflow-y: hidden;
 
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
@@ -687,6 +781,8 @@ nav#nav-main
             // back to JavaScript to get the bottom position right, it's
             // missing.
 
+            //overflow-y: hidden;
+
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
             ul.nav-sub li a
@@ -728,18 +824,6 @@ nav#nav-main
         .nav-items
         {
             .transition(bottom 200ms @ease_in_sine);
-
-            .drop-shadow(0, 2px, 0, 0, 0, 0, 0, .07);
-
-            .respond-until-including(@1_column_width,
-            {
-                // padding-top: 0;
-            });
-
-            .respond-after(@1_column_width,
-            {
-                // padding-top: @spacing_unit_root;
-            });
 
             .respond-until-including(@multi_column_bp,
             {

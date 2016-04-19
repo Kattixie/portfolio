@@ -154,6 +154,19 @@ a {
 a[ng-click] {
   cursor: pointer;
 }
+/* This hides scrollbars entirely.
+::-webkit-scrollbar {
+    display: none;
+}
+*/
+#content-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: scroll;
+}
 svg#symbols {
   display: none;
 }
@@ -571,6 +584,18 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main {
     /* NON-SIMPLE TRANSITIONS & ANIMATIONS */
   }
+  nav#nav-main.scrollable {
+    position: fixed;
+  }
+  nav#nav-main.scrollable .nav-icon-wrapper {
+    background: #fff;
+  }
+  nav#nav-main.scrollable .nav-items {
+    overflow-y: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
   nav#nav-main .nav-icon-wrapper a#nav-icon {
     display: block;
     float: right;
@@ -578,10 +603,6 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     top: 0;
     left: 0;
     z-index: 100;
-  }
-  nav#nav-main .nav-items {
-    overflow-y: auto;
-    padding-bottom: 3.125rem;
   }
   nav#nav-main .nav-items ul.nav-primary li,
   nav#nav-main .nav-items ul.nav-sub li,
@@ -677,6 +698,11 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-items ul.nav-primary li.gallery a:hover svg,
   nav#nav-main .nav-items ul.nav-primary li.list a:hover svg {
     stroke: currentColor;
+  }
+  nav#nav-main.compact .nav-items {
+    -webkit-box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.07);
   }
   nav#nav-main .nav-items {
     -webkit-transition: bottom 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -775,9 +801,6 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     -ms-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
     -o-transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
     transition: bottom 200ms cubic-bezier(0.47, 0, 0.745, 0.715);
-    -webkit-box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.07);
-    -moz-box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.07);
-    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.07);
   }
   nav#nav-main.compact-remove .nav-items {
     -webkit-transition: none;
@@ -785,12 +808,6 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
     -ms-transition: none;
     -o-transition: none;
     transition: none;
-  }
-  nav#nav-main.compact .nav-items {
-    padding-top: 9.75rem;
-  }
-  nav#nav-main.compact .nav-items {
-    padding-bottom: 4.875rem;
   }
 }
 @media (max-width: 1254px) and (max-width: 727px) {
@@ -859,9 +876,9 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-items {
     background: #fff;
     position: absolute;
+    right: 0;
     bottom: 100%;
     left: 0;
-    width: 100%;
   }
 }
 @media (max-width: 1254px) and (max-width: 1254px) {
@@ -876,8 +893,14 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-icon-wrapper a#nav-icon svg {
     height: 8.125rem;
   }
-  nav#nav-main .nav-items {
+  nav#nav-main .nav-items .nav-items-wrapper {
     padding-top: 8.125rem;
+  }
+  nav#nav-main .nav-items .nav-items-wrapper {
+    padding-bottom: 2.34375rem;
+  }
+  nav#nav-main.compact .nav-items .nav-items-wrapper {
+    padding-top: 7.21875rem;
   }
 }
 @media (min-width: 478px) and (max-width: 1254px) {
@@ -887,8 +910,14 @@ nav#nav-main .nav-items ul.nav-sub li.active a {
   nav#nav-main .nav-icon-wrapper a#nav-icon svg {
     height: 12.1875rem;
   }
-  nav#nav-main .nav-items {
+  nav#nav-main .nav-items .nav-items-wrapper {
     padding-top: 12.1875rem;
+  }
+  nav#nav-main .nav-items .nav-items-wrapper {
+    padding-bottom: 3.515625rem;
+  }
+  nav#nav-main.compact .nav-items .nav-items-wrapper {
+    padding-top: 8.390625rem;
   }
 }
 @media (min-width: 1255px) {
@@ -1031,6 +1060,12 @@ nav#nav-sequence.compact a.next {
   -o-transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
   transition: opacity 100ms cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
   opacity: 1;
+}
+nav#nav-sequence .buttons-directional {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
 }
 nav#nav-sequence span.text-label {
   display: none;

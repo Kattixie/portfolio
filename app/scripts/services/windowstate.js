@@ -16,6 +16,7 @@ angular
         {
             // jQuery or jqLite window object.
             jqWindow: angular.element( $window ),
+            docBody: angular.element('body'),
 
             defaultDelay:       500,
             resizeEventPrefix:  'resize',
@@ -28,7 +29,10 @@ angular
         var _timeouts = [],
             _prevDir,
             _currDir,
-            _prevPageYOffset;
+            _prevPageYOffset,
+            _scrollEnabled = true,
+            _scrollBarWidth,
+            _bodyScrollContextTO;
 
         // Private Methods
 
@@ -174,6 +178,11 @@ angular
         service.getViewportBottomPosition = function()
         {
             return service.getPixelsScrolledY() + service.jqWindow.height();
+        };
+
+        service.getHeight = function()
+        {
+            return service.jqWindow.height();
         };
 
         service.isAtTop = function()
@@ -417,6 +426,115 @@ angular
             }
 
             return false;
+        };
+
+        /* SCROLL PROPERTIES */
+
+        service.getScrollbarWidth = function()
+        {
+            // Use cached value if one exists.
+            if ( _scrollBarWidth )
+            {
+                return _scrollBarWidth;
+            }
+
+            var scrollDiv = angular.element('<div>');
+
+            scrollDiv.css(
+            {
+                height: 100,
+                msOverflowStyle: 'scrollbar', // Needed?
+                overflow: 'scroll',
+                position: 'absolute',
+                width: 100
+            })
+            .appendTo ( service.docBody );
+
+            _scrollBarWidth = scrollDiv.width() - scrollDiv[0].clientWidth;
+
+            scrollDiv.remove();
+
+            $log.debug('WindowState', 'The scrollbar width is: %s', _scrollBarWidth);
+
+            return _scrollBarWidth;
+        };
+
+        /* SCROLL BEHAVIOR */
+
+        service.disableScrollbar = function()
+        {
+            service.docBody.css(
+            {
+                position: 'fixed',
+                overflowY: 'scroll',
+                width: '100%'
+            });
+
+            _scrollEnabled = false;
+        };
+
+        service.enableScrollbar = function()
+        {
+            if ( ! _scrollEnabled )
+            {
+                service.docBody.css(
+                {
+                    position: '',
+                    overflowY: '',
+                    width: ''
+                });
+
+                _scrollEnabled = true;
+            }
+        };
+
+        service.hideScrollbar = function()
+        {
+            service.docBody.css(
+            {
+                // height: '100%'
+                overflow: 'hidden',
+                marginRight: service.getScrollbarWidth()
+            });
+
+            _scrollEnabled = false;
+        };
+
+        service.showScrollbar = function()
+        {
+            if ( ! _scrollEnabled )
+            {
+                service.docBody.css(
+                {
+                    height: '',
+                    overflow: '',
+                    marginRight: ''
+                });
+
+                _scrollEnabled = true;
+            }
+        };
+
+        // This needs work. Overall I don't know if it's a good idea. The body
+        // needs to be manipulated in a way that its scrollable height matches
+        // the scrollable height of the passed element.
+        service.setBodyScrollContextTo = function( element )
+        {
+
+            _bodyScrollContextTO = service.onScroll(function(e)
+            {
+                $log.debug('WindowState', 'The body has been scrolled.');
+                
+                e.preventDefault();
+
+                // element.scrollTop( service.getPixelsScrolledY() );
+
+            }, 'context');
+        };
+
+        service.resetBodyScrollContext = function()
+        {
+            service.destroyScroll( _bodyScrollContextTO, 'context');
         };
 
         return service;

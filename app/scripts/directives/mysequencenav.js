@@ -22,10 +22,13 @@ angular
                 var ctrl = this;
 
                 ctrl.container = $element.find('nav');
+                ctrl.buttonsContainer = $element.find('.buttons-directional');
 
                 ctrl.init = function()
                 {
                     ctrl.setCompactedDefaults();
+
+                    MenuState.addScrollbarPaddedElement( ctrl.buttonsContainer );
                 };
 
                 ctrl.setCompactedDefaults = function()

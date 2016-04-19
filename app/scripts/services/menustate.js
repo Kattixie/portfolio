@@ -11,7 +11,7 @@
  */
 angular
     .module('portfolio')
-    .factory('MenuState', function ($log, $animate)
+    .factory('MenuState', function ($log, $animate, WindowState)
     {
         var service =
         {
@@ -21,13 +21,15 @@ angular
             collapsedHardClassName: 'collapsed-hard',
             compactClassName:       'compact',
             activeClassName:        'active',
-            centerClassName:        'centered'
+            centerClassName:        'centered',
+            scrollableClassName:    'scrollable'
         };
 
         var _isCompact = false,
             _isCollapsed = false,
             _isCentered = false,
-            _isHard = false;
+            _isHard = false,
+            _isScrollbarPadded = false;
 
         var _icon;
 
@@ -40,6 +42,8 @@ angular
         var _compactibleElements = [];
 
         var _centerableElements = [];
+
+        var _scrollbarPaddedElements = [];
 
         var _prevURI,
             _nextURI;
@@ -84,6 +88,11 @@ angular
         service.addCenterableElement = function( element )
         {
             _centerableElements.push(element);
+        };
+
+        service.addScrollbarPaddedElement = function( element )
+        {
+            _scrollbarPaddedElements.push(element);
         };
 
         service.setCompacted = function( isCompact )
@@ -207,6 +216,51 @@ angular
                 else
                 {
                     _centerableElements[i].removeClass(service.centerClassName);
+                }
+            }
+
+            return switchedState;
+        };
+
+        service.setScrollbarPadded = function( isScrollbarPadded )
+        {
+            var switchedState = ( _isScrollbarPadded !== isScrollbarPadded );
+
+            if ( ! switchedState )
+            {
+                return switchedState;
+            }
+
+            _isScrollbarPadded = isScrollbarPadded;
+
+            for (var i = 0; i < _scrollbarPaddedElements.length; i++)
+            {
+                // We currently make a guess about which right property
+                // needs to be adjusted from the position. This may need to be
+                // changed to allow more control.
+                var position = _scrollbarPaddedElements[i].css('position');
+
+                if ( _isScrollbarPadded )
+                {
+                    if (position === 'absolute' || position === 'fixed')
+                    {
+                        _scrollbarPaddedElements[i].css('right', WindowState.getScrollbarWidth() );
+                    }
+                    else
+                    {
+                        _scrollbarPaddedElements[i].css('padding-right', WindowState.getScrollbarWidth() );
+                    }
+                }
+                else
+                {
+                    if (position === 'absolute' || position === 'fixed')
+                    {
+                        _scrollbarPaddedElements[i].css('right', '');
+                    }
+                    else
+                    {
+                        _scrollbarPaddedElements[i].css('padding-right', '');
+                    }
                 }
             }
 

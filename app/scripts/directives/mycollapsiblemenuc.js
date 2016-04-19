@@ -23,7 +23,9 @@ angular
                 // Elements
 
                 ctrl.container = $element.find('nav');
+                ctrl.iconContainer = $element.find('.nav-icon-wrapper');
                 ctrl.dropdownMenu = $element.find('.nav-items');
+                ctrl.dropdownScrollMenu = ctrl.dropdownMenu.find('.scrollable');
                 ctrl.primaryListItems = ctrl.dropdownMenu.find('ul.nav-primary');
                 ctrl.hamburgerIcon = $element.find('#nav-icon');
                 ctrl.logo = $element.find('h1#logo');
@@ -62,6 +64,8 @@ angular
                     MenuState.addCenterableElement( ctrl.logo );
 
                     MenuState.addCompactibleElement( ctrl.container );
+
+                    MenuState.addScrollbarPaddedElement( ctrl.iconContainer );
                 };
 
                 ctrl.setMenuDefaults = function()
@@ -134,9 +138,39 @@ angular
                 // Couldn't find a sane way to do this in the CSS file.
                 ctrl.setDropdownPositionOpen = function()
                 {
-                    var height = ctrl.dropdownMenu.outerHeight();
+                    // When the bottom position is set to 0, it aligns to the
+                    // bottom of the icon wrapper.
+                    var bottomOffset = -1 * ctrl.dropdownMenu.outerHeight() + MenuState.getIconHeight(),
+                        windowHeight = WindowState.getHeight();
 
-                    ctrl.dropdownMenu.css('bottom', -1 * height + MenuState.getIconHeight() );
+                    // $log.debug('myCollapsibleMenuC', 'The calculated bottom vs. window height: %s vs. %s', height, windowHeight);
+
+                    if ( ctrl.dropdownMenu.outerHeight() + MenuState.getIconHeight() >= windowHeight )
+                    {
+                        bottomOffset = -1 * windowHeight + MenuState.getIconHeight();
+
+                        ctrl.dropdownMenu.css('height', windowHeight);
+
+                        ctrl.container.addClass(MenuState.scrollableClassName);
+
+                        // I don't like this, but here's the conundrum: when
+                        // an element position is fixed, as the nav container
+                        // is while compact or scrollable, the container
+                        // expands to the width of the body with scrollbars
+                        // removed. This results in a slight jump for
+                        // right-aligned elements.
+                        // ctrl.iconContainer.css('padding-right', WindowState.getScrollbarWidth() );
+
+                        MenuState.setScrollbarPadded(true);
+
+                        ctrl.dropdownMenu.scrollTop(0);
+
+                        WindowState.hideScrollbar();
+                    }
+
+                    ctrl.dropdownMenu.css('bottom', bottomOffset);
+                    // ctrl.dropdownMenu.css('bottom', -1 * ctrl.dropdownMenu.outerHeight() + MenuState.getIconHeight());
+
                 };
 
                 // Default bottom positions should be set in the CSS files.
@@ -144,6 +178,17 @@ angular
                 ctrl.setDropdownPositionDefault = function()
                 {
                     ctrl.dropdownMenu.css('bottom', '' );
+
+                    ctrl.container.removeClass(MenuState.scrollableClassName);
+
+                    MenuState.setScrollbarPadded(false);
+
+                    // ctrl.iconContainer.css('padding-right', '');
+                    ctrl.dropdownMenu.css('height', '');
+
+                    WindowState.showScrollbar();
+
+                    //ctrl.hamburgerIcon.css('margin-right', ctrl.hamburgerIcon.outerWidth() - WindowState.getScrollbarWidth() );
                 };
 
                 /* ACTIONS */
@@ -361,7 +406,7 @@ angular
                 {
                     WindowState.destroyResize( ctrl.resizeTimeoutId, 'primarynav' );
                     WindowState.destroyScroll( ctrl.scrollTimeoutId, 'primarynav' );
-                }
+                };
 
                 ctrl.setEventListeners = function()
                 {
