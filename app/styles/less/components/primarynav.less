@@ -21,7 +21,6 @@ nav#nav-main
             position: relative;
                 top: 0;
                 left: 0;
-                //z-index: 1;
         }
     }
 
@@ -34,7 +33,6 @@ nav#nav-main
             {
                 float: none;
                 margin: 0 auto;
-                // opacity: 0;
             }
         }
 
@@ -68,8 +66,6 @@ nav#nav-main
         // Importantly, this icon's visibility determines if the menu is collapsible.
         a#nav-icon
         {
-            //.transition(all 600ms ease-out);
-
             color: @black_50;
 
             svg
@@ -122,7 +118,7 @@ nav#nav-main
 
                     &:hover
                     {
-                        //color: #000;
+                        // color: #000;
                     }
                 }
 
@@ -130,7 +126,7 @@ nav#nav-main
                 {
                     a
                     {
-                        //color: #000;
+                        // color: #000;
                         cursor: default;
                     }
                 }
@@ -145,17 +141,11 @@ nav#nav-main
                 {
                     .transition(all 300ms ease-out);
 
-                    //color: #808080;
                     display: block;
-                    //font-family: @title_face;
-                    //font-size: 1.125em;
-                    //letter-spacing: 0.188em;
-                    //text-decoration: none;
-                    //text-transform: uppercase;
 
                     &:hover
                     {
-                        //color: #000;
+                        // color: #000;
                     }
                 }
 
@@ -163,7 +153,7 @@ nav#nav-main
                 {
                     a
                     {
-                        //color: #000;
+                        // color: #000;
                         cursor: default;
                     }
                 }
@@ -430,11 +420,6 @@ nav#nav-main
 
 .collapsible-menu-c()
 {
-    // position: absolute;
-    //     top: 0;
-    //     right: 0;
-    //     left: 0;
-
     &.scrollable
     {
         // Without this, we get two scrollbars. Position being fixed is what
@@ -509,24 +494,6 @@ nav#nav-main
 
     .nav-items
     {
-        // position: fixed;
-        //     top: 0;
-        //     right: 0;
-        //     bottom: 100%;
-        //     left: 0;
-
-        // .transition(bottom 400ms @ease_in_sine);
-
-        // background: rgba(255, 255, 255, 0.95);
-        // height: 100%;
-        // overflow-y: auto;
-        // padding: @spacing_unit_root 0;
-        // position: fixed;
-            // top: 0; // Animate from -100%
-            // right: 0;
-            // left: 0;
-        // width: 50%;
-
         ul.nav-primary,
         ul.nav-sub
         {
@@ -595,8 +562,6 @@ nav#nav-main
                 {
                     a
                     {
-                        // text-decoration: line-through;
-
                         &:hover
                         {
                             color: @black_50;
@@ -657,8 +622,6 @@ nav#nav-main
 
         .respond-until-including(@multi_column_bp,
         {
-            // .drop-shadow(0, 2px, 0, 0, 0, 0, 0, .07);
-
             background: #fff;
             // position: fixed;
                 // top: 0;
@@ -667,7 +630,6 @@ nav#nav-main
                 right: 0;
                 bottom: 100%; // Default for non-compacted state
                 left: 0;
-            // width: 100%;
         });
 
         .respond-until-including(@1_column_width,
@@ -719,8 +681,6 @@ nav#nav-main
         {
             // This also works in case of JavaScript setting bottom value.
             // .transition(bottom 400ms @ease_in_sine);
-
-            //overflow-y: hidden;
 
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
@@ -783,8 +743,6 @@ nav#nav-main
             // Final bottom state should go here, but since I needed to fall
             // back to JavaScript to get the bottom position right, it's
             // missing.
-
-            //overflow-y: hidden;
 
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
@@ -866,7 +824,7 @@ nav#nav-main
                     position: absolute;
                         top: -1 * (@spacing_unit_root / 2 + @box_length / 2);
                         right: @spacing_unit_root / 2 + 2.375em / 2 - @box_length / 2;
-                        //z-index: -1;
+                        // z-index: -1;
                     width: @box_length;
                 }
 
