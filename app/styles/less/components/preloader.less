@@ -2,7 +2,6 @@ div.loader
 {
     .transition(all 300ms ease-out);
 
-    //background: rgba(255,255,255, .85);
     height: 100%;
     opacity: 1;
     position: absolute;
@@ -14,24 +13,27 @@ div.loader
     &.complete
     {
         opacity: 0;
-        // z-index: -1; // Need this check that this doesn't happen until opacity fades. I'm not sure what it will do.
+
+        // This is super important because the preloader displays above media.
+        // Once loaded, we need to change the layer order so that interactive
+        // controls aren't blocked by this div.
+        z-index: -1;
     }
 
     .spinner
     {
         .animation(spinner 800ms infinite linear);
 
-        border-top: 2px solid rgba(255,255,255, 0);
-        border-right: 2px solid rgba(255,255,255, 0);
-        border-bottom: 2px solid #fff;
-        border-left: 2px solid #fff;
+        border-top: 2px solid rgba(255, 255, 255, 0);
+        border-right: 2px solid rgba(255, 255, 255, 0);
+        border-bottom: 2px solid @black_24;
+        border-left: 2px solid @black_24;
         font-size: 10px;
-        //margin-top: -1.500em;
-        //margin-left: -1.500em;
+        margin-top: -1 * @spacing_unit_root / 2;
+        margin-left: -1 * @spacing_unit_root / 2;
         position: absolute;
-            top: @spacing_unit_root / 2;
-            right: @spacing_unit_root / 2;
-            //z-index: 1;
+            top: 50%;
+            left: 50%;
         text-indent: -9999em;
     }
 
@@ -39,8 +41,8 @@ div.loader
     {
         border-radius: 50%;
         display: block;
-        height: 4.000em;
-        width: 4.000em;
+        height: @spacing_unit_root;
+        width: @spacing_unit_root;
     }
 
     /*
@@ -67,12 +69,6 @@ div.loader
     div.loader
     {
         background: rgba(255,255,255, .85);
-
-        .spinner
-        {
-            border-bottom-color: @black_24;
-            border-left-color: @black_24;
-        }
     }
 }
 
