@@ -2688,6 +2688,11 @@ div.loader .spinner {
     width: 727px;
   }
 }
+@media (min-width: 1255px) and (max-width: 1431px) {
+  #entry h1.sidebar {
+    font-size: 1.950em;
+  }
+}
 #about .container {
   margin: 0 auto;
   overflow: hidden;

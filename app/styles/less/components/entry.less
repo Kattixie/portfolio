@@ -324,7 +324,7 @@
     }
 }
 
-@media (min-width: (@entry_image_width + 101px)) and (max-width: (@2_column_width + 300px))
+@media (min-width: (@entry_image_width + 101px)) and (max-width: @multi_column_bp)
 {
     #entry
     {
@@ -342,6 +342,18 @@
             margin-right: auto;
             margin-left: auto;
             width: @entry_image_width;
+        }
+    }
+}
+
+@media (min-width: (@multi_column_bp + 1)) and (max-width: @3_column_width)
+{
+    #entry
+    {
+        // Things can get pretty tight in the header.
+        h1.sidebar
+        {
+            font-size: 1.950em;
         }
     }
 }
