@@ -5,13 +5,11 @@
 
     .container
     {
-        margin: 0 auto;
         overflow: hidden;
     }
 
     ul.entries
     {
-        float: left;
         overflow: hidden;
 
         li
@@ -89,13 +87,16 @@
     ul.categories
     {
         display: inline-block;
-        //float: right;
-        margin-left: @spacing_unit_root * 2;
 
         a
         {
             .rounded(22px); // Must include border when halving the height
-            .transition(all 250ms ease-out);
+
+            .transition-property(color, background-color, border-color;);
+            .transition-duration(250ms);
+            .transition-timing-function(@ease_in_sine);
+
+            // .transition(color 250ms ease-out, background 250ms ease-out;);
 
             color: @black_65;
             border: 2px solid @black_85;
@@ -104,10 +105,10 @@
             font-size: 15px;
             font-style: italic;
             font-weight: 600;
-            height: 38px;
-            line-height: 37px;
+            // height: 38px;
+            // line-height: 37px;
             margin-bottom: 7px;
-            padding: 0 15px;
+            // padding: 0 15px;
             text-decoration: none;
 
             &:hover
@@ -118,7 +119,6 @@
 
             &.faded
             {
-                // opacity: 0.55;
                 color: @black_85;
                 border-color: @black_90;
 
@@ -131,72 +131,99 @@
 
             &.active
             {
+                .transition-property(color);
+
                 color: @black_24;
                 background-color: @blue_light;
-                border-color: @blue_light;
+                border: 0;
+                // border-color: @blue_light;
                 opacity: 1;
 
                 &:hover
                 {
-                    border-color: @blue_light;
+                    // border-left-color: @blue_light;
                     color: @black_9;
+                }
+
+                span.name
+                {
+                    // display: inline-block;
+                    padding: 14px 8px 14px 17px;
+                }
+
+                span.count
+                {
+                    border-color: #fff;
+                    padding: 14px 17px 14px 10px;
                 }
             }
 
-
+            span.name
+            {
+                display: inline-block;
+                padding: 12px 8px 12px 15px;
+            }
 
             span.count
             {
-                display: none;
+                // .rounded(0 22px 22px 0);
+
+                display: inline-block;
+                border-left: 1px solid @black_95;
+                padding: 12px 15px 12px 10px;
             }
         }
     }
-}
 
-// Media Queries
+    // Media Queries
 
-@media (max-width: @1_column_width)
-{
-    #entry-list
+    .respond-until-including(@1_column_width,
     {
         font-size: .55rem;
-    }
-}
+    });
 
-@media (max-width: 727px)
-{
-    #entry-list
+    .respond-between(@1_column_width, @entry_image_width,
     {
         font-size: .65rem;
-    }
-}
+    });
 
-@media (max-width: (@2_column_width + 100px))
-{
-    #entry-list
+    .respond-until-including(@entry_image_width + 100px,
+    {
+        .single-column(@spacing_unit_root / 2);
+    });
+
+    .respond-between(@entry_image_width + 101px, @multi_column_bp,
+    {
+        .single-column(auto, @entry_image_width);
+    });
+
+    .respond-after(@multi_column_bp,
+    {
+        .multi-column();
+    });
+
+    // Local Mixins
+
+    .single-column(@horizontal-margin: auto, @width: auto)
     {
         .container
         {
             text-align: center;
-            //margin-top: @spacing_unit_root;
-            margin-left: @spacing_unit_root / 2;
-            margin-right: @spacing_unit_root / 2;
-            width: auto;
+            margin-left: @horizontal-margin;
+            margin-right: @horizontal-margin;
+            width: @width;
         }
 
         ul.entries
         {
+            float: left;
             text-align: left;
         }
 
         ul.categories
         {
-            float: none;
-            margin-right: auto;
             margin-bottom: @spacing_unit_root / 2;
-            margin-left: auto;
             text-align: center;
-            width: auto;
 
             li
             {
@@ -206,13 +233,27 @@
             a
             {
                 display: inline-block;
-                font-size: 15px;
-                height: 38px;
-                line-height: 38px;
                 margin-right: 7px;
-                margin-bottom: 7px;
-                padding: 0 15px;
             }
+        }
+    }
+
+    .multi-column()
+    {
+        .container
+        {
+            margin: 0 auto;
+        }
+
+        ul.entries
+        {
+            float: left;
+        }
+
+        ul.categories
+        {
+            float: right;
+            // margin-left: @spacing_unit_root * 2;
         }
     }
 }

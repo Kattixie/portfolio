@@ -106,7 +106,7 @@ angular
                                 }
                                 else
                                 {
-                                    _categories[ category ].count = _categories[ category ].count++;
+                                    _categories[ category ].count += 1;
 
                                     categoryIds.push( _categories[ category ].id );
                                 }

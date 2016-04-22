@@ -111,7 +111,7 @@ angular
                 this.setInClasses = function()
                 {
                     // This check is important to prevent an unnecessary
-                    // digests, which could slow down the app. Realy wish
+                    // digests, which could slow down the app. Really wish
                     // ngAnimate didn't need a digest to apply classes.
                     if ( ! inClassesSet )
                     {

@@ -197,9 +197,9 @@ header header {
   height: 16.25rem;
 }
 header h1#logo {
-  -webkit-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  -moz-border-radius: 3.438em 3.438em 3.438em 3.438em;
-  border-radius: 3.438em 3.438em 3.438em 3.438em;
+  -webkit-border-radius: 3.438em;
+  -moz-border-radius: 3.438em;
+  border-radius: 3.438em;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -375,9 +375,9 @@ ul#contact svg {
 ul#contact a {
   color: #999999;
   background: #ededed;
-  -webkit-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  -moz-border-radius: 1.625em 1.625em 1.625em 1.625em;
-  border-radius: 1.625em 1.625em 1.625em 1.625em;
+  -webkit-border-radius: 1.625em;
+  -moz-border-radius: 1.625em;
+  border-radius: 1.625em;
   -webkit-transition: all 250ms ease-out;
   -moz-transition: all 250ms ease-out;
   -ms-transition: all 250ms ease-out;
@@ -1924,11 +1924,9 @@ div.loader .spinner {
   overflow: hidden;
 }
 #entry-list .container {
-  margin: 0 auto;
   overflow: hidden;
 }
 #entry-list ul.entries {
-  float: left;
   overflow: hidden;
 }
 #entry-list ul.entries li {
@@ -2005,17 +2003,26 @@ div.loader .spinner {
 }
 #entry-list ul.categories {
   display: inline-block;
-  margin-left: 6.25rem;
 }
 #entry-list ul.categories a {
-  -webkit-border-radius: 22px 22px 22px 22px;
-  -moz-border-radius: 22px 22px 22px 22px;
-  border-radius: 22px 22px 22px 22px;
-  -webkit-transition: all 250ms ease-out;
-  -moz-transition: all 250ms ease-out;
-  -ms-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
+  -webkit-border-radius: 22px;
+  -moz-border-radius: 22px;
+  border-radius: 22px;
+  -webkit-transition-property: color, background-color, border-color;
+  -moz-transition-property: color, background-color, border-color;
+  -ms-transition-property: color, background-color, border-color;
+  -o-transition-property: color, background-color, border-color;
+  transition-property: color, background-color, border-color;
+  -webkit-transition-duration: 250ms;
+  -moz-transition-duration: 250ms;
+  -ms-transition-duration: 250ms;
+  -o-transition-duration: 250ms;
+  transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+  -moz-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+  -ms-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+  -o-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
   color: #a6a6a6;
   border: 2px solid #d9d9d9;
   display: inline-block;
@@ -2023,10 +2030,7 @@ div.loader .spinner {
   font-size: 15px;
   font-style: italic;
   font-weight: 600;
-  height: 38px;
-  line-height: 37px;
   margin-bottom: 7px;
-  padding: 0 15px;
   text-decoration: none;
 }
 #entry-list ul.categories a:hover {
@@ -2041,29 +2045,46 @@ div.loader .spinner {
   color: #171717;
 }
 #entry-list ul.categories a.active {
+  -webkit-transition-property: color;
+  -moz-transition-property: color;
+  -ms-transition-property: color;
+  -o-transition-property: color;
+  transition-property: color;
   color: #3d3d3d;
   background-color: #daf3f1;
-  border-color: #daf3f1;
+  border: 0;
   opacity: 1;
 }
 #entry-list ul.categories a.active:hover {
-  border-color: #daf3f1;
   color: #171717;
 }
+#entry-list ul.categories a.active span.name {
+  padding: 14px 8px 14px 17px;
+}
+#entry-list ul.categories a.active span.count {
+  border-color: #fff;
+  padding: 14px 17px 14px 10px;
+}
+#entry-list ul.categories a span.name {
+  display: inline-block;
+  padding: 12px 8px 12px 15px;
+}
 #entry-list ul.categories a span.count {
-  display: none;
+  display: inline-block;
+  border-left: 1px solid #f2f2f2;
+  padding: 12px 15px 12px 10px;
 }
 @media (max-width: 477px) {
   #entry-list {
     font-size: .55rem;
   }
 }
-@media (max-width: 727px) {
+@media (min-width: 478px) and (max-width: 727px) {
   #entry-list {
     font-size: .65rem;
   }
 }
-@media (max-width: 1054px) {
+@media (max-width: 827px) {
   #entry-list .container {
     text-align: center;
     margin-left: 1.5625rem;
@@ -2071,27 +2092,53 @@ div.loader .spinner {
     width: auto;
   }
   #entry-list ul.entries {
+    float: left;
     text-align: left;
   }
   #entry-list ul.categories {
-    float: none;
-    margin-right: auto;
     margin-bottom: 1.5625rem;
-    margin-left: auto;
     text-align: center;
-    width: auto;
   }
   #entry-list ul.categories li {
     display: inline-block;
   }
   #entry-list ul.categories a {
     display: inline-block;
-    font-size: 15px;
-    height: 38px;
-    line-height: 38px;
     margin-right: 7px;
-    margin-bottom: 7px;
-    padding: 0 15px;
+  }
+}
+@media (min-width: 829px) and (max-width: 1254px) {
+  #entry-list .container {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 727px;
+  }
+  #entry-list ul.entries {
+    float: left;
+    text-align: left;
+  }
+  #entry-list ul.categories {
+    margin-bottom: 1.5625rem;
+    text-align: center;
+  }
+  #entry-list ul.categories li {
+    display: inline-block;
+  }
+  #entry-list ul.categories a {
+    display: inline-block;
+    margin-right: 7px;
+  }
+}
+@media (min-width: 1255px) {
+  #entry-list .container {
+    margin: 0 auto;
+  }
+  #entry-list ul.entries {
+    float: left;
+  }
+  #entry-list ul.categories {
+    float: right;
   }
 }
 #entry {
@@ -2235,9 +2282,9 @@ div.loader .spinner {
   width: 1.5em;
 }
 #entry .text p span.external a span.no-wrap span.icon span.svg-container {
-  -webkit-border-radius: 1.5em 1.5em 1.5em 1.5em;
-  -moz-border-radius: 1.5em 1.5em 1.5em 1.5em;
-  border-radius: 1.5em 1.5em 1.5em 1.5em;
+  -webkit-border-radius: 1.5em;
+  -moz-border-radius: 1.5em;
+  border-radius: 1.5em;
   background: #daf3f1;
   display: inline-block;
   height: 1.5em;
@@ -2292,9 +2339,9 @@ div.loader .spinner {
   margin-bottom: 3.125rem;
 }
 #entry .main-quote .source .photo {
-  -webkit-border-radius: 3.938em 3.938em 3.938em 3.938em;
-  -moz-border-radius: 3.938em 3.938em 3.938em 3.938em;
-  border-radius: 3.938em 3.938em 3.938em 3.938em;
+  -webkit-border-radius: 3.938em;
+  -moz-border-radius: 3.938em;
+  border-radius: 3.938em;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -2777,9 +2824,9 @@ div.loader .spinner {
   width: 1.5em;
 }
 #about .bio p span.external a span.no-wrap span.icon span.svg-container {
-  -webkit-border-radius: 1.5em 1.5em 1.5em 1.5em;
-  -moz-border-radius: 1.5em 1.5em 1.5em 1.5em;
-  border-radius: 1.5em 1.5em 1.5em 1.5em;
+  -webkit-border-radius: 1.5em;
+  -moz-border-radius: 1.5em;
+  border-radius: 1.5em;
   background: #daf3f1;
   display: inline-block;
   height: 1.5em;

@@ -1,15 +1,10 @@
 // Curves
 
-.rounded(@top-left, @top-right, @bottom-right, @bottom-left)
+.rounded(@arguments)
 {
-    -webkit-border-radius: @top-left @top-right @bottom-right @bottom-left;
-       -moz-border-radius: @top-left @top-right @bottom-right @bottom-left;
-            border-radius: @top-left @top-right @bottom-right @bottom-left;
-}
-
-.rounded(@corner)
-{
-    .rounded(@corner, @corner, @corner, @corner);
+    -webkit-border-radius: @arguments;
+       -moz-border-radius: @arguments;
+            border-radius: @arguments;
 }
 
 // Sprites
@@ -127,6 +122,33 @@
             transition: @arguments;
 }
 
+.transition-property(@arguments)
+{
+    -webkit-transition-property: @arguments;
+       -moz-transition-property: @arguments;
+        -ms-transition-property: @arguments;
+         -o-transition-property: @arguments;
+            transition-property: @arguments;
+}
+
+.transition-duration(@arguments)
+{
+    -webkit-transition-duration: @arguments;
+       -moz-transition-duration: @arguments;
+        -ms-transition-duration: @arguments;
+         -o-transition-duration: @arguments;
+            transition-duration: @arguments;
+}
+
+.transition-timing-function(@arguments)
+{
+    -webkit-transition-timing-function: @arguments;
+       -moz-transition-timing-function: @arguments;
+        -ms-transition-timing-function: @arguments;
+         -o-transition-timing-function: @arguments;
+            transition-timing-function: @arguments;
+}
+
 .transition-delay(@arguments)
 {
     -webkit-transition-delay: @arguments;
@@ -136,14 +158,7 @@
             transition-delay: @arguments;
 }
 
-.transition-duration(@time)
-{
-    -webkit-transition-duration: @time;
-       -moz-transition-duration: @time;
-        -ms-transition-duration: @time;
-         -o-transition-duration: @time;
-            transition-duration: @time;
-}
+
 
 .animation(@arguments)
 {
