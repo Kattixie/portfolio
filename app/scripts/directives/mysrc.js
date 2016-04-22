@@ -53,7 +53,7 @@ angular
                     $timeout( function()
                     {
                         self.loadElementInViewport();
-                    }, 400);
+                    }, 400, false);
                 };
 
                 self.isCompiled = function()

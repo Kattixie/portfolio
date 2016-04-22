@@ -49,7 +49,7 @@ angular
 
                         MenuState.setContentPosition( iElement, iAttrs.entrancePoint );
 
-                    }, 300);
+                    }, 300, false);
                 };
 
                 self.onDestroy = function()

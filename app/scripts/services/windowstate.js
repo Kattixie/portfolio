@@ -92,7 +92,7 @@ angular
 
                         _removeTimeoutById( timeoutId );
 
-                    }, delay);
+                    }, delay, false);
 
                     _addTimeout(localTO, timeoutId);
                 });
@@ -524,7 +524,7 @@ angular
             _bodyScrollContextTO = service.onScroll(function(e)
             {
                 $log.debug('WindowState', 'The body has been scrolled.');
-                
+
                 e.preventDefault();
 
                 // element.scrollTop( service.getPixelsScrolledY() );

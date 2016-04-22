@@ -1,0 +1,13 @@
+<ul class="categories">
+    <my-category
+        ng-repeat="(index, category) in list.categories"
+        id="category.id",
+        name="category.name"
+        count="category.count">
+    </my-category>
+</ul>
+<ul class="entries">
+    <li ng-repeat="(index, item) in list.items" ng-show="list.itemIsVisible(index)" class="item">
+        <a ng-bind-html="item.titleShort" href="#/{{item.slug}}">{{::item.titleShort}}</a>
+    </li>
+</ul>

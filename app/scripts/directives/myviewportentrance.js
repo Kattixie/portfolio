@@ -33,7 +33,9 @@ angular
                     elementScrollProps,
                     updatePropsPerScroll = true,
                     inViewTO,
-                    outOfViewTO;
+                    outOfViewTO,
+                    inClassesSet = false,
+                    outClassesSet = true;
 
                 this.init = function()
                 {
@@ -103,54 +105,70 @@ angular
                         elementScrollProps.bottom = offset.top + height;
                         elementScrollProps.height = height;
 
-                    }, 300);
+                    }, 300, false);
                 };
 
                 this.setInClasses = function()
                 {
-                    // Need timeout or something else that safely runs
-                    // $apply().
-                    inViewTO = $timeout(function()
+                    // This check is important to prevent an unnecessary
+                    // digests, which could slow down the app. Realy wish
+                    // ngAnimate didn't need a digest to apply classes.
+                    if ( ! inClassesSet )
                     {
-                        // ngAnimate adds the following classes in the
-                        // following order:
-                        // ng-animate
-                        // ng-{OUT_OF_VIEW_CLASS}-remove
-                        // ng-{IN_VIEW_CLASS}-add
-                        // ng-{IN_VIEW_CLASS}
-                        // ng-{OUT_OF_VIEW_CLASS}-remove-active
-                        // ng-{IN_VIEW_CLASS}-add-active
-                        $animate.setClass($element, IN_VIEW_CLASS, OUT_OF_VIEW_CLASS);
-
-                        if ( ! repeat )
+                        // Need timeout or something else that safely runs
+                        // $apply().
+                        inViewTO = $timeout(function()
                         {
-                            $log.debug('myViewportEntrance', 'In classes have been set, now destroying...');
+                            // ngAnimate adds the following classes in the
+                            // following order:
+                            // ng-animate
+                            // ng-{OUT_OF_VIEW_CLASS}-remove
+                            // ng-{IN_VIEW_CLASS}-add
+                            // ng-{IN_VIEW_CLASS}
+                            // ng-{OUT_OF_VIEW_CLASS}-remove-active
+                            // ng-{IN_VIEW_CLASS}-add-active
+                            $animate.setClass($element, IN_VIEW_CLASS, OUT_OF_VIEW_CLASS);
 
-                            ctrl.onDestroy();
-                        }
-                    });
+                            inClassesSet = true;
+                            outClassesSet = false;
 
-                    // This works well with transition.
-                    // element.removeClass(OUT_OF_VIEW_CLASS).addClass(IN_VIEW_CLASS);
+                            if ( ! repeat )
+                            {
+                                $log.debug('myViewportEntrance', 'In classes have been set, now destroying...');
+
+                                ctrl.onDestroy();
+                            }
+                        });
+
+                        // This works well with transition.
+                        // element.removeClass(OUT_OF_VIEW_CLASS).addClass(IN_VIEW_CLASS);
+                    }
                 };
 
                 this.setOutClasses = function()
                 {
-                    outOfViewTO = $timeout(function()
+                    if ( ! outClassesSet )
                     {
-                        // ngAnimate adds the following classes in the
-                        // following order:
-                        // ng-animate
-                        // ng-{IN_VIEW_CLASS}-remove
-                        // ng-{OUT_OF_VIEW_CLASS}-add
-                        // ng-{OUT_OF_VIEW_CLASS}
-                        // ng-{IN_VIEW_CLASS}-remove-active
-                        // ng-{OUT_OF_VIEW_CLASS}-add-active
-                        $animate.setClass($element, OUT_OF_VIEW_CLASS, IN_VIEW_CLASS);
-                    });
+                        outOfViewTO = $timeout(function()
+                        {
+                            // ngAnimate adds the following classes in the
+                            // following order:
+                            // ng-animate
+                            // ng-{IN_VIEW_CLASS}-remove
+                            // ng-{OUT_OF_VIEW_CLASS}-add
+                            // ng-{OUT_OF_VIEW_CLASS}
+                            // ng-{IN_VIEW_CLASS}-remove-active
+                            // ng-{OUT_OF_VIEW_CLASS}-add-active
+                            $animate.setClass($element, OUT_OF_VIEW_CLASS, IN_VIEW_CLASS);
 
-                    // This works well with transition.
-                    // _element.removeClass(IN_VIEW_CLASS).addClass(OUT_OF_VIEW_CLASS);
+                            outClassesSet = true;
+                            inClassesSet = false;
+                        });
+
+                        // This works well with transition.
+                        // _element.removeClass(IN_VIEW_CLASS).addClass(OUT_OF_VIEW_CLASS);
+                    }
+
                 };
 
                 this.onScroll = function()

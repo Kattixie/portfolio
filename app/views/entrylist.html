@@ -1,14 +1,7 @@
 <div id="entry-list">
     <div class="container">
-        <ul class="categories">
-            <li ng-repeat="(index, category) in data.categories">
-                <a href="" ng-click="entryList.toggleCategory(index)" ng-class="{ active:category.isSelected, faded:state.categoryIsClicked }" data-count="category.count">{{category.name}}<span class="count">{{category.count}}</span></a>
-            </li>
-        </ul>
-        <ul class="entries">
-            <li ng-repeat="(index, entry) in data.entries" ng-show="entryList.inSelectedCategories(index)">
-                <a ng-bind-html="entry.titleShort" href="#/{{entry.slug}}">{{::entry.titleShort}}</a>
-            </li>
-        </ul>
+
+        <my-categorized-list categories="data.categories" items="data.entries"></my-categorized-list>
+
     </div>
 </div>

@@ -7,7 +7,6 @@
     {
         margin: 0 auto;
         overflow: hidden;
-        //width: @2_column_width;
     }
 
     ul.entries
@@ -17,101 +16,33 @@
 
         li
         {
+            .transition(opacity 200ms @ease_in_sine 200ms);
+
+            // Note ngAnimate will change to display: none
             display: block;
-        }
+            opacity: 1;
 
-        li.ng-hide-add,
-        li.ng-hide-remove
-        {
-            //.transition(none);
-            //.transition(all 200ms ease-out);
-            transition-delay: 300ms;
-        }
-
-        li.ng-hide-add
-        li.ng-hide
-        {
-            a
+            &.ng-hide-remove
             {
-                //opacity: 0;
-                //color: @black_85;
-            }
+                .transition(none);
 
-            a::after
-            {
-
-            }
-        }
-
-        li.ng-hide-remove
-        {
-            .animation(fadeInWithPause 300ms cubic-bezier(0.755, 0.05, 0.855, 0.06));
-
-            a
-            {
-                color: @black_85;
-            }
-        }
-
-        .keyframes(fadeInWithPause,
-        {
-            0%
-            {
-                height: 0;
                 opacity: 0;
             }
 
-            40%
+            &.ng-hide-add
             {
-                height: 100%;
-            }
+                .transition(none);
 
-            50%
-            {
-                opacity: 0;
-            }
-
-            100%
-            {
                 opacity: 1;
             }
-        });
 
-        .keyframes(fadeInTextWithPause,
-        {
-            0%
+            &.ng-hide
             {
-                color: #fff;
+                .transition(opacity 0 @ease_in_sine 50ms);
+
+                opacity: 0;
             }
-
-            100%
-            {
-                color: @hot_pink;
-            }
-        });
-
-        /* For filter implementation.
-        li.ng-move,
-        li.ng-enter,
-        li.ng-leave
-        {
-          transition:all linear 0.5s;
         }
-
-        li.ng-leave.ng-leave-active,
-        li.ng-move,
-        li.ng-enter
-        {
-          opacity: 0;
-        }
-
-        li.ng-leave,
-        li.ng-move.ng-move-active,
-        li.ng-enter.ng-enter-active
-        {
-          opacity: 1;
-        }
-        */
 
         a
         {

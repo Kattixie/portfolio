@@ -102,7 +102,7 @@ angular
                     {
                         self.setSizeClass();
 
-                    }, 500);
+                    }, 500, false);
                 };
 
                 self.onDestroy = function()

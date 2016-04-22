@@ -9,7 +9,7 @@
  */
 angular
     .module('portfolio')
-    .controller('MainCtrl', function ($scope, Entry, PageState, MenuState)
+    .controller('MainCtrl', function ($log, $scope, Entry, PageState, MenuState)
     {
         var vm = $scope;
 
