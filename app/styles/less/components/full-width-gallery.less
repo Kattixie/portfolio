@@ -61,7 +61,13 @@
         {
             content: '';
             display: block;
-            padding-bottom: 358 / 477 * 100%; 	// Ratio as percentage
+            // This is really unfortunate, but since Chrome 49.0.26-ish, there's
+            // sometimes a 1-pixel problem here. It doesn't show up at every
+            // width, but the best I can figure is that something is happening
+            // with how the padding renders as pixels. Reducing the height by
+            // 1px may clip the image a little, but it prevents this problem
+            // from manifesting.
+            padding-bottom: (358 - 1) / 477 * 100%; 	// Ratio as percentage
         }
 
         .description
