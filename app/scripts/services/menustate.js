@@ -177,10 +177,7 @@ angular
 
                     $animate
                         .addClass(element, service.collapsedClassName)
-                        .then( function()
-                        {
-                            element.removeClass(service.collapsedHardClassName);
-                        });
+                        .then( service.removeHardness(element) );
                     // element.addClass(service.collapsedClassName);
                 }
                 else
@@ -191,6 +188,11 @@ angular
             }
 
             return switchedState;
+        };
+
+        service.removeHardClass = function(element)
+        {
+            element.removeClass(service.collapsedHardClassName);
         };
 
         service.setCentered = function( isCentered )

@@ -11,7 +11,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myExternalLink', function ($log, $parse)
+    .directive('myExternalLink', function ()
     {
         var ddo =
         {

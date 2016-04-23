@@ -11,7 +11,8 @@ angular
     .module('portfolio')
     .controller('EntryCtrl', function ($log, $scope, $routeParams, $sce, Entry, PageState, MenuState)
     {
-        var vm = $scope;
+        var vm = $scope,
+            ctrl = this;
 
         // Using primitives or a scalar value here is bad practice due to how
         // prototypical inheritance and property shadowing works. I do think I
@@ -39,11 +40,11 @@ angular
                 MenuState.setPrevURI( vm.data.entry.prevSlug || '/' );
                 MenuState.setNextURI( vm.data.entry.nextSlug || '/' );
 
-                self.setIframes();
-                self.setLinks();
+                ctrl.setIframes();
+                ctrl.setLinks();
             });
 
-        self.setIframes = function()
+        ctrl.setIframes = function()
         {
             if ( vm.data.entry.images )
             {
@@ -60,7 +61,7 @@ angular
             }
         };
 
-        self.setLinks = function()
+        ctrl.setLinks = function()
         {
             if ( vm.data.entry.urls )
             {

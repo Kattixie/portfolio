@@ -11,8 +11,7 @@ angular
     .module('portfolio')
     .controller('EntryListCtrl', function ($scope, $log, $routeParams, Entry, PageState, MenuState)
     {
-        var vm = $scope,
-            ctrl = this;
+        var vm = $scope;
 
         vm.data = {};
         vm.data.entries = [];

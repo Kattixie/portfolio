@@ -518,7 +518,7 @@ angular
         // This needs work. Overall I don't know if it's a good idea. The body
         // needs to be manipulated in a way that its scrollable height matches
         // the scrollable height of the passed element.
-        service.setBodyScrollContextTo = function( element )
+        service.setBodyScrollContextTo = function(element)
         {
 
             _bodyScrollContextTO = service.onScroll(function(e)
@@ -527,7 +527,7 @@ angular
 
                 e.preventDefault();
 
-                // element.scrollTop( service.getPixelsScrolledY() );
+                element.scrollTop( service.getPixelsScrolledY() );
 
             }, 'context');
         };

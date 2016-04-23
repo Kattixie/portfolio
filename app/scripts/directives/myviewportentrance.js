@@ -54,7 +54,7 @@ angular
 
                     ctrl
                         .setElement()
-                        .then( function(result)
+                        .then( function()
                         {
                             // This function is necessary. We can't invoke
                             // setInView() directly in then().

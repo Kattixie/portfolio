@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myCategory', function ($log, $routeParams)
+    .directive('myCategory', function ($log)
     {
         return {
             restrict: 'E',
@@ -57,7 +57,7 @@ angular
                     // $log.debug('myCategory', 'Determining if category should be faded: %s', vm.name);
 
                     return ! _isSelected && listCtrl.getNumSelectedCategories() > 0;
-                }
+                };
             }
         };
     });

@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myCategorizedList', function ($log, $routeParams)
+    .directive('myCategorizedList', function ($log)
     {
         return {
             restrict: 'E',
