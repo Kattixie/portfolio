@@ -16,6 +16,7 @@ angular
             scope:
             {
                 id: '=',
+                slug: '=',
                 name: '=',
                 count: '='
             },
@@ -26,6 +27,31 @@ angular
                 var vm = scope;
 
                 var _isSelected = false;
+
+                vm.init = function()
+                {
+                    vm.setDefaultState();
+                };
+
+                vm.setDefaultState = function()
+                {
+                    if ( listCtrl.inRouteCategories(vm.slug) )
+                    {
+                        $log.debug('myCategory', 'The category is currently selected.');
+
+                        _isSelected = true;
+                    }
+                };
+
+                vm.getUrlName = function()
+                {
+                    return vm.slug;
+                };
+
+                vm.getId = function()
+                {
+                    return vm.id;
+                };
 
                 vm.isSelected = function()
                 {
@@ -58,6 +84,8 @@ angular
 
                     return ! _isSelected && listCtrl.getNumSelectedCategories() > 0;
                 };
+
+                vm.init();
             }
         };
     });

@@ -30,13 +30,16 @@ angular
             .when('/list', {
                 templateUrl: 'views/entrylist.html',
                 controller: 'EntryListCtrl',
-                controllerAs: 'entryList'
+                controllerAs: 'entryList',
+                reloadOnSearch: false
             })
+            /*
             .when('/list/:categories', {
                 templateUrl: 'views/entrylist.html',
                 controller: 'EntryListCtrl',
                 controllerAs: 'entryList'
             })
+            */
             .when('/about', {
                 templateUrl: 'views/about.html',
                 controller: 'AboutCtrl',

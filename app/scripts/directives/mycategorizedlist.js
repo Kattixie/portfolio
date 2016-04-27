@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myCategorizedList', function ($log)
+    .directive('myCategorizedList', function ($log, $routeParams, $location)
     {
         return {
             restrict: 'E',
@@ -23,74 +23,162 @@ angular
             controllerAs: 'list',
             controller: function($scope, $element)
             {
+                var CATEGORY_URI_SEPARATOR = ',',
+                    ITEM_SELECTOR = '.item';
+
                 var ctrl = this;
 
-                ctrl.routeCategories = [];
-                ctrl.selectedCategories = [];
+                var _initWatch;
 
-                ctrl.elements = {};
-                ctrl.state = {};
-
-                // Can't set these items until the list is populated.
-                ctrl.elements.items = [];
-                ctrl.state.items = [];
-
-                ctrl.setItems = function()
+                angular.extend(ctrl,
                 {
-                    ctrl.setItemsState();
-                    // ctrl.setItemsElements();
+                    // Array of category slugs that exist in the URI.
+                    routeCategories: [],
+
+                    // Array of category IDs that are selected.
+                    selectedCategories: [],
+
+                    state:
+                    {
+                        items: []
+                    },
+
+                    // Can't set until the list is populated.
+                    elements:
+                    {
+                        items: []
+                    }
+                });
+
+                /* SETUP */
+
+                // This gets invoked when we've verified that the number of
+                // categories and number of item elements is greater than 0.
+                ctrl.init = function()
+                {
+                    // For segment approach instead:
+                    // ctrl.setRouteParamsCategories();
+                    ctrl.setCategoryParam();
+                    ctrl.setItems();
+                    ctrl.setSelectedCategories();
                 };
 
-                ctrl.setItemsState = function()
-                {
-                    if ( ctrl.state.items.length === 0 )
-                    {
-                        var items = $element.find('.item');
+                /* CATEGORY URI PARAMETERS */
 
-                        for (var i = 0; i < items.length; i++)
+                // Retrieves parameters from URI search, assuming the URL style
+                // is traditional: list?category=cat1,cat2 Currently using this
+                // method because changing the path in any other way I've found
+                // generates a refresh, which we don't want. Note use of
+                // reloadOnSearch: false on $routeProvider in app.js
+                ctrl.setCategoryParam = function()
+                {
+                    var categories = $location.search().category;
+
+                    if (categories)
+                    {
+                        ctrl.routeCategories = categories.split(CATEGORY_URI_SEPARATOR);
+
+                        // $log.debug('myCategorizedList', 'The route categories: %o', ctrl.routeCategories);
+                    }
+                    else
+                    {
+                        ctrl.routeCategories = [];
+                    }
+                };
+
+                // Retrieves parameters from URI segment, such as:
+                // list/cat1,cat2 This works but causes a reload if the path
+                // is updated. Need to look into segmented URI approach with
+                // Angular. Obviously it's super important to be able to
+                // set URIs as the user navigates the app.
+                ctrl.setRouteParamsCategories = function()
+                {
+                    if ( $routeParams.categories )
+                    {
+                        ctrl.routeCategories = $routeParams.categories.split(CATEGORY_URI_SEPARATOR);
+                    }
+                    else
+                    {
+                        ctrl.routeCategories = [];
+                    }
+                };
+
+                // Traverses categories found in URI and maps them to category
+                // data passed to this directive. If a match is found, the
+                // category ID is added to the selected categories array.
+                ctrl.setSelectedCategories = function()
+                {
+                    for (var i = 0; i < ctrl.routeCategories.length; i++)
+                    {
+                        var found = false;
+
+                        for (var j = 0; ! found && j < ctrl.categories.length; j++)
                         {
-                            ctrl.state.items.push(
+                            if (ctrl.routeCategories[i] === ctrl.categories[j].slug)
                             {
-                                hidden: false
-                            });
+                                found = true;
+
+                                $log.debug('myCategorizedList', 'The category is selected: %s', ctrl.categories[j].slug );
+
+                                ctrl.addSelectedCategory(ctrl.categories[j].id);
+                            }
                         }
                     }
-
-                    return ctrl.state.items;
                 };
 
-                ctrl.setItemsElements = function()
+                // Checks if the passed slug is in the URI categories.
+                ctrl.inRouteCategories = function(slug)
                 {
-                    if ( ctrl.elements.items.length === 0 )
-                    {
-                        var items = $element.find('.item');
+                    var found = false;
 
-                        for (var i = 0; i < items.length; i++)
+                    for (var i = 0; ! found && i < ctrl.routeCategories.length; i++)
+                    {
+                        if (ctrl.routeCategories[i] === slug)
                         {
-                            ctrl.elements.items.push( angular.element(items[i]) );
+                            found = true;
                         }
                     }
 
-                    $log.debug('myCategorizedList', 'The item elements: %o', ctrl.elements.items);
-
-                    return ctrl.elements.items;
+                    return found;
                 };
+
+                // Updates URI path to include currently selected categories.
+                ctrl.updateUri = function()
+                {
+                    var slugs = [];
+
+                    for (var i = 0; i < ctrl.selectedCategories.length; i++)
+                    {
+                        // Category IDs begin at 1, so we need to offse that
+                        // value here. Yes, this makes an assumption I don't
+                        // feel super comfortable with.
+                        slugs[i] = ctrl.categories[ ctrl.selectedCategories[i] - 1 ].slug;
+                    }
+
+                    $location.search('category', slugs.join( CATEGORY_URI_SEPARATOR ));
+                };
+
+                /* CATEGORIES BEHAVIOR AND STATE */
 
                 ctrl.addSelectedCategory = function(categoryId)
                 {
+                    /*
                     if (ctrl.selectedCategories.length === 0)
                     {
                         ctrl.hideAllItems();
                     }
+                    */
 
                     ctrl.selectedCategories.push(categoryId);
 
                     ctrl.showItemsInAnySelectedCategory();
+
+                    ctrl.updateUri();
                 };
 
                 ctrl.removeSelectedCategory = function(categoryId)
                 {
-                    $log.debug('myCategorizedList', 'The selected categories before deletion: %o', ctrl.selectedCategories);
+                    // $log.debug('myCategorizedList', 'The selected categories before deletion: %o', ctrl.selectedCategories);
 
                     for (var i = 0, found = false; ! found && i < ctrl.selectedCategories.length; i++)
                     {
@@ -112,7 +200,9 @@ angular
                         ctrl.showItemsInAnySelectedCategory();
                     }
 
-                    $log.debug('myCategorizedList', 'The selected categories after deletion: %o', ctrl.selectedCategories);
+                    ctrl.updateUri();
+
+                    // $log.debug('myCategorizedList', 'The selected categories after deletion: %o', ctrl.selectedCategories);
 
                     return found;
                 };
@@ -122,11 +212,32 @@ angular
                     return ctrl.selectedCategories.length;
                 };
 
+                /* ITEMS BEHAVIOR AND STATE */
+
+                ctrl.setItems = function()
+                {
+                    ctrl.setItemsState();
+                };
+
+                ctrl.setItemsState = function()
+                {
+                    for (var i = 0; i < ctrl.elements.items.length; i++)
+                    {
+                        ctrl.state.items.push(
+                        {
+                            hidden: false
+                        });
+                    }
+
+                    return ctrl.state.items;
+                };
+
                 // Written to be used with ngShow, but beware that this gets
                 // invoked a lot if there are a lot of digest cycles happening.
                 ctrl.itemIsVisible = function(targetIndex)
                 {
-                    $log.debug('myCategorizedList', 'ngShow callback from itemIsVisible');
+                    // Good way to check how over this is getting called.
+                    // $log.debug('myCategorizedList', 'ngShow callback from itemIsVisible');
 
                     if ( ctrl.selectedCategories.length === 0 )
                     {
@@ -134,6 +245,8 @@ angular
                     }
                     else
                     {
+                        // Return simple true/false value that updated in
+                        // response to category clicks.
                         return ! ctrl.state.items[targetIndex].hidden;
 
                         // This works, too, but is more expensive and could
@@ -144,17 +257,18 @@ angular
 
                 ctrl.hideAllItems = function()
                 {
-                    ctrl.setItems();
+                    // ctrl.setItems();
 
-                    for (var i = 0; i < ctrl.elements.items.length; i++)
+                    for (var i = 0; i < ctrl.state.items.length; i++)
                     {
-                        ctrl.elements.items[i].hide();
+                        ctrl.state.items[i].hidden = true;
+                        // ctrl.elements.items[i].hide();
                     }
                 };
 
                 ctrl.hideItemsInCategory = function(categoryId)
                 {
-                    ctrl.setItems();
+                    // ctrl.setItems();
 
                     for (var i = 0; i < ctrl.items.length; i++)
                     {
@@ -169,12 +283,37 @@ angular
                     }
                 };
 
+                ctrl.showAllItems = function()
+                {
+                    // ctrl.setItems();
+
+                    for (var i = 0; i < ctrl.elements.items.length; i++)
+                    {
+                        ctrl.state.items[i].hidden = false;
+                        // ctrl.elements.items[i].show();
+                    }
+                };
+
+                ctrl.showItemsInCategory = function(categoryId)
+                {
+                    // ctrl.setItems();
+
+                    for (var i = 0; i < ctrl.items.length; i++)
+                    {
+                        if ( ctrl.items[i].categoryIds.indexOf(categoryId) >= 0 )
+                        {
+                            ctrl.state.items[i].hidden = false;
+                            // ctrl.elements.items[i].show();
+                        }
+                    }
+                };
+
                 // This function treats categories as being applied to the items
                 // with an OR operator. Items that match any selected
                 // categories will be shown.
                 ctrl.showItemsInAnySelectedCategory = function()
                 {
-                    ctrl.setItems();
+                    // ctrl.setItems();
 
                     for (var i = 0; i < ctrl.items.length; i++)
                     {
@@ -208,7 +347,7 @@ angular
                 // categories will be shown.
                 ctrl.showItemsInAllSelectedCategories = function()
                 {
-                    ctrl.setItems();
+                    // ctrl.setItems();
 
                     for (var i = 0; i < ctrl.items.length; i++)
                     {
@@ -238,31 +377,10 @@ angular
                     }
                 };
 
-                ctrl.showAllItems = function()
-                {
-                    ctrl.setItems();
-
-                    for (var i = 0; i < ctrl.elements.items.length; i++)
-                    {
-                        ctrl.state.items[i].hidden = false;
-                        // ctrl.elements.items[i].show();
-                    }
-                };
-
-                ctrl.showItemsInCategory = function(categoryId)
-                {
-                    ctrl.setItems();
-
-                    for (var i = 0; i < ctrl.items.length; i++)
-                    {
-                        if ( ctrl.items[i].categoryIds.indexOf(categoryId) >= 0 )
-                        {
-                            ctrl.state.items[i].hidden = false;
-                            // ctrl.elements.items[i].show();
-                        }
-                    }
-                };
-
+                // Checks if the passed item index corresponds to ANY of the
+                // selected categories. Originally written to be used with
+                // ngShow, but not a good idea for that use due to the
+                // work involved here. ngShow gets called a lot.
                 ctrl.inSelectedCategories = function(targetIndex)
                 {
                     // $log.debug('myCategorizedList', 'Checking if in selected categories... %o', ctrl.selectedCategories);
@@ -281,37 +399,28 @@ angular
                     return found;
                 };
 
-                /*
-                ctrl.setRouteCategories = function()
+                /* REGISTERED WATCHERS */
+
+                _initWatch = $scope.$watch(function()
                 {
-                    if ( $routeParams.categories )
-                    {
-                        ctrl.routeCategoires = $routeParams.categories.split('+').map(Number);
-                    }
-                };
+                    $log.debug('myCategorizedList', 'Checking if ready.....');
 
-                ctrl.setDefaultCategoryState = function()
+                    ctrl.elements.items = $element.find( ITEM_SELECTOR );
+
+                    return ctrl.categories.length > 0 && ctrl.elements.items.length > 0;
+                },
+                function(ready)
                 {
-                    ctrl.setRouteCategories();
-
-                    for (var i = 0; i < ctrl.categories.length; i++)
+                    if (ready)
                     {
-                        if ( ctrl.routeCategories.indexOf( ctrl.categories[i].id ) !== -1 )
-                        {
-                            ctrl.categories[i].isSelected = true;
-                        }
-                        else
-                        {
-                            ctrl.categories[i].isSelected = null;
-                        }
+                        $log.debug('myCategorizedList', 'The list is ready!');
 
-                        if ( ctrl.categories[i].count > 0 )
-                        {
-                            ctrl.selectedCategories.push( ctrl.categories[i].id );
-                        }
+                        ctrl.init();
+
+                        // Stop watching the number of items now.
+                        _initWatch();
                     }
-                };
-                */
+                });
             }
         };
     });

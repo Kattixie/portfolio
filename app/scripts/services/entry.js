@@ -88,7 +88,7 @@ angular
                             // appears in entry data.
                             for (var j = 0; j < categories.length; j++)
                             {
-                                var category = categories[j].toLowerCase();
+                                var category = categories[j].toLowerCase().replace(/\s/, '-');
 
                                 if ( _categories[ category ] === undefined )
                                 {
