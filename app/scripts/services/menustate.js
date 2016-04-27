@@ -177,7 +177,7 @@ angular
 
                     $animate
                         .addClass(element, service.collapsedClassName)
-                        .then( service.removeHardness(element) );
+                        .then( service.removeHardClass(element) );
                     // element.addClass(service.collapsedClassName);
                 }
                 else
