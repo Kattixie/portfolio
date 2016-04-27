@@ -162,13 +162,6 @@ angular
 
                 ctrl.addSelectedCategory = function(categoryId)
                 {
-                    /*
-                    if (ctrl.selectedCategories.length === 0)
-                    {
-                        ctrl.hideAllItems();
-                    }
-                    */
-
                     ctrl.selectedCategories.push(categoryId);
 
                     ctrl.showItemsInAnySelectedCategory();
@@ -257,8 +250,6 @@ angular
 
                 ctrl.hideAllItems = function()
                 {
-                    // ctrl.setItems();
-
                     for (var i = 0; i < ctrl.state.items.length; i++)
                     {
                         ctrl.state.items[i].hidden = true;
@@ -268,8 +259,6 @@ angular
 
                 ctrl.hideItemsInCategory = function(categoryId)
                 {
-                    // ctrl.setItems();
-
                     for (var i = 0; i < ctrl.items.length; i++)
                     {
                         // Does the target category ID exist in the items's
@@ -285,8 +274,6 @@ angular
 
                 ctrl.showAllItems = function()
                 {
-                    // ctrl.setItems();
-
                     for (var i = 0; i < ctrl.elements.items.length; i++)
                     {
                         ctrl.state.items[i].hidden = false;
@@ -296,8 +283,6 @@ angular
 
                 ctrl.showItemsInCategory = function(categoryId)
                 {
-                    // ctrl.setItems();
-
                     for (var i = 0; i < ctrl.items.length; i++)
                     {
                         if ( ctrl.items[i].categoryIds.indexOf(categoryId) >= 0 )
@@ -313,8 +298,6 @@ angular
                 // categories will be shown.
                 ctrl.showItemsInAnySelectedCategory = function()
                 {
-                    // ctrl.setItems();
-
                     for (var i = 0; i < ctrl.items.length; i++)
                     {
                         var found = false;
