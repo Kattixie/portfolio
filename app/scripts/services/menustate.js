@@ -11,7 +11,7 @@
  */
 angular
     .module('portfolio')
-    .factory('MenuState', function ($log, $animate, WindowState)
+    .factory('MenuState', function ($log, $animate, $timeout, WindowState)
     {
         var service =
         {
@@ -80,7 +80,7 @@ angular
 
         service.addCompactibleElement = function( element )
         {
-            // $log.debug('MenuState', 'Adding a compactible element.');
+            $log.debug('MenuState', 'Adding a compactible element: %o', element);
 
             _compactibleElements.push(element);
         };
@@ -118,33 +118,12 @@ angular
             {
                 if ( _isCompact)
                 {
-                    // Adds following classes in order:
-                    // ng-animate
-                    // [service.compactClassName]-add
-                    // [service.compactClassName]
-                    // [service.compactClassName]-add-active
-                    $animate.addClass(_compactibleElements[i], service.compactClassName);
-
-                    /*
-                    if ( ! _compactibleElements[i].hasClass(service.compactClassName) )
-                    {
-                        _compactibleElements[i].addClass(service.compactClassName);
-                    } */
+                    _animateAddCompactElement(_compactibleElements[i]);
                 }
                 else
                 {
-                    // Adds following classes in order:
-                    // ng-animate
-                    // [service.compactClassName]-remove
-                    // [service.compactClassName]-remove-active
-                    $animate.removeClass(_compactibleElements[i], service.compactClassName);
 
-                    /*
-                    if ( _compactibleElements[i].hasClass(service.compactClassName))
-                    {
-                        _compactibleElements[i].removeClass(service.compactClassName);
-                    }
-                    */
+                    _animateRemoveCompactElement(_compactibleElements[i]);
                 }
             }
 
@@ -164,25 +143,21 @@ angular
 
             for (var i = 0; i < _collapsibleElements.length; i++)
             {
-                var element = _collapsibleElements[i];
-
                 if ( _isCollapsed )
                 {
                     if ( _isHard )
                     {
                         $log.debug('MenuState', 'The menu hardness is true, so a special class will be added.');
 
-                        element.addClass(service.collapsedHardClassName);
+                        _collapsibleElements[i].addClass(service.collapsedHardClassName);
                     }
 
-                    $animate
-                        .addClass(element, service.collapsedClassName)
-                        .then( service.removeHardClass(element) );
+                    _animateAddCollapsedElement(_collapsibleElements[i]);
                     // element.addClass(service.collapsedClassName);
                 }
                 else
                 {
-                    $animate.removeClass(element, service.collapsedClassName);
+                    _animateRemoveCollapsedElement(_collapsibleElements[i]);
                     // _collapsibleElements[i].removeClass(service.collapsedClassName);
                 }
             }
@@ -384,6 +359,53 @@ angular
         service.getNextURI = function()
         {
             return _nextURI;
+        };
+
+        /* ANIMATION FUNCTIONS */
+
+        var _animateAddCompactElement = function(element)
+        {
+            $timeout(function()
+            {
+                $log.debug('MenuState', 'Animating add compactible element: %o', element);
+
+                // Adds following classes in order:
+                // ng-animate
+                // [service.compactClassName]-add
+                // [service.compactClassName]
+                // [service.compactClassName]-add-active
+                $animate.addClass(element, service.compactClassName);
+            });
+        };
+
+        var _animateRemoveCompactElement = function(element)
+        {
+            $timeout(function()
+            {
+                // Adds following classes in order:
+                // ng-animate
+                // [service.compactClassName]-remove
+                // [service.compactClassName]-remove-active
+                $animate.removeClass(element, service.compactClassName);
+            });
+        };
+
+        var _animateAddCollapsedElement = function(element)
+        {
+            $timeout(function()
+            {
+                $animate
+                    .addClass(element, service.collapsedClassName)
+                    .then( service.removeHardClass(element) );
+            });
+        };
+
+        var _animateRemoveCollapsedElement = function(element)
+        {
+            $timeout(function()
+            {
+                $animate.removeClass(element, service.collapsedClassName);
+            });
         };
 
         // Public API
