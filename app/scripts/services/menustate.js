@@ -17,18 +17,22 @@ angular
         {
             selectedGalleryMode:    null,
 
+            // Classes to signal animation state changes internally
+            actionCollapse:         '_collapse',
+            actionExpand:           '_expand',
+
+            // Classes to tie animation to
             collapsedClassName:     'collapsed',
-            collapsedHardClassName: 'collapsed-hard',
             compactClassName:       'compact',
             activeClassName:        'active',
             centerClassName:        'centered',
             scrollableClassName:    'scrollable'
         };
 
-        var _isCompact = false,
-            _isCollapsed = false,
-            _isCentered = false,
-            _isHard = false,
+        var _isCompact,
+            _isCollapsed,
+            _isCentered,
+            _isAnimated = true,
             _isScrollbarPadded = false;
 
         var _icon;
@@ -63,6 +67,11 @@ angular
             return _isCentered;
         };
 
+        service.isAnimated = function()
+        {
+            return _isAnimated;
+        };
+
         service.setIcon = function( element )
         {
             _icon = element;
@@ -80,7 +89,7 @@ angular
 
         service.addCompactibleElement = function( element )
         {
-            $log.debug('MenuState', 'Adding a compactible element: %o', element);
+            // $log.debug('MenuState', 'Adding a compactible element: %o', element);
 
             _compactibleElements.push(element);
         };
@@ -130,8 +139,15 @@ angular
             return switchedState;
         };
 
-        service.setCollapsed = function( isCollapsed )
+        service.collapsedIsSet = function()
         {
+            return ( _isCollapsed !== undefined );
+        };
+
+        service.setCollapsed = function( isCollapsed, animate )
+        {
+            $log.debug('MenuState', 'Setting collapsed to: %s', isCollapsed);
+
             var switchedState = ( _isCollapsed !== isCollapsed );
 
             if ( ! switchedState )
@@ -141,33 +157,42 @@ angular
 
             _isCollapsed = isCollapsed;
 
+            if ( animate === undefined )
+            {
+                animate = true;
+            }
+
             for (var i = 0; i < _collapsibleElements.length; i++)
             {
                 if ( _isCollapsed )
                 {
-                    if ( _isHard )
+                    // if ( _isAnimated )
+                    // {
+                    //     $log.debug('MenuState', 'The menu hardness is true, so a special class will be added.');
+                    //
+                    //     _collapsibleElements[i].addClass(service.collapsedHardClassName);
+                    // }
+
+                    if (animate)
                     {
-                        $log.debug('MenuState', 'The menu hardness is true, so a special class will be added.');
-
-                        _collapsibleElements[i].addClass(service.collapsedHardClassName);
+                        _animateAddCollapsedElement(_collapsibleElements[i]);
                     }
-
-                    _animateAddCollapsedElement(_collapsibleElements[i]);
-                    // element.addClass(service.collapsedClassName);
+                    else
+                    {
+                        // Not a fan of setting this here, but until I can
+                        // figure out why the animation block isn't Loading
+                        // when this is first called, this works.
+                        _collapsibleElements[i].addClass(service.collapsedClassName);
+                        _collapsibleElements[i].data('items').addClass(service.collapsedClassName);
+                    }
                 }
                 else
                 {
                     _animateRemoveCollapsedElement(_collapsibleElements[i]);
-                    // _collapsibleElements[i].removeClass(service.collapsedClassName);
                 }
             }
 
             return switchedState;
-        };
-
-        service.removeHardClass = function(element)
-        {
-            element.removeClass(service.collapsedHardClassName);
         };
 
         service.setCentered = function( isCentered )
@@ -247,16 +272,16 @@ angular
         // Intended to allow some control over how much animation is allowed.
         // If true, we want minimal animation for state change and will add
         // a special class for CSS animation purposes.
-        service.setHard = function( isHard )
+        service.setAnimated = function( isAnimated )
         {
-            var switchedState = ( _isHard !== isHard );
+            var switchedState = ( _isAnimated !== isAnimated );
 
             if ( ! switchedState )
             {
                 return switchedState;
             }
 
-            _isHard = isHard;
+            _isAnimated = isAnimated;
 
             return switchedState;
         };
@@ -289,16 +314,16 @@ angular
                 _contentPositionY = _currContentElement.offset().top;
             }
 
-            $log.debug('MenuState', 'The content position, determined before offset is appied: %s', _contentPositionY);
+            // $log.debug('MenuState', 'The content position, determined before offset is appied: %s', _contentPositionY);
 
             if ( entrancePoint )
             {
-                $log.debug('MenuState', 'Applying a content position entrance point offset... %s', _currContentElement.height() * entrancePoint);
+                // $log.debug('MenuState', 'Applying a content position entrance point offset... %s', _currContentElement.height() * entrancePoint);
 
                 _contentPositionY = _contentPositionY + _currContentElement.height() * entrancePoint;
             }
 
-            $log.debug('MenuState', 'The content position: %s', _contentPositionY);
+            // $log.debug('MenuState', 'The content position: %s', _contentPositionY);
 
             return _contentPositionY;
         };
@@ -367,8 +392,6 @@ angular
         {
             $timeout(function()
             {
-                $log.debug('MenuState', 'Animating add compactible element: %o', element);
-
                 // Adds following classes in order:
                 // ng-animate
                 // [service.compactClassName]-add
@@ -394,9 +417,7 @@ angular
         {
             $timeout(function()
             {
-                $animate
-                    .addClass(element, service.collapsedClassName)
-                    .then( service.removeHardClass(element) );
+                $animate.addClass(element, service.actionCollapse);
             });
         };
 
@@ -404,7 +425,8 @@ angular
         {
             $timeout(function()
             {
-                $animate.removeClass(element, service.collapsedClassName);
+                // $animate.removeClass(element, service.collapsedClassName);
+                $animate.addClass(element, service.actionExpand);
             });
         };
 

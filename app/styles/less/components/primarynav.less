@@ -101,7 +101,9 @@ nav#nav-main
             {
                 a
                 {
-                    .transition(all 300ms ease-out);
+                    .transition-property(color, fill, stroke;);
+                    .transition-duration(300ms);
+                    .transition-timing-function(ease-out);
 
                     display: block;
 
@@ -139,7 +141,7 @@ nav#nav-main
             {
                 a
                 {
-                    .transition(all 300ms ease-out);
+                    .transition(color 300ms ease-out);
 
                     display: block;
 
@@ -628,7 +630,7 @@ nav#nav-main
             position: absolute;
                 // top: -100%;
                 right: 0;
-                bottom: 100%; // Default for non-compacted state
+                bottom: 100%;
                 left: 0;
         });
 
@@ -647,7 +649,7 @@ nav#nav-main
     {
         .nav-items
         {
-            .drop-shadow(0, 2px, 0, 0, 0, 0, 0, .07);
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, .07));
 
             .respond-until-including(@1_column_width,
             {
@@ -665,22 +667,136 @@ nav#nav-main
 
     .nav-items
     {
-        // Best to have a default due to bottom value being set in JavaScript.
-        .transition(bottom 300ms @ease_in_sine);
+        .drop-shadow(0 2px 0 0 rgba(0, 0, 0, .07));
 
-        // overflow-y: auto;
+        // Menu opening chain:
+
+        // collapsed-remove
+        // collapsed-remove-active
+        //
+        // after-expand-add
+        // after-expand
+        // after-expand-active
+
+        .transition(bottom 200ms @ease_in_sine);
+
+        &.collapsed-remove
+        {
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, 0));
+        }
+
+        &.after-expand-add
+        {
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, 0));
+        }
+
+        &.after-expand
+        {
+            .transition(box-shadow 50ms @ease_in_sine);
+
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, .07));
+        }
+
+        // Menu closing chain:
+
+        // collapsed
+        // before-collapse-add
+        // before-collapse-add-active
+        //
+        // collapsed
+        // collapsed-add
+        // collapsed-add-active
+
+        &.collapsed
+        {
+            .transition(bottom 200ms @ease_in_sine);
+
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, 0));
+        }
+
+        // This must come after .collapsed properties, to override them.
+        // In the future, explore possibility of delaying when .collapsed is
+        // actually added to the element. (It's added immediately regardless
+        // of chaining order right now.)
+
+        &.before-collapse-add
+        {
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, .07));
+        }
+
+        &.before-collapse
+        {
+            .transition(box-shadow 50ms @ease_in_sine);
+
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, 0));
+        }
+
+        // &.collapsed-hard,
+        // &.collapsed-hard.collapsed,
+        // &.collapsed-hard.after-expand,
+        // &.collapsed-hard.before-collapse
+        // {
+        //     .transition(none);
+        // }
+
+        ul.nav-primary li.gallery,
+        ul.nav-primary li.list,
+        ul.nav-sub li
+        {
+            .transition(opacity 100ms @ease_in_sine);
+
+            &.collapsed,
+            &.collapsed-remove
+            {
+                opacity: 0;
+            }
+
+            &.collapsed-remove-active
+            {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.compact
+    {
+        .nav-items
+        {
+            // Override non-compact styles.
+            &.collapsed-remove,
+            &.after-expand-add,
+            &.after-expand,
+            &.collapsed,
+            &.before-collapse-add,
+            &.before-collapse
+            {
+                .drop-shadow(0 2px 0 0 rgba(0, 0, 0, .07));
+            }
+
+            // Override non-compact animation.
+            &.after-expand,
+            &.before-collapse
+            {
+                .transition(none);
+            }
+        }
     }
 
     // Menu opening:
 
+    /*
     &.collapsed-remove
     {
-        .transition-duration(300ms);
+        .transition-duration(800ms);
 
         .nav-items
         {
             // This also works in case of JavaScript setting bottom value.
             // .transition(bottom 400ms @ease_in_sine);
+            // .transition-property(bottom);
+            // .transition(none);
+
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, 0));
 
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
@@ -697,6 +813,13 @@ nav#nav-main
     {
         .nav-items
         {
+            // .transition-property(bottom, box-shadow;);
+            // .transition-duration(300ms, 100ms;);
+            // .transition-delay(100ms, 0;);
+            .transition-delay(500ms);
+
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, .07));
+
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
             ul.nav-sub li a
@@ -706,7 +829,6 @@ nav#nav-main
                 opacity: 1;
             }
         }
-
     }
 
     // Menu closing:
@@ -721,10 +843,15 @@ nav#nav-main
 
     &.collapsed-add
     {
-        .transition-duration(200ms);
+        //.transition-duration(1200ms);
 
         .nav-items
         {
+            // This causes the animation to not happen?
+            //.transition(none);
+
+            .drop-shadow(0 2px 0 0 rgba(0, 0, 0, .07));
+
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
             ul.nav-sub li a
@@ -744,6 +871,12 @@ nav#nav-main
             // back to JavaScript to get the bottom position right, it's
             // missing.
 
+            // .transition-property(bottom, box-shadow;);
+            // .transition-duration(200ms, 1000ms;);
+            // .transition-delay(1000ms, 0;);
+
+            // .drop-shadow(0 2px 0 0 rgba(255, 0, 0, 0));
+
             ul.nav-primary li.gallery a,
             ul.nav-primary li.list a,
             ul.nav-sub li a
@@ -754,6 +887,19 @@ nav#nav-main
             }
         }
     }
+
+    &.collapsed-add-active
+    {
+        .nav-items
+        {
+            // .transition-property(bottom, box-shadow;);
+            // .transition-duration(200ms, 1000ms;);
+            // .transition-delay(1000ms, 0;);
+
+            .drop-shadow(0 2px 0 0 rgba(255, 0, 0, 0));
+        }
+    }
+    */
 
     &.compact-add
     {

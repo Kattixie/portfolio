@@ -56,11 +56,11 @@
             box-shadow: inset @vlength @hlength @blur @spread @hex;
 }
 
-.drop-shadow(@vlength: 1px, @hlength: 1px, @blur: 1px, @spread: 0px, @r: 0, @g: 0, @b: 0, @a: 100%) when (isnumber(@r))
+.drop-shadow(@arguments)
 {
-    -webkit-box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
-       -moz-box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
-            box-shadow: @vlength @hlength @blur @spread rgba(@r, @g, @b, @a);
+    -webkit-box-shadow: @arguments;
+       -moz-box-shadow: @arguments;
+            box-shadow: @arguments;
 }
 
 // Backgrounds

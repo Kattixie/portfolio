@@ -26,7 +26,8 @@ angular
                     hamburgerIcon: $element.find('#nav-icon'),
                     logo: $element.find('h1#logo'),
                     iconContainer: $element.find('.nav-icon-wrapper'),
-                    dropdownMenu: $element.find('.nav-items')
+                    dropdownMenu: $element.find('.nav-items.collapsible-chained-items'),
+                    items: $element.find('ul.nav-primary li.gallery, ul.nav-primary li.list, ul.nav-sub li')
                 };
 
                 var _timeoutIds =
@@ -37,11 +38,23 @@ angular
 
                 var _positionTO;
 
-                ctrl.init = function()
+                var _defaults =
+                {
+                    dropdownBottom: undefined,
+                    dropdownHeight: undefined,
+                    compact:
+                    {
+                        dropdownBottom: undefined,
+                        dropdownHeight: undefined
+                    }
+                };
+
+                 var _init = function()
                 {
                     MenuState.setIcon( _elements.hamburgerIcon );
 
-                    ctrl.setMenuStateElements();
+                    _setMenuStateElements();
+
                     ctrl.reset();
                 };
 
@@ -52,11 +65,12 @@ angular
                     ctrl.setMenuAlignment();
                 };
 
-                /* SETUP */
+                /* ONE-TIME SETUP */
 
-                ctrl.setMenuStateElements = function()
+                var _setMenuStateElements = function()
                 {
-                    MenuState.addCollapsibleElement( _elements.container );
+                    // MenuState.addCollapsibleElement( _elements.container );
+                    MenuState.addCollapsibleElement( _elements.dropdownMenu );
 
                     MenuState.addCenterableElement( _elements.container );
                     MenuState.addCenterableElement( _elements.logo );
@@ -65,6 +79,36 @@ angular
 
                     MenuState.addScrollbarPaddedElement( _elements.iconContainer );
                 };
+
+                // var _setDropdownDefaultProps = function()
+                // {
+                //     if ( MenuState.isCompacted() )
+                //     {
+                //         if ( _defaults.compact.dropdownBottom === undefined )
+                //         {
+                //             _defaults.compact.dropdownBottom = parseInt(_elements.dropdownMenu.css('bottom'));
+                //         }
+                //
+                //         if ( _defaults.compact.dropdownHeight === undefined )
+                //         {
+                //             _defaults.compact.dropdownHeight = _elements.dropdownMenu.innerHeight();
+                //         }
+                //     }
+                //     else
+                //     {
+                //         if ( _defaults.dropdownBottom === undefined )
+                //         {
+                //             _defaults.dropdownBottom = parseInt(_elements.dropdownMenu.css('bottom'));
+                //         }
+                //
+                //         if ( _defaults.dropdownHeight === undefined )
+                //         {
+                //             _defaults.dropdownHeight = _elements.dropdownMenu.innerHeight();
+                //         }
+                //     }
+                // };
+
+                /* MANY-TIME SETUP */
 
                 ctrl.setMenuDefaults = function()
                 {
@@ -78,14 +122,30 @@ angular
                     }
 
                     ctrl.setAlignmentDefaults();
-                    ctrl.setDropdownPositionDefault();
+
+                    // ctrl.setDropdownPositionDefault();
+                };
+
+                ctrl.unsetInlineStyles = function()
+                {
+                    _elements.dropdownMenu.css('bottom', '');
+                    _elements.dropdownMenu.css('height', '');
                 };
 
                 // Establishes default settings/behavior for when menu is in
                 // non-collapsible horizontal state on larger screens.
                 ctrl.setHorizontalDefaults = function()
                 {
-                    MenuState.setCollapsed(false);
+                    ctrl.setMenuScrollbar(false);
+
+                    _setDropdownAnimationData();
+
+                    // This is kind of counter-intuitive, because this flag
+                    // doesn't actually matter to this view. However, should the
+                    // window get resized, this guarantees no position or
+                    // animation changes will occur if the resize triggers
+                    // a collapsible view.
+                    MenuState.setCollapsed(true);
                     MenuState.setCompacted(false);
                 };
 
@@ -93,8 +153,39 @@ angular
                 // collapsible vertical state on smaller screens.
                 ctrl.setCollapsibleDefaults = function()
                 {
-                    MenuState.setCollapsed(true);
+                    ctrl.setMenuScrollbar(false);
+
+                    _setDropdownAnimationData();
+
+                    if (MenuState.collapsedIsSet())
+                    {
+                        MenuState.setCollapsed(true);
+                    }
+                    else
+                    {
+                        // Designate that this is a first request, and we
+                        // don't want animation.
+                        MenuState.setCollapsed(true, false);
+                    }
+
+
                     MenuState.setCompacted(false);
+
+                    // For some reason, ngAnimate fails to sync with
+                    // the .collapsible-hidden-items animation if it's
+                    // called too soon. I'm not sure how to verify that this
+                    // is ready to go? Didn't have this problem in other
+                    // test scenarios on CodePen, but they were much smaller
+                    // apps.
+                    /*
+                    $timeout(function()
+                    {
+                        MenuState.setCollapsed(true);
+
+                    }, 1000);
+                    */
+
+                    // _setDropdownDefaultProps();
                 };
 
                 ctrl.setAlignmentDefaults = function()
@@ -133,60 +224,104 @@ angular
                     }
                 };
 
-                // Couldn't find a sane way to do this in the CSS file.
-                ctrl.setDropdownPositionOpen = function()
+                ctrl.setMenuScrollbar = function(requiresMenuScrollbar)
                 {
-                    // When the bottom position is set to 0, it aligns to the
-                    // bottom of the icon wrapper.
-                    var bottomOffset = -1 * _elements.dropdownMenu.outerHeight() + MenuState.getIconHeight(),
-                        windowHeight = WindowState.getHeight();
-
-                    // $log.debug('myCollapsibleMenuC', 'The calculated bottom vs. window height: %s vs. %s', height, windowHeight);
-
-                    if ( _elements.dropdownMenu.outerHeight() + MenuState.getIconHeight() >= windowHeight )
+                    if (requiresMenuScrollbar === undefined)
                     {
-                        bottomOffset = -1 * windowHeight + MenuState.getIconHeight();
+                        var height = _elements.dropdownMenu.outerHeight(),
+                            windowHeight = WindowState.getHeight();
 
-                        _elements.dropdownMenu.css('height', windowHeight);
-
-                        _elements.container.addClass(MenuState.scrollableClassName);
-
-                        // I don't like this, but here's the conundrum: when
-                        // an element position is fixed, as the nav container
-                        // is while compact or scrollable, the container
-                        // expands to the width of the body with scrollbars
-                        // removed. This results in a slight jump for
-                        // right-aligned elements.
-                        // _elements.iconContainer.css('padding-right', WindowState.getScrollbarWidth() );
-
-                        MenuState.setScrollbarPadded(true);
-
-                        _elements.dropdownMenu.scrollTop(0);
-
-                        WindowState.hideScrollbar();
+                        // Is the dropdown height larger than the window
+                        // height? If so, set some constraints.
+                        requiresMenuScrollbar = ( height >= windowHeight );
                     }
 
-                    _elements.dropdownMenu.css('bottom', bottomOffset);
-                    // _elements.dropdownMenu.css('bottom', -1 * _elements.dropdownMenu.outerHeight() + MenuState.getIconHeight());
+                    if (requiresMenuScrollbar)
+                    {
+                        ctrl.addMenuScrollbar();
+                    }
+                    else {
+                        ctrl.removeMenuScrollbar();
+                    }
 
+                    return requiresMenuScrollbar;
                 };
 
-                // Default bottom positions should be set in the CSS files.
-                // Unset inline styling here.
-                ctrl.setDropdownPositionDefault = function()
+                ctrl.addMenuScrollbar = function()
                 {
-                    _elements.dropdownMenu.css('bottom', '' );
+                    _elements.container.addClass(MenuState.scrollableClassName);
 
+                    MenuState.setScrollbarPadded(true);
+
+                    _elements.dropdownMenu.scrollTop(0);
+
+                    WindowState.hideScrollbar();
+                };
+
+                ctrl.removeMenuScrollbar = function()
+                {
                     _elements.container.removeClass(MenuState.scrollableClassName);
 
                     MenuState.setScrollbarPadded(false);
 
-                    // _elements.iconContainer.css('padding-right', '');
-                    _elements.dropdownMenu.css('height', '');
-
                     WindowState.showScrollbar();
+                };
 
-                    //_elements.hamburgerIcon.css('margin-right', _elements.hamburgerIcon.outerWidth() - WindowState.getScrollbarWidth() );
+                var _setDropdownAnimationData = function(hasScrollbar)
+                {
+                    // _setDropdownDefaultProps();
+
+                    var defaultBottom,
+                        defaultHeight;
+
+                    // if ( MenuState.isCompacted() )
+                    // {
+                    //     defaultBottom = _defaults.compact.dropdownBottom;
+                    //     defaultHeight = _defaults.compact.dropdownHeight;
+                    // }
+                    // else
+                    // {
+                    //     defaultBottom = _defaults.dropdownBottom;
+                    //     defaultHeight = _defaults.dropdownHeight;
+                    // }
+
+                    // When the bottom position is set to 0, it aligns to the
+                    // bottom of the icon wrapper.
+                    var bottoms =
+                    {
+                        // collapsed: defaultBottom
+                        collapsed: ''
+                    };
+
+                    var heights =
+                    {
+                        // collapsed: defaultHeight
+                        collapsed: ''
+                    };
+
+                    if (hasScrollbar)
+                    {
+                        var windowHeight = WindowState.getHeight();
+
+                        bottoms.expanded = -1 * windowHeight + MenuState.getIconHeight();
+                        heights.expanded = windowHeight;
+                    }
+                    else
+                    {
+                        var height = _elements.dropdownMenu.outerHeight();
+
+                        bottoms.expanded = -1 * height + MenuState.getIconHeight();
+                        // heights.expanded = defaultHeight;
+                        heights.expanded = '';
+                    }
+
+                    // Set this data for use with animation.
+                    _elements.dropdownMenu.data(
+                    {
+                        bottoms: bottoms,
+                        heights: heights,
+                        items: _elements.items
+                    });
                 };
 
                 /* ACTIONS */
@@ -197,11 +332,11 @@ angular
                     {
                         if ( MenuState.isCollapsed() )
                         {
-                            ctrl.openMenu();
+                            ctrl.expandMenu();
                         }
                         else
                         {
-                            ctrl.closeMenu();
+                            ctrl.collapseMenu();
                         }
                     }
                     else
@@ -210,18 +345,24 @@ angular
                     }
                 };
 
-                ctrl.openMenu = function()
+                ctrl.expandMenu = function()
                 {
-                    MenuState.setCollapsed(false);
+                    // May need a scrollbar, so let this function decide.
+                    var hasScrollbar = ctrl.setMenuScrollbar();
 
-                    ctrl.setDropdownPositionOpen();
+                    _setDropdownAnimationData(hasScrollbar);
+
+                    MenuState.setCollapsed(false);
                 };
 
-                ctrl.closeMenu = function()
+                ctrl.collapseMenu = function()
                 {
-                    MenuState.setCollapsed(true);
+                    // Won't ever need a scrollbar, so we'll force none.
+                    ctrl.setMenuScrollbar(false);
 
-                    ctrl.setDropdownPositionDefault();
+                    _setDropdownAnimationData();
+
+                    MenuState.setCollapsed(true);
                 };
 
                 /* COMPACT SETUP & BEHAVIOR */
@@ -279,16 +420,25 @@ angular
 
                     // $log.debug('myCollapsibleMenuC', 'The position, as determined in setCompactedState: %s', position);
 
+                    var changed;
+
                     if ( isFinite(position) && WindowState.hasScrolledTo( position ) )
                     {
                         // $log.debug('myCollapsibleMenuC', 'Setting compacted!');
 
-                        MenuState.setCompacted(true);
+                        changed = MenuState.setCompacted(true);
                     }
                     else
                     {
-                        MenuState.setCompacted(false);
+                        changed = MenuState.setCompacted(false);
                     }
+
+                    /*
+                    if (changed)
+                    {
+                        ctrl.unsetInlineStyles();
+                    }
+                    */
                 };
 
                 /* GALLERY MODE STATE */
@@ -308,60 +458,12 @@ angular
                     return MenuState.selectedGalleryMode === mode;
                 };
 
-                /* EVENT HANDLERS */
-
-                ctrl.onWindowResize = function()
-                {
-                    ctrl.reset();
-
-                    if ( MenuState.isCollapsible() )
-                    {
-                        ctrl.setCompactedState();
-                    }
-                };
-
-                ctrl.onWindowScroll = function()
-                {
-                    if ( MenuState.isCollapsible() )
-                    {
-                        ctrl.setCompactedState();
-
-                        if ( ! MenuState.isCollapsed() )
-                        {
-                            ctrl.closeMenu();
-                        }
-                    }
-                    // Currently, the menu is only compacted if it's also collapsible.
-                    else
-                    {
-                        MenuState.setCompacted(false);
-                    }
-                };
-
-                ctrl.onRouteChangeStart = function()
-                {
-                    // $log.debug('myCollapsibleMenuC', 'Route change is starting. Resetting the content position.');
-
-                    MenuState.resetContentPosition();
-
-                    // Important to set to default state since content positions
-                    // are going to get re-calculated.
-                    // ctrl.setCompactedDefaults();
-                    ctrl.setMenuDefaults();
-                };
+                /* NAV ITEMS */
 
                 // Really nice solution borrowed from:
                 // http://stackoverflow.com/a/22854824
-                ctrl.onRouteChangeSuccess = function()
+                ctrl.setActiveNavItemClass = function()
                 {
-                    MenuState.setHard(false);
-
-                    ctrl.setMenuAlignment();
-
-                    // This gets invoked too soon. We need to wait and see if
-                    // there's a content marker in the view.
-                    // ctrl.setCompactedState();
-
                     var hrefs = [
                                     '/#' + $location.path(),
                                     '#' + $location.path(),
@@ -389,40 +491,107 @@ angular
                 {
                     if ( MenuState.isCollapsible() && ! MenuState.isCollapsed() )
                     {
-                        MenuState.setHard(true);
+                        MenuState.setAnimated(false);
 
-                        ctrl.closeMenu();
+                        ctrl.collapseMenu();
                     }
                 };
 
-                ctrl.onDestroy = function()
+                /* EVENT HANDLERS */
+
+                var _onWindowResize = function()
                 {
-                    ctrl.unsetEventListeners();
+                    // MenuState.setAnimated(false);
+
+                    ctrl.reset();
+
+                    if ( MenuState.isCollapsible() )
+                    {
+                        ctrl.setCompactedState();
+                    }
+                };
+
+                var _onWindowScroll = function()
+                {
+                    if ( MenuState.isCollapsible() )
+                    {
+                        ctrl.setCompactedState();
+
+                        if ( ! MenuState.isCollapsed() )
+                        {
+                            ctrl.collapseMenu();
+                        }
+                    }
+                    // Currently, the menu is only compacted if it's also collapsible.
+                    else
+                    {
+                        MenuState.setCompacted(false);
+                    }
+                };
+
+                var _onRouteChangeStart = function()
+                {
+                    // $log.debug('myCollapsibleMenuC', 'Route change is starting. Resetting the content position.');
+
+                    MenuState.resetContentPosition();
+
+                    // Important to set to default state since content positions
+                    // are going to get re-calculated.
+                    // ctrl.setCompactedDefaults();
+                    ctrl.setMenuDefaults();
+                };
+
+
+                var _onRouteChangeSuccess = function()
+                {
+                    // MenuState.setAnimated(true);
+
+                    ctrl.setMenuAlignment();
+
+                    // This gets invoked too soon. We need to wait and see if
+                    // there's a content marker in the view.
+                    // ctrl.setCompactedState();
+
+                    ctrl.setActiveNavItemClass();
+                };
+
+                var _onDestroy = function()
+                {
+                    _unsetEventListeners();
 
                     $timeout.cancel( _positionTO );
                 };
 
-                ctrl.unsetEventListeners = function()
+                var _unsetEventListeners = function()
                 {
                     WindowState.destroyResize( _timeoutIds.resize, 'primarynav' );
                     WindowState.destroyScroll( _timeoutIds.scroll, 'primarynav' );
                 };
 
-                ctrl.setEventListeners = function()
+                var _setEventListeners = function()
                 {
-                    _timeoutIds.resize = WindowState.onResize(ctrl.onWindowResize, 'primarynav', 10);
-                    _timeoutIds.scroll = WindowState.onScroll(ctrl.onWindowScroll, 'primarynav', 10);
+                    _timeoutIds.resize = WindowState.onResize(_onWindowResize, 'primarynav', 10);
+                    _timeoutIds.scroll = WindowState.onScroll(_onWindowScroll, 'primarynav', 10);
 
                     // Is the more Angular way to set ng-click in view?
                     // _elements.dropdownMenu.find('a').on('click', ctrl.onNavItemClick);
                 };
 
-                ctrl.init();
-                ctrl.setEventListeners();
+                _setEventListeners();
+                _init();
 
-                $scope.$on('$routeChangeStart', ctrl.onRouteChangeStart);
-                $scope.$on('$routeChangeSuccess', ctrl.onRouteChangeSuccess);
-                $scope.$on('$destroy', ctrl.onDestroy);
+                $scope.$on('$routeChangeStart', _onRouteChangeStart);
+                $scope.$on('$routeChangeSuccess', _onRouteChangeSuccess);
+                $scope.$on('$destroy', _onDestroy);
+
+                // This timeout exists only because there's some kind of problem
+                // between ngAnimate and the .collapsible-hidden-items
+                // animation. If invoked too soon, ngAnimate won't even Load
+                // the animation block?
+                // $timeout(function()
+                // {
+                //     _init();
+                // }, 1000);
 
                 /*
                 $scope.$watch(function()
