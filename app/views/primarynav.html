@@ -9,10 +9,17 @@
 
     <div class="nav-icon-wrapper">
         <div class="nav-icon-inner">
-            <a id="nav-icon" ng-click="nav.toggleMenu()">
+            <!-- <a id="nav-icon" ng-click="nav.toggleMenu()" ng-class="{ active: nav.isExpanded() }"> -->
+            <a id="expand-icon" ng-click="nav.toggleMenu()" ng-show="nav.isCollapsed()">
                 <svg>
                     <title>Menu</title>
                     <use xlink:href="#symbol-hamburger-icon"></use>
+                </svg>
+            </a>
+            <a id="collapse-icon" ng-click="nav.toggleMenu()" ng-show="nav.isExpanded()">
+                <svg>
+                    <title>Close</title>
+                    <use xlink:href="#symbol-close-icon"></use>
                 </svg>
             </a>
         </div>
@@ -42,7 +49,11 @@
             </ul>
 
             <ul class="nav-sub">
-                <li><a ng-href="#/about" ng-click="nav.onNavItemClick()">About</a></li>
+                <li>
+                    <a ng-href="#/about" ng-click="nav.onNavItemClick()">
+                        <span class="text-label">About</span>
+                    </a>
+                </li>
                 <!--<li><a ng-href="#/skills">Skills</a></li>-->
                 <!--<li><a ng-href="#/contact">Contact</a></li>-->
             </ul>

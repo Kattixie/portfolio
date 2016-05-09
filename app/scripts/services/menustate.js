@@ -35,7 +35,11 @@ angular
             _isAnimated = true,
             _isScrollbarPadded = false;
 
-        var _icon;
+        var _icons =
+        {
+            expand: undefined,
+            close: undefined
+        };
 
         var _currContentElement;
 
@@ -72,14 +76,19 @@ angular
             return _isAnimated;
         };
 
-        service.setIcon = function( element )
+        service.setExpandIcon = function( element )
         {
-            _icon = element;
+            _icons.expand = element;
+        };
+
+        service.setCollapseIcon = function( element )
+        {
+            _icons.collapse = element;
         };
 
         service.getIconHeight = function()
         {
-            return _icon.outerHeight();
+            return _icons.expand.outerHeight();
         };
 
         service.addCollapsibleElement = function( element )
@@ -343,7 +352,23 @@ angular
 
         service.isCollapsible = function()
         {
-            return ( _icon.filter(':visible').length > 0 ) ? true : false;
+            if ( _icons.expand.filter(':visible').length > 0 )
+            {
+                $log.debug('MenuState', 'The expandable icon is visible.');
+
+                return true;
+            }
+
+            if ( _icons.collapse.filter(':visible').length > 0)
+            {
+                $log.debug('MenuState', 'The collapsible icon is visible.');
+
+                return true;
+            }
+
+            $log.debug('MenuState', 'The menu is not collapsible.');
+
+            return false;
         };
 
         service.setPrevURI = function(uri)

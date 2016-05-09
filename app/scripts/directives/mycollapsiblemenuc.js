@@ -23,7 +23,8 @@ angular
                 var _elements =
                 {
                     container: $element.find('nav'),
-                    hamburgerIcon: $element.find('#nav-icon'),
+                    hamburgerIcon: $element.find('#expand-icon'),
+                    closeIcon: $element.find('#collapse-icon'),
                     logo: $element.find('h1#logo'),
                     iconContainer: $element.find('.nav-icon-wrapper'),
                     dropdownMenu: $element.find('.nav-items.collapsible-chained-items'),
@@ -38,20 +39,21 @@ angular
 
                 var _positionTO;
 
-                var _defaults =
-                {
-                    dropdownBottom: undefined,
-                    dropdownHeight: undefined,
-                    compact:
-                    {
-                        dropdownBottom: undefined,
-                        dropdownHeight: undefined
-                    }
-                };
+                // var _defaults =
+                // {
+                //     dropdownBottom: undefined,
+                //     dropdownHeight: undefined,
+                //     compact:
+                //     {
+                //         dropdownBottom: undefined,
+                //         dropdownHeight: undefined
+                //     }
+                // };
 
                  var _init = function()
                 {
-                    MenuState.setIcon( _elements.hamburgerIcon );
+                    MenuState.setExpandIcon( _elements.hamburgerIcon );
+                    MenuState.setCollapseIcon( _elements.closeIcon );
 
                     _setMenuStateElements();
 
@@ -271,8 +273,8 @@ angular
                 {
                     // _setDropdownDefaultProps();
 
-                    var defaultBottom,
-                        defaultHeight;
+                    // var defaultBottom,
+                    //     defaultHeight;
 
                     // if ( MenuState.isCompacted() )
                     // {
@@ -322,6 +324,16 @@ angular
                         heights: heights,
                         items: _elements.items
                     });
+                };
+
+                ctrl.isExpanded = function()
+                {
+                    return ! MenuState.isCollapsed();
+                };
+
+                ctrl.isCollapsed = function()
+                {
+                    return MenuState.isCollapsed();
                 };
 
                 /* ACTIONS */

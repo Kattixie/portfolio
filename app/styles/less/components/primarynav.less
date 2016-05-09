@@ -29,7 +29,8 @@ nav#nav-main
     {
         .nav-icon-wrapper
         {
-            a#nav-icon
+            a#expand-icon,
+            a#collapse-icon
             {
                 float: none;
                 margin: 0 auto;
@@ -64,20 +65,27 @@ nav#nav-main
         }
 
         // Importantly, this icon's visibility determines if the menu is collapsible.
-        a#nav-icon
+        a#expand-icon,
+        a#collapse-icon
         {
             color: @black_50;
 
             svg
             {
                 fill: transparent;
-                width: 100%;
                 stroke: currentColor;
+                stroke-dashoffset: 0; // Offset so it's visible.
+                width: 100%;
             }
 
             &:hover
             {
-                color: #000;
+                color: @black_24;
+            }
+
+            &.active
+            {
+                color: @black_24;
             }
 
             .respond-until-including(@1_column_width,
@@ -90,6 +98,83 @@ nav#nav-main
                 width: 2.125em; // 34px
             });
         }
+
+        a#expand-icon
+        {
+            stroke-dasharray: 100;
+
+            &.ng-hide-add
+            {
+                transition-duration: 300ms;
+
+                svg
+                {
+                    // These properties must be set in the same place.
+                    .animation(animateOutSVGLines 300ms @ease_in_sine);
+                    .animation-fill-mode(forwards);
+
+                    // .transition(all 300ms @ease_in_sine);
+                    // stroke-dashoffset: 100;
+                }
+            }
+
+            &.ng-hide-remove
+            {
+                transition-duration: 300ms;
+
+                svg
+                {
+                    .animation(animateInSVGLines 300ms @ease_in_sine);
+                    .animation-fill-mode(forwards);
+
+                    // .transition(all 300ms @ease_in_sine);
+                    // stroke-dashoffset: 0;
+                }
+            }
+        }
+
+        a#collapse-icon
+        {
+            .transition(opacity 300ms @ease_in_sine);
+
+            // Starting to hide
+            &.ng-hide-add
+            {
+                opacity: 0;
+            }
+
+            // Starting to show
+            &.ng-hide-remove
+            {
+                .transition-delay(200ms);
+
+                opacity: 0;
+            }
+        }
+
+        .keyframes(animateInSVGLines,
+        {
+            from
+            {
+                stroke-dashoffset: 100;
+            }
+            to
+            {
+                stroke-dashoffset: 0;
+            }
+        });
+
+        .keyframes(animateOutSVGLines,
+        {
+            from
+            {
+                stroke-dashoffset: 0;
+            }
+            to
+            {
+                stroke-dashoffset: 100;
+            }
+        });
     }
 
     .nav-items
@@ -212,7 +297,11 @@ nav#nav-main
     {
         .nav-icon-wrapper
         {
-            a#nav-icon
+            // So that container retains height even as icons fade in/out.
+            height: @header_height * @factor;
+
+            a#expand-icon,
+            a#collapse-icon
             {
                 height: @header_height * @factor;
 
@@ -312,7 +401,8 @@ nav#nav-main
 
     .nav-icon-wrapper
     {
-        a#nav-icon
+        a#expand-icon,
+        a#collapse-icon
         {
             display: none;
         }
@@ -462,7 +552,8 @@ nav#nav-main
 
     .nav-icon-wrapper
     {
-        a#nav-icon
+        a#expand-icon,
+        a#collapse-icon
         {
             display: block;
             float: right;
@@ -514,50 +605,55 @@ nav#nav-main
                 a
                 {
                     color: @black_50;
-                    display: inline-block;
                     font-family: @title_face;
-                    font-size: @spacing_unit_root * 0.65;
+                    // font-size: @spacing_unit_root * 0.65;
+                    font-size: 1.500em;
                     letter-spacing: 0.188em;
                     line-height: @spacing_unit_root;
-                    position: relative;
-                        top: 0;
-                        left: 0;
-                        z-index: 0;
                     text-decoration: none;
                     text-transform: uppercase;
-
-                    &::after
-                    {
-                        border-bottom: 2px solid @black_85;
-                        content: '';
-                        display: block;
-                        position: absolute;
-                            bottom: 50%;
-                            left: 0;
-                            z-index: -1;
-                        margin-top: 1px;
-                        width: 0%;
-                    }
 
                     &:hover
                     {
                         color: #000;
                     }
 
-                    .respond-until-including(@entry_image_width,
+                    .text-label
                     {
-                        padding: 0 @spacing_unit_root / 2;
-                    });
+                        display: inline-block;
+                        position: relative;
+                            top: 0;
+                            left: 0;
+                            z-index: 0;
 
-                    .respond-between(@entry_image_width, @entry_image_width + 100px,
-                    {
-                        padding: 0 @spacing_unit_root;
-                    });
+                        &::after
+                        {
+                            border-bottom: 2px solid @black_85;
+                            content: '';
+                            display: block;
+                            position: absolute;
+                                bottom: 50%;
+                                left: 0;
+                                z-index: -1;
+                            margin-top: 1px;
+                            width: 0%;
+                        }
 
-                    .respond-between(@entry_image_width + 100px, @multi_column_bp
-                    {
-                        padding: 0 @spacing_unit_root / 2;
-                    });
+                        .respond-until-including(@entry_image_width,
+                        {
+                            padding: 0 @spacing_unit_root / 2;
+                        });
+
+                        .respond-between(@entry_image_width, @entry_image_width + 100px,
+                        {
+                            padding: 0 @spacing_unit_root;
+                        });
+
+                        .respond-between(@entry_image_width + 100px, @multi_column_bp
+                        {
+                            padding: 0 @spacing_unit_root / 2;
+                        });
+                    }
                 }
 
                 &.active
@@ -569,11 +665,14 @@ nav#nav-main
                             color: @black_50;
                         }
 
-                        &::after
+                        .text-label
                         {
-                            .transition(width 200ms @ease_in_sine);
+                            &::after
+                            {
+                                .transition(width 200ms @ease_in_sine);
 
-                            width: 100%;
+                                width: 100%;
+                            }
                         }
                     }
                 }
@@ -907,7 +1006,29 @@ nav#nav-main
 
         .nav-icon-wrapper
         {
-            a#nav-icon
+            a#expand-icon,
+            a#collapse-icon
+            {
+                .transition(none);
+
+                opacity: 0;
+            }
+        }
+    }
+
+    &.compact-add-active
+    {
+        .nav-icon-wrapper
+        {
+            a#expand-icon
+            {
+                .transition(opacity 100ms @ease_in_sine 200ms);
+
+                opacity: 1;
+            }
+
+            // Override other animation styles for this icon.
+            a#collapse-icon
             {
                 .transition(none);
 
@@ -918,16 +1039,6 @@ nav#nav-main
 
     &.compact
     {
-        .nav-icon-wrapper
-        {
-            a#nav-icon
-            {
-                .transition(opacity 100ms @ease_in_sine 200ms);
-
-                opacity: 1;
-            }
-        }
-
         .nav-items
         {
             .transition(bottom 200ms @ease_in_sine);

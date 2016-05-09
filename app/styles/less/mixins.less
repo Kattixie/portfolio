@@ -168,6 +168,22 @@
             animation: @arguments;
 }
 
+.animation-delay(@arguments)
+{
+    -webkit-animation-delay: @arguments;
+       -moz-animation-delay: @arguments;
+         -o-animation-delay: @arguments;
+            animation-delay: @arguments;
+}
+
+.animation-fill-mode(@arguments)
+{
+    -webkit-animation-fill-mode: @arguments;
+       -moz-animation-fill-mode: @arguments;
+         -o-animation-fill-mode: @arguments;
+            animation-fill-mode: @arguments;
+}
+
 .keyframes(@identifier, @arguments)
 {
     @-webkit-keyframes @identifier { @arguments(); }

@@ -282,6 +282,14 @@ nav#nav-sequence
                 height: @header_height * @factor;
                 width: 0.875em; // 14px;
             }
+
+            &::before,
+            &::after
+            {
+                display: inline-block;
+                height: @header_height * @factor;
+                line-height: @header_height * @factor;
+            }
         }
     }
 
@@ -410,6 +418,8 @@ nav#nav-sequence
                 fill: currentColor;
                 stroke: none;
                 width: 9px;
+
+                display: none;
             }
         }
 
@@ -419,6 +429,14 @@ nav#nav-sequence
             {
                 margin-right: @spacing_unit / 5;
             }
+
+            &::before
+            {
+                content: '\000ab';
+                float: left;
+                font-weight: bold;
+                margin: -1px 7px 0 0;
+            }
         }
 
         a.next
@@ -426,6 +444,14 @@ nav#nav-sequence
             svg
             {
                 margin-left: @spacing_unit / 5;
+            }
+
+            &::before
+            {
+                content: '\000bb';
+                float: right;
+                font-weight: bold;
+                margin: -1px 0 0 3px;
             }
         }
 
