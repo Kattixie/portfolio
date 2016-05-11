@@ -147,7 +147,7 @@ angular
                     // window get resized, this guarantees no position or
                     // animation changes will occur if the resize triggers
                     // a collapsible view.
-                    MenuState.setCollapsed(true);
+                    MenuState.setCollapsed(true, false);
                     MenuState.setCompacted(false);
                 };
 
@@ -155,6 +155,8 @@ angular
                 // collapsible vertical state on smaller screens.
                 ctrl.setCollapsibleDefaults = function()
                 {
+                    ctrl.unsetInlineStyles();
+
                     ctrl.setMenuScrollbar(false);
 
                     _setDropdownAnimationData();
@@ -169,7 +171,6 @@ angular
                         // don't want animation.
                         MenuState.setCollapsed(true, false);
                     }
-
 
                     MenuState.setCompacted(false);
 
