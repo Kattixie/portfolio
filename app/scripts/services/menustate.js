@@ -354,19 +354,13 @@ angular
         {
             if ( _icons.expand.filter(':visible').length > 0 )
             {
-                $log.debug('MenuState', 'The expandable icon is visible.');
-
                 return true;
             }
 
             if ( _icons.collapse.filter(':visible').length > 0)
             {
-                $log.debug('MenuState', 'The collapsible icon is visible.');
-
                 return true;
             }
-
-            $log.debug('MenuState', 'The menu is not collapsible.');
 
             return false;
         };
@@ -413,29 +407,36 @@ angular
 
         /* ANIMATION FUNCTIONS */
 
+        // Compact functions get called on scroll, so be diligent.
         var _animateAddCompactElement = function(element)
         {
-            $timeout(function()
+            if ( ! element.hasClass(service.compactClassName))
             {
-                // Adds following classes in order:
-                // ng-animate
-                // [service.compactClassName]-add
-                // [service.compactClassName]
-                // [service.compactClassName]-add-active
-                $animate.addClass(element, service.compactClassName);
-            });
+                $timeout(function()
+                {
+                    // Adds following classes in order:
+                    // ng-animate
+                    // [service.compactClassName]-add
+                    // [service.compactClassName]
+                    // [service.compactClassName]-add-active
+                    $animate.addClass(element, service.compactClassName);
+                });
+            }
         };
 
         var _animateRemoveCompactElement = function(element)
         {
-            $timeout(function()
+            if (element.hasClass(service.compactClassName))
             {
-                // Adds following classes in order:
-                // ng-animate
-                // [service.compactClassName]-remove
-                // [service.compactClassName]-remove-active
-                $animate.removeClass(element, service.compactClassName);
-            });
+                $timeout(function()
+                {
+                    // Adds following classes in order:
+                    // ng-animate
+                    // [service.compactClassName]-remove
+                    // [service.compactClassName]-remove-active
+                    $animate.removeClass(element, service.compactClassName);
+                });
+            }
         };
 
         var _animateAddCollapsedElement = function(element)

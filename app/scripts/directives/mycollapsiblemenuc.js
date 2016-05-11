@@ -310,7 +310,9 @@ angular
                     }
                     else
                     {
-                        var height = _elements.dropdownMenu.outerHeight();
+                        // Firefox was offsetting by 1 pixel too much?
+                        // Perhaps related to box-shadow?
+                        var height = _elements.dropdownMenu.outerHeight() - 1;
 
                         bottoms.expanded = -1 * height + MenuState.getIconHeight();
                         // heights.expanded = defaultHeight;
@@ -416,7 +418,7 @@ angular
                     }
                 };
 
-                ctrl.setCompactedState = function()
+                ctrl.hasScrolledToContentPosition = function()
                 {
                     var position = MenuState.getContentPosition();
 
@@ -430,19 +432,22 @@ angular
                         position = MenuState.getContentPosition();
                     }
 
-                    // $log.debug('myCollapsibleMenuC', 'The position, as determined in setCompactedState: %s', position);
+                    // $log.debug('myCollapsibleMenuC', 'The position, as determined in hasScrolledToContentPosition: %s', position);
 
-                    var changed;
+                    return isFinite(position) && WindowState.hasScrolledTo( position );
+                };
 
-                    if ( isFinite(position) && WindowState.hasScrolledTo( position ) )
+                ctrl.setCompactedState = function()
+                {
+                    var scrolledToContentPosition = ctrl.hasScrolledToContentPosition();
+
+                    if ( scrolledToContentPosition )
                     {
-                        // $log.debug('myCollapsibleMenuC', 'Setting compacted!');
-
-                        changed = MenuState.setCompacted(true);
+                        MenuState.setCompacted(true);
                     }
                     else
                     {
-                        changed = MenuState.setCompacted(false);
+                        MenuState.setCompacted(false);
                     }
 
                     /*
@@ -451,6 +456,8 @@ angular
                         ctrl.unsetInlineStyles();
                     }
                     */
+
+                    return scrolledToContentPosition;
                 };
 
                 /* GALLERY MODE STATE */
@@ -527,10 +534,23 @@ angular
                 {
                     if ( MenuState.isCollapsible() )
                     {
+                        // var hasScrolledToContentPosition = ctrl.setCompactedState();
                         ctrl.setCompactedState();
 
                         if ( ! MenuState.isCollapsed() )
                         {
+                            /*
+                            if ( ! hasScrolledToContentPosition )
+                            {
+                                MenuState.setAnimated(false);
+                            }
+                            */
+
+                            // Added in attempt to address wobble/jitter
+                            // animation bug in Chrome. It did seem to reduce
+                            // how often it happened a little.
+                            MenuState.setAnimated(false);
+
                             ctrl.collapseMenu();
                         }
                     }

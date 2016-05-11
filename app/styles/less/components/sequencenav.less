@@ -70,7 +70,9 @@ nav#nav-sequence
     a.prev,
     a.next
     {
-        .transition(all 200ms @ease_in_sine);
+        .transition-property(left, right, margin, padding;);
+        .transition-duration(200ms);
+        .transition-timing-function(@ease_in_sine);
 
         color: @black_75;
         text-decoration: none;
