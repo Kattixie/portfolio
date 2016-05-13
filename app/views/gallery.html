@@ -1,0 +1,15 @@
+<ul class="gallery"
+    ng-class="gallery.loadingStateClassName"
+    ng-mouseenter="gallery.setHighlightMode(true)"
+    ng-mouseleave="gallery.setHighlightMode(false)">
+
+    <div class="loader" ng-class="gallery.loadingStateClassName">
+        <div class="spinner"></div>
+    </div>
+    <my-thumbnail
+        ng-repeat="(index, item) in gallery.items"
+        class="thumbnail"
+        ng-class="gallery.loadingStateClassName">
+    </my-thumbnail>
+
+</ul>

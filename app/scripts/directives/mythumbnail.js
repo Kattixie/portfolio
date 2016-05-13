@@ -8,125 +8,209 @@
  */
 angular
     .module('portfolio')
-    .directive('myThumbnail', function ($log, $window, $timeout, GalleryState)
+    .directive('myThumbnail', function ($log, $timeout, WindowState, LoadState, GalleryState)
     {
-        var directiveDefinitionObject =
-        {
-            restrict: 'EA',
-            scope: {
-                entry: '=data'
-            },
+        return {
+            restrict: 'E',
+            require: '^myGallery',
             templateUrl: 'views/entry-thumbnail.html',
-            link: function(scope, element)
+            link: function(scope, iElement, iAttrs, galleryCtrl)
             {
-                $log.debug('The thumbnail scope: %o', scope);
+                var vm = scope;
 
-                var self = {};
+                var _elements =
+                {
+                    container: iElement.find('li'),
+                    image: iElement.find('img'),
+                    loader: iElement.find('loader')
+                };
 
-                self.eWindow = angular.element( $window );
-                self.element = element;
-                self.image = element.find('img');
-                self.resizeTO = null;
+                var _timeoutIds =
+                {
+                    resize: undefined,
+                    scroll: undefined
+                };
 
-                scope.sizeClassName = '';
+                var _isHighlighted = false;
 
-                var delay       =   100,
-                    duration    =   250;
+                angular.extend(vm,
+                {
+                    delay: 100,
+                    duration: 250,
+                    sizeClassName: '',
+                    loadingStateClassName: LoadState.loadingClassName
+                });
+
+                vm.init = function()
+                {
+                    // $log.debug('myThumbnail', 'The item index: %s', vm.index);
+
+                    galleryCtrl.setItem(scope);
+
+                    // vm.setLoadingState();
+                    vm.setSizeClass();
+
+                    _setEventListeners();
+                };
+
+                /* LOADING */
+
+                vm.setLoadingState = function()
+                {
+                    vm.setLoadingStateClassName(LoadState.loadingClassName);
+                };
+
+                vm.setCompleteState = function()
+                {
+                    vm.setLoadingStateClassName(LoadState.completeClassName);
+
+                    galleryCtrl.setItemLoaded( vm.index );
+                };
+
+                vm.setLoadingStateClassName = function(className)
+                {
+                    vm.loadingStateClassName = className;
+
+                    _digest();
+                };
+
+                /* SIZE */
 
                 // We need to set a class to determine how to display thumbnail
                 // contents because the width of the thumbnail is dynamic. The
                 // width provides us some insight on how much real estate we
                 // have on this particular screen.
-                self.setSizeClass = function()
+                vm.setSizeClass = function()
                 {
-                    var width = self.image.width();
+                    var width = _elements.image.width();
 
                     if ( width <= GalleryState.smallWidth )
                     {
-                        scope.sizeClassName = GalleryState.smallClassName;
+                        vm.sizeClassName = GalleryState.smallClassName;
                     }
                     else if ( width <= GalleryState.mediumWidth )
                     {
-                        scope.sizeClassName = GalleryState.mediumClassName;
+                        vm.sizeClassName = GalleryState.mediumClassName;
                     }
                     else
                     {
-                        scope.sizeClassName = GalleryState.maxClassName;
+                        vm.sizeClassName = GalleryState.maxClassName;
                     }
 
-                    // $log.debug('The class name is: %s', scope.sizeClassName);
+                    // $log.debug('myThumbnail', 'The class name is: %s', vm.sizeClassName);
+
+                    _digest();
                 };
+
+                vm.getSizeClass = function()
+                {
+                    $log.debug('myThumbnail', 'Requesting size class...');
+
+                    return vm.sizeClassName;
+                };
+
+                vm.getHeight = function()
+                {
+                    return iElement.height();
+                };
+
+                /* MOUSE EFFECTS */
 
                 // I noticed some lagginess with the thumbnail animations with
                 // straight CSS. They seem to perform better with Velocity.
 
-                self.onElementHover = function()
+                vm.onElementHover = function()
                 {
-                    if ( ! self.image.hasClass('velocity-animating') )
+                    if ( ! _elements.image.hasClass('velocity-animating') )
                     {
-                        self.image
+                        _elements.image
                             .velocity(
                             {
-                                top: -1 * self.image.height()
+                                top: _elements.image.height(),
+                                // top: -1 * _elements.image.height()
                             },
                             {
-                                delay:  delay,
-                                duration: duration,
+                                delay:  vm.delay,
+                                duration: vm.duration,
                                 easing: 'easeInBack'
                             });
                     }
                 };
 
-                self.offElementHover = function()
+                vm.offElementHover = function()
                 {
-                    self.image
+                    _elements.image
                         .velocity(
                         {
                             top: 0
                         },
                         {
-                            delay:  delay,
-                            duration: duration,
+                            delay:  vm.delay,
+                            duration: vm.duration,
                             easing: 'easeOutBack'
                         });
                 };
 
-                self.onWindowResize = function()
+                vm.setHighlight = function(isHighlighted)
                 {
-                    if ( self.resizeTO )
+                    if ( _isHighlighted !== isHighlighted )
                     {
-                        $timeout.cancel( self.resizeTO );
+                        _isHighlighted = isHighlighted;
+                    }
+                };
+
+                vm.isHighlighted = function()
+                {
+                    $log.debug('myThumbnail', 'Is the gallery in highlight mode? %s', galleryCtrl.inHighlightMode());
+
+                    if ( ! galleryCtrl.inHighlightMode() )
+                    {
+                        return true;
                     }
 
-                    self.resizeTO = $timeout( function()
+                    return _isHighlighted;
+                };
+
+                /* EVENT LISTENERS */
+
+                var _onWindowResize = function()
+                {
+                    $log.debug('myThumbnail', 'The window has resized, setting class...');
+
+                    vm.setSizeClass();
+                };
+
+                var _onDestroy = function()
+                {
+                    iElement.off('mouseenter', 'mouseleave');
+                    _elements.image.off('load');
+
+                    WindowState.destroyResize( _timeoutIds.resize, 'thumbnail' );
+                };
+
+                var _setEventListeners = function()
+                {
+                    scope.$on('$destroy', _onDestroy);
+
+                    iElement.on(
                     {
-                        self.setSizeClass();
+                        mouseenter: vm.onElementHover,
+                        mouseleave: vm.offElementHover
+                    });
 
-                    }, 500, false);
+                    _elements.image.on('load', vm.setCompleteState);
+
+                    _timeoutIds.resize = WindowState.onResize(_onWindowResize, 'thumbnail', 300);
                 };
 
-                self.onDestroy = function()
+                /* DIGEST */
+
+                var _digest = function()
                 {
-                    self.element.off('mouseenter', 'mouseleave');
-
-                    self.eWindow.unbind('resize', self.onWindowResize);
-
-                    $timeout.cancel( self.resizeTO );
+                    $timeout();
                 };
 
-                self.element.on(
-                {
-                    mouseenter: self.onElementHover,
-                    mouseleave: self.offElementHover
-                });
-
-                scope.$on('$destroy', self.onDestroy);
-
-                self.eWindow.bind('resize', self.onWindowResize);
-
-                self.setSizeClass();
+                vm.init();
             }
         };
-
-        return directiveDefinitionObject;
     });

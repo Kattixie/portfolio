@@ -9,6 +9,7 @@
     // my-thumbnail
     .thumbnail
     {
+        background: #000;
         display: inline-block;
         font-size: 1rem;
         //height: 358px; // Must be set to auto when rescaled according to width.
@@ -16,6 +17,34 @@
             top: 0;
             left: 0;
         width: @thumb_width;
+
+        &.loading
+        {
+            opacity: 0;
+        }
+
+        &.complete-add
+        {
+            .transition(all 150ms @ease_in_sine);
+
+            opacity: 0;
+        }
+
+        &.complete-add.complete-add-active
+        {
+            // opacity: 1;
+        }
+
+        &.complete
+        {
+            opacity: 1;
+        }
+
+        &.complete-add-stagger
+        {
+            transition-delay: 25ms;
+            transition-duration: 0s;
+        }
 
         li.canvas
         {
@@ -25,9 +54,35 @@
                 bottom: 0;
                 left: 0;
 
+            /* This works. Just not sold on the effect.
+            &.faded-add
+            {
+                opacity: 1;
+            }
+
+            &.faded
+            {
+                .transition(opacity 300ms @ease_in_sine);
+
+                opacity: 0.80;
+            }
+
+            &.faded-remove
+            {
+                opacity: 0.80;
+            }
+
+            &.faded-remove.faded-remove-active
+            {
+                .transition(opacity 100ms @ease_in_sine);
+
+                opacity: 1;
+            }
+            */
+
             &.large
             {
-                font-size: 1.25rem;
+                font-size: 1.15rem;
 
                 .description
                 {
@@ -82,8 +137,7 @@
             h3
             {
                 //.rounded(27px);
-                .transition(all 200ms ease-out);
-                transition-delay: 120ms;
+                .transition(top 300ms @ease_in_sine);
 
                 //border: 2px solid #fff;
                 color: #fff;
@@ -118,9 +172,9 @@
 
             ul.roles
             {
-                .transition(all 300ms ease-out);
+                // .transition(all 300ms ease-out);
 
-                display: block;
+                display: none;
                 padding: 0 @spacing_unit_root / 2;
                 position: absolute;
                     bottom: @spacing_unit_root / 2;
@@ -135,17 +189,19 @@
                     font-family: @body_face;
                     font-size: 0.688em; // 11px
                     //font-style: italic;
-                    font-weight: 600;
-                    letter-spacing: 2px;
+                    font-weight: 500;
+                    // letter-spacing: 2px;
                     //line-height: 22px;
                     line-height: 1.625em;
                     margin-left: .625em;
-                    text-transform: uppercase;
+                    // text-transform: uppercase;
 
                     &::before
                     {
                         //content: '\00D7';
-                        content: '/';
+                        // content: '/';
+                        // content: '\000AC';
+                        content: '\022C5';
                         margin-right: .625em;
                     }
 
@@ -302,6 +358,7 @@
         {
             // height: auto;
             width: 20%;
+            // margin: 0 @spacing_unit_root / 4 @spacing_unit_root / 2 @spacing_unit_root / 4;
         }
     }
 

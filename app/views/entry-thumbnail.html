@@ -1,11 +1,14 @@
-<li class="canvas {{::entry.slug}} {{sizeClassName}}">
+<li class="canvas {{::item.slug}}"
+    ng-class="[ sizeClassName, { faded: ! isHighlighted() } ]"
+    ng-mouseenter="gallery.highlightItem(index)">
+
     <div class="description">
-        <h3 ng-bind-html="entry.titleShort">{{::entry.titleShort}}</h3>
+        <h3 ng-bind-html="item.titleShort">{{::item.titleShort}}</h3>
         <ul class="roles">
-            <li ng-repeat="role in entry.thumbCategories">{{::role}}</li>
+            <li ng-repeat="role in item.thumbCategories">{{::role}}</li>
         </ul>
     </div>
-    <a ng-href="#/{{::entry.slug}}">
-        <img ng-src="images/{{::entry.thumb}}">
+    <a ng-href="#/{{::item.slug}}">
+        <img ng-src="images/{{::item.thumb}}">
     </a>
 </li>
