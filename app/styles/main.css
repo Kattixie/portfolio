@@ -317,7 +317,7 @@ header h1#logo a:hover span.name {
 }
 ul#contact {
   clear: both;
-  margin: 6.25rem auto;
+  margin: 6.25rem auto 3.125rem auto;
   padding: 0 1.5625rem;
   text-align: center;
 }
@@ -400,7 +400,7 @@ ul#contact a.fa {
   font-size: 1rem;
   letter-spacing: 0.125em;
   line-height: 1.375em;
-  margin-bottom: 3.125rem;
+  margin: 3.125rem 0;
   text-align: center;
   text-transform: uppercase;
 }
@@ -2029,7 +2029,6 @@ div.loader .spinner {
   text-align: center;
 }
 #entry-gallery .thumbnail {
-  background: #000;
   display: inline-block;
   font-size: 1rem;
   position: relative;

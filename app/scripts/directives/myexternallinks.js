@@ -32,9 +32,8 @@ angular
                         {
                             return this.hostname && this.hostname !== window.location.hostname;
                         })
-                        .wrapInner('<span class="text">')
-                        .wrap('<span class="external">')
-                        .after('<span class="icon"><svg><use xlink:href="#symbol-diagonal-arrow"></use></svg></span>');
+                        .addClass('external')
+                        .attr('target', '_blank');
                 });
             }
         };
