@@ -30,14 +30,21 @@ angular
 
                 vm.init = function()
                 {
-                    vm.setDefaultState();
+                    listCtrl
+                        .isReady()
+                        .then(function()
+                        {
+                            vm.setDefaultState();
+                        });
                 };
 
                 vm.setDefaultState = function()
                 {
+                    // $log.debug('myCategory', 'Setting default state for category: %s', vm.slug);
+
                     if ( listCtrl.inRouteCategories(vm.slug) )
                     {
-                        $log.debug('myCategory', 'The category is currently selected.');
+                        // $log.debug('myCategory', 'The category is currently selected: %s', vm.slug);
 
                         _isSelected = true;
                     }

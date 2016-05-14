@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myCategorizedList', function ($log, $routeParams, $location)
+    .directive('myCategorizedList', function ($log, $routeParams, $location, $q)
     {
         return {
             restrict: 'E',
@@ -28,7 +28,8 @@ angular
 
                 var ctrl = this;
 
-                var _initWatch;
+                var _initWatch,
+                    _initDeferred = $q.defer();
 
                 angular.extend(ctrl,
                 {
@@ -61,6 +62,13 @@ angular
                     ctrl.setCategoryParam();
                     ctrl.setItems();
                     ctrl.setSelectedCategories();
+
+                    _initDeferred.resolve();
+                };
+
+                ctrl.isReady = function()
+                {
+                    return _initDeferred.promise;
                 };
 
                 /* CATEGORY URI PARAMETERS */
@@ -129,6 +137,8 @@ angular
                 // Checks if the passed slug is in the URI categories.
                 ctrl.inRouteCategories = function(slug)
                 {
+                    // $log.debug('myCategorizedList', 'A request for the route categories is being made. There are currently [%s] categories in the URI.', ctrl.routeCategories.length);
+
                     var found = false;
 
                     for (var i = 0; ! found && i < ctrl.routeCategories.length; i++)
