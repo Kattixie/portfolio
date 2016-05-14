@@ -25,6 +25,8 @@ angular
         vm.data = {};
         vm.data.entry = null;
 
+        PageState.setLoadingState(false);
+
         MenuState.isCentered(true);
 
         Entry

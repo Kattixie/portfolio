@@ -18,6 +18,7 @@ angular
         vm.data.categories = [];
 
         PageState.setTitle();
+        PageState.setLoadingState(false);
 
         MenuState.setPrevURI(undefined);
         MenuState.setNextURI(undefined);

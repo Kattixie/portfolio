@@ -12,7 +12,8 @@ angular
     {
         var service = {};
 
-        var _projectTitle = '';
+        var _projectTitle = '',
+            _isLoading = true;
 
         service.setProjectTitle = function(title)
         {
@@ -40,6 +41,16 @@ angular
             // problems with the page title template without the use of
             // ng-bind: http://stackoverflow.com/a/22467512
             $rootScope.title = newTitle;
+        };
+
+        service.setLoadingState = function(isLoading)
+        {
+            _isLoading = isLoading;
+        };
+
+        service.isLoading = function()
+        {
+            return _isLoading;
         };
 
         // Public API

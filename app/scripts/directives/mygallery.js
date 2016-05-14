@@ -8,7 +8,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myGallery', function ($log, $timeout, LoadState)
+    .directive('myGallery', function ($log, $timeout, LoadState, PageState)
     {
         return {
             restrict: 'E',
@@ -55,11 +55,15 @@ angular
                 ctrl.setLoadingState = function()
                 {
                     ctrl.loadingStateClassName = LoadState.loadingClassName;
+
+                    // PageState.setLoadingState(true);
                 };
 
                 ctrl.setCompleteState = function()
                 {
                     ctrl.loadingStateClassName = LoadState.completeClassName;
+
+                    PageState.setLoadingState(false);
                 };
 
                 ctrl.isLoaded = function()

@@ -509,6 +509,8 @@ angular
 
                 ctrl.onNavItemClick = function()
                 {
+                    $log.debug('myCollapsibleMenuC', 'The nav item was clicked.');
+
                     if ( MenuState.isCollapsible() && ! MenuState.isCollapsed() )
                     {
                         MenuState.setAnimated(false);
@@ -606,8 +608,10 @@ angular
                     _timeoutIds.resize = WindowState.onResize(_onWindowResize, 'primarynav', 10);
                     _timeoutIds.scroll = WindowState.onScroll(_onWindowScroll, 'primarynav', 10);
 
-                    // Is the more Angular way to set ng-click in view?
-                    // _elements.dropdownMenu.find('a').on('click', ctrl.onNavItemClick);
+                    // Set here because ngClick will override ngHref/href on the
+                    // link tag if ngTouch is in use. The result is that
+                    // the links don't actually route to other views.
+                    _elements.dropdownMenu.find('a').on('click', ctrl.onNavItemClick);
                 };
 
                 _setEventListeners();

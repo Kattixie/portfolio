@@ -48,15 +48,17 @@
         </my-sequence-nav>
     </div>
 
-    <!-- build:include(.) -->
-    <div ng-include="'includes/social.html'" src="includes/social.html"></div>
-    <!-- endbuild -->
+    <my-footer>
+        <!-- build:include(.) -->
+        <div ng-include="'includes/social.html'" src="includes/social.html"></div>
+        <!-- endbuild -->
 
-    <div id="earth-crafted">
-        Earth-crafted Pixels
-        <br>Made in
-        <br>the Milky Way
-    </div>
+        <div id="earth-crafted">
+            Earth-crafted Pixels
+            <br>Made in
+            <br>the Milky Way
+        </div>
+    </my-footer>
 
     <!-- build:include(.) -->
     <div ng-include="'includes/analytics.html'" src="includes/analytics.html"></div>
@@ -123,6 +125,7 @@
         <script src="scripts/directives/mysyncedcolumns.js"></script>
         <script src="scripts/directives/mysideitem.js"></script>
         <script src="scripts/directives/myflag.js"></script>
+        <script src="scripts/directives/myfooter.js"></script>
         <script src="scripts/directives/mywindowdebugger.js"></script>
         <!-- endbuild -->
     </body>

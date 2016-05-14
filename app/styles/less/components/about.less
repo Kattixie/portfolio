@@ -185,6 +185,13 @@
 
                 .highlight-text-ltr(@black_93, '.highlight', 80%);
 
+                .respond-until-including(@2_column_width,
+                {
+                    // For now, force inline display at this width. We need a solution for
+                    // dealing with multi-line highlights that have many words.
+                    display: inline;
+                });
+
                 &.highlight
                 {
 

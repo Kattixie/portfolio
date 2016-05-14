@@ -321,6 +321,18 @@ ul#contact {
   padding: 0 1.5625rem;
   text-align: center;
 }
+ul#contact.loading,
+ul#contact.loading-remove {
+  opacity: 0;
+}
+ul#contact.loading-remove.loading-remove-active {
+  -webkit-transition: opacity 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  -moz-transition: opacity 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  -ms-transition: opacity 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  -o-transition: opacity 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition: opacity 300ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  opacity: 1;
+}
 ul#contact h3 {
   color: #4d4d4d;
   font-family: 'Archivo Narrow', sans-serif;
@@ -543,6 +555,7 @@ nav#nav-main .nav-icon-wrapper .nav-icon-inner {
 nav#nav-main .nav-icon-wrapper a#expand-icon,
 nav#nav-main .nav-icon-wrapper a#collapse-icon {
   color: #808080;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 nav#nav-main .nav-icon-wrapper a#expand-icon svg,
 nav#nav-main .nav-icon-wrapper a#collapse-icon svg {
@@ -2149,7 +2162,7 @@ div.loader .spinner {
   display: none;
   padding: 0 1.5625rem;
   position: absolute;
-  bottom: 1.5625rem;
+  bottom: 3.125rem;
   left: 0;
   right: 0;
   text-align: center;
@@ -2159,9 +2172,12 @@ div.loader .spinner {
   display: inline-block;
   font-family: 'Open Sans';
   font-size: 0.688em;
-  font-weight: 500;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 2px;
   line-height: 1.625em;
   margin-left: .625em;
+  text-transform: uppercase;
 }
 #entry-gallery .thumbnail .description ul.roles li::before {
   content: '\022C5';
@@ -2683,6 +2699,7 @@ div.loader .spinner {
   border-bottom: 2px solid #e6e6e6;
 }
 #entry .text p span.external a span.no-wrap {
+  display: inline-block;
   white-space: nowrap;
 }
 #entry .text p span.external a span.no-wrap span.icon {
@@ -3228,6 +3245,7 @@ div.loader .spinner {
   border-bottom: 2px solid #e6e6e6;
 }
 #about .bio p span.external a span.no-wrap {
+  display: inline-block;
   white-space: nowrap;
 }
 #about .bio p span.external a span.no-wrap span.icon {
@@ -3285,6 +3303,11 @@ div.loader .spinner {
 }
 #about .bio p span.side-photo-link.highlight::after {
   width: 100%;
+}
+@media (max-width: 954px) {
+  #about .bio p span.side-photo-link {
+    display: inline;
+  }
 }
 #about .sidebar {
   display: inline-block;

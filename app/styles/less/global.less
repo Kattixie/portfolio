@@ -186,6 +186,19 @@ ul#contact
     padding: 0 @spacing_unit_root / 2;
     text-align: center;
 
+    &.loading,
+    &.loading-remove
+    {
+        opacity: 0;
+    }
+
+    &.loading-remove.loading-remove-active
+    {
+        .transition(opacity 300ms @ease_in_sine);
+
+        opacity: 1;
+    }
+
     h3
     {
         color: @black_30;
@@ -428,6 +441,7 @@ ul#contact
 
             span.no-wrap
             {
+                display: inline-block;
                 white-space: nowrap;
 
                 span.last-word

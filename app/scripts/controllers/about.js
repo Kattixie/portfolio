@@ -17,6 +17,7 @@ angular
         vm.data.profile = null;
 
         PageState.setTitle('About');
+        PageState.setLoadingState(false);
 
         MenuState.setPrevURI(undefined);
         MenuState.setNextURI(undefined);

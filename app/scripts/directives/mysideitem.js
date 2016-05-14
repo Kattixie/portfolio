@@ -145,7 +145,9 @@ angular
                 {
                     if ( ! _heightTO )
                     {
-                        _heightTO = $timeout(self.onHeightTO, 50);
+                        // This does cause a lot of digests to happen infinitely
+                        // on whatever view this directive is loaded on.
+                        _heightTO = $timeout(self.onHeightTO, 500);
                     }
                 });
 
