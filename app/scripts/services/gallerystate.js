@@ -14,7 +14,7 @@ angular
         var service =
         {
             maxWidth:           465,
-            mediumWidth:        385,
+            mediumWidth:        400,
             smallWidth:         315,
 
             maxClassName:       'large',
