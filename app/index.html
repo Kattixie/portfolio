@@ -16,7 +16,6 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -39,13 +38,10 @@
     </header>
 
     <div class="main-container">
-        <my-sequence-nav>
-            <!--
-                Each ng-include (or ng-view) generates a new child scope, which prototypically inherits from the parent scope.
-                https://github.com/angular/angular.js/wiki/Understanding-Scopes#ng-include
-            -->
-            <div ng-view="" class="sub-view" my-autoscroll></div>
-        </my-sequence-nav>
+
+        <my-sequence-nav></my-sequence-nav>
+        <div ng-view="" class="sub-view" my-autoscroll></div>
+        
     </div>
 
     <my-footer>
@@ -69,6 +65,7 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>

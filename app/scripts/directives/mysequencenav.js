@@ -15,7 +15,6 @@ angular
             controllerAs: 'sequenceNav',
             scope: true,
             // bindToController: true,
-            transclude: true,
             templateUrl: 'views/sequencenav.html',
             controller: function($scope, $element)
             {
@@ -41,11 +40,15 @@ angular
 
                 ctrl.prevExists = function()
                 {
+                    $log.debug('mySequenceNav', 'Does a previous URI exist?', MenuState.prevExists());
+
                     return MenuState.prevExists();
                 };
 
                 ctrl.nextExists = function()
                 {
+                    $log.debug('mySequenceNav', 'Does a next URI exist?', MenuState.nextExists());
+
                     return MenuState.nextExists();
                 };
 
@@ -53,23 +56,23 @@ angular
 
                 ctrl.onPrev = function()
                 {
+                    $log.debug('mySequenceNav', 'What is the previous URI? %s', MenuState.getPrevURI());
+
                     $location.url( MenuState.getPrevURI() );
                 };
 
                 ctrl.onNext = function()
                 {
+                    $log.debug('mySequenceNav', 'What is the next URI? %s', MenuState.getNextURI());
+
                     $location.url( MenuState.getNextURI() );
                 };
 
-                // This was added after all of the work to sniff out whether a
-                // child to this element has a prevURI and nextURI element.
-                // While it works, ng-view must complete its animation before
-                // the prev and next elements are appropriately handled here.
                 // This specifically looks for a slug and sets a class that
                 // determines how sequential navigational elements should
-                // display in the meantime. It assumes any element that's a
-                // child of this one will have a slug value of some sort to
-                // distinguish between elements in the sequence.
+                // display before MenuState has figured out what to do. It
+                // assumes sequential elements will have a slug value of some
+                // sort to distinguish between elements in the sequence.
                 ctrl.onRouteChange = function()
                 {
                     if ( $routeParams.slug )

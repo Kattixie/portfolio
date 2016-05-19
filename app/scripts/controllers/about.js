@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name angularPortfolioApp.controller:AboutCtrl
+ * @name portfolio.controller:AboutCtrl
  * @description
  * # AboutCtrl
- * Controller of the angularPortfolioApp
+ * Controller of the portfolio
  */
 angular
     .module('portfolio')
