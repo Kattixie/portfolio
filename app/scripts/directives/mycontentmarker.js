@@ -10,7 +10,7 @@
  */
 angular
     .module('portfolio')
-    .directive('myContentMarker', function ($log, $timeout, MenuState)
+    .directive('myContentMarker', function ($log, $timeout, MenuState, attributes)
     {
         var directiveDefinitionObject =
         {
@@ -18,9 +18,9 @@ angular
             priority: 1,
             link: function(scope, iElement, iAttrs)
             {
-                var self = {};
+                var vm = {};
 
-                self.init = function()
+                vm.init = function()
                 {
                     // Without a timeout, we sometimes get an offset that is
                     // thousands of pixels off. All I can figure is that it's
@@ -30,36 +30,41 @@ angular
                     // to CSS animation fade-in for view?
                     $timeout(function()
                     {
-                        if (iAttrs.startAt === 'first')
-                        {
-                            $log.debug('myContentMarker', 'Choosing the first child.');
-
-                            iElement = iElement.children().eq(0);
-                        }
-                        else if (iAttrs.startAt === 'mid')
-                        {
-                            var children = iElement.children();
-
-                            $log.debug('myContentMarker', 'The number of children: %s', children.length);
-
-                            $log.debug('myContentMarker', 'Choosing the mid child at index [%s].', Math.floor(children.length / 2));
-
-                            iElement = children.eq( Math.floor(children.length / 2) );
-                        }
-
-                        MenuState.setContentPosition( iElement, iAttrs.entrancePoint );
+                        vm.setElement();
 
                     }, 300, false);
                 };
 
-                self.onDestroy = function()
+                vm.setElement = function()
+                {
+                    if (iAttrs.startAt === attributes.FIRST)
+                    {
+                        $log.debug('myContentMarker', 'Choosing the first child.');
+
+                        iElement = iElement.children().eq(0);
+                    }
+                    else if (iAttrs.startAt === attributes.MID)
+                    {
+                        var children = iElement.children();
+
+                        $log.debug('myContentMarker', 'The number of children: %s', children.length);
+
+                        $log.debug('myContentMarker', 'Choosing the mid child at index [%s].', Math.floor(children.length / 2));
+
+                        iElement = children.eq( Math.floor(children.length / 2) );
+                    }
+
+                    MenuState.setContentPosition( iElement, iAttrs.entrancePoint );
+                };
+
+                vm.onDestroy = function()
                 {
                     MenuState.removeContentPosition();
                 };
 
-                scope.$on('$destroy', self.onDestroy);
+                scope.$on('$destroy', vm.onDestroy);
 
-                self.init();
+                vm.init();
             }
         };
 

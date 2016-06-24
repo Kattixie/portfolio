@@ -147,7 +147,6 @@ table {
 }
 body {
   color: #3d3d3d;
-  text-rendering: optimizeLegibility;
 }
 a {
   outline: none;
@@ -227,6 +226,7 @@ header h1#logo.ng-visible {
   -moz-animation: 200ms cubic-bezier(0.47, 0, 0.745, 0.715) slideInLogo;
   -o-animation: 200ms cubic-bezier(0.47, 0, 0.745, 0.715) slideInLogo;
   animation: 200ms cubic-bezier(0.47, 0, 0.745, 0.715) slideInLogo;
+  -webkit-backface-visibility: hidden;
 }
 header h1#logo.ng-hidden,
 header h1#logo.ng-hidden-remove {
@@ -273,6 +273,9 @@ header h1#logo a {
   text-decoration: none;
   width: 6.875em;
   vertical-align: middle;
+}
+header h1#logo a.inactive {
+  cursor: default;
 }
 header h1#logo a img {
   -webkit-transition: all 100ms ease-out;
@@ -1395,7 +1398,7 @@ nav#nav-sequence.compact a.prev::after,
 nav#nav-sequence.compact a.next::after {
   display: inline-block;
   height: 4.875rem;
-  line-height: 4.875rem;
+  line-height: calc(4.875rem);
 }
 nav#nav-sequence.compact a.prev,
 nav#nav-sequence.compact a.next {
@@ -1548,7 +1551,7 @@ nav#nav-sequence a.close:hover svg {
   nav#nav-sequence a.next::after {
     display: inline-block;
     height: 8.125rem;
-    line-height: 8.125rem;
+    line-height: calc(8.125rem);
   }
   nav#nav-sequence a.prev {
     padding-left: 1.5625rem;
@@ -1616,7 +1619,7 @@ nav#nav-sequence a.close:hover svg {
   nav#nav-sequence a.next::after {
     display: inline-block;
     height: 12.1875rem;
-    line-height: 12.1875rem;
+    line-height: calc(12.1875rem);
   }
 }
 @media (min-width: 478px) and (max-width: 727px) {

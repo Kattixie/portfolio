@@ -1,8 +1,8 @@
 body
 {
     color: @black_24;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+    // text-rendering: optimizeLegibility;
+    // -webkit-font-smoothing: antialiased;
 }
 
 a
@@ -103,6 +103,10 @@ header
         &.ng-visible
         {
             .animation(200ms @ease_in_sine slideInLogo);
+
+            // For some reason, this gets rid of jagged edges that appear on
+            // this animation for PNG formats.
+            -webkit-backface-visibility: hidden;
         }
 
         &.ng-hidden,
@@ -135,14 +139,19 @@ header
             width: 6.875em; // 110px
             vertical-align: middle;
 
+            &.inactive
+            {
+              cursor: default;
+            }
+
             img
             {
                 .transition(all 100ms ease-out);
 
                 font-size: 1em;
                 position: absolute;
-                top: 50%;
-                left: 50%;
+                  top: 50%;
+                  left: 50%;
                 margin: -2.188em 0 0 -2.188em; //-35px 0 0 -35px;
                 width: 4.375em; // 70px
             }

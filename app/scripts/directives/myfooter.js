@@ -21,7 +21,7 @@ angular
             },
             controllerAs: 'footer',
             bindToController: true,
-            controller: function($scope, $element)
+            controller: function()
             {
                 var ctrl = this;
 
@@ -46,5 +46,5 @@ angular
                     return ctrl.loadingStateClassName;
                 };
             }
-        }
+        };
     });

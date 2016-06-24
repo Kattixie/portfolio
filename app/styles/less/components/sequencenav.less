@@ -290,7 +290,11 @@ nav#nav-sequence
             {
                 display: inline-block;
                 height: @header_height * @factor;
-                line-height: @header_height * @factor;
+
+                // Using calc here to resolve an IE bug with line height and
+                // rems. I couldn't come up with any serious performance
+                // ramifications to discourage this.
+                line-height: calc(@header_height * @factor);
             }
         }
     }

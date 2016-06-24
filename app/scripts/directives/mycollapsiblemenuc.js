@@ -339,6 +339,23 @@ angular
                     return MenuState.isCollapsed();
                 };
 
+                ctrl.isInactive = function()
+                {
+                    $log.debug('myCollapsibleMenuC', 'The current location: %s', $location.url());
+
+                    // Only inactive in cases where menu is not collapsible and
+                    // user is on home view.
+                    if ( ! MenuState.isCollapsible() )
+                    {
+                        if ($location.url() === '/')
+                        {
+                          return true;
+                        }
+                    }
+
+                    return false;
+                };
+
                 /* ACTIONS */
 
                 ctrl.toggleMenu = function()

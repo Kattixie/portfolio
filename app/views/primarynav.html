@@ -1,5 +1,5 @@
 <h1 id="logo" my-viewport-entrance>
-    <a ng-click="nav.toggleMenu()">
+    <a ng-click="nav.toggleMenu()" ng-class="{ inactive: nav.isInactive() }">
         <img src="images/galaxy.png">
         <span class="name">Jessica Williams</span>
     </a>
